@@ -1,0 +1,23 @@
+{
+
+    "manifest_version": 2,
+    "name": "ReFingerprint",
+    "version": "0.1",
+
+    "description": "WebExtension für ReFingerprint",
+
+    "icons": {
+        "48": "icons/logo.png"
+    },
+
+    "content_scripts": [{
+        "matches": ["*://localhost/*"],
+        "js": ["dist/index.js"]
+    }],
+    "applications": {
+        "gecko": {
+            "id": "lklassen@mail.uni-mannheim.de"
+        }
+    }
+
+}
