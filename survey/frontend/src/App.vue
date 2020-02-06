@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Page v-if="isLoaded" />
+    <Page v-if="isLoaded" v-model="structure.pages[currentPage]" />
     <p v-else-if="isError" class="center">Leider ist etwas schief gelaufen.</p>
     <v-progress-circular v-else size="64" indeterminate class="center" />
   </div>
@@ -24,6 +24,10 @@
 import Vue from "vue";
 import Page from "./components/Page.vue";
 import SurveyDescription from "./interfaces/SurveyDescription";
+
+/**
+ * Top-Level Component
+ */
 export default Vue.extend({
   components: {
     Page
@@ -31,8 +35,12 @@ export default Vue.extend({
   data: () => ({
     isLoaded: false,
     isError: false,
-    structure: {}
+    structure: {} as SurveyDescription,
+    currentPage: 0
   }),
+  /**
+   * Get the SurveyDescription from the server
+   */
   mounted() {
     /**
      * Regex for a UUIDv4
@@ -55,7 +63,7 @@ export default Vue.extend({
               this.isError = true;
               return;
             }
-            this.structure = (await data.json()) as SurveyDescription;
+            this.structure = await data.json();
             this.isLoaded = true;
           })
           .catch(err => {
