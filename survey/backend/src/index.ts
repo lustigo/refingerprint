@@ -4,17 +4,14 @@ require("dotenv").config();
 import koa from "koa";
 import https from "https";
 import fs from "fs";
+import initRoutes from "./router";
 
 const app = new koa();
 
 /*
- * Serve the API 
+ * Add the Routes
  */
-
-/*
- * Serve the frontend
- */
-app.use(require("koa-static")("../frontend/dist/"));
+initRoutes(app);
 
 /*
  * Start the server
