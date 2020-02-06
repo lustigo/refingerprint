@@ -1,8 +1,8 @@
 <template>
   <div>
     <div v-for="(widget, index) in widgets" v-bind:key="index">
-      /* Check which type the Widget has and render it and assign corresponding
-      structure */
+      <!-- Check which type the Widget has and render it and assign corresponding
+      structure-->
       <v-component
         :is="widget.type"
         v-model="widgets[index].structure"
