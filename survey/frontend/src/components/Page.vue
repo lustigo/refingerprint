@@ -15,7 +15,7 @@
 <script lang="ts">
 import Vue from "vue";
 import WidgetDescription from "../interfaces/WidgetDescription";
-import Widget from "./Widget.vue";
+import Matrix from "./Matrix.vue";
 
 /**
  * Single Page with multiple widgets
@@ -23,7 +23,7 @@ import Widget from "./Widget.vue";
 export default Vue.extend({
   props: ["value"],
   components: {
-    Widget
+    Matrix
   },
   data: () => ({
     widgets: [] as WidgetDescription[]
