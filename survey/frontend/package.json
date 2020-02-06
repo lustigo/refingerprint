@@ -9,12 +9,14 @@
   },
   "dependencies": {
     "core-js": "^3.4.4",
+    "uuid": "^3.4.0",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
     "vue-property-decorator": "^8.3.0",
     "vuetify": "^2.2.10"
   },
   "devDependencies": {
+    "@types/uuid": "^3.4.7",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",
     "@vue/cli-plugin-router": "^4.1.0",

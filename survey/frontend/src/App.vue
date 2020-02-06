@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Id v-model="uid" />
     <Page v-if="isLoaded" v-model="structure.pages[currentPage]" />
     <p v-else-if="isError" class="center">Leider ist etwas schief gelaufen.</p>
     <v-progress-circular v-else size="64" indeterminate class="center" />
@@ -22,7 +23,9 @@
 
 <script lang="ts">
 import Vue from "vue";
+import uuid from "uuid";
 import Page from "./components/Page.vue";
+import Id from "./components/Id.vue";
 import SurveyDescription from "./interfaces/SurveyDescription";
 
 /**
@@ -30,12 +33,14 @@ import SurveyDescription from "./interfaces/SurveyDescription";
  */
 export default Vue.extend({
   components: {
-    Page
+    Page,
+    Id
   },
   data: () => ({
     isLoaded: false,
     isError: false,
     structure: {} as SurveyDescription,
+    uid: uuid(),
     currentPage: 0
   }),
   /**
