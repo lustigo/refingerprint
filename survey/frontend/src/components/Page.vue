@@ -31,6 +31,11 @@ export default Vue.extend({
   methods: {},
   mounted() {
     this.widgets = this.value;
+  },
+  watch: {
+    value: function(newValue: WidgetDescription[]) {
+      this.widgets = newValue;
+    }
   }
 });
 </script>
