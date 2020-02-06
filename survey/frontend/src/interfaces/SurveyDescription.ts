@@ -5,6 +5,6 @@ import WidgetDescription from "./WidgetDescription";
  * Describes the Structure of the Survey
  */
 export default interface SurveyDescription {
-  readonly id: UUID;
+  readonly survey: UUID;
   readonly pages: WidgetDescription[][];
 }
