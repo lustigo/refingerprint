@@ -10,7 +10,7 @@
               scope
               v-for="(answer, index) in structure.structure"
               class="text-left"
-              :key="index"
+              v-bind:key="index"
             >{{ answer }}</th>
           </tr>
         </thead>
@@ -21,7 +21,7 @@
               <input
                 class="v-input--selection-controls ripple"
                 type="radio"
-                :value="key"
+                v-bind:value="key"
                 v-on:change="$emit('input', structure)"
                 v-model="structure.answers[att]"
               />

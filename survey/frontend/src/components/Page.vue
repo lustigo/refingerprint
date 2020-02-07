@@ -4,7 +4,7 @@
       <!-- Check which type the Widget has and render it and assign corresponding
       structure-->
       <v-component
-        :is="widget.type"
+        v-bind:is="widget.type"
         v-model="widgets[index].structure"
         v-bind:required="widgets[index].required"
       />

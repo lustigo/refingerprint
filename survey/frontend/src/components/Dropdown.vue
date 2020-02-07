@@ -3,7 +3,7 @@
     <v-col class="d-flex font-regular font-weight-light" cols="6">{{ structure.question }}</v-col>
     <v-col class="d-flex" cols="4">
       <v-select
-        :items="structure.items"
+        v-bind:items="structure.items"
         solo
         v-bind:label="structure.label"
         v-model="structure.selected"
