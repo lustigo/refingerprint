@@ -5,19 +5,19 @@
       <template v-slot:default>
         <thead>
           <tr>
-            <th scope>Frage</th>
+            <th class="text-center" scope>Frage</th>
             <th
               scope
               v-for="(answer, index) in structure.structure"
-              class="text-left"
+              class="text-center"
               v-bind:key="index"
             >{{ answer }}</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(_, att) in structure.answers" :key="att">
-            <td>{{ att }}</td>
-            <td v-for="(answer, key) in structure.structure" :key="key">
+            <td class="text-center">{{ att }}</td>
+            <td v-for="(answer, key) in structure.structure" :key="key" class="text-center">
               <input
                 class="v-input--selection-controls ripple"
                 type="radio"

@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col class="d-flex font-regular font-weight-light" cols="6">{{ structure.question }}</v-col>
+    <v-col class="d-flex font-regular font-weight-light text-center" style="margin-left:1%;" cols="6">{{ structure.question }}</v-col>
     <v-col class="d-flex" cols="4">
       <v-select
         v-bind:items="structure.items"
@@ -28,7 +28,9 @@ export default Vue.extend({
     }),
     mounted() {
         this.structure = this.value;
-        this.structure.selected = "";
+        if(!this.structure.selected){
+            this.structure.selected = "";
+        }
         this.req = this.required;
         if(!this.req){
             this.$emit("completed",true);
