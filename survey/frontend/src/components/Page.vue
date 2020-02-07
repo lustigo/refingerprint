@@ -22,22 +22,22 @@ import Dropdown from "./Dropdown.vue";
  * Single Page with multiple widgets
  */
 export default Vue.extend({
-  props: ["value"],
-  components: {
-    Matrix,
-    Dropdown
-  },
-  data: () => ({
-    widgets: [] as WidgetDescription[]
-  }),
-  methods: {},
-  mounted() {
-    this.widgets = this.value;
-  },
-  watch: {
-    value: function(newValue: WidgetDescription[]) {
-      this.widgets = newValue;
+    props: ["value"],
+    components: {
+        Matrix,
+        Dropdown
+    },
+    data: () => ({
+        widgets: [] as WidgetDescription[]
+    }),
+    methods: {},
+    mounted() {
+        this.widgets = this.value;
+    },
+    watch: {
+        value: function(newValue: WidgetDescription[]) {
+            this.widgets = newValue;
+        }
     }
-  }
 });
 </script>

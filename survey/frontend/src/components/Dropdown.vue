@@ -20,18 +20,18 @@ import DropdownDescription from "../interfaces/DropdownDescription";
  * Dropdown-Widget
  */
 export default Vue.extend({
-  props: ["value"],
-  data: () => ({
-    structure: {} as DropdownDescription
-  }),
-  mounted() {
-    this.structure = this.value;
-    this.structure.selected = "";
-  },
-  methods: {
-    selected() {
-      this.$emit("input", this.structure);
+    props: ["value"],
+    data: () => ({
+        structure: {} as DropdownDescription
+    }),
+    mounted() {
+        this.structure = this.value;
+        this.structure.selected = "";
+    },
+    methods: {
+        selected() {
+            this.$emit("input", this.structure);
+        }
     }
-  }
 });
 </script>

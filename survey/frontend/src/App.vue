@@ -1,4 +1,4 @@
-<template>
+<template >
   <v-app>
     <Id v-model="uid" />
     <Page v-if="isLoaded" v-model="structure.pages[currentPage]" />
@@ -32,52 +32,52 @@ import SurveyDescription from "./interfaces/SurveyDescription";
  * Top-Level Component
  */
 export default Vue.extend({
-  components: {
-    Page,
-    Id
-  },
-  data: () => ({
-    isLoaded: false,
-    isError: false,
-    structure: {} as SurveyDescription,
-    uid: uuid(),
-    currentPage: 0
-  }),
-  /**
+    components: {
+        Page,
+        Id
+    },
+    data: () => ({
+        isLoaded: false,
+        isError: false,
+        structure: {} as SurveyDescription,
+        uid: uuid(),
+        currentPage: 0
+    }),
+    /**
    * Get the SurveyDescription from the server
    */
-  mounted() {
+    mounted() {
     /**
      * Regex for a UUIDv4
      * @src https://www.regextester.com/99148
      */
-    const uuidRegex = new RegExp(
-      "([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})"
-    );
+        const uuidRegex = new RegExp(
+            "([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})"
+        );
 
-    // Get Survey Id
-    if (uuidRegex.test(document.URL)) {
-      const surveyIdRegexResult = uuidRegex.exec(document.URL);
-      if (surveyIdRegexResult && surveyIdRegexResult.length > 1) {
-        const surveyId = surveyIdRegexResult[1];
+        // Get Survey Id
+        if (uuidRegex.test(document.URL)) {
+            const surveyIdRegexResult = uuidRegex.exec(document.URL);
+            if (surveyIdRegexResult && surveyIdRegexResult.length > 1) {
+                const surveyId = surveyIdRegexResult[1];
 
-        //fetch the Surveydescription
-        fetch(`https://localhost:8081/api/${surveyId}`)
-          .then(async data => {
-            if (!data.body) {
-              this.isError = true;
-              return;
+                //fetch the Surveydescription
+                fetch(`https://localhost:8081/api/${surveyId}`)
+                    .then(async data => {
+                        if (!data.body) {
+                            this.isError = true;
+                            return;
+                        }
+                        this.structure = await data.json();
+                        this.isLoaded = true;
+                    })
+                    .catch(err => {
+                        this.isError = true;
+                    });
             }
-            this.structure = await data.json();
-            this.isLoaded = true;
-          })
-          .catch(err => {
+        } else {
             this.isError = true;
-          });
-      }
-    } else {
-      this.isError = true;
+        }
     }
-  }
 });
 </script>

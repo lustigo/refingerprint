@@ -13,12 +13,12 @@
 import Vue from "vue";
 import { UUID } from "../interfaces/UUID";
 export default Vue.extend({
-  props: ["value"],
-  data: () => ({
-    id: "" as UUID
-  }),
-  mounted() {
-    this.id = this.value;
-  }
+    props: ["value"],
+    data: () => ({
+        id: "" as UUID
+    }),
+    mounted() {
+        this.id = this.value;
+    }
 });
 </script>

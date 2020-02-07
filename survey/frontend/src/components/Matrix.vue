@@ -41,14 +41,14 @@ import MatrixDescription from "../interfaces/MatrixDescription";
  * Matrix-Widget, so that a participant can answer multiple questions with the same answer-set
  */
 export default Vue.extend({
-  props: ["value", "required"],
-  data: () => ({
-    structure: {} as MatrixDescription,
-    req: false
-  }),
-  mounted() {
-    this.structure = this.value;
-    this.req = this.required;
-  }
+    props: ["value", "required"],
+    data: () => ({
+        structure: {} as MatrixDescription,
+        req: false
+    }),
+    mounted() {
+        this.structure = this.value;
+        this.req = this.required;
+    }
 });
 </script>

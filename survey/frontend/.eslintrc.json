@@ -4,18 +4,21 @@
         "node": true
     },
     "extends": [
+        "plugin:vue/essential",
         "eslint:recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended"
+        "@vue/typescript"
     ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
-    "parser": "@typescript-eslint/parser",
-
+    "parser": "vue-eslint-parser",
+    "parserOptions": {
+        "ecmaVersion": 6
+    },
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "@vue"
     ],
     "rules": {
         "indent": [
