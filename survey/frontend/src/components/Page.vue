@@ -7,6 +7,7 @@
         v-bind:is="widget.type"
         v-model="widgets[index].structure"
         v-bind:required="widgets[index].required"
+        v-on:completed="(data) => onCompleted(index,data)"
       />
     </div>
   </div>
@@ -28,15 +29,32 @@ export default Vue.extend({
         Dropdown
     },
     data: () => ({
-        widgets: [] as WidgetDescription[]
+        widgets: [] as WidgetDescription[],
+        completionMap: [] as Boolean[]
     }),
-    methods: {},
+    methods: {
+        /**
+       * Checks if all widgets are filled-in
+       */
+        onCompleted: function(index:number, completed: boolean){
+            this.completionMap[index] = completed;
+            this.$emit("completed",
+                this.completionMap.filter(x => x).length == this.completionMap.length);
+        
+        }
+    },
     mounted() {
         this.widgets = this.value;
+        for(let i = 0; i < this.widgets.length; i++){
+            this.completionMap.push(!this.widgets[i].required);
+        }
     },
     watch: {
         value: function(newValue: WidgetDescription[]) {
             this.widgets = newValue;
+            for(let i = 0; i < this.widgets.length; i++){
+                this.completionMap.push(!this.widgets[i].required);
+            }
         }
     }
 });
