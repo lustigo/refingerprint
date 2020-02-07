@@ -12,11 +12,13 @@
     "uuid": "^3.4.0",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
+    "vue-markdown": "^2.2.4",
     "vue-property-decorator": "^8.3.0",
     "vuetify": "^2.2.10"
   },
   "devDependencies": {
     "@types/uuid": "^3.4.7",
+    "@types/vue-markdown": "^2.2.1",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",
