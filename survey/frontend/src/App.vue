@@ -1,6 +1,6 @@
 <template >
   <v-app>
-    <p v-if="isFinished"> Fertig</p>
+    <CheckMark v-if="isFinished" />
 
     
     <div id="survey" v-else-if="isLoaded">
@@ -56,6 +56,7 @@ import uuid from "uuid";
 import Page from "./components/Page.vue";
 import Id from "./components/Id.vue";
 import Header from "./components/Header.vue";
+import CheckMark from "./components/CheckMark.vue";
 import SurveyDescription from "./interfaces/SurveyDescription";
 
 /**
@@ -65,7 +66,8 @@ export default Vue.extend({
     components: {
         Page,
         Id,
-        Header
+        Header,
+        CheckMark
     },
     data: () => ({
         isLoaded: false,
