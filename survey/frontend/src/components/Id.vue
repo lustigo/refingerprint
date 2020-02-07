@@ -1,7 +1,5 @@
 <template>
-  <span id="userId">
-    {{ id }}
-  </span>
+  <span id="userId">{{ id }}</span>
 </template>
 
 <style>

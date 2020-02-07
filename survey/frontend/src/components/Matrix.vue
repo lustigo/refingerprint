@@ -11,9 +11,7 @@
               v-for="(answer, index) in structure.structure"
               class="text-left"
               :key="index"
-            >
-              {{ answer }}
-            </th>
+            >{{ answer }}</th>
           </tr>
         </thead>
         <tbody>
