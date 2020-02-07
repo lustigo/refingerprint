@@ -16,6 +16,7 @@
 import Vue from "vue";
 import WidgetDescription from "../interfaces/WidgetDescription";
 import Matrix from "./Matrix.vue";
+import Dropdown from "./Dropdown.vue";
 
 /**
  * Single Page with multiple widgets
@@ -23,7 +24,8 @@ import Matrix from "./Matrix.vue";
 export default Vue.extend({
   props: ["value"],
   components: {
-    Matrix
+    Matrix,
+    Dropdown
   },
   data: () => ({
     widgets: [] as WidgetDescription[]

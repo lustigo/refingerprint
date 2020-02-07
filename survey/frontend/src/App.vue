@@ -1,10 +1,10 @@
 <template>
-  <div id="app">
+  <v-app>
     <Id v-model="uid" />
     <Page v-if="isLoaded" v-model="structure.pages[currentPage]" />
     <p v-else-if="isError" class="center">Leider ist etwas schief gelaufen.</p>
     <v-progress-circular v-else size="64" indeterminate class="center" />
-  </div>
+  </v-app>
 </template>
 
 <style>
