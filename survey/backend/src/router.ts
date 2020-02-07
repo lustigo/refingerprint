@@ -7,7 +7,7 @@ import frontendRoute from "./frontend";
 /**
  * Initialize and configure the Router
  */
-export default function initRoutes(koa: Koa) {
+export default function initRoutes(koa: Koa): void {
     koa.use(mount(frontendRoute));
     koa.use(mount("/api", apiRoute));
 }

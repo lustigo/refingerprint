@@ -30,11 +30,27 @@ const writeFile = promisify(fs.writeFile);
 const app = new Koa();
 
 /**
+ * Extracts an UUID from a given string.
+ * @param testee: String to extract UUID from.
+ * @return the UUID
+ * @throws if there is no valid UUID
+ */
+function extractUUID(testee: string): string {
+    if (uuidRegex.test(testee)) {
+        const regexResult = uuidRegex.exec(testee);
+        if (regexResult && regexResult.length > 1) {
+            return regexResult[1];
+        }
+    }
+    throw ("No valid surveyId found");
+}
+
+/**
  * GET the Survey-Structure
  * @param surveyPath Path where the structure is located
  * @param ctx Request Context
  */
-async function getSurveyStructure(surveyPath: string, ctx: Koa.Context) {
+async function getSurveyStructure(surveyPath: string, ctx: Koa.Context): Promise<void> {
     const structurePath = surveyPath + "/structure.json";
     ctx.set("Content-Type", "application/json");
     ctx.set("Accept-Ranges", "bytes");
@@ -48,7 +64,7 @@ async function getSurveyStructure(surveyPath: string, ctx: Koa.Context) {
  * @param surveyId Id of the survey
  * @param ctx Request Context
  */
-async function saveSurveyData(surveyPath: string, surveyId: string, ctx: Koa.Context) {
+async function saveSurveyData(surveyPath: string, surveyId: string, ctx: Koa.Context): Promise<void> {
     const data = ctx.request.body;
     if (!data || !data.user || !data.survey || !data.pages || data.survey != surveyId) {
         ctx.body = "Invalid request";
@@ -95,22 +111,6 @@ async function saveSurveyData(surveyPath: string, surveyId: string, ctx: Koa.Con
  */
 function extractSurveyId(path: string): string {
     return extractUUID(path.replace("/", ""));
-}
-
-/**
- * Extracts an UUID from a given string.
- * @param testee: String to extract UUID from.
- * @return the UUID
- * @throws if there is no valid UUID
- */
-function extractUUID(testee: string): string {
-    if (uuidRegex.test(testee)) {
-        const regexResult = uuidRegex.exec(testee);
-        if (regexResult && regexResult.length > 1) {
-            return regexResult[1];
-        }
-    }
-    throw ("No valid surveyId found");
 }
 
 /**
