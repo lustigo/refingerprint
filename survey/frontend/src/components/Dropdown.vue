@@ -7,6 +7,7 @@
         solo
         v-bind:label="structure.label"
         v-model="structure.selected"
+        v-on:change="$emit('completed', !req || structure.selected != '')"
       ></v-select>
     </v-col>
   </v-row>
@@ -20,17 +21,17 @@ import DropdownDescription from "../interfaces/DropdownDescription";
  * Dropdown-Widget
  */
 export default Vue.extend({
-    props: ["value"],
+    props: ["value","required"],
     data: () => ({
-        structure: {} as DropdownDescription
+        structure: {} as DropdownDescription,
+        req: false
     }),
     mounted() {
         this.structure = this.value;
         this.structure.selected = "";
-    },
-    methods: {
-        selected() {
-            this.$emit("input", this.structure);
+        this.req = this.required;
+        if(!this.req){
+            this.$emit("completed",true);
         }
     }
 });

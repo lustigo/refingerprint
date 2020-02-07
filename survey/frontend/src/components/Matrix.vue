@@ -22,7 +22,7 @@
                 class="v-input--selection-controls ripple"
                 type="radio"
                 v-bind:value="key"
-                v-on:change="$emit('input', structure)"
+                v-on:change="onDataChange"
                 v-model="structure.answers[att]"
               />
             </td>
@@ -46,9 +46,32 @@ export default Vue.extend({
         structure: {} as MatrixDescription,
         req: false
     }),
+    methods: {
+        /**
+         * Checks if the Matrix is completly filled out
+         */
+        isFilled: function(){
+            for (const answer in this.structure.answers){
+                if (this.structure.answers[answer] == -1){
+                    return false;
+                }
+            }
+            return true;
+        },
+        /**
+         * Will be called when a radio button is clicked
+         */
+        onDataChange: function (){
+            this.$emit("input",this.structure);
+            this.$emit("completed", !this.req || this.isFilled());
+        }
+    },
     mounted() {
         this.structure = this.value;
         this.req = this.required;
+        if(!this.req){
+            this.$emit("completed",true);
+        }
     }
 });
 </script>
