@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-for="(widget, index) in widgets" v-bind:key="index">
+  <v-container fluid fill-height>
+    <v-flex v-for="(widget, index) in widgets" v-bind:key="index">
       <!-- Check which type the Widget has and render it and assign corresponding
       structure-->
       <v-component
@@ -9,8 +9,8 @@
         v-bind:required="widgets[index].required"
         v-on:completed="(data) => onCompleted(index,data)"
       />
-    </div>
-  </div>
+    </v-flex>
+  </v-container>
 </template>
 
 <script lang="ts">

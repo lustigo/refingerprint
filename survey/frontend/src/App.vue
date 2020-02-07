@@ -1,25 +1,36 @@
 <template >
   <v-app>
     <p v-if="isFinished"> Fertig</p>
-    <v-card id="survey" v-else-if="isLoaded">
-        <Id v-model="uid" />
-        <Page v-model="structure.pages[currentPage]" v-on:completed="completedHandler"/>
-        <v-footer  class="font-weight-medium" >   
-            <v-col cols="0" class="text-left">
-                <v-btn style="font-size:28px;" text v-bind:disabled="!canBack" v-on:click="pageBackward">
-                    <v-icon>fa-arrow-left</v-icon>
-                </v-btn>
-            </v-col> 
-            <v-col  cols="0" class="text-right">
-                <v-btn style="font-size:28px;" text v-on:click="send" v-bind:disabled="!canSend" v-if="currentPage == structure.pages.length-1">
-                    <v-icon>fa-paper-plane</v-icon>
-                </v-btn>
-                <v-btn style="font-size:28px;" text v-bind:disabled="!canForward" v-on:click="pageForward" v-else>
-                    <v-icon>fa-arrow-right</v-icon>
-                </v-btn>
-            </v-col>
+
+    
+    <div id="survey" v-else-if="isLoaded">
+        <Header />
+
+        <v-content>
+            <Id v-model="uid" />
+            <Page v-model="structure.pages[currentPage]" v-on:completed="completedHandler"/>
+        </v-content>
+       
+        <v-footer  absolute height="auto" class="font-weight-medium" >   
+            <v-layout>
+                <v-flex class="text-left">
+                    <v-btn style="font-size:28px;" text v-bind:disabled="!canBack" v-on:click="pageBackward">
+                        <v-icon>fa-arrow-left</v-icon>
+                    </v-btn>
+                </v-flex> 
+                <v-flex class="text-right">
+                    <v-btn style="font-size:28px;" text v-on:click="send" v-bind:disabled="!canSend" v-if="currentPage == structure.pages.length-1">
+                        <v-icon>fa-paper-plane</v-icon>
+                    </v-btn>
+                    <v-btn style="font-size:28px;" text v-bind:disabled="!canForward" v-on:click="pageForward" v-else>
+                        <v-icon>fa-arrow-right</v-icon>
+                    </v-btn>
+                </v-flex>
+            </v-layout>
         </v-footer>
-    </v-card>
+    </div>
+
+
     <p v-else-if="isError" class="center">Leider ist etwas schief gelaufen.</p>
     <v-progress-circular v-else size="64" indeterminate class="center" />
   </v-app>
@@ -44,6 +55,7 @@ import Vue from "vue";
 import uuid from "uuid";
 import Page from "./components/Page.vue";
 import Id from "./components/Id.vue";
+import Header from "./components/Header.vue";
 import SurveyDescription from "./interfaces/SurveyDescription";
 
 /**
@@ -52,7 +64,8 @@ import SurveyDescription from "./interfaces/SurveyDescription";
 export default Vue.extend({
     components: {
         Page,
-        Id
+        Id,
+        Header
     },
     data: () => ({
         isLoaded: false,
@@ -66,6 +79,10 @@ export default Vue.extend({
         currentPage: 0
     }),
     methods: {
+        /**
+         * is being called, when a page is completed.
+         * activates the Forward-Button
+         */
         completedHandler: function(completed: boolean){
             this.canForward = completed;
             this.canSend = this.currentPage == this.structure.pages.length-1;
