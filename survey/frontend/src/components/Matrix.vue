@@ -69,7 +69,7 @@ export default Vue.extend({
     mounted() {
         this.structure = this.value;
         this.req = this.required;
-        if(!this.req){
+        if(!this.req || this.isFilled()){
             this.$emit("completed",true);
         }
     }

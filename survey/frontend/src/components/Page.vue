@@ -45,6 +45,7 @@ export default Vue.extend({
     },
     mounted() {
         this.widgets = this.value;
+        this.completionMap = [];
         for(let i = 0; i < this.widgets.length; i++){
             this.completionMap.push(!this.widgets[i].required);
         }
@@ -52,6 +53,7 @@ export default Vue.extend({
     watch: {
         value: function(newValue: WidgetDescription[]) {
             this.widgets = newValue;
+            this.completionMap = [];
             for(let i = 0; i < this.widgets.length; i++){
                 this.completionMap.push(!this.widgets[i].required);
             }

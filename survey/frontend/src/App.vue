@@ -1,7 +1,25 @@
 <template >
   <v-app>
-    <Id v-model="uid" />
-    <Page v-if="isLoaded" v-model="structure.pages[currentPage]" />
+    <p v-if="isFinished"> Fertig</p>
+    <v-card id="survey" v-else-if="isLoaded">
+        <Id v-model="uid" />
+        <Page v-model="structure.pages[currentPage]" v-on:completed="completedHandler"/>
+        <v-footer  class="font-weight-medium" >   
+            <v-col cols="0" class="text-left">
+                <v-btn style="font-size:28px;" text v-bind:disabled="!canBack" v-on:click="pageBackward">
+                    <v-icon>fa-arrow-left</v-icon>
+                </v-btn>
+            </v-col> 
+            <v-col  cols="0" class="text-right">
+                <v-btn style="font-size:28px;" text v-on:click="send" v-bind:disabled="!canSend" v-if="currentPage == structure.pages.length-1">
+                    <v-icon>fa-paper-plane</v-icon>
+                </v-btn>
+                <v-btn style="font-size:28px;" text v-bind:disabled="!canForward" v-on:click="pageForward" v-else>
+                    <v-icon>fa-arrow-right</v-icon>
+                </v-btn>
+            </v-col>
+        </v-footer>
+    </v-card>
     <p v-else-if="isError" class="center">Leider ist etwas schief gelaufen.</p>
     <v-progress-circular v-else size="64" indeterminate class="center" />
   </v-app>
@@ -39,10 +57,34 @@ export default Vue.extend({
     data: () => ({
         isLoaded: false,
         isError: false,
+        canBack: false,
+        canForward: false,
+        canSend: false,
+        isFinished: false,
         structure: {} as SurveyDescription,
         uid: uuid(),
         currentPage: 0
     }),
+    methods: {
+        completedHandler: function(completed: boolean){
+            this.canForward = completed;
+            this.canSend = this.currentPage == this.structure.pages.length-1;
+        },
+        pageForward: function(){
+            this.canForward = false;
+            this.canBack = true;
+            this.currentPage ++;
+        },
+        pageBackward: function(){
+            this.canForward = true;
+            this.currentPage --;
+            this.canBack = this.currentPage > 0;
+        },
+        send: function(){
+            //TODO
+            this.isFinished = true;
+        }
+    },
     /**
    * Get the SurveyDescription from the server
    */

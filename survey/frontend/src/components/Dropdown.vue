@@ -32,7 +32,7 @@ export default Vue.extend({
             this.structure.selected = "";
         }
         this.req = this.required;
-        if(!this.req){
+        if(!this.req || this.structure.selected != ""){
             this.$emit("completed",true);
         }
     }
