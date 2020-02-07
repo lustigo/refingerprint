@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import Koa from "koa";
 import mount from "koa-mount";
 import apiRoute from "./api";
