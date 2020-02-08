@@ -10,14 +10,14 @@
               scope
               v-for="(answer, index) in structure.structure"
               class="text-center"
-              v-bind:key="index"
+              v-bind:key="answer+index"
             >{{ answer }}</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(_, att) in structure.answers" :key="att">
+          <tr v-for="(_, att) in structure.answers" v-bind:key="att">
             <td class="text-center">{{ att }}</td>
-            <td v-for="(answer, key) in structure.structure" :key="key" class="text-center">
+            <td v-for="(answer, key) in structure.structure" v-bind:key="att+key" class="text-center">
               <input
                 class="v-input--selection-controls ripple"
                 type="radio"

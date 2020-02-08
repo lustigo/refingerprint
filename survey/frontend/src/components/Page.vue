@@ -21,6 +21,7 @@ import Dropdown from "./Dropdown.vue";
 import Matrix from "./Matrix.vue";
 import Textfield from "./TextField.vue";
 import Textwidget from "./Textwidget.vue";
+import Vector from "./Vector.vue";
 
 /**
  * Single Page with multiple widgets
@@ -32,7 +33,8 @@ export default Vue.extend({
         Dropdown,
         Matrix,
         Textfield,
-        Textwidget
+        Textwidget,
+        Vector
     },
     data: () => ({
         widgets: [] as WidgetDescription[],
