@@ -20,6 +20,7 @@ import Captcha from "./Captcha.vue";
 import Checkbox from "./Checkbox.vue";
 import Dropdown from "./Dropdown.vue";
 import Matrix from "./Matrix.vue";
+import Textbox from "./Textbox.vue";
 import Textfield from "./TextField.vue";
 import Textwidget from "./Textwidget.vue";
 import Vector from "./Vector.vue";
@@ -34,6 +35,7 @@ export default Vue.extend({
         Checkbox,
         Dropdown,
         Matrix,
+        Textbox,
         Textfield,
         Textwidget,
         Vector
