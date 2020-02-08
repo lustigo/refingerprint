@@ -1,5 +1,6 @@
 import { WidgetType } from "../enums/WidgetType";
 import CaptchaDescription from "./CaptchaDescription";
+import CheckboxDescription from "./CheckboxDescription";
 import DropdownDescription from "./DropdownDescription";
 import MatrixDescription from "./MatrixDescription";
 import TextFieldDescription from "./TextFieldDescription";
@@ -10,7 +11,7 @@ import VectorDescription from './VectorDescription';
  */
 export default interface WidgetDescription {
     readonly required: boolean;
-    readonly structure: CaptchaDescription | DropdownDescription | MatrixDescription | TextFieldDescription | TextWidgetDescription | VectorDescription;
+    readonly structure: CaptchaDescription | CheckboxDescription | DropdownDescription | MatrixDescription | TextFieldDescription | TextWidgetDescription | VectorDescription;
     readonly type: WidgetType;
     // eslint-disable-next-line semi
 }

@@ -17,6 +17,7 @@
 import Vue from "vue";
 import WidgetDescription from "../interfaces/WidgetDescription";
 import Captcha from "./Captcha.vue";
+import Checkbox from "./Checkbox.vue";
 import Dropdown from "./Dropdown.vue";
 import Matrix from "./Matrix.vue";
 import Textfield from "./TextField.vue";
@@ -30,6 +31,7 @@ export default Vue.extend({
     props: ["value"],
     components: {
         Captcha,
+        Checkbox,
         Dropdown,
         Matrix,
         Textfield,
