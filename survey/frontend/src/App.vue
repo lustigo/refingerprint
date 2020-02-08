@@ -8,26 +8,10 @@
 
         <v-content>
             <Id v-model="uid" />
-            <Page v-model="structure.pages[currentPage]" v-on:completed="completedHandler"/>
+            <Page v-model="structure.pages[navigationOptions.currentPage]" v-on:completed="completedHandler"/>
         </v-content>
        
-        <v-footer  absolute height="auto" class="font-weight-medium" >   
-            <v-layout>
-                <v-flex class="text-left">
-                    <v-btn style="font-size:28px;" text v-bind:disabled="!canBack" v-on:click="pageBackward">
-                        <v-icon>fa-arrow-left</v-icon>
-                    </v-btn>
-                </v-flex> 
-                <v-flex class="text-right">
-                    <v-btn style="font-size:28px;" text v-on:click="send" v-bind:disabled="!canSend" v-if="currentPage == structure.pages.length-1">
-                        <v-icon>fa-paper-plane</v-icon>
-                    </v-btn>
-                    <v-btn style="font-size:28px;" text v-bind:disabled="!canForward" v-on:click="pageForward" v-else>
-                        <v-icon>fa-arrow-right</v-icon>
-                    </v-btn>
-                </v-flex>
-            </v-layout>
-        </v-footer>
+        <Footer v-model="this.navigationOptions" v-on:send="send"/>
     </div>
 
 
@@ -54,10 +38,11 @@
 <script lang="ts">
 import Vue from "vue";
 import uuid from "uuid";
-import Page from "./components/Page.vue";
-import Id from "./components/Id.vue";
-import Header from "./components/Header.vue";
 import CheckMark from "./components/CheckMark.vue";
+import Footer from "./components/Footer.vue";
+import Header from "./components/Header.vue";
+import Id from "./components/Id.vue";
+import Page from "./components/Page.vue";
 import SurveyDescription from "./interfaces/SurveyDescription";
 
 /**
@@ -65,21 +50,27 @@ import SurveyDescription from "./interfaces/SurveyDescription";
  */
 export default Vue.extend({
     components: {
-        Page,
-        Id,
+        CheckMark,
+        Footer,
         Header,
-        CheckMark
+        Id,
+        Page
     },
     data: () => ({
-        isLoaded: false,
         isError: false,
-        canBack: false,
-        canForward: false,
-        canSend: false,
         isFinished: false,
+        isLoaded: false,
+
+        navigationOptions: {
+            currentPage: 0,
+            canBack: false,
+            canForward: false,
+            canSend: false,
+            pageAmount: 0,
+        },
+
         structure: {} as SurveyDescription,
         uid: uuid(),
-        currentPage: 0
     }),
     methods: {
         /**
@@ -87,18 +78,8 @@ export default Vue.extend({
          * activates the Forward-Button
          */
         completedHandler: function(completed: boolean){
-            this.canForward = completed;
-            this.canSend = this.currentPage == this.structure.pages.length-1 && completed;
-        },
-        pageForward: function(){
-            this.canForward = false;
-            this.canBack = true;
-            this.currentPage ++;
-        },
-        pageBackward: function(){
-            this.canForward = true;
-            this.currentPage --;
-            this.canBack = this.currentPage > 0;
+            this.navigationOptions.canForward = completed;
+            this.navigationOptions.canSend = this.navigationOptions.currentPage == this.navigationOptions.pageAmount-1 && completed;
         },
         send: function(){
             //TODO
@@ -132,6 +113,7 @@ export default Vue.extend({
                         }
                         this.structure = await data.json();
                         this.isLoaded = true;
+                        this.navigationOptions.pageAmount = this.structure.pages.length;
                     })
                     .catch(err => {
                         this.isError = true;
