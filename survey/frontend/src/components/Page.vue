@@ -1,6 +1,6 @@
 <template>
   <v-container fluid fill-height>
-    <v-flex v-for="(widget, index) in widgets" v-bind:key="index">
+    <v-container v-for="(widget, index) in widgets" v-bind:key="index">
       <!-- Check which type the Widget has and render it and assign corresponding
       structure-->
       <v-component
@@ -9,15 +9,18 @@
         v-bind:required="widgets[index].required"
         v-on:completed="(data) => onCompleted(index,data)"
       />
-    </v-flex>
+    </v-container>
   </v-container>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import WidgetDescription from "../interfaces/WidgetDescription";
-import Matrix from "./Matrix.vue";
+import Captcha from "./Captcha.vue";
 import Dropdown from "./Dropdown.vue";
+import Matrix from "./Matrix.vue";
+import Textfield from "./TextField.vue";
+import Textwidget from "./Textwidget.vue";
 
 /**
  * Single Page with multiple widgets
@@ -25,8 +28,11 @@ import Dropdown from "./Dropdown.vue";
 export default Vue.extend({
     props: ["value"],
     components: {
+        Captcha,
+        Dropdown,
         Matrix,
-        Dropdown
+        Textfield,
+        Textwidget
     },
     data: () => ({
         widgets: [] as WidgetDescription[],
@@ -34,8 +40,8 @@ export default Vue.extend({
     }),
     methods: {
         /**
-       * Checks if all widgets are filled-in
-       */
+         * Checks if all widgets are filled-in
+         */
         onCompleted: function(index:number, completed: boolean){
             this.completionMap[index] = completed;
             this.$emit("completed",

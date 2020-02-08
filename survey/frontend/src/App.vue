@@ -47,6 +47,7 @@
 
 .center {
   margin-top: 10%;
+  margin-left: 45%;
 }
 </style>
 
@@ -87,7 +88,7 @@ export default Vue.extend({
          */
         completedHandler: function(completed: boolean){
             this.canForward = completed;
-            this.canSend = this.currentPage == this.structure.pages.length-1;
+            this.canSend = this.currentPage == this.structure.pages.length-1 && completed;
         },
         pageForward: function(){
             this.canForward = false;
@@ -105,13 +106,13 @@ export default Vue.extend({
         }
     },
     /**
-   * Get the SurveyDescription from the server
-   */
-    mounted() {
-    /**
-     * Regex for a UUIDv4
-     * @src https://www.regextester.com/99148
+     * Get the SurveyDescription from the server
      */
+    mounted() {
+        /**
+         * Regex for a UUIDv4
+         * @src https://www.regextester.com/99148
+         */
         const uuidRegex = new RegExp(
             "([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})"
         );
