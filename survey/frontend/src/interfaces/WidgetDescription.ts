@@ -8,8 +8,8 @@ import TextWidgetDescription from "./TextWidgetDescription";
  * Describes the structure of a Widget.
  */
 export default interface WidgetDescription {
-    readonly type: WidgetType;
-    readonly structure: CaptchaDescription | DropdownDescription | MatrixDescription | TextFieldDescription | TextWidgetDescription;
     readonly required: boolean;
+    readonly structure: CaptchaDescription | DropdownDescription | MatrixDescription | TextFieldDescription | TextWidgetDescription;
+    readonly type: WidgetType;
     // eslint-disable-next-line semi
 }

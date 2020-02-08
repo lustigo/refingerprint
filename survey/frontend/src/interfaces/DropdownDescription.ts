@@ -2,9 +2,9 @@
  * Description of the Dropdown-Widget Content
  */
 export default interface DropdownDescription {
-    readonly question: string;
     readonly items: string[];
-    selected: string;
+    readonly question: string;
     label: string;
-// eslint-disable-next-line semi
+    selected: string;
+    // eslint-disable-next-line semi
 }

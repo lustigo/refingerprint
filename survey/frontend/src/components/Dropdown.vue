@@ -23,8 +23,8 @@ import DropdownDescription from "../interfaces/DropdownDescription";
 export default Vue.extend({
     props: ["value","required"],
     data: () => ({
+        req: false,
         structure: {} as DropdownDescription,
-        req: false
     }),
     mounted() {
         this.structure = this.value;

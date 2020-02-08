@@ -43,8 +43,8 @@ import MatrixDescription from "../interfaces/MatrixDescription";
 export default Vue.extend({
     props: ["value", "required"],
     data: () => ({
+        req: false,
         structure: {} as MatrixDescription,
-        req: false
     }),
     methods: {
         /**

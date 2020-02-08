@@ -3,11 +3,11 @@
  * Declares all the possible Widgets
  */
 export enum WidgetType {
-    MATRIX = "matrix",
-    VECTOR = "vector",
-    SELECT = "select",
+    CAPTCHA = "captcha",
     CHECKBOX = "checkbox",
-    TEXTFIELD = "textfield",
+    MATRIX = "matrix",
+    SELECT = "select",
     TEXTBOX = "textbox",
-    CAPTCHA = "captcha"
+    TEXTFIELD = "textfield",
+    VECTOR = "vector",
 }

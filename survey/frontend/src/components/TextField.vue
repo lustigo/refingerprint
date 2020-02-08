@@ -21,8 +21,8 @@ import TextFieldDescription from "../interfaces/TextFieldDescription";
 export default Vue.extend({
     props: ["value","required"],
     data: () => ({
-        structure: {} as TextFieldDescription,
         req: false,
+        structure: {} as TextFieldDescription,
     }),
     mounted() {
         this.structure = this.value;
