@@ -15,7 +15,7 @@
     </div>
 
 
-    <p v-else-if="isError" class="center">Leider ist etwas schief gelaufen.</p>
+    <p v-else-if="isError" style="margin-top:10%">Leider ist etwas schief gelaufen.</p>
     <v-progress-circular v-else size="64" indeterminate class="center" />
   </v-app>
 </template>

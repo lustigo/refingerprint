@@ -1,6 +1,6 @@
 <template>
     <v-container class="font-regular font-weight-light text-center">
-        <span cols="0">{{structure.question}}</span>
+        <span cols="0">{{structure.question}} <span v-if="req" style="color:red;">*</span></span>
         <span style="margin-left:5%;">
             <span
                 v-for="(value,key) in structure.selection" v-bind:key="value+key"

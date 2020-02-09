@@ -1,6 +1,6 @@
 <template>
     <v-container class="font-regular font-weight-light text-center">
-        <span>{{structure.question}}</span>
+        <span>{{structure.question}} <span v-if="req" style="color:red;">*</span></span>
         <span style="margin-left:5%">
             <span v-for="(value, index) in structure.selection" v-bind:key="value+index" style="margin-left:1%">
                 <input type="checkbox" v-bind:checked="structure.checked[index]" v-on:change="onChecked(index)"/>

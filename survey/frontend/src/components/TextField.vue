@@ -1,6 +1,9 @@
 <template>
     <v-row>
-        <v-col class="d-flex font-regular font-weight-light text-center" style="margin-left:1%;" cols="6">{{ structure.question }}</v-col>
+        <v-col class="d-flex font-regular font-weight-light text-center" style="margin-left:1%;" cols="6">
+            {{ structure.question }}
+            <span v-if="req" style="color:red;">*</span>
+        </v-col>
         <v-col class="d-flex" cols="4">
         <v-text-field
             v-model="structure.content"

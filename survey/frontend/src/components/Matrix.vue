@@ -1,11 +1,14 @@
 <template>
   <div>
-    <p class="font-regular font-weight-light">{{ structure.question }}</p>
+    <p class="font-regular font-weight-light">
+      {{ structure.question }}
+      <span v-if="req" style="color:red;">*</span>
+    </p>
     <v-simple-table>
       <template v-slot:default>
         <thead>
           <tr>
-            <th class="text-center" scope>Frage</th>
+            <th scope></th>
             <th
               scope
               v-for="(answer, index) in structure.structure"

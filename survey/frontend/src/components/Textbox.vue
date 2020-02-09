@@ -1,6 +1,9 @@
 <template>
     <v-container>
-        <v-col>{{structure.question}}</v-col>
+        <v-col>
+            {{structure.question}}
+            <span v-if="req" style="color:red;">*</span>
+        </v-col>
         <v-textarea 
             outlined 
             v-model="structure.answer" 

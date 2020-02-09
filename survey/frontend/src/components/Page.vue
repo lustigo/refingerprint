@@ -10,6 +10,9 @@
         v-on:completed="(data) => onCompleted(index,data)"
       />
     </v-container>
+    <v-container class="text-left" absolute height="auto" style="margin-bottom:2%;" v-if="isSomethingRequired">
+        <span style="color:red;">*</span> Erforderlich
+    </v-container>
   </v-container>
 </template>
 
@@ -41,8 +44,9 @@ export default Vue.extend({
         Vector
     },
     data: () => ({
+        isSomethingRequired: false,
+        completionMap: [] as Boolean[],
         widgets: [] as WidgetDescription[],
-        completionMap: [] as Boolean[]
     }),
     methods: {
         /**
@@ -60,14 +64,21 @@ export default Vue.extend({
         this.completionMap = [];
         for(let i = 0; i < this.widgets.length; i++){
             this.completionMap.push(!this.widgets[i].required);
+            if(this.widgets[i].required){
+                this.isSomethingRequired = true;
+            }
         }
     },
     watch: {
         value: function(newValue: WidgetDescription[]) {
+            this.isSomethingRequired = false;
             this.widgets = newValue;
             this.completionMap = [];
             for(let i = 0; i < this.widgets.length; i++){
                 this.completionMap.push(!this.widgets[i].required);
+                if(this.widgets[i].required){
+                    this.isSomethingRequired = true;
+                }
             }
         }
     }

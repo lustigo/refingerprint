@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-container v-if="!structure.completed">
-      <p>Wir möchten noch überprüfen, dass Sie kein Roboter sind:</p>
+      <p>Wir möchten noch überprüfen, dass Sie kein Roboter sind <span style="color:red;">*</span>:</p>
       <div cols="3" style="margin-left:35%;" class="g-recaptcha" id="gotcha"></div>
     </v-container>
     <v-container v-else>
