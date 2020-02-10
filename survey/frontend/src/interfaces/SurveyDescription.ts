@@ -7,5 +7,4 @@ import WidgetDescription from "./WidgetDescription";
 export default interface SurveyDescription {
     readonly pages: WidgetDescription[][];
     readonly survey: UUID;
-    // eslint-disable-next-line semi
 }

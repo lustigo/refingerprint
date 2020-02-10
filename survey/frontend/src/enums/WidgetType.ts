@@ -5,9 +5,10 @@
 export enum WidgetType {
     CAPTCHA = "captcha",
     CHECKBOX = "checkbox",
+    DROPDOWN = "dropdown",
     MATRIX = "matrix",
-    SELECT = "select",
     TEXTBOX = "textbox",
     TEXTFIELD = "textfield",
+    TEXTWIDGET = "textwidget",
     VECTOR = "vector",
 }

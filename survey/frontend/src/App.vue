@@ -43,6 +43,7 @@ import Footer from "./components/Footer.vue";
 import Header from "./components/Header.vue";
 import Id from "./components/Id.vue";
 import Page from "./components/Page.vue";
+import DataSender from "./controller/DataSender";
 import SurveyDescription from "./interfaces/SurveyDescription";
 
 /**
@@ -81,9 +82,14 @@ export default Vue.extend({
             this.navigationOptions.canForward = completed;
             this.navigationOptions.canSend = this.navigationOptions.currentPage == this.navigationOptions.pageAmount-1 && completed;
         },
-        send: function(){
-            //TODO
-            this.isFinished = true;
+        send: async function(){
+            const sender = new DataSender(this.structure, this.uid);
+            if(await sender.send()){
+                this.isFinished = true; 
+            } else {
+                this.isError = true; 
+                this.isLoaded = false;
+            } 
         }
     },
     /**

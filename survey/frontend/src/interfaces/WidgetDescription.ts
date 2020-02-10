@@ -6,7 +6,7 @@ import MatrixDescription from "./MatrixDescription";
 import TextboxDescription from "./TextboxDescription";
 import TextFieldDescription from "./TextFieldDescription";
 import TextWidgetDescription from "./TextWidgetDescription";
-import VectorDescription from './VectorDescription';
+import VectorDescription from "./VectorDescription";
 /**
  * Describes the structure of a Widget.
  */
