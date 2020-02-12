@@ -15,6 +15,14 @@ Beide Teile verwenden Typescript.
   - [Server](#konfiguration-server)
   - [Umfragen](#konfiguration-umfragen)
     - [Widgets](#konfiguration-widgets)
+      - [Captcha](#konfiguration-captcha)
+      - [Checkbox](#konfiguration-checkbox)
+      - [Dropdown](#konfiguration-dropdown)
+      - [Matrix](#konfiguration-matrix)
+      - [Textbox](#konfiguration-textbox)
+      - [Textfield](#konfiguration-textfield)
+      - [Text](#konfiguration-text)
+      - [Vector](#konfiguration-vector)
 - [Benutzung](#benutzung)
 
 ## Installation
@@ -80,6 +88,85 @@ Für den realen Einsatz fragen Sie bitte Ihren IT-Administrator oder erzeugen Si
 
 ### Konfiguration Umfragen
 
-### Konfiguration Widgets
+Um eine neue Umfrage anzulegen, müssen Sie einen neuen Ordner in Ihrem Datenpfad anlegen.
+
+Der Ordnername ist die eindeutige Bezeichnung der Umfrage und muss eine sogenannte UUID sein.
+Um eine UUID zu generieren [klicken Sie hier](https://www.uuidgenerator.net/version4).
+
+In diesem Verzeichnis werden die Antworten der Teilnehmer abgespeichert und die Beschreibung der Umfrage.
+
+Die Beschreibung der Umfrage muss in dem Umfragenordner in der Datei `structure.json` liegen und ein valides `json`-Dokument sein.
+
+Die Beschreibung hat folgende Form:
+
+```json
+{
+  "survey": "<Hier die soeben generierte UUID einfügen>",
+  "pages": [
+    []
+    ...
+  ],
+}
+```
+
+Der Pages-Wert ist ein Mehrdimensionales Array, er listet die verschiedenen Seiten auf.
+
+Auf jeder Seite können mehrere Widgets platziert werden, deshalb ist jede Seite ein Array.
+
+#### Konfiguration Widgets
+
+Die Beschreibung eines Widgets ist folgendermaßen aufgebaut:
+
+```json
+{
+  "type": "<Typbezeichnung>",
+  "required": true|false,
+  "structure": {}
+}
+```
+
+Mit dem `required` Wert können Sie bestimmen, ob dieses Widget ausgefüllt werden muss oder nicht.
+
+Mit dem `type` Wert bestimmen Sie, welches Widget Sie anzeigen möchten.
+Die Werte für diesen Wert finden Sie bei der Dokumentation des jeweiligen Widgets.
+
+Mit dem `structure` Wert konfigurieren Sie ein Widget näher.
+Diese Konfiguration hängt aber von dem jeweiligen Widget ab.
+Bitte entnehmen Sie das Konfigurationschema der Dokumentation des jeweiligen Widgets.
+
+Folgende Widgets sind möglich:
+
+- [Captcha](#konfiguration-captcha)
+- [Checkbox](#konfiguration-checkbox)
+- [Dropdown](#konfiguration-dropdown)
+- [Matrix](#konfiguration-matrix)
+- [Textbox](#konfiguration-textbox)
+- [Textfield](#konfiguration-textfield)
+- [Text](#konfiguration-text)
+- [Vector](#konfiguration-vector)
+
+##### Konfiguration Captcha
+
+##### Konfiguration Checkbox
+
+##### Konfiguration Dropdown
+
+##### Konfiguration Matrix
+
+##### Konfiguration Textbox
+
+##### Konfiguration Textfield
+
+##### Konfiguration Text
+
+##### Konfiguration Vector
 
 ## Benutzung
+
+Ihren Teilnehmern müssen Sie folgenden Link geben:
+
+```URL
+https://<IhreDomain>/?<Ihre Umfragen-UUID>
+```
+
+In dem Datenpfad unter Ihrer Umfragen-UUID finden Sie die Rückmeldungen Ihrer Teilnehmer in jeweiligen `json`-Dateien.
