@@ -24,6 +24,18 @@ export default Vue.extend({
             sitekey: "placeholder"
         } as CaptchaDescription
     }),
+    methods: {
+        captchaCreated: function(){
+            const event = document.createEvent("Event");
+            event.initEvent("captcha-created");
+            document.getRootNode().dispatchEvent(event);
+        },
+        captchaSolved: function() {
+            const event = document.createEvent("Event");
+            event.initEvent("captcha-solved");
+            document.getRootNode().dispatchEvent(event);
+        }
+    },
     mounted() {
         this.structure = this.value;
         if (!this.structure.completed) {
@@ -32,11 +44,13 @@ export default Vue.extend({
         this.$emit("completed", this.structure.completed);
 
         if (!this.structure.completed) {
-            // If the Captcha was not already solved, render it
+            // If the Captcha was not already solved, render it and notify extension
+            this.captchaCreated();
             grecaptcha.render("gotcha", {
                 sitekey: this.structure.sitekey,
-                // After solving it, verify it at the server and set the widget as completed
+                // After solving it, notify extension, verify it at the server and set the widget as completed
                 callback: async (response: string) => {
+                    this.captchaSolved();
                     const success = await fetch("https://localhost:8081/api/captcha", {
                         method: "POST",
                         body: JSON.stringify({
