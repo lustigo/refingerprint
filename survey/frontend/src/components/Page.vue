@@ -10,7 +10,7 @@
         v-on:completed="(data) => onCompleted(index,data)"
       />
     </v-container>
-    <v-container class="text-left" absolute height="auto" style="margin-bottom:2%; bottom: 0; position:fixed" v-if="isSomethingRequired">
+    <v-container class="text-left" absolute height="auto" style="margin-bottom:4%; bottom: 0; position:fixed" v-if="isSomethingRequired">
         <span style="color:red;">*</span> Erforderlich
     </v-container>
   </v-container>

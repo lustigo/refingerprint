@@ -51,7 +51,7 @@ export default Vue.extend({
                 // After solving it, notify extension, verify it at the server and set the widget as completed
                 callback: async (response: string) => {
                     this.captchaSolved();
-                    const success = await fetch("https://localhost:8081/api/captcha", {
+                    const success = await fetch("/api/captcha", {
                         method: "POST",
                         body: JSON.stringify({
                             response: response

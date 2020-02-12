@@ -5,4 +5,5 @@ export default interface Textbox {
     readonly question: string;
     readonly rows: number;
     answer: string;
+    // eslint-disable-next-line semi
 }

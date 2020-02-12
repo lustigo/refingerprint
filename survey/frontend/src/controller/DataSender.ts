@@ -111,7 +111,7 @@ export default class DataSender {
      */
     public async send(): Promise<boolean> {
         try {
-            const resp = await fetch(`https://localhost:8081/api/${this.data.survey}`, {
+            const resp = await fetch(`/api/${this.data.survey}`, {
                 method: "POST",
                 body: JSON.stringify(this.data),
                 headers: { "content-type": "application/json" }

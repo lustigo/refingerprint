@@ -111,7 +111,7 @@ export default Vue.extend({
                 const surveyId = surveyIdRegexResult[1];
 
                 //fetch the Surveydescription
-                fetch(`https://localhost:8081/api/${surveyId}`)
+                fetch(`/api/${surveyId}`)
                     .then(async data => {
                         if (!data.body) {
                             this.isError = true;
