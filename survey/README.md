@@ -147,19 +147,134 @@ Folgende Widgets sind möglich:
 
 ##### Konfiguration Captcha
 
+Stellt eine Captcha-Abfrage dar.
+
+```json
+{
+  "type": "captcha",
+  "required": true,
+  "structure": {
+    "sitekey": "<Ihr ReCaptcha Websitenschlüssel>"
+  }
+}
+```
+
 ##### Konfiguration Checkbox
+
+Stellt eine Frage mit vorgegebenen Antwortmöglichkeiten dar.
+Es können mehrere Antwortmöglichkeiten gewählt werden.
+
+```json
+{
+  "type": "checkbox",
+  "required": true|false,
+  "structure": {
+    "question": "<Ihre Frage>",
+    "selection": ["Antwortmöglichkeit A", "B", ...]
+  }
+}
+```
 
 ##### Konfiguration Dropdown
 
+Stellt eine Frage mit vorgegebenen Antwortmöglichkeiten dar.
+Es kann nur eine Antwortmöglichkeit gewählt werden.
+Die Möglichkeiten sind erst nach einem Klick sichtbar und werden dann vertikal angezeigt.
+
+```json
+{
+  "type": "dropdown",
+  "required": true|false,
+  "structure": {
+    "items": ["Antwortmöglichkeit A", "B", ...],
+    "question": "<Ihre Frage>"
+  }
+}
+```
+
 ##### Konfiguration Matrix
+
+Hier wird eine Frage gestellt und anschließend eine Tabelle gezeigt.
+Pro Tabellenzeile wird ein weiterer Text angezeigt und pro Tabellenspalte eine Antwortmöglichkeit.
+Pro Zeile kann nur eine Antwortmöglichkeit gewählt werden.
+
+```json
+{
+  "type": "matrix",
+  "required": true|false,
+  "structure": {
+    "question": "<Ihre Frage>",
+    "structure": ["Antwortmöglichkeit A", "B", ...],
+    "answers": {
+      "Zeilentext 1": -1,
+      "Zeilentext 2": -1,
+      "Zeilentext 3": -1,
+      ...
+    }
+  }
+}
+```
+
+Sie können pro Zeile entweder -1 angeben, was keine Vorauswahl bedeutet, oder eine andere Zahl im Intervall [0, Länge des structure.structe Arrays[ angeben, sodass diese Antwortmöglichkeit bereits vorausgewählt ist.
 
 ##### Konfiguration Textbox
 
+Stellt eine Frage mit einer großen, mehrzeiligen Box dar, in welche ein Text geschrieben werden kann.
+
+```json
+{
+  "type": "textbox",
+  "required": true|false,
+  "structure": {
+    "question": "<Ihre Frage>",
+    "rows": <Anzahl der Zeilen>
+  }
+}
+```
+
 ##### Konfiguration Textfield
+
+Stellt eine Frage mit einer kleinen, einzeiligen Box dar, in welche ein Text geschrieben werden kann.
+
+```json
+{
+  "type": "textfield",
+  "required": true|false,
+  "structure": {
+    "question": "<Ihre Frage>"
+  }
+}
+```
 
 ##### Konfiguration Text
 
+Stellt einen festen Text dar, ohne Eingabemöglichkeiten.
+Der Text unterstützt Markdown-Funktionalität.
+
+```json
+{
+  "type": "textwidget",
+  "required": false,
+  "structure": {
+    "content": "<Ihr Text>"
+  }
+}
+```
+
 ##### Konfiguration Vector
+
+Stellt eine Frage mit mehreren Antwortmöglichkeiten dar, wobei nur eine Antwort ausgewählt werden kann.
+
+```json
+{
+  "type": "vector",
+  "required": true|false,
+  "structure": {
+    "question": "<Ihre Frage>",
+    "selection": ["Antwortmöglichkeit A", "B", ...]
+  }
+}
+```
 
 ## Benutzung
 
