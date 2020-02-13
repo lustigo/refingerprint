@@ -25,6 +25,8 @@ Beide Teile verwenden Typescript.
       - [Vector](#konfiguration-vector)
     - [Beispiel Umfrage](#beispiel-umfrage)
 - [Benutzung](#benutzung)
+- [Server-Client Kommunikation](#server-client-kommunikation)
+- [Aufbau der App](#aufbau-der-app)
 
 ## Installation
 
@@ -492,3 +494,11 @@ https://<IhreDomain>/?<Ihre Umfragen-UUID>
 ```
 
 In dem Datenpfad unter Ihrer Umfragen-UUID finden Sie die Rückmeldungen Ihrer Teilnehmer in jeweiligen `json`-Dateien.
+
+## Server-Client Kommunikation
+
+![Flowchart](img/Flow.png)
+
+## Aufbau der App
+
+![Strukturdiagramm](img/structure.png)
