@@ -23,6 +23,7 @@ Beide Teile verwenden Typescript.
       - [Textfield](#konfiguration-textfield)
       - [Text](#konfiguration-text)
       - [Vector](#konfiguration-vector)
+    - [Beispiel Umfrage](#beispiel-umfrage)
 - [Benutzung](#benutzung)
 
 ## Installation
@@ -56,6 +57,15 @@ docker start refingerprint
 - [Server](#konfiguration-server)
 - [Umfragen](#konfiguration-survey)
   - [Widgets](#konfiguration-widgets)
+    - [Captcha](#konfiguration-captcha)
+    - [Checkbox](#konfiguration-checkbox)
+    - [Dropdown](#konfiguration-dropdown)
+    - [Matrix](#konfiguration-matrix)
+    - [Textbox](#konfiguration-textbox)
+    - [Textfield](#konfiguration-textfield)
+    - [Text](#konfiguration-text)
+    - [Vector](#konfiguration-vector)
+  - [Beispiel Umfrage](#beispiel-umfrage)
 
 ### Konfiguration Server
 
@@ -80,8 +90,8 @@ Falls Sie den Dateinamen ändern, oder die Dateien in einem Unterverzeichnis spe
 Im Folgenden sehen Sie die Umgebungsvariablen für die TLS-Konfiguration mit deren Standardwerten:
 
 ```TOML
-TLS_KEY_PATH=/data/key.pem
-TLS_CERT_PATH=/data/crt.pem
+TLS_KEY_PATH="/data/key.pem"
+TLS_CERT_PATH="/data/crt.pem"
 ```
 
 Für den realen Einsatz fragen Sie bitte Ihren IT-Administrator oder erzeugen Sie ein Zertifikat für Ihre Domain und lassen dieses von einer CA unterschreiben (zum Beispiel von Let's Encrypt).
@@ -175,6 +185,21 @@ Es können mehrere Antwortmöglichkeiten gewählt werden.
 }
 ```
 
+**Beispiel**:
+
+![Checkbox](img/checkbox.png)
+
+```json
+{
+  "type": "checkbox",
+  "required": true,
+  "structure": {
+    "question": "<Ihre Frage>",
+    "selection": ["Antwortmöglichkeit A", "B", "C", "D"]
+  }
+}
+```
+
 ##### Konfiguration Dropdown
 
 Stellt eine Frage mit vorgegebenen Antwortmöglichkeiten dar.
@@ -187,6 +212,25 @@ Die Möglichkeiten sind erst nach einem Klick sichtbar und werden dann vertikal 
   "required": true|false,
   "structure": {
     "items": ["Antwortmöglichkeit A", "B", ...],
+    "label": "<Vorschautext>",
+    "question": "<Ihre Frage>"
+  }
+}
+```
+
+**Beispiel**:
+
+![Dropdown ohne Interaktion](img/dropdown1.png)
+![Dropdown angeklickt](img/dropdown2.png)
+![Dropdown ausgewählt](img/dropdown3.png)
+
+```json
+{
+  "type": "dropdown",
+  "required": false,
+  "structure": {
+    "items": ["Antwortmöglichkeit A", "B", "C", "D"],
+    "label": "Bitte auswählen",
     "question": "<Ihre Frage>"
   }
 }
@@ -195,7 +239,7 @@ Die Möglichkeiten sind erst nach einem Klick sichtbar und werden dann vertikal 
 ##### Konfiguration Matrix
 
 Hier wird eine Frage gestellt und anschließend eine Tabelle gezeigt.
-Pro Tabellenzeile wird ein weiterer Text angezeigt und pro Tabellenspalte eine Antwortmöglichkeit.
+Pro Tabellenzeile wird ein weiterer Text angezeigt und pro Tabellenspalte gibt es eine Antwortmöglichkeit.
 Pro Zeile kann nur eine Antwortmöglichkeit gewählt werden.
 
 ```json
@@ -217,6 +261,26 @@ Pro Zeile kann nur eine Antwortmöglichkeit gewählt werden.
 
 Sie können pro Zeile entweder -1 angeben, was keine Vorauswahl bedeutet, oder eine andere Zahl im Intervall [0, Länge des structure.structe Arrays[ angeben, sodass diese Antwortmöglichkeit bereits vorausgewählt ist.
 
+**Beispiel**:
+
+![Matrix](img/matrix.png)
+
+```json
+{
+  "type": "matrix",
+  "required": true,
+  "structure": {
+    "question": "<Ihre Frage>",
+    "structure": ["Antwortmöglichkeit A", "B", "C"],
+    "answers": {
+      "Zeilentext 1": -1,
+      "Zeilentext 2": 0,
+      "Zeilentext 3": 2
+    }
+  }
+}
+```
+
 ##### Konfiguration Textbox
 
 Stellt eine Frage mit einer großen, mehrzeiligen Box dar, in welche ein Text geschrieben werden kann.
@@ -232,6 +296,21 @@ Stellt eine Frage mit einer großen, mehrzeiligen Box dar, in welche ein Text ge
 }
 ```
 
+**Beispiel**:
+
+![Textbox](img/textbox.png)
+
+```json
+{
+  "type": "textbox",
+  "required": false,
+  "structure": {
+    "question": "<Ihre Frage>",
+    "rows": 4
+  }
+}
+```
+
 ##### Konfiguration Textfield
 
 Stellt eine Frage mit einer kleinen, einzeiligen Box dar, in welche ein Text geschrieben werden kann.
@@ -242,6 +321,20 @@ Stellt eine Frage mit einer kleinen, einzeiligen Box dar, in welche ein Text ges
   "required": true|false,
   "structure": {
     "question": "<Ihre Frage>"
+  }
+}
+```
+
+**Beispiel**:
+
+![Textfield](img/textfield.png)
+
+```json
+{
+  "type": "textfield",
+  "required": false,
+  "structure": {
+   "question": "<Ihre Frage>"
   }
 }
 ```
@@ -261,6 +354,20 @@ Der Text unterstützt Markdown-Funktionalität.
 }
 ```
 
+**Beispiel**:
+
+![Textwidget](img/text.png)
+
+```json
+{
+  "type": "textwidget",
+  "required": false,
+  "structure": {
+    "content": "Dies ist ein schöner Text. Man kann auch **Markdown** benutzen und damit Textbestandteile *kursiv* darstellen"
+  }
+}
+```
+
 ##### Konfiguration Vector
 
 Stellt eine Frage mit mehreren Antwortmöglichkeiten dar, wobei nur eine Antwort ausgewählt werden kann.
@@ -273,6 +380,106 @@ Stellt eine Frage mit mehreren Antwortmöglichkeiten dar, wobei nur eine Antwort
     "question": "<Ihre Frage>",
     "selection": ["Antwortmöglichkeit A", "B", ...]
   }
+}
+```
+
+**Beispiel**:
+
+![Vector](img/vector.png)
+
+```json
+{
+  "type": "vector",
+  "required": true,
+  "structure": {
+    "question": "<Ihre Frage>",
+    "selection": ["Antwortmöglichkeit A", "B", "C", "D"]
+  }
+}
+```
+
+#### Beispiel Umfrage
+
+Hier finden Sie eine Umfrage inklusive der Konfiguration:
+
+![Seite 1 des Beispiels](img/example1.png)
+
+![Seite 2 des Beispiels](img/example2.png)
+
+![Seite 3 des Beispiels](img/example3.png)
+
+![Seite 4 des Beispiels](img/example4.png)
+
+```json
+{
+  "survey": "220d2741-376d-4ed9-861b-b9e0845d7674",
+  "pages": [
+    [{
+      "type": "textwidget",
+      "required": false,
+      "structure": {
+        "content": "Willkommen zu dieser *grandiosen* Umfrage!\nIch hoffe Sie haben **Spaß**!"
+      }
+    }],
+    [{
+        "type": "checkbox",
+        "required": true,
+        "structure": {
+          "question": "<Ihre Frage>",
+          "selection": [
+            "Antwortmöglichkeit A",
+            "B",
+            "C",
+            "D"
+          ]
+        }
+      },
+      {
+        "type": "dropdown",
+        "required": false,
+        "structure": {
+          "items": [
+            "Antwortmöglichkeit A",
+            "B",
+            "C",
+            "D"
+          ],
+          "question": "<Ihre Frage>",
+          "label": "Bitte auswählen"
+        }
+      }
+    ],
+    [{
+      "type": "matrix",
+      "required": true,
+      "structure": {
+        "question": "<Ihre Frage>",
+        "structure": [
+          "Antwortmöglichkeit A",
+          "B",
+          "C"
+        ],
+        "answers": {
+          "Zeilentext 1": -1,
+          "Zeilentext 2": 0,
+          "Zeilentext 3": 2
+        }
+      }
+    }],
+    [{
+      "type": "vector",
+      "required": true,
+      "structure": {
+        "question": "<Ihre Frage>",
+        "selection": [
+          "Antwortmöglichkeit A",
+          "B",
+          "C",
+          "D"
+        ]
+      }
+    }]
+  ]
 }
 ```
 
