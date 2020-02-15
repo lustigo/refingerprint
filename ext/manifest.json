@@ -12,12 +12,7 @@
 
     "content_scripts": [{
         "matches": ["*://localhost/*"],
-        "js": ["dist/index.js"]
-    }],
-    "applications": {
-        "gecko": {
-            "id": "lklassen@mail.uni-mannheim.de"
-        }
-    }
+        "js": ["dist/bundle.js"]
+    }]
 
 }
