@@ -15,8 +15,14 @@
         "js": ["dist/bundle.js"]
     }],
 
+    "background": {
+        "scripts": ["dist/background.js"],
+        "persistent": false
+    },
+
     "permissions": [
-        "downloads"
+        "downloads",
+        "downloads.shelf"
     ]
 
 }

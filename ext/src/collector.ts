@@ -1,4 +1,4 @@
-import Module from './interfaces/Module';
+import Module from "./interfaces/Module";
 
 /**
  * Data Collector
@@ -21,7 +21,6 @@ export default class Collector {
      * Add the Listener to the Document
      */
     public constructor(modules: Array<{ new(): Module }>) {
-        console.log("Constructed");
         this.modules = modules;
         this.reset();
         document.getRootNode().addEventListener("captcha-created", this.start.bind(this));
@@ -50,9 +49,9 @@ export default class Collector {
     /**
      * Collects the data gathered by the Modules and builds a single Object
      */
-    private collectData(): Map<string, string | number | object> {
-        const data = new Map<string, string | number | object>();
-        this.collectors.forEach(col => data.set(col.name, col.getCollectedData()));
+    private collectData(): Object {
+        const data = Object.create(null);
+        this.collectors.forEach(col => data[col.name] = col.getCollectedData());
         return data;
     }
 
@@ -65,12 +64,11 @@ export default class Collector {
     }
 
     /**
-     * Saves the collected data to 
+     * Send the collected data to the background script to save it on disk
      * @param data Data to save
      */
-    private saveData(data: Map<string, string | number | object>) {
-        console.log(data);
+    private saveData(data: Object) {
+        chrome.runtime.sendMessage(data);
     }
-
 
 }
