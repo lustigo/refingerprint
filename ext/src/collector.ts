@@ -24,8 +24,8 @@ export default class Collector {
         console.log("Constructed");
         this.modules = modules;
         this.reset();
-        document.getRootNode().addEventListener("captcha-created", this.start);
-        document.getRootNode().addEventListener("captcha-solved", this.stop);
+        document.getRootNode().addEventListener("captcha-created", this.start.bind(this));
+        document.getRootNode().addEventListener("captcha-solved", this.stop.bind(this));
     }
 
     /**
