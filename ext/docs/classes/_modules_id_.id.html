@@ -111,6 +111,7 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_modules_id_.id.html#getcollecteddata" class="tsd-kind-icon">get<wbr>Collected<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_modules_id_.id.html#getid" class="tsd-kind-icon">get<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_modules_id_.id.html#start" class="tsd-kind-icon">start</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_modules_id_.id.html#stop" class="tsd-kind-icon">stop</a></li>
 							</ul>
@@ -130,7 +131,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/a84a9be/ext/src/modules/Id.ts#L16">modules/Id.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/119ca3f/ext/src/modules/Id.ts#L16">modules/Id.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -148,10 +149,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 					<a name="id" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;UNKNOWN&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/a84a9be/ext/src/modules/Id.ts#L16">modules/Id.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/119ca3f/ext/src/modules/Id.ts#L16">modules/Id.ts:16</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -167,7 +168,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_interfaces_module_.module.html">Module</a>.<a href="../interfaces/_interfaces_module_.module.html#name">name</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/a84a9be/ext/src/modules/Id.ts#L11">modules/Id.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/119ca3f/ext/src/modules/Id.ts#L11">modules/Id.ts:11</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -190,7 +191,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_interfaces_module_.module.html">Module</a>.<a href="../interfaces/_interfaces_module_.module.html#getcollecteddata">getCollectedData</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/a84a9be/ext/src/modules/Id.ts#L42">modules/Id.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/119ca3f/ext/src/modules/Id.ts#L45">modules/Id.ts:45</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -200,6 +201,28 @@
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 							<p>Id of the User</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="getid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/119ca3f/ext/src/modules/Id.ts#L52">modules/Id.ts:52</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the UserId from the DOM and stores it in this.id</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -214,13 +237,13 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_interfaces_module_.module.html">Module</a>.<a href="../interfaces/_interfaces_module_.module.html#start">start</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/a84a9be/ext/src/modules/Id.ts#L30">modules/Id.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/119ca3f/ext/src/modules/Id.ts#L29">modules/Id.ts:29</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Will be called, when the Captcha is rendered
-									does nothing</p>
+									Check if the id is set, if not, try again</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -238,7 +261,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_interfaces_module_.module.html">Module</a>.<a href="../interfaces/_interfaces_module_.module.html#stop">stop</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/a84a9be/ext/src/modules/Id.ts#L36">modules/Id.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/119ca3f/ext/src/modules/Id.ts#L39">modules/Id.ts:39</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -297,6 +320,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="_modules_id_.id.html#getcollecteddata" class="tsd-kind-icon">get<wbr>Collected<wbr>Data</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="_modules_id_.id.html#getid" class="tsd-kind-icon">get<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="_modules_id_.id.html#start" class="tsd-kind-icon">start</a>
