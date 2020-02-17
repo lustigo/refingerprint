@@ -68,7 +68,13 @@ export default class Collector {
      * @param data Data to save
      */
     private saveData(data: Object) {
-        chrome.runtime.sendMessage(data);
+        if (chrome) {
+            chrome.runtime.sendMessage(data);
+        } else {
+            browser.runtime.sendMessage({
+                message: data
+            });
+        }
     }
 
 }
