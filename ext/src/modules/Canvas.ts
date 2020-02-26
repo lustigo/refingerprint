@@ -4,7 +4,7 @@ import jsSHA from "jssha";
 /**
  * Module which computes a Canvas Fingerprint
  * 
- * Implemented freely adapted from Acar, Gunes & Eubank, Christian & Englehardt, Steven & Juarez, Marc & Narayanan, Arvind & Diaz, Claudia. (2014). The Web Never Forgets: Persistent Tracking Mechanisms in the Wild. Proceedings of the ACM Conference on Computer and Communications Security. 674-689. 10.1145/2660267.2660347.
+ * Freely adapted from Acar, Gunes & Eubank, Christian & Englehardt, Steven & Juarez, Marc & Narayanan, Arvind & Diaz, Claudia. (2014). The Web Never Forgets: Persistent Tracking Mechanisms in the Wild. Proceedings of the ACM Conference on Computer and Communications Security. 674-689. 10.1145/2660267.2660347.
  */
 export default class Canvas implements Module {
     /**
