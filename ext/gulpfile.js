@@ -2,6 +2,7 @@ const gulp = require("gulp");
 const rollup = require("rollup");
 const resolve = require("@rollup/plugin-node-resolve");
 const ts = require("rollup-plugin-typescript2");
+const commonjs = require("@rollup/plugin-commonjs");
 
 gulp.task("default", async function () {
     await bundleContentScript();
@@ -35,6 +36,7 @@ async function bundleContentScript() {
     const bundle = await rollup.rollup({
         input: "./src/index.ts",
         plugins: [
+            commonjs(),
             resolve({
                 extensions: [".ts"]
             }),

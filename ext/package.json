@@ -9,15 +9,19 @@
   "author": "Lukas Klassen",
   "license": "GPL-3.0",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@rollup/plugin-sucrase": "^3.0.0",
     "@types/chrome": "0.0.95",
+    "@types/jssha": "^2.0.0",
     "gulp": "^4.0.2",
     "rollup": "^1.31.1",
     "rollup-plugin-typescript2": "^0.26.0",
     "tslib": "^1.10.0",
-    "typescript": "^3.7.5",
+    "typescript": "^3.8.2",
     "web-ext-types": "^3.2.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "jssha": "^2.3.1"
+  }
 }
