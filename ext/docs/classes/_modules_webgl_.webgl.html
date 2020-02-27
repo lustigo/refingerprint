@@ -72,8 +72,9 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Module which gets the WebGL Renderer and Version</p>
+						<p>Module which gets the Graphic Card Information and WebGL Extensions</p>
 					</div>
+					<p>created with help of <a href="https://gist.github.com/cvan/042b2448fcecefafbb6a91469484cdf8">https://gist.github.com/cvan/042b2448fcecefafbb6a91469484cdf8</a></p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -99,10 +100,9 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_modules_webgl_.webgl.html#canvas" class="tsd-kind-icon">canvas</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_modules_webgl_.webgl.html#extensions" class="tsd-kind-icon">extensions</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_modules_webgl_.webgl.html#model" class="tsd-kind-icon">model</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_modules_webgl_.webgl.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_modules_webgl_.webgl.html#renderer" class="tsd-kind-icon">renderer</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_modules_webgl_.webgl.html#vendor" class="tsd-kind-icon">vendor</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_modules_webgl_.webgl.html#version" class="tsd-kind-icon">version</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
@@ -125,7 +125,7 @@
 					<div class="tsd-signature tsd-kind-icon">canvas<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLCanvasElement</span><span class="tsd-signature-symbol"> = document.createElement(&quot;canvas&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/41543cc/ext/src/modules/WebGL.ts#L35">modules/WebGL.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/8901c63/ext/src/modules/WebGL.ts#L33">modules/WebGL.ts:33</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -140,12 +140,27 @@
 					<div class="tsd-signature tsd-kind-icon">extensions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = [&quot;UNKNOWN&quot;]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/41543cc/ext/src/modules/WebGL.ts#L30">modules/WebGL.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/8901c63/ext/src/modules/WebGL.ts#L28">modules/WebGL.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Supported WebGL Extensions</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="model" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> model</h3>
+					<div class="tsd-signature tsd-kind-icon">model<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;UNKNOWN&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/8901c63/ext/src/modules/WebGL.ts#L22">modules/WebGL.ts:22</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The Graphic Card Model</p>
 						</div>
 					</div>
 				</section>
@@ -156,7 +171,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_interfaces_module_.module.html">Module</a>.<a href="../interfaces/_interfaces_module_.module.html#name">name</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/41543cc/ext/src/modules/WebGL.ts#L10">modules/WebGL.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/8901c63/ext/src/modules/WebGL.ts#L12">modules/WebGL.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -166,47 +181,17 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="renderer" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> renderer</h3>
-					<div class="tsd-signature tsd-kind-icon">renderer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;UNKNOWN&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/41543cc/ext/src/modules/WebGL.ts#L20">modules/WebGL.ts:20</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The WebGL Model</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 					<a name="vendor" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> vendor</h3>
 					<div class="tsd-signature tsd-kind-icon">vendor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;UNKNOWN&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/41543cc/ext/src/modules/WebGL.ts#L15">modules/WebGL.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/8901c63/ext/src/modules/WebGL.ts#L17">modules/WebGL.ts:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The WebGL Vendor</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="version" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> version</h3>
-					<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;UNKNOWN&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/41543cc/ext/src/modules/WebGL.ts#L25">modules/WebGL.ts:25</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The WebGL Version</p>
+							<p>The Graphic Card Vendor</p>
 						</div>
 					</div>
 				</section>
@@ -224,16 +209,16 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_interfaces_module_.module.html">Module</a>.<a href="../interfaces/_interfaces_module_.module.html#getcollecteddata">getCollectedData</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/41543cc/ext/src/modules/WebGL.ts#L84">modules/WebGL.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/8901c63/ext/src/modules/WebGL.ts#L88">modules/WebGL.ts:88</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>returns the WebGL Information</p>
+									<p>returns the gathered Information</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
-							<p>WebGL Information</p>
+							<p>Information</p>
 						</li>
 					</ul>
 				</section>
@@ -247,7 +232,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/41543cc/ext/src/modules/WebGL.ts#L41">modules/WebGL.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/8901c63/ext/src/modules/WebGL.ts#L39">modules/WebGL.ts:39</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -270,7 +255,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_interfaces_module_.module.html">Module</a>.<a href="../interfaces/_interfaces_module_.module.html#start">start</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/41543cc/ext/src/modules/WebGL.ts#L53">modules/WebGL.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/8901c63/ext/src/modules/WebGL.ts#L51">modules/WebGL.ts:51</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -294,13 +279,13 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_interfaces_module_.module.html">Module</a>.<a href="../interfaces/_interfaces_module_.module.html#stop">stop</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/41543cc/ext/src/modules/WebGL.ts#L61">modules/WebGL.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/8901c63/ext/src/modules/WebGL.ts#L59">modules/WebGL.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Will be called, when the Captcha is solved
-									Gets the WebGL Information and stores it.</p>
+									Gets the Information and stores it.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -360,17 +345,14 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 								<a href="_modules_webgl_.webgl.html#extensions" class="tsd-kind-icon">extensions</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="_modules_webgl_.webgl.html#model" class="tsd-kind-icon">model</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
 								<a href="_modules_webgl_.webgl.html#name" class="tsd-kind-icon">name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="_modules_webgl_.webgl.html#renderer" class="tsd-kind-icon">renderer</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 								<a href="_modules_webgl_.webgl.html#vendor" class="tsd-kind-icon">vendor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="_modules_webgl_.webgl.html#version" class="tsd-kind-icon">version</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="_modules_webgl_.webgl.html#getcollecteddata" class="tsd-kind-icon">get<wbr>Collected<wbr>Data</a>
