@@ -1,7 +1,9 @@
 import Module from "../interfaces/Module";
 
 /**
- * Module which gets the WebGL Renderer and Version  
+ * Module which gets the Graphic Card Information and WebGL Extensions
+ * 
+ * created with help of https://gist.github.com/cvan/042b2448fcecefafbb6a91469484cdf8
  */
 export default class WebGL implements Module {
     /**
@@ -10,19 +12,15 @@ export default class WebGL implements Module {
     public readonly name = "WebGL";
 
     /**
-     * The WebGL Vendor
+     * The Graphic Card Vendor
      */
     private vendor = "UNKNOWN";
 
     /**
-     * The WebGL Model
+     * The Graphic Card Model
      */
-    private renderer = "UNKNOWN";
+    private model = "UNKNOWN";
 
-    /**
-     * The WebGL Version
-     */
-    private version = "UNKNOWN";
 
     /**
      * Supported WebGL Extensions
@@ -56,20 +54,26 @@ export default class WebGL implements Module {
 
     /**
     * Will be called, when the Captcha is solved
-    * Gets the WebGL Information and stores it.
+    * Gets the Information and stores it.
     */
     public stop(): void {
         const context = this.canvas.getContext("webgl");
         if (!context) {
-            this.renderer = "NOT AVAIL";
+            this.model = "NOT AVAIL";
             this.vendor = "NOT AVAIL";
-            this.version = "NOT AVAIL";
             this.extensions = [];
             return;
         }
-        this.vendor = context.getParameter(context.VENDOR);
-        this.renderer = context.getParameter(context.RENDERER);
-        this.version = context.getParameter(context.VERSION);
+        const debugInfo = context.getExtension("WEBGL_debug_renderer_info");
+        if (!debugInfo) {
+            this.vendor = "NOT AVAIL";
+            this.model = "NOT AVAIL";
+            return;
+        }
+
+        this.vendor = context.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
+        this.model = context.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+
 
         const ext = context.getSupportedExtensions();
         if (ext) {
@@ -78,15 +82,14 @@ export default class WebGL implements Module {
     }
 
     /**
-     * returns the WebGL Information
-     * @returns WebGL Information
+     * returns the gathered Information
+     * @returns Information
      */
     public getCollectedData(): object {
         return {
-            vendor: this.vendor,
-            renderer: this.renderer,
-            version: this.version,
-            extensions: this.extensions,
+            gcVendor: this.vendor,
+            gcModel: this.model,
+            webglExtensions: this.extensions,
         };
     }
 
