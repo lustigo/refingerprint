@@ -53,10 +53,9 @@ export default class WebGL implements Module {
     }
 
     /**
-    * Will be called, when the Captcha is solved
-    * Gets the Information and stores it.
-    */
-    public stop(): void {
+     * Gets the Information and stores it
+     */
+    private getWebGLInformation(): void {
         const context = this.canvas.getContext("webgl");
         if (!context) {
             this.model = "NOT AVAIL";
@@ -79,6 +78,14 @@ export default class WebGL implements Module {
         if (ext) {
             this.extensions = ext;
         }
+    }
+
+    /**
+    * Will be called, when the Captcha is solved
+    * Gets the Information and stores it.
+    */
+    public stop(): void {
+        this.getWebGLInformation();
     }
 
     /**
