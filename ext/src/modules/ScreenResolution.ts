@@ -31,6 +31,7 @@ export default class ScreenResolution implements Module {
         return {
             width: screen.availWidth,
             height: screen.availHeight,
+            density: screen.pixelDepth,
         }
     }
 
