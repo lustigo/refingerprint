@@ -13,6 +13,7 @@ async function bundleBackgroundScript() {
     const bundle = await rollup.rollup({
         input: "./src/io/Background.ts",
         plugins: [
+            commonjs(),
             resolve({
                 extensions: [".ts"]
             }),
