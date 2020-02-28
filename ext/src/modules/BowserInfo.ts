@@ -66,6 +66,7 @@ export default class BrowserInfo implements Module {
             userAgent: navigator.userAgent,
             dnt: navigator.doNotTrack,
             plugins: this.getPlugins(),
+            timezone: new Date().getTimezoneOffset(),
         }
     }
 
