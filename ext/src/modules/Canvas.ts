@@ -43,11 +43,11 @@ export default class Canvas implements Module {
             context.font = "invalid font specification. sic!";
             context.fillStyle = "#12E3DB";
             context.textBaseline = "top";
-            context.fillText("Gotcha 🖱️ 帆布", 2, 2);
+            context.fillText("ReGotcha! 🖱️ 帆布", 2, 2);
 
             context.font = "20pt no-real-font-never-forget";
             context.fillStyle = "#C0B733";
-            context.fillText("Gotcha 🖱️ 帆布", 2, 2);
+            context.fillText("ReGotcha! 🖱️ 帆布", 2, 2);
         }
     }
 
