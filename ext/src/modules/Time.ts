@@ -5,19 +5,19 @@ import Module from "../interfaces/Module";
  */
 export default class Time implements Module {
     /**
- * Name of the module
- */
+     * Name of the module
+     */
     public readonly name = "Time";
 
     /**
      * Start-Time
      */
-    private startTime: Date = null;
+    private startTime: Date = new Date();
 
     /**
- * End-Time
- */
-    private endTime: Date = null;
+     * End-Time
+     */
+    private endTime: Date = new Date();
 
     /**
      * Will be called, when the Captcha is rendered
@@ -28,9 +28,9 @@ export default class Time implements Module {
     }
 
     /**
-    * Will be called, when the Captcha is solved
-    * Stores the time
-    */
+     * Will be called, when the Captcha is solved
+     * Stores the time
+     */
     stop(): void {
         this.endTime = new Date();
     }
