@@ -8,6 +8,15 @@ if (chrome.downloads.setShelfEnabled) {
 }
 
 /**
+ * Remove the Google Cookie, so that there should be a Captcha Quest
+ */
+function onCookieUpdate() {
+    chrome.cookies.remove({ name: "NID", "url": "https://google.com" });
+    chrome.cookies.remove({ name: "ANID", "url": "https://google.com" });
+}
+
+
+/**
  * When a message is received, the Data should be encoded in a Blob.
  * The Blob will be encoded in an URL and that URL will be downloaded.
  */
@@ -38,3 +47,8 @@ function downloadData(req: Object) {
  * When a message is received from the Content Script
  */
 chrome.runtime.onMessage.addListener(downloadData);
+
+/**
+ * When the cookies are changed, remove the Goolge Cookies
+ */
+chrome.cookies.onChanged.addListener(onCookieUpdate);
