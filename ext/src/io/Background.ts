@@ -28,7 +28,7 @@ function downloadData(req: Object) {
     // Hash of Data (only first 10 chars) as Filename
     const hasher = new jsSHA("SHA-512", "TEXT");
     hasher.update(data);
-    const filename = hasher.getHash("B64").substr(0, 10) + ".json";
+    const filename = hasher.getHash("B64").substr(0, 10).replace("/", "") + ".json";
 
     chrome.downloads.download({
         url,
