@@ -68,8 +68,10 @@
 					<h1>ReFingerprint Extension</h1>
 				</a>
 				<p>Dies ist die WebExtension, welche Daten aufzeichnet, die bei der Lösung eines ReCaptchas, welches in der Umfragen-Applikation angezeigt wird, aufzeichnet.</p>
-				<p>In den Chrome Einstellungen sollte die (erweiterte) Option &quot;Downloads -&gt; Vor dem Download von Dateien nach dem Speicherort fragen&quot; ausgeschaltet sein.</p>
-				<p>In den Firefox Einstellungen sollte die Option &quot;Allgemein -&gt; Dateien und Anwendungen -&gt; Downloads -&gt; Alle Dateien in folgendem Ordner abspeichern:&quot; ausgewählt sein.</p>
+				<p>In den Chrome Einstellungen sollte die (erweiterte) Option &quot;Downloads -&gt; Vor dem Download von Dateien nach dem Speicherort fragen&quot; ausgeschaltet sein.
+					Zusätzlich muss Chrome mit den Argumenten <code>--disable-web-security</code>, <code>--disable-site-isolation-trials</code> und <code>--user-data-dir=&quot;&lt;beliebiger Ordner&gt;</code> gestartet werden, um die Same Origin Policy zu unterdrücken, sodass die Extension auch auf das ReCaptcha IFrame zugreifen kann.
+				Alle anderen Chrome oder Chromium Instanzen müssen davor geschlossen werden.</p>
+				<p>Bei Firefox ist es nicht möglich, diese Policy zu unterdrücken, deshalb wird Firefox nicht unterstützt.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -94,6 +96,12 @@
 						<a href="modules/_interfaces_module_.html">&quot;interfaces/<wbr>Module&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="modules/_interfaces_mousedata_.html">&quot;interfaces/<wbr>Mouse<wbr>Data&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="modules/_misc_helper_.html">&quot;misc/<wbr>Helper&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="modules/_modules_audio_.html">&quot;modules/<wbr>Audio&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
@@ -103,10 +111,25 @@
 						<a href="modules/_modules_canvas_.html">&quot;modules/<wbr>Canvas&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="modules/_modules_framelistener_.html">&quot;modules/<wbr>Frame<wbr>Listener&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="modules/_modules_id_.html">&quot;modules/<wbr>Id&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="modules/_modules_mousemovement_.html">&quot;modules/<wbr>Mouse<wbr>Movement&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="modules/_modules_mousemovementcheckbox_.html">&quot;modules/<wbr>Mouse<wbr>Movement<wbr>Checkbox&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="modules/_modules_mousemovementrest_.html">&quot;modules/<wbr>Mouse<wbr>Movement<wbr>Rest&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="modules/_modules_screenresolution_.html">&quot;modules/<wbr>Screen<wbr>Resolution&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="modules/_modules_time_.html">&quot;modules/<wbr>Time&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="modules/_modules_webgl_.html">&quot;modules/<wbr>WebGL&quot;</a>
