@@ -11,19 +11,14 @@ export default class MouseMovementCheckbox extends MouseMovement {
     public readonly name = "MouseCheckbox";
 
     /**
-     * If the mouse is currently being tracked
-     */
-    private running = false;
-
-    /**
      * will be called when the Captcha is rendered
      * Starts tracking the MousePath and registers the listener for the Iframe Click.
      */
     public start(): void {
         super.start();
-        this.registerIframeClickListener(this.stop);
-        this.registerIframeMoveListener(this.getOnMouseMove(this));
-        this.registerMouseListener(this.getOnMouseMove(this));
+        this.removeHandler.push(this.registerCaptchaFrameClickListener(this.stop));
+        this.removeHandler.push(this.registerCaptchaFrameMoveListener(this.onMouseMove));
+        this.removeHandler.push(this.registerMouseListener(this.onMouseMove));
         this.running = true;
     }
 
@@ -32,9 +27,7 @@ export default class MouseMovementCheckbox extends MouseMovement {
      */
     public stop(): void {
         if (this.running) {
-            this.removeMouseListener(this.getOnMouseMove(this));
-            this.removeIframeClickListener(this.stop);
-            this.removeIframeMoveListener(this.getOnMouseMove(this));
+            this.stopTracking();
         }
     }
 }
