@@ -13,7 +13,6 @@ const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
 func GetTempFile() string {
 	dir := os.TempDir()
 	path := filepath.Join(dir, getNonce(10))
-	os.Create(path)
 	return path
 }
 
