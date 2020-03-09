@@ -40,6 +40,14 @@ Use the width and height flag to scale the visualization.`,
 func getPlot(w, h int16, path []data.NormalizedMouseData) string {
 	file := io.GetTempFile() + ".svg"
 	p, _ := plot.New()
+	x := p.X
+	x.Min = 0
+	x.Max = float64(w)
+	y := p.Y
+	y.Min = 0
+	y.Max = float64(h)
+	p.HideAxes()
+
 	pts := make(plotter.XYs, len(path))
 
 	for i, point := range path {
@@ -49,7 +57,6 @@ func getPlot(w, h int16, path []data.NormalizedMouseData) string {
 
 	plotter, _ := plotter.NewScatter(pts)
 	p.Add(plotter)
-	p.HideAxes()
 	p.Save(vg.Length(w), vg.Length(h), file)
 	return file
 }
