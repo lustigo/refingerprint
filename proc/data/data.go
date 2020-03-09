@@ -34,6 +34,13 @@ type MouseData struct {
 	Time uint64 `json:"time"`
 }
 
+// NormalizedMouseData represents the Mouseposition relative to the Screenresolution at a specific moment
+type NormalizedMouseData struct {
+	X    float64
+	Y    float64
+	Time uint64
+}
+
 // ScreenInfo contains information about the screen
 type ScreenInfo struct {
 	Height       uint16 `json:"height"`
