@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"fyne.io/fyne/app"
 	"fyne.io/fyne/canvas"
@@ -32,13 +33,29 @@ Use the width and height flag to scale the visualization.`,
 
 		d, err := io.ParseData(files[0])
 		w, h := getScreenSize(cmd, d)
-		displayGraph(w, h, d.MouseCheckbox, d.Screen)
+
+		save, _ := cmd.Flags().GetBool("save")
+		file := getFile(save, files)
+		saveGraph(w, h, d.MouseCheckbox, d.Screen, file)
+		if !save {
+			showWindow(file)
+		} else {
+			fmt.Printf("The Plot was saved in %v\n", file)
+		}
 	},
 }
 
+// GetFile returns the Filepath to save the plot to
+func getFile(toSave bool, files []string) string {
+	if !toSave {
+		return io.GetTempFile() + ".svg"
+	}
+	fname := filepath.Base(files[0])
+	return filepath.Join(filepath.Dir(files[0]), fname[:len(fname)-len(filepath.Ext(files[0]))]) + ".svg"
+}
+
 // GetPlot generates the plot of the Mousepath
-func getPlot(w, h int16, path []data.NormalizedMouseData) string {
-	file := io.GetTempFile() + ".svg"
+func getPlot(w, h int16, path []data.NormalizedMouseData, file string) {
 	p, _ := plot.New()
 	x := p.X
 	x.Min = 0
@@ -58,7 +75,6 @@ func getPlot(w, h int16, path []data.NormalizedMouseData) string {
 	plotter, _ := plotter.NewScatter(pts)
 	p.Add(plotter)
 	p.Save(vg.Length(w), vg.Length(h), file)
-	return file
 }
 
 // ShowWindows displays the Image in the given file in a GUI
@@ -71,11 +87,10 @@ func showWindow(image string) {
 	w.ShowAndRun()
 }
 
-// Visualizes the given path in the given resolution
-func displayGraph(w, h int16, path []data.MouseData, screen data.ScreenInfo) {
+// Creates and saves the graph of the given path in the given resolution in the given file
+func saveGraph(w, h int16, path []data.MouseData, screen data.ScreenInfo, file string) {
 	npath := data.NormalizeMouseData(path, screen)
-	tmpImage := getPlot(w, h, npath)
-	showWindow(tmpImage)
+	getPlot(w, h, npath, file)
 }
 
 // Gets the Screen Size (widht,height) of the Flags (if provided) or from the provided Data
@@ -105,5 +120,6 @@ func init() {
 	rootCmd.AddCommand(plotMouseCheckboxCmd)
 
 	plotMouseCheckboxCmd.Flags().Int16P("width", "w", -1, "Width of the Screen")
-	plotMouseCheckboxCmd.Flags().Int16("height", -1, "Height of the Screen")
+	plotMouseCheckboxCmd.Flags().Int16P("height", "i", -1, "Height of the Screen")
+	plotMouseCheckboxCmd.Flags().BoolP("save", "s", false, "Only save the plot, and do not display it")
 }
