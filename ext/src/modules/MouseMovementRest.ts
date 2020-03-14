@@ -1,4 +1,5 @@
 import MouseMovement from "./MouseMovement";
+import frameListener from "../misc/FrameListener";
 
 /**
  * Module which tracks the Mouse Movements after the Checkbox is clicked
@@ -16,7 +17,7 @@ export default class MouseMovementRest extends MouseMovement {
      */
     public start(): void {
         super.start();
-        this.registerCaptchaFrameClickListener(this.startTracking);
+        frameListener.registerCaptchaFrameClickListener(this.startTracking, this);
     }
 
     /**
@@ -36,8 +37,8 @@ export default class MouseMovementRest extends MouseMovement {
             this.running = true;
             this.stopTracking();
             this.removeHandler.push(this.registerMouseListener(this.onMouseMove));
-            this.removeHandler.push(this.registerCaptchaFrameMoveListener(this.onMouseMove));
-            this.removeHandler.push(this.registerTaskFrameMoveListener(this.onMouseMove));
+            this.removeHandler.push(frameListener.registerCaptchaFrameMoveListener(this.onMouseMove, this));
+            this.removeHandler.push(frameListener.registerTaskFrameMoveListener(this.onMouseMove, this));
         }
     }
 

@@ -1,10 +1,10 @@
-import FrameListener from "./FrameListener";
+import Module from "../interfaces/Module";
 import MouseData from "../interfaces/MouseData";
 
 /**
  * Module which tracks the Mouse Movements
  */
-export default abstract class MouseMovement extends FrameListener {
+export default abstract class MouseMovement implements Module {
 
     /**
      * MousePath
@@ -28,13 +28,13 @@ export default abstract class MouseMovement extends FrameListener {
 
     /**
      * will be called when the Captcha is rendered
+     * does nothing
      */
-    public start(): void {
-        super.start();
-    }
+    public start(): void { }
 
     /**
      * will be called when the Captcha is solved
+     * does nothing
      */
     public stop(): void { }
 

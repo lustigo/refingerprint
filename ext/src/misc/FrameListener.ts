@@ -1,52 +1,24 @@
-import { delay } from "../misc/Helper";
-import Module from "../interfaces/Module";
+import { delay } from "./Helper";
 
 /**
- * Module which listens to actions in the ReCaptcha Frames
+ * Helper which monitors the ReCaptcha Frames
  */
-export default abstract class FrameListener implements Module {
-
+class FrameListener {
     /**
      * Frame of the Captcha
      */
-    protected captchaFrame: HTMLIFrameElement | null = null;
+    private captchaFrame: HTMLIFrameElement | null = null;
 
     /**
      * Frame of the ReCaptcha Task
      */
-    protected taskFrame: HTMLIFrameElement | null = null;
-
-    /**
-     * Name of the Module
-     */
-    public name = "Frame";
-
-    /**
-     * will be called when the Captcha is rendered
-     */
-    public start(): void {
-        this.getCaptchaFrame();
-        this.getTaskFrame();
-    }
-
-    /**
-     * will be called when the Captcha is solved
-     */
-    public abstract stop(): void;
-
-
-    /**
-     * returns the collected data
-     * @returns data
-     */
-    public abstract getCollectedData(): Object | string | number;
-
+    private taskFrame: HTMLIFrameElement | null = null;
 
     /**
      * Stores the Captcha Frame
      * @returns Captcha Frame or null if it is not yet rendered
      */
-    private getCaptchaFrame(): HTMLIFrameElement | null {
+    public getCaptchaFrame(): HTMLIFrameElement | null {
         if (this.captchaFrame) {
             return this.captchaFrame;
         }
@@ -68,7 +40,7 @@ export default abstract class FrameListener implements Module {
      * Stores the Task Frame
      * @returns Task Frame or null if it is not yet rendered
      */
-    private getTaskFrame(): HTMLIFrameElement | null {
+    public getTaskFrame(): HTMLIFrameElement | null {
         if (this.taskFrame) {
             return this.taskFrame;
         }
@@ -89,38 +61,42 @@ export default abstract class FrameListener implements Module {
 
     /**
      * Registers the Listener on the Recaptcha Iframe
-     * @param listener Method to call, when the Iframe is clicked, this is binded to the FrameListener Class
+     * @param listener Method to call, when the Iframe is clicked, this is binded to t
+     * @param t Instance
      * @returns Method to remove the Listener
      */
-    protected registerCaptchaFrameClickListener(listener: (ev: Event) => any): () => void {
-        return this.registerIframeListener(this.getCaptchaFrame.bind(this), "mousedown", listener.bind(this));
+    public registerCaptchaFrameClickListener(listener: (ev: Event) => any, t: any): () => void {
+        return this.registerIframeListener(this.getCaptchaFrame.bind(this), "mousedown", listener.bind(t));
     }
 
     /**
      * Registers the Listener on the Recaptcha Iframe
-     * @param listener Method to call, when the Mouse is moved in the Iframe, this is binded to the FrameListener Class
+     * @param listener Method to call, when the Mouse is moved in the Iframe, this is binded to t
+     * @param t Instance
      * @returns Method to remove the Listener
      */
-    protected registerCaptchaFrameMoveListener(listener: (ev: Event) => any): () => void {
-        return this.registerIframeListener(this.getCaptchaFrame.bind(this), "mousemove", listener.bind(this));
+    public registerCaptchaFrameMoveListener(listener: (ev: Event) => any, t: any): () => void {
+        return this.registerIframeListener(this.getCaptchaFrame.bind(this), "mousemove", listener.bind(t));
     }
 
     /**
      * Registers the Listener on the Task Iframe
-     * @param listener Method to call, when the Iframe is clicked, this is binded to the FrameListener Class
+     * @param listener Method to call, when the Iframe is clicked, this is binded to t
+     * @param t Instance
      * @returns Method to remove the Listener
      */
-    protected registerTaskFrameClickListener(listener: (ev: Event) => any): () => void {
-        return this.registerIframeListener(this.getTaskFrame.bind(this), "mousedown", listener.bind(this));
+    public registerTaskFrameClickListener(listener: (ev: Event) => any, t: any): () => void {
+        return this.registerIframeListener(this.getTaskFrame.bind(this), "mousedown", listener.bind(t));
     }
 
     /**
      * Registers the Listener on the Task Iframe
-     * @param listener Method to call, when the Mouse is moved in the Iframe, this is binded to the FrameListener Class
+     * @param listener Method to call, when the Mouse is moved in the Iframe, this is binded to t
+     * @param t Instance
      * @returns Method to remove the Listener
      */
-    protected registerTaskFrameMoveListener(listener: (ev: Event) => any): () => void {
-        return this.registerIframeListener(this.getTaskFrame.bind(this), "mousemove", listener.bind(this));
+    public registerTaskFrameMoveListener(listener: (ev: Event) => any, t: any): () => void {
+        return this.registerIframeListener(this.getTaskFrame.bind(this), "mousemove", listener.bind(t));
     }
 
     /**
@@ -141,3 +117,8 @@ export default abstract class FrameListener implements Module {
     }
 
 }
+
+// frameListener gives access to the Captcha Frames
+const frameListener = new FrameListener();
+
+export default frameListener;

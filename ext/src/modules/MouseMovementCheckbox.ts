@@ -1,3 +1,4 @@
+import frameListener from "../misc/FrameListener";
 import MouseMovement from "./MouseMovement";
 
 /**
@@ -16,8 +17,8 @@ export default class MouseMovementCheckbox extends MouseMovement {
      */
     public start(): void {
         super.start();
-        this.removeHandler.push(this.registerCaptchaFrameClickListener(this.stop));
-        this.removeHandler.push(this.registerCaptchaFrameMoveListener(this.onMouseMove));
+        this.removeHandler.push(frameListener.registerCaptchaFrameClickListener(this.stop, this));
+        this.removeHandler.push(frameListener.registerCaptchaFrameMoveListener(this.onMouseMove, this));
         this.removeHandler.push(this.registerMouseListener(this.onMouseMove));
         this.running = true;
     }
