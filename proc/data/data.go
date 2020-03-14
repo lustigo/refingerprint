@@ -16,15 +16,22 @@ type BrowserInfo struct {
 
 // Data represents the whole Datafile
 type Data struct {
-	Time          Time        `json:"Time"`
-	Canvas        string      `json:"Canvas"`
-	Audio         string      `json:"Audio"`
-	MouseCheckbox []MouseData `json:"MouseCheckbox"`
-	MouseRest     []MouseData `json:"MouseRest"`
-	Browser       BrowserInfo `json:"Browser"`
-	Screen        ScreenInfo  `json:"Screen"`
-	UserID        string      `json:"UserId"`
-	WebGL         WebGLInfo   `json:"WebGL"`
+	Time          Time          `json:"Time"`
+	Canvas        string        `json:"Canvas"`
+	Audio         string        `json:"Audio"`
+	MouseCheckbox []MouseData   `json:"MouseCheckbox"`
+	MouseRest     []MouseData   `json:"MouseRest"`
+	Browser       BrowserInfo   `json:"Browser"`
+	Screen        ScreenInfo    `json:"Screen"`
+	UserID        string        `json:"UserId"`
+	WebGL         WebGLInfo     `json:"WebGL"`
+	FramePosition FramePosition `json:"FramePosition"`
+}
+
+// FramePosition represents the Positions of the Frames
+type FramePosition struct {
+	Captcha Rectangle `json:"captcha"`
+	Task    Rectangle `json:"task"`
 }
 
 // MouseData represents a Mouseposition at a specific moment
@@ -39,6 +46,14 @@ type NormalizedMouseData struct {
 	X    float64
 	Y    float64
 	Time uint64
+}
+
+// Rectangle represents a Rectangle. Position (x|y) is the top left corner of the Rectangle.
+type Rectangle struct {
+	X      float64 `json:"x"`
+	Y      float64 `json:"y"`
+	Width  float64 `json:"width"`
+	Height float64 `json:"height"`
 }
 
 // ScreenInfo contains information about the screen
