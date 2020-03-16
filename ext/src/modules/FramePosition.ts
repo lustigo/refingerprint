@@ -51,7 +51,7 @@ export default class FramePosition implements Module {
             delay(10).then(this.getCaptchaPos.bind(this));
             return;
         }
-        const rect = frame.getClientRects()[0];
+        const rect = frame.getBoundingClientRect();
         this.captchaPos.x = rect.x;
         this.captchaPos.y = rect.y;
         this.captchaPos.height = rect.height;
@@ -67,7 +67,7 @@ export default class FramePosition implements Module {
             delay(10).then(this.getTaskPos.bind(this));
             return;
         }
-        const rect = frame.getClientRects()[0];
+        const rect = frame.getBoundingClientRect();
 
         //Frame has y position of -9999 if the TaskFrame is not popped up
         if (rect.y < 0) {
