@@ -80,7 +80,6 @@ func plotRectangle(w, h int16, rect data.Rectangle) *plotter.Polygon {
 		},
 	}
 
-	fmt.Println(corners)
 	poly, _ := plotter.NewPolygon(corners)
 	poly.Color = color.NRGBA{A: 0x80, R: 0xFF, G: 0x00, B: 0x00}
 	return poly
