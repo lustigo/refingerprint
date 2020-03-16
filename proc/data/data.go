@@ -56,11 +56,15 @@ type Rectangle struct {
 	Height float64 `json:"height"`
 }
 
-// ScreenInfo contains information about the screen
+// ScreenInfo contains information about the screen and the document size
 type ScreenInfo struct {
 	Height       uint16 `json:"height"`
 	PixelDensity uint16 `json:"density"`
 	Width        uint16 `json:"width"`
+	InnerWidth   uint16 `json:"innerw"`
+	InnerHeight  uint16 `json:"innerh"`
+	DeltaX       uint16 `json:"deltax"` // Difference between screenX and clientX
+	DeltaY       uint16 `json:"deltay"` // Difference between screenY and clientY
 }
 
 // Time represents Start and End time of the ReCaptcha
