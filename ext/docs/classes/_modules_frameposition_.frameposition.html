@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ScreenResolution | refingerprint_webextension</title>
+	<title>FramePosition | refingerprint_webextension</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_modules_screenresolution_.html">&quot;modules/ScreenResolution&quot;</a>
+					<a href="../modules/_modules_frameposition_.html">&quot;modules/FramePosition&quot;</a>
 				</li>
 				<li>
-					<a href="_modules_screenresolution_.screenresolution.html">ScreenResolution</a>
+					<a href="_modules_frameposition_.frameposition.html">FramePosition</a>
 				</li>
 			</ul>
-			<h1>Class ScreenResolution</h1>
+			<h1>Class FramePosition</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Module which stores the Screen Resolution and Dimensions</p>
+						<p>Module which stores the Position of the Frames</p>
 					</div>
 				</div>
 			</section>
@@ -80,7 +80,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ScreenResolution</span>
+						<span class="target">FramePosition</span>
 					</li>
 				</ul>
 			</section>
@@ -97,18 +97,24 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_modules_screenresolution_.screenresolution.html#dx" class="tsd-kind-icon">dx</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_modules_screenresolution_.screenresolution.html#dy" class="tsd-kind-icon">dy</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_modules_screenresolution_.screenresolution.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_modules_frameposition_.frameposition.html#name" class="tsd-kind-icon">name</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_modules_screenresolution_.screenresolution.html#calcdelta" class="tsd-kind-icon">calc<wbr>Delta</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_modules_screenresolution_.screenresolution.html#getcollecteddata" class="tsd-kind-icon">get<wbr>Collected<wbr>Data</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_modules_screenresolution_.screenresolution.html#start" class="tsd-kind-icon">start</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_modules_screenresolution_.screenresolution.html#stop" class="tsd-kind-icon">stop</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_modules_frameposition_.frameposition.html#getcaptchapos" class="tsd-kind-icon">get<wbr>Captcha<wbr>Pos</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_modules_frameposition_.frameposition.html#getcollecteddata" class="tsd-kind-icon">get<wbr>Collected<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_modules_frameposition_.frameposition.html#gettaskpos" class="tsd-kind-icon">get<wbr>Task<wbr>Pos</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_modules_frameposition_.frameposition.html#start" class="tsd-kind-icon">start</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_modules_frameposition_.frameposition.html#stop" class="tsd-kind-icon">stop</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected tsd-is-external">
+							<h3>Object literals</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-object-literal tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_modules_frameposition_.frameposition.html#captchapos" class="tsd-kind-icon">captcha<wbr>Pos</a></li>
+								<li class="tsd-kind-object-literal tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_modules_frameposition_.frameposition.html#taskpos" class="tsd-kind-icon">task<wbr>Pos</a></li>
 							</ul>
 						</section>
 					</div>
@@ -116,44 +122,14 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="dx" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> dx</h3>
-					<div class="tsd-signature tsd-kind-icon">dx<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/ScreenResolution.ts#L16">modules/ScreenResolution.ts:16</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Difference between ClientX and ScreenX</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="dy" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> dy</h3>
-					<div class="tsd-signature tsd-kind-icon">dy<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/ScreenResolution.ts#L21">modules/ScreenResolution.ts:21</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Difference between ClientY and ScreenY</p>
-						</div>
-					</div>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
 					<a name="name" class="tsd-anchor"></a>
 					<h3>name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"Screen"</span><span class="tsd-signature-symbol"> = &quot;Screen&quot;</span></div>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"FramePosition"</span><span class="tsd-signature-symbol"> = &quot;FramePosition&quot;</span></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_interfaces_module_.module.html">Module</a>.<a href="../interfaces/_interfaces_module_.module.html#name">name</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/ScreenResolution.ts#L11">modules/ScreenResolution.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/FramePosition.ts#L34">modules/FramePosition.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -166,32 +142,23 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="calcdelta" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> calc<wbr>Delta</h3>
+					<a name="getcaptchapos" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Captcha<wbr>Pos</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">calc<wbr>Delta<span class="tsd-signature-symbol">(</span>ev<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MouseEvent</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Captcha<wbr>Pos<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/ScreenResolution.ts#L42">modules/ScreenResolution.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/FramePosition.ts#L48">modules/FramePosition.ts:48</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Calculates dx and dy</p>
+									<p>Gets the Position of the Captcha Frame</p>
 								</div>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>ev: <span class="tsd-signature-type">MouseEvent</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Event of MouseMove</p>
-									</div>
-								</li>
-							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -207,16 +174,37 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_interfaces_module_.module.html">Module</a>.<a href="../interfaces/_interfaces_module_.module.html#getcollecteddata">getCollectedData</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/ScreenResolution.ts#L51">modules/ScreenResolution.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/FramePosition.ts#L92">modules/FramePosition.ts:92</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>returns the Screen Resolution and Dimensions</p>
+									<p>Returns the position of the Frames.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Object</span></h4>
-							<p>Screen Resolution and Dimensions</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="gettaskpos" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Task<wbr>Pos</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Task<wbr>Pos<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/FramePosition.ts#L64">modules/FramePosition.ts:64</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the Position of the Task Frame</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -231,13 +219,13 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_interfaces_module_.module.html">Module</a>.<a href="../interfaces/_interfaces_module_.module.html#start">start</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/ScreenResolution.ts#L28">modules/ScreenResolution.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/FramePosition.ts#L40">modules/FramePosition.ts:40</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Will be called, when the Captcha is rendered
-									registers handler to get dx and dy</p>
+									<p>Will be called when the Captcha is rendered
+									Tries to get the positions</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -255,18 +243,131 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_interfaces_module_.module.html">Module</a>.<a href="../interfaces/_interfaces_module_.module.html#stop">stop</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/ScreenResolution.ts#L36">modules/ScreenResolution.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/FramePosition.ts#L87">modules/FramePosition.ts:87</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Will be called, when the Captcha is solved
+									<p>Will be called when the Captcha is solved
 									does nothing</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected tsd-is-external">
+				<h2>Object literals</h2>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="captchapos" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> captcha<wbr>Pos</h3>
+					<div class="tsd-signature tsd-kind-icon">captcha<wbr>Pos<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/FramePosition.ts#L14">modules/FramePosition.ts:14</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Position of the Captcha Frame</p>
+						</div>
+					</div>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
+						<a name="captchapos.height" class="tsd-anchor"></a>
+						<h3>height</h3>
+						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/FramePosition.ts#L18">modules/FramePosition.ts:18</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
+						<a name="captchapos.width" class="tsd-anchor"></a>
+						<h3>width</h3>
+						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/FramePosition.ts#L17">modules/FramePosition.ts:17</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
+						<a name="captchapos.x" class="tsd-anchor"></a>
+						<h3>x</h3>
+						<div class="tsd-signature tsd-kind-icon">x<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/FramePosition.ts#L15">modules/FramePosition.ts:15</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
+						<a name="captchapos.y" class="tsd-anchor"></a>
+						<h3>y</h3>
+						<div class="tsd-signature tsd-kind-icon">y<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/FramePosition.ts#L16">modules/FramePosition.ts:16</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="taskpos" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> task<wbr>Pos</h3>
+					<div class="tsd-signature tsd-kind-icon">task<wbr>Pos<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/FramePosition.ts#L24">modules/FramePosition.ts:24</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Position of the Task Frame</p>
+						</div>
+					</div>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
+						<a name="taskpos.height-1" class="tsd-anchor"></a>
+						<h3>height</h3>
+						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/FramePosition.ts#L28">modules/FramePosition.ts:28</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
+						<a name="taskpos.width-1" class="tsd-anchor"></a>
+						<h3>width</h3>
+						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/FramePosition.ts#L27">modules/FramePosition.ts:27</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
+						<a name="taskpos.x-1" class="tsd-anchor"></a>
+						<h3>x</h3>
+						<div class="tsd-signature tsd-kind-icon">x<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/FramePosition.ts#L25">modules/FramePosition.ts:25</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
+						<a name="taskpos.y-1" class="tsd-anchor"></a>
+						<h3>y</h3>
+						<div class="tsd-signature tsd-kind-icon">y<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/38b98ce/ext/src/modules/FramePosition.ts#L26">modules/FramePosition.ts:26</a></li>
+							</ul>
+						</aside>
+					</section>
 				</section>
 			</section>
 		</div>
@@ -312,7 +413,7 @@
 					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_modules_canvas_.html">&quot;modules/<wbr>Canvas&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
+					<li class="current tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_modules_frameposition_.html">&quot;modules/<wbr>Frame<wbr>Position&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
@@ -327,7 +428,7 @@
 					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_modules_mousemovementrest_.html">&quot;modules/<wbr>Mouse<wbr>Movement<wbr>Rest&quot;</a>
 					</li>
-					<li class="current tsd-kind-external-module tsd-is-external">
+					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_modules_screenresolution_.html">&quot;modules/<wbr>Screen<wbr>Resolution&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
@@ -343,28 +444,31 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
-						<a href="_modules_screenresolution_.screenresolution.html" class="tsd-kind-icon">Screen<wbr>Resolution</a>
+						<a href="_modules_frameposition_.frameposition.html" class="tsd-kind-icon">Frame<wbr>Position</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="_modules_screenresolution_.screenresolution.html#dx" class="tsd-kind-icon">dx</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="_modules_screenresolution_.screenresolution.html#dy" class="tsd-kind-icon">dy</a>
-							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
-								<a href="_modules_screenresolution_.screenresolution.html#name" class="tsd-kind-icon">name</a>
+								<a href="_modules_frameposition_.frameposition.html#name" class="tsd-kind-icon">name</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="_modules_screenresolution_.screenresolution.html#calcdelta" class="tsd-kind-icon">calc<wbr>Delta</a>
+								<a href="_modules_frameposition_.frameposition.html#getcaptchapos" class="tsd-kind-icon">get<wbr>Captcha<wbr>Pos</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
-								<a href="_modules_screenresolution_.screenresolution.html#getcollecteddata" class="tsd-kind-icon">get<wbr>Collected<wbr>Data</a>
+								<a href="_modules_frameposition_.frameposition.html#getcollecteddata" class="tsd-kind-icon">get<wbr>Collected<wbr>Data</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="_modules_frameposition_.frameposition.html#gettaskpos" class="tsd-kind-icon">get<wbr>Task<wbr>Pos</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
-								<a href="_modules_screenresolution_.screenresolution.html#start" class="tsd-kind-icon">start</a>
+								<a href="_modules_frameposition_.frameposition.html#start" class="tsd-kind-icon">start</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
-								<a href="_modules_screenresolution_.screenresolution.html#stop" class="tsd-kind-icon">stop</a>
+								<a href="_modules_frameposition_.frameposition.html#stop" class="tsd-kind-icon">stop</a>
+							</li>
+							<li class=" tsd-kind-object-literal tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="_modules_frameposition_.frameposition.html#captchapos" class="tsd-kind-icon">captcha<wbr>Pos</a>
+							</li>
+							<li class=" tsd-kind-object-literal tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="_modules_frameposition_.frameposition.html#taskpos" class="tsd-kind-icon">task<wbr>Pos</a>
 							</li>
 						</ul>
 					</li>
