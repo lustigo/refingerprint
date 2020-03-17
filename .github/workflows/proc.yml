@@ -1,0 +1,35 @@
+name: Processing
+on: push
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    env:
+      working-dir: ./proc/
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Go
+        uses: actions/setup-go@v1
+        with:
+          node-version: 1.14
+      - name: Test Cmd
+        run: go test github.com/lustigo/refingerprint/proc/cmd
+        working-directory: ${{env.working-dir}}
+      - name: Test Data
+        run: go test github.com/lustigo/refingerprint/proc/data
+        working-directory: ${{env.working-dir}}
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      working-dir: ./proc/
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Go
+        uses: actions/setup-go@v1
+        with:
+          node-version: 1.14
+      - run: go build -o proc main.go
+        working-directory: ${{env.working-dir}}
