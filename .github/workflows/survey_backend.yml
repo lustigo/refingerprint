@@ -1,0 +1,35 @@
+name: Survey Backend
+on: push
+
+jobs:
+  lint:
+    name: Linting
+    runs-on: ubuntu-latest
+    env:
+      working-dir: ./survey/backend/
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 13.10.1
+      - run: npm install
+        working-directory: ${{env.working-dir}}
+      - run: ./node_modules/eslint/bin/eslint.js src/**/*.ts
+        working-directory: ${{env.working-dir}}
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      working-dir: ./survey/backend/
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 13.10.1
+      - run: npm install
+        working-directory: ${{env.working-dir}}
+      - run: npm run build
+        working-directory: ${{env.working-dir}}
