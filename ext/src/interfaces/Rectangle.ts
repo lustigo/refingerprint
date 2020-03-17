@@ -4,4 +4,5 @@ export default interface Rectangle {
     y: number;
     width: number;
     height: number;
+    // eslint-disable-next-line semi
 }

@@ -23,8 +23,8 @@ export default class Audio implements Module {
     * @see https://stackoverflow.com/questions/39225161/convert-uint8array-into-hex-string-equivalent-in-node-js/39225475#39225475
     * @param i Number to convert
     */
-    private i2hex(i: number) {
-        return ('0' + i.toString(16)).slice(-2);
+    private i2hex(i: number): string {
+        return ("0" + i.toString(16)).slice(-2);
     }
 
     /**
@@ -72,7 +72,7 @@ export default class Audio implements Module {
             .then(buff => this.generateFingerprint(buff))
             .catch(e => {
                 console.log(e);
-                this.fingerprint = "ERROR"
+                this.fingerprint = "ERROR";
             });
     }
 
@@ -88,6 +88,7 @@ export default class Audio implements Module {
     * Will be called, when the Captcha is solved
     * does nothing
     */
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     public stop(): void { }
 
     /**

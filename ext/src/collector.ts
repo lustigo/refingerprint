@@ -13,7 +13,7 @@ export default class Collector {
     /**
      * Module Instances for the next or current Captcha
      */
-    private collectors: Array<Module> = new Array();
+    private collectors: Array<Module> = [];
 
 
     /**
@@ -31,7 +31,7 @@ export default class Collector {
      * Will be called when the Captcha is rendered.
      * Will start all Modules
      */
-    public start() {
+    public start(): void {
         this.collectors.forEach(col => col.start());
     }
 
@@ -39,7 +39,7 @@ export default class Collector {
      * Will be called when the Captcha was solved.
      * Will stop all Modules and collect the data
      */
-    public stop() {
+    public stop(): void {
         this.collectors.forEach(col => col.stop());
         const data = this.collectData();
         this.saveData(data);
@@ -49,7 +49,7 @@ export default class Collector {
     /**
      * Collects the data gathered by the Modules and builds a single Object
      */
-    private collectData(): Object {
+    private collectData(): Record<string, any> {
         const data = Object.create(null);
         this.collectors.forEach(col => data[col.name] = col.getCollectedData());
         return data;
@@ -59,7 +59,7 @@ export default class Collector {
      * Resets the Collectors after a Captcha is solved 
      * or for the first time during Construction.
      */
-    private reset() {
+    private reset(): void {
         this.collectors = this.modules.map(Mod => new Mod());
     }
 
@@ -67,7 +67,7 @@ export default class Collector {
      * Send the collected data to the background script to save it on disk
      * @param data Data to save
      */
-    private saveData(data: Object) {
+    private saveData(data: Record<string, any>): void {
         if (chrome) {
             chrome.runtime.sendMessage(data);
         } else {

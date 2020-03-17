@@ -39,7 +39,7 @@ export default class Time implements Module {
      * Returns the Times
      * @return Start and End-Time as Unix Milliseconds
      */
-    getCollectedData(): Object {
+    getCollectedData(): Record<string, any> {
         return {
             start: this.startTime.getTime(),
             end: this.endTime.getTime(),

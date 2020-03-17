@@ -15,12 +15,14 @@ export default class BrowserInfo implements Module {
     * Will be called, when the Captcha is rendered
     * does nothing
     */
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     public start(): void { }
 
     /**
     * Will be called, when the Captcha is solved
     * does nothing
     */
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     public stop(): void { }
 
 
@@ -56,7 +58,7 @@ export default class BrowserInfo implements Module {
      * returns the Information
      * @returns Browser Information
      */
-    public getCollectedData(): Object {
+    public getCollectedData(): Record<string, any> {
         return {
             cookieEnabled: navigator.cookieEnabled,
             lang: navigator.languages,
@@ -67,7 +69,7 @@ export default class BrowserInfo implements Module {
             dnt: navigator.doNotTrack,
             plugins: this.getPlugins(),
             timezone: new Date().getTimezoneOffset(),
-        }
+        };
     }
 
 

@@ -23,7 +23,7 @@ class FrameListener {
             return this.captchaFrame;
         }
 
-        const gotcha = document.getElementById("gotcha")
+        const gotcha = document.getElementById("gotcha");
         if (gotcha) {
             const childs = gotcha.getElementsByTagName("iframe");
             if (childs.length > 0) {
@@ -113,7 +113,7 @@ class FrameListener {
         } else {
             delay(10).then(() => this.registerIframeListener(getFrame, event, listener));
         }
-        return () => { if (frame && frame.contentWindow) { frame.contentWindow.removeEventListener(event, listener) } };
+        return (): void => { if (frame && frame.contentWindow) { frame.contentWindow.removeEventListener(event, listener); } };
     }
 
 }

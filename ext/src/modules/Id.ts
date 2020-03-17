@@ -13,12 +13,12 @@ export default class Id implements Module {
     /**
      * Id of the User
      */
-    private id: string = "UNKNOWN";
+    private id = "UNKNOWN";
 
     /**
      * Gets the Id of the User.
      */
-    constructor() {
+    public constructor() {
         this.getId();
     }
 
@@ -26,7 +26,7 @@ export default class Id implements Module {
      * Will be called, when the Captcha is rendered
      * Check if the id is set, if not, try again
      */
-    start(): void {
+    public start(): void {
         if (this.id == "UNKNOWN") {
             this.getId();
         }
@@ -36,20 +36,21 @@ export default class Id implements Module {
     * Will be called, when the Captcha is solved
     * does nothing
     */
-    stop(): void { }
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    public stop(): void { }
 
     /**
      * Returns the UserId
      * @return Id of the User
      */
-    getCollectedData(): string {
+    public getCollectedData(): string {
         return this.id;
     }
 
     /**
      * Gets the UserId from the DOM and stores it in this.id
      */
-    private getId() {
+    private getId(): void {
         const userId = document.getElementById("userId");
         this.id = userId ? userId.innerHTML : "UNKNOWN";
     }

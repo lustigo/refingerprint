@@ -30,12 +30,14 @@ export default abstract class MouseMovement implements Module {
      * will be called when the Captcha is rendered
      * does nothing
      */
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     public start(): void { }
 
     /**
      * will be called when the Captcha is solved
      * does nothing
      */
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     public stop(): void { }
 
     /**
@@ -54,13 +56,13 @@ export default abstract class MouseMovement implements Module {
     protected registerMouseListener(listener: (ev: Event) => any): () => void {
         const l = listener.bind(this);
         document.addEventListener("mousemove", l);
-        return () => { document.removeEventListener("mousemove", l); };
+        return (): void => { document.removeEventListener("mousemove", l); };
     }
 
     /**
      * Executes and removes all RemoveHandlers
      */
-    protected stopTracking() {
+    protected stopTracking(): void {
         while (this.removeHandler.length > 0) {
             const f = this.removeHandler.pop();
             if (f) {

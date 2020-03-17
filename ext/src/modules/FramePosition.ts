@@ -46,7 +46,7 @@ export default class FramePosition implements Module {
      * Gets the Position of the Captcha Frame
      */
     private getCaptchaPos(): void {
-        const frame = frameListener.getCaptchaFrame()
+        const frame = frameListener.getCaptchaFrame();
         if (!frame) {
             delay(10).then(this.getCaptchaPos.bind(this));
             return;
@@ -62,7 +62,7 @@ export default class FramePosition implements Module {
      * Gets the Position of the Task Frame
      */
     private getTaskPos(): void {
-        const frame = frameListener.getTaskFrame()
+        const frame = frameListener.getTaskFrame();
         if (!frame) {
             delay(10).then(this.getTaskPos.bind(this));
             return;
@@ -84,12 +84,13 @@ export default class FramePosition implements Module {
      * Will be called when the Captcha is solved
      * does nothing
      */
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     public stop(): void { }
 
     /**
      * Returns the position of the Frames.
      */
-    public getCollectedData(): Object {
+    public getCollectedData(): Record<string, any> {
         return {
             captcha: this.captchaPos,
             task: this.taskPos

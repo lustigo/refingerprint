@@ -23,6 +23,6 @@ export default interface Module {
     /**
      * This method is a Getter for the collected data.
      */
-    getCollectedData(): Object | string | number;
-
+    getCollectedData(): Record<string, any> | string | number;
+    // eslint-disable-next-line semi
 }

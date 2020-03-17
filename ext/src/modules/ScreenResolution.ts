@@ -26,13 +26,14 @@ export default class ScreenResolution implements Module {
      * registers handler to get dx and dy
      */
     public start(): void {
-        document.addEventListener('mousemove', this.calcDelta.bind(this), { once: true });
+        document.addEventListener("mousemove", this.calcDelta.bind(this), { once: true });
     }
 
     /**
      * Will be called, when the Captcha is solved
      * does nothing
      */
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     public stop(): void { }
 
     /**
@@ -48,7 +49,7 @@ export default class ScreenResolution implements Module {
      * returns the Screen Resolution and Dimensions
      * @returns Screen Resolution and Dimensions
      */
-    public getCollectedData(): Object {
+    public getCollectedData(): Record<string, any> {
         return {
             width: screen.availWidth,
             height: screen.availHeight,
@@ -57,7 +58,7 @@ export default class ScreenResolution implements Module {
             innerh: window.innerHeight,
             deltax: this.dx,
             deltay: this.dy,
-        }
+        };
     }
 
 }
