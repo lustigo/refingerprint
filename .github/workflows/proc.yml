@@ -14,13 +14,13 @@ jobs:
         with:
           node-version: 1.14
       - name: Test Cmd
-        run: go test github.com/lustigo/refingerprint/proc/cmd
+        run: go test ./cmd
         working-directory: ${{env.working-dir}}
       - name: Test Data
-        run: go test github.com/lustigo/refingerprint/proc/data
+        run: go test ./data
         working-directory: ${{env.working-dir}}
       - name: Test Io
-        run: go test github.com/lustigo/refingerprint/proc/io
+        run: go test ./io
         working-directory: ${{env.working-dir}}
 
   build:
