@@ -29,7 +29,7 @@ Use the width and height flag to scale the visualization.`,
 
 		save, _ := cmd.Flags().GetBool("save")
 		file := getFile(save, files)
-		saveGraph(w, h, d.MouseCheckbox, d.Screen, d.FramePosition.Captcha, file)
+		saveGraph(w, h, d.MouseCheckbox, d.Screen, d.FramePosition.Captcha, d.Time, file)
 		if !save {
 			showWindow(file)
 		} else {

@@ -96,8 +96,8 @@ func showWindow(image string) {
 }
 
 // Creates and saves the graph of the given path in the given resolution in the given file
-func saveGraph(w, h int16, path []data.MouseData, screen data.ScreenInfo, rect data.Rectangle, file string) {
-	npath := data.NormalizeMouseData(path, screen)
+func saveGraph(w, h int16, path []data.MouseData, screen data.ScreenInfo, rect data.Rectangle, time data.Time, file string) {
+	npath := data.NormalizeMouseData(path, screen, time)
 	getPlot(w, h, npath, rect.Normalize(screen), file)
 }
 
