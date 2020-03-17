@@ -19,6 +19,9 @@ jobs:
       - name: Test Data
         run: go test github.com/lustigo/refingerprint/proc/data
         working-directory: ${{env.working-dir}}
+      - name: Test Io
+        run: go test github.com/lustigo/refingerprint/proc/io
+        working-directory: ${{env.working-dir}}
 
   build:
     name: Build
