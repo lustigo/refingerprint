@@ -13,7 +13,7 @@ var plotMouseCheckboxCmd = &cobra.Command{
 	Use:   "plotMouseCheckbox <Single File>",
 	Short: "Plots the MousePath from the Rendering of the Captcha to the Checkbox Click",
 	Long: `ONLY A SINGLE FILE MUST BE PROVIDED!!
-Use without any flags to visualize it in the full size.
+Use without any flags to visualize it in the full size (RECOMMENDED).
 Use the width and height flag to scale the visualization.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		files, err := GetFiles(args)
