@@ -14,6 +14,7 @@ import (
 	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/plotter"
 	"gonum.org/v1/plot/vg"
+	"gonum.org/v1/plot/vg/draw"
 )
 
 // GetFile returns the Filepath to save the plot to
@@ -25,8 +26,8 @@ func getFile(toSave bool, files []string) string {
 	return filepath.Join(filepath.Dir(files[0]), fname[:len(fname)-len(filepath.Ext(files[0]))]) + ".svg"
 }
 
-// GetPlot generates the plot of the Mousepath and saves it to the given file
-func getPlot(w, h int16, path []data.NormalizedMouseData, rect data.Rectangle, file string) {
+// GetPlot generates the plot of the Mousepath and saves it to the given file. Crop defines if the plot should be cropped to the mouse path
+func getPlot(w, h int16, path []data.NormalizedMouseData, rect data.Rectangle, crop bool, file string) {
 	p, _ := plot.New()
 	x := p.X
 	x.Min = 0
@@ -36,11 +37,23 @@ func getPlot(w, h int16, path []data.NormalizedMouseData, rect data.Rectangle, f
 	y.Max = float64(h)
 	p.HideAxes()
 
+	if !crop {
+		p.Add(plotAntiCrop(w, h))
+	}
 	r := plotRectangle(w, h, rect)
 	p.Add(r)
 	points := plotMousePoints(w, h, path)
 	p.Add(points)
 	p.Save(vg.Length(w), vg.Length(h), file)
+}
+
+// plotAntiCrop returns a Plotter, that draws the whole screen as a transparent rectangle.
+func plotAntiCrop(w, h int16) *plotter.Polygon {
+	poly := plotRectangle(w, h, data.Rectangle{X: 0, Y: 0, Width: 1, Height: 1})
+	col := color.NRGBA{R: 0x00, G: 0x00, B: 0x00, A: 0x00}
+	poly.Color = col
+	poly.LineStyle = draw.LineStyle{Color: col}
+	return poly
 }
 
 // plotMousePoints creates a Scatter Plot from the given MousePath and returns it
@@ -95,10 +108,10 @@ func showWindow(image string) {
 	w.ShowAndRun()
 }
 
-// Creates and saves the graph of the given path in the given resolution in the given file
-func saveGraph(w, h int16, path []data.MouseData, screen data.ScreenInfo, rect data.Rectangle, time data.Time, file string) {
+// Creates and saves the graph of the given path in the given resolution in the given file Crop defines if the plot should be cropped to the mouse path
+func saveGraph(w, h int16, path []data.MouseData, screen data.ScreenInfo, rect data.Rectangle, time data.Time, crop bool, file string) {
 	npath := data.NormalizeMouseData(path, screen, time)
-	getPlot(w, h, npath, rect.Normalize(screen), file)
+	getPlot(w, h, npath, rect.Normalize(screen), crop, file)
 }
 
 // Gets the Screen Size (widht,height) of the Flags (if provided) or from the provided Data

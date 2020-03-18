@@ -32,8 +32,9 @@ Use the width and height flag to scale the visualization.`,
 		w, h := getScreenSize(cmd, d)
 
 		save, _ := cmd.Flags().GetBool("save")
+		crop, _ := cmd.Flags().GetBool("crop")
 		file := getFile(save, files)
-		saveGraph(w, h, d.MouseRest, d.Screen, d.FramePosition.Task, d.Time, file)
+		saveGraph(w, h, d.MouseRest, d.Screen, d.FramePosition.Task, d.Time, crop, file)
 		if !save {
 			showWindow(file)
 		} else {
@@ -47,5 +48,6 @@ func init() {
 
 	plotMouseRestCmd.Flags().Int16P("width", "w", -1, "Width of the Screen")
 	plotMouseRestCmd.Flags().Int16P("height", "i", -1, "Height of the Screen")
+	plotMouseRestCmd.Flags().BoolP("crop", "c", false, "Crop the plot to the mousepath section")
 	plotMouseRestCmd.Flags().BoolP("save", "s", false, "Only save the plot, and do not display it")
 }

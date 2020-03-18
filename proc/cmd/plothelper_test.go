@@ -77,3 +77,44 @@ func TestPlotRectangle(t *testing.T) {
 		}
 	}
 }
+
+// TestPlotAntiCrop tests the plotAntiCrop function
+func TestPlotAntiCrop(t *testing.T) {
+	transparent := color.NRGBA{R: 0x00, G: 0x00, B: 0x00, A: 0x00}
+
+	var cases = []struct {
+		name        string
+		w           int16
+		h           int16
+		expected    plotter.XYs
+		expectedCol color.Color
+	}{
+		{"100x100", 100, 100, plotter.XYs{{X: 0, Y: 100}, {X: 100, Y: 100}, {X: 100, Y: 0}, {X: 0, Y: 0}}, transparent},
+		{"1x1", 1, 1, plotter.XYs{{X: 0, Y: 1}, {X: 1, Y: 1}, {X: 1, Y: 0}, {X: 0, Y: 0}}, transparent},
+		{"50x1", 50, 1, plotter.XYs{{X: 0, Y: 1}, {X: 50, Y: 1}, {X: 50, Y: 0}, {X: 0, Y: 0}}, transparent},
+		{"1x50", 1, 50, plotter.XYs{{X: 0, Y: 50}, {X: 1, Y: 50}, {X: 1, Y: 0}, {X: 0, Y: 0}}, transparent},
+	}
+
+	for _, c := range cases {
+		output := plotAntiCrop(c.w, c.h)
+		if len(output.XYs) != 1 || len(c.expected) != len(output.XYs[0]) {
+			t.Errorf("%v failed, expected %v but was %v\n", c.name, c.expected, output.XYs)
+		}
+
+		for _, xyer := range output.XYs {
+			for i, point := range xyer {
+				if c.expected[i] != point {
+					t.Errorf("%v failed, expected %v but was %v\n", c.name, c.expected, xyer)
+					break
+				}
+			}
+		}
+
+		if output.Color != c.expectedCol {
+			t.Errorf("%v failed, expected %v but was %v\n", c.name, c.expectedCol, output.Color)
+		}
+		if output.LineStyle.Color != c.expectedCol {
+			t.Errorf("%v failed, expected %v but was %v\n", c.name, c.expectedCol, output.Color)
+		}
+	}
+}
