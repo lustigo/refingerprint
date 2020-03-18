@@ -40,9 +40,8 @@ jobs:
       - uses: actions/checkout@v2
       - run: go build -o proc main.go
         working-directory: ${{env.working-dir}}
-      - name: Upload the artifacts
-        uses: skx/github-action-publish-binaries@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
         with:
-          args: "proc/proc"
+          name: proc
+          path: proc/proc
