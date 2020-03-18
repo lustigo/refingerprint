@@ -1,5 +1,10 @@
 # ReFingerprint
 
+![Survey Frontend](https://github.com/lustigo/refingerprint/workflows/Survey%20Frontend/badge.svg)
+![Survey Backend](https://github.com/lustigo/refingerprint/workflows/Survey%20Backend/badge.svg)
+![Extension](https://github.com/lustigo/refingerprint/workflows/Extension/badge.svg)
+![Processing](https://github.com/lustigo/refingerprint/workflows/Processing/badge.svg)
+
 Dies ist eine Bachelorarbeit, in der Daten gesammelt werden, um durch die Nutzung von ReCaptcha einen Nutzer eindeutig identifizieren zu können.
 
 Dies beinhaltet eine Umfragen-Applikation, welche beim Ausfüllen einer Umfrage zwischendurch ein ReCaptcha anzeigt.

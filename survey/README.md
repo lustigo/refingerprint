@@ -1,5 +1,8 @@
 # ReFingerprint Survey
 
+![Survey Frontend](https://github.com/lustigo/refingerprint/workflows/Survey%20Frontend/badge.svg)
+![Survey Backend](https://github.com/lustigo/refingerprint/workflows/Survey%20Backend/badge.svg)
+
 Dies ist das Hauptverzeichnis der Umfragen-Applikation.
 
 Der Frontend-Teil wurde mit dem Vue-Framework im Material Design erstellt.
