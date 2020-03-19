@@ -34,6 +34,7 @@ type Data struct {
 	WebGL         WebGLInfo     `json:"WebGL"`
 	FramePosition FramePosition `json:"FramePosition"`
 	MouseClicks   []ClickData   `json:"MouseClicks"`
+	ScrollEvents  []ScrollData  `json:"ScrollEvents"`
 }
 
 // FramePosition represents the Positions of the Frames
@@ -76,6 +77,15 @@ type ScreenInfo struct {
 	InnerHeight  uint16 `json:"innerh"`
 	DeltaX       uint16 `json:"deltax"` // Difference between screenX and clientX
 	DeltaY       uint16 `json:"deltay"` // Difference between screenY and clientY
+}
+
+// ScrollData represents a Wheel Event
+type ScrollData struct {
+	MouseData
+	DeltaX    int16 `json:"deltaX"`
+	DeltaY    int16 `json:"deltaY"`
+	DeltaZ    int16 `json:"deltaZ"`
+	DeltaMode uint8 `json:"deltaMode"`
 }
 
 // Time represents Start and End time of the ReCaptcha

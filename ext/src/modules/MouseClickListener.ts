@@ -54,7 +54,6 @@ export default class MouseClickListener extends MouseListener {
             await delay(200);
             const captchaFrame = frameListener.getCaptchaFrame();
             if (captchaFrame && captchaFrame.contentDocument && captchaFrame.contentDocument.body) {
-                console.log("capta");
                 captchaFrame.contentDocument.addEventListener("mousedown", press);
                 captchaFrame.contentDocument.addEventListener("mouseup", release);
                 this.removeHandler.push((): void => { if (captchaFrame && captchaFrame.contentDocument) { captchaFrame.contentDocument.removeEventListener("mousedown", press); } });
