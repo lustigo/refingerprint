@@ -1,10 +1,10 @@
-import Module from "../interfaces/Module";
+import MouseListener from "./MouseListener";
 import MouseData from "../interfaces/MouseData";
 
 /**
  * Module which tracks the Mouse Movements
  */
-export default abstract class MouseMovement implements Module {
+export default abstract class MouseMovement extends MouseListener {
 
     /**
      * MousePath
@@ -12,33 +12,9 @@ export default abstract class MouseMovement implements Module {
     protected path: Array<MouseData> = new Array<MouseData>();
 
     /**
-     * Handlers to remove the Listener
-     */
-    protected removeHandler: Array<() => void> = new Array<() => void>();
-
-    /**
-     * Name of the Module
-     */
-    public name = "Mouse";
-
-    /**
      * If the mouse is currently being tracked
      */
     protected running = false;
-
-    /**
-     * will be called when the Captcha is rendered
-     * does nothing
-     */
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    public start(): void { }
-
-    /**
-     * will be called when the Captcha is solved
-     * does nothing
-     */
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    public stop(): void { }
 
     /**
      * returns the collected MousePath
@@ -57,18 +33,6 @@ export default abstract class MouseMovement implements Module {
         const l = listener.bind(this);
         document.addEventListener("mousemove", l);
         return (): void => { document.removeEventListener("mousemove", l); };
-    }
-
-    /**
-     * Executes and removes all RemoveHandlers
-     */
-    protected stopTracking(): void {
-        while (this.removeHandler.length > 0) {
-            const f = this.removeHandler.pop();
-            if (f) {
-                f();
-            }
-        }
     }
 
     /**

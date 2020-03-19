@@ -14,6 +14,13 @@ type BrowserInfo struct {
 	UserAgent     string   `json:"userAgent"`
 }
 
+// ClickData represents a MouseClick Event
+type ClickData struct {
+	MouseData
+	Key     MouseKey `json:"key"`
+	Release bool     `json:"release"` // If the Button was released or pushed
+}
+
 // Data represents the whole Datafile
 type Data struct {
 	Time          Time          `json:"Time"`
@@ -26,6 +33,7 @@ type Data struct {
 	UserID        string        `json:"UserId"`
 	WebGL         WebGLInfo     `json:"WebGL"`
 	FramePosition FramePosition `json:"FramePosition"`
+	MouseClicks   []ClickData   `json:"MouseClicks"`
 }
 
 // FramePosition represents the Positions of the Frames
@@ -41,12 +49,15 @@ type MouseData struct {
 	Time uint64 `json:"time"`
 }
 
-// NormalizedMouseData represents the Mouseposition relative to the Screenresolution at a specific moment
-type NormalizedMouseData struct {
-	X    float64
-	Y    float64
-	Time uint64
-}
+// MouseKey represents a Key on the Mouse
+type MouseKey uint8
+
+// MouseKeys
+const (
+	MouseKeyLEFT   = uint8(0)
+	MouseKeyMIDDLE = uint8(1)
+	MouseKeyRIGHT  = uint8(2)
+)
 
 // Rectangle represents a Rectangle. Position (x|y) is the top left corner of the Rectangle.
 type Rectangle struct {
