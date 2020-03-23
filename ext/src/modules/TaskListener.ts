@@ -1,0 +1,193 @@
+import { delay } from "../misc/Helper";
+import frameListener from "../misc/FrameListener";
+import { TaskData } from "../interfaces/TaskData";
+import Module from "../interfaces/Module";
+import Task from "./Task";
+
+/**
+ * Captcha Timeout is 120 Seconds
+ */
+const CAPTCHA_TIMEOUT = 120;
+
+/**
+ * Module which listens to Actions on the TaskFrame
+ */
+export default class TaskListener implements Module {
+
+    /**
+     * Name of the Module
+     */
+    public name = "TaskEvents";
+
+    /**
+     * If the Listener is stopped
+     */
+    private stopped: boolean = false;
+
+    /**
+     * Reference to the TaskFrame
+     */
+    private taskFrame: HTMLIFrameElement | null = null;
+
+    /**
+     * All processed Tasks
+     */
+    private tasks: Array<Task> = [];
+
+    /**
+     * Reference to Timeout
+     */
+    private timeout: number = -42;
+
+    /**
+     * Will be called when the Captcha is rendered
+     * Checks if the TaskFrame is opened, starts the first task and registers the Button Listeners
+     */
+    public start(): void {
+        const taskFrame = frameListener.getTaskFrame();
+        if (!(taskFrame && taskFrame.contentDocument && taskFrame.contentDocument.body)) {
+            delay(10).then(() => this.start());
+        } else {
+            this.listenToOpen();
+        }
+    }
+
+    /**
+     * Will be called when the Captcha is solved
+     * Stops the Task Timer
+     */
+    public stop(): void {
+        this.stopped = true;
+        this.stopTask();
+        if (this.tasks.length != 0) {
+            this.tasks[this.tasks.length - 1].solved = true;
+        }
+        window.clearInterval(this.timeout);
+    }
+
+    /**
+     * Returns the collected TaskData
+     * @return collected TaskData
+     */
+    public getCollectedData(): Array<TaskData> {
+        return this.tasks.map(t => t.getData());
+    }
+
+    /**
+     * Creates and Starts a new Task
+     */
+    private addTask(): void {
+        if (this.taskFrame) {
+            this.tasks.push(new Task(this.taskFrame));
+            this.timeout = window.setTimeout(this.onTimeout.bind(this), CAPTCHA_TIMEOUT * 1000);
+        }
+    }
+
+    /**
+     * Waits until the TaskFrame is opened
+     */
+    private async listenToOpen(): Promise<void> {
+        while (!this.stopped) {
+            await delay(10);
+            const taskFrame = frameListener.getTaskFrame();
+            if (taskFrame && taskFrame.contentDocument && taskFrame.contentDocument.body) {
+                const token = taskFrame.contentDocument.getElementById("recaptcha-token");
+                if (token && (token as HTMLInputElement).value != "") {
+                    // TaskFrame opened
+                    this.taskFrame = taskFrame;
+                    this.addTask();
+                    this.registerListeners();
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * Will be called when the Task is switched to Audio
+     * Stops the Task and waits until the Captcha is solved or it is again switched to Image Mode
+     */
+    private onAudio(): void {
+        window.clearInterval(this.timeout);
+        this.stopTask();
+        if (this.taskFrame && this.taskFrame.contentDocument) {
+            const image = this.taskFrame.contentDocument.getElementById("recaptcha-image-button");
+            if (image) {
+                image.addEventListener("click", () => {
+                    this.addTask();
+                    this.registerListeners();
+                });
+            }
+        }
+    }
+
+    /**
+     * Will be called when the Captcha is Reloaded
+     * Stops the Task and starts a new one if the Captcha is not solved
+     */
+    private async onEvent(): Promise<void> {
+        window.clearInterval(this.timeout);
+        this.stopTask();
+        // Wait if the Captcha is solved
+        await delay(250);
+        if (!this.stopped) {
+            this.addTask();
+        }
+    }
+
+    /**
+     * Will be called when the Captcha is timed out
+     * Stops the Task and waits for the TaskFrame to be reopened
+     */
+    private onTimeout(): void {
+        this.stopTask();
+        frameListener.registerCaptchaFrameClickListener(this.addTask, this);
+    }
+
+    /**
+     * Will be called when the Captcha is verified
+     * Checks if the Task failed and calls onEvent
+     */
+    private onVerify(): void {
+        if (this.taskFrame) {
+            const resp = this.taskFrame.getElementsByClassName("rc-imageselect-incorrect-response");
+            if (resp[0] && (resp[0] as HTMLDivElement).style.display != "none") {
+                this.tasks[this.tasks.length - 1].failed = true;
+            }
+        }
+        this.onEvent();
+    }
+
+    /**
+     * Registers the Listeners on the TaskFrame
+     */
+    private registerListeners(): void {
+        if (this.taskFrame && this.taskFrame.contentDocument) {
+            const reload = this.taskFrame.contentDocument.getElementById("recaptcha-reload-button");
+            const verify = this.taskFrame.contentDocument.getElementById("recaptcha-verify-button");
+            const audio = this.taskFrame.contentDocument.getElementById("recaptcha-audio-button");
+
+            if (reload) {
+                reload.addEventListener("click", this.onEvent.bind(this));
+            }
+            if (verify) {
+                verify.addEventListener("click", this.onVerify.bind(this));
+            }
+            if (audio) {
+                audio.addEventListener("click", this.onAudio.bind(this));
+            }
+        }
+    }
+
+
+    /**
+     * Stops the latest Task
+     */
+    private stopTask(): void {
+        if (this.tasks.length != 0) {
+            this.tasks[this.tasks.length - 1].stop();
+            this.tasks[this.tasks.length - 1].solved = false;
+        }
+    }
+
+}
