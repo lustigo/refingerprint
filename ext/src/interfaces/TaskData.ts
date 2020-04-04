@@ -18,7 +18,7 @@ interface CellEvent {
 }
 
 /**
- * Data which 
+ * Data which will be collected per task
  */
 interface TaskData {
     candidate: string;
