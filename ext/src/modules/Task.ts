@@ -65,8 +65,11 @@ export default class Task {
         this.frame = taskFrame;
         this.getTerm();
         this.getCandidate();
-        this.getTable();
-        this.getType();
+        this.getTable()
+            .then(() => delay(100))
+            .then(this.getType.bind(this))
+            .then(this.buildMatrix.bind(this))
+            .then(this.startTimer.bind(this));
     }
 
     /**
@@ -132,18 +135,17 @@ export default class Task {
      * Stores the Reference to the Table
      */
     private async getTable(): Promise<void> {
-        while (!(this.frame && this.frame.contentDocument)) {
-            await delay(10);
-        }
-        let tableDiv = this.frame.contentDocument.getElementsByClassName("rc-imageselect-target");
-        while (tableDiv.length == 0) {
-            await delay(10);
-            tableDiv = this.frame.contentDocument.getElementsByClassName("rc-imageselect-target");
-        }
+        if (this.frame.contentDocument){
+            let tableDiv = this.frame.contentDocument.getElementsByClassName("rc-imageselect-target");
+            while (tableDiv.length == 0) {
+                await delay(10);
+                tableDiv = this.frame.contentDocument.getElementsByClassName("rc-imageselect-target");
+            }
 
-        const table = tableDiv[0].getElementsByTagName("TABLE");
-        if(table.length > 0){
-            this.table = table[0] as HTMLTableElement;
+            const table = tableDiv[0].getElementsByTagName("TABLE");
+            if(table.length > 0){
+                this.table = table[0] as HTMLTableElement;
+            }
         }
     }
 
