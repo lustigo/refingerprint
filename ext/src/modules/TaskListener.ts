@@ -22,7 +22,7 @@ export default class TaskListener implements Module {
     /**
      * If the Listener is stopped
      */
-    private stopped: boolean = false;
+    private stopped = false;
 
     /**
      * Reference to the TaskFrame
@@ -37,7 +37,7 @@ export default class TaskListener implements Module {
     /**
      * Reference to Timeout
      */
-    private timeout: number = -42;
+    private timeout = -42;
 
     /**
      * Will be called when the Captcha is rendered
@@ -80,6 +80,7 @@ export default class TaskListener implements Module {
         if (this.taskFrame) {
             this.tasks.push(new Task(this.taskFrame));
             this.timeout = window.setTimeout(this.onTimeout.bind(this), CAPTCHA_TIMEOUT * 1000);
+            this.registerListeners();
         }
     }
 
@@ -96,7 +97,6 @@ export default class TaskListener implements Module {
                     // TaskFrame opened
                     this.taskFrame = taskFrame;
                     this.addTask();
-                    this.registerListeners();
                     break;
                 }
             }
@@ -113,10 +113,7 @@ export default class TaskListener implements Module {
         if (this.taskFrame && this.taskFrame.contentDocument) {
             const image = this.taskFrame.contentDocument.getElementById("recaptcha-image-button");
             if (image) {
-                image.addEventListener("click", () => {
-                    this.addTask();
-                    this.registerListeners();
-                });
+                image.addEventListener("click", this.addTask.bind(this));
             }
         }
     }
@@ -129,7 +126,7 @@ export default class TaskListener implements Module {
         window.clearInterval(this.timeout);
         this.stopTask();
         // Wait if the Captcha is solved
-        await delay(250);
+        await delay(150);
         if (!this.stopped) {
             this.addTask();
         }
@@ -168,13 +165,13 @@ export default class TaskListener implements Module {
             const audio = this.taskFrame.contentDocument.getElementById("recaptcha-audio-button");
 
             if (reload) {
-                reload.addEventListener("click", this.onEvent.bind(this));
+                reload.addEventListener("click", this.onEvent.bind(this), { once: true });
             }
             if (verify) {
-                verify.addEventListener("click", this.onVerify.bind(this));
+                verify.addEventListener("click", this.onVerify.bind(this), { once: true });
             }
             if (audio) {
-                audio.addEventListener("click", this.onAudio.bind(this));
+                audio.addEventListener("click", this.onAudio.bind(this), { once: true });
             }
         }
     }

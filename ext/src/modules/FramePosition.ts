@@ -70,7 +70,7 @@ export default class FramePosition implements Module {
         const rect = frame.getBoundingClientRect();
 
         //Frame has y position of -9999 if the TaskFrame is not popped up
-        if (rect.y < 0) {
+        if (rect.y <= 0) {
             delay(10).then(this.getTaskPos.bind(this));
             return;
         }
