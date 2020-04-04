@@ -47,7 +47,7 @@ class FrameListener {
 
         const iframes = document.getElementsByTagName("iframe");
         for (const iframe of iframes) {
-            if (iframe.title.match(/reCAPTCHA/)) {
+            if (iframe.title.match(/recaptcha challenge/)) {
                 this.taskFrame = iframe;
                 return this.taskFrame;
             }
