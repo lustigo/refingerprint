@@ -1,6 +1,6 @@
 import { delay } from "../misc/Helper";
 import frameListener from "../misc/FrameListener";
-import { TaskData } from "../interfaces/TaskData";
+import { TaskData, TaskType } from "../interfaces/TaskData";
 import Module from "../interfaces/Module";
 import Task from "./Task";
 
@@ -85,6 +85,53 @@ export default class TaskListener implements Module {
     }
 
     /**
+     * Checks if the Task failed
+     */
+    private checkError(): void {
+        if(this.taskFrame && this.taskFrame.contentDocument){
+            const errorDiv = this.taskFrame.contentDocument.getElementsByClassName("rc-imageselect-incorrect-response");
+            if(errorDiv.length > 0){
+                if((errorDiv[0] as HTMLDivElement).style.display != "none"){
+                    console.log("CheckError true");
+                    this.tasks[this.tasks.length - 2].failed = true;
+
+                    // Object Identification tasks in series are treated as one task, so if the last one failes, all failed
+                    if(this.tasks[this.tasks.length -2].type == TaskType.OBJ){
+                        for(let i = this.tasks.length-3; i >= 0; i--){
+                            if(this.tasks[i].type == TaskType.OBJ){
+                                this.tasks[i].failed = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Checks if the Verification failed and no new task was started
+     */
+    private hasVerifyError(): boolean {
+        if (this.taskFrame && this.taskFrame.contentDocument) {
+            const selectMore = this.taskFrame.contentDocument.getElementsByClassName("rc-imageselect-error-select-more");
+            if(selectMore.length > 0){
+                if((selectMore[0] as HTMLDivElement).style.display != "none"){
+                    return true;
+                }
+            }
+
+            const dynamicMore = this.taskFrame.contentDocument.getElementsByClassName("rc-imageselect-error-dynamic-more");
+            if(dynamicMore.length > 0){
+                if ((dynamicMore[0] as HTMLDivElement).style.display != "none") {
+                    this.tasks[this.tasks.length -1].type = TaskType.DYN;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * Waits until the TaskFrame is opened
      */
     private async listenToOpen(): Promise<void> {
@@ -126,9 +173,15 @@ export default class TaskListener implements Module {
         window.clearInterval(this.timeout);
         this.stopTask();
         // Wait if the Captcha is solved
-        await delay(150);
-        if (!this.stopped) {
+        await delay(200);
+        if (!(this.stopped || this.hasVerifyError())) {
             this.addTask();
+            // Wait for an error message to appear
+            await delay(250);
+            this.checkError();
+        } else if(this.hasVerifyError()) {
+            // No new Task started -> renew listeners
+            this.registerListeners();
         }
     }
 

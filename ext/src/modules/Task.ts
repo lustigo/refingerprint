@@ -29,7 +29,7 @@ export default class Task {
     /**
      * Type of the Task
      */
-    private type: TaskType = TaskType.NO;
+    public type: TaskType = TaskType.NO;
 
     /**
      * Wheter the Task failed
