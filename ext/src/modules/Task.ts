@@ -75,7 +75,11 @@ export default class Task {
     /**
      * Stops the Timer
      */
-    public stop(): void { }
+    public stop(): void {
+        if(this.timer){
+            window.clearInterval(this.timer);
+        }
+    }
 
     /**
      * gets the TaskData for this Task
@@ -89,8 +93,27 @@ export default class Task {
             failed: this.failed,
             solved: this.solved,
             events: this.events,
-            selected: this.type == TaskType.OBJ ? null : this.selected,
+            selected: this.type == TaskType.DYN ? null : this.selected,
         };
+    }
+
+    /**
+     * Builds the selected Matrix
+     */
+    private async buildMatrix(): Promise<void>{
+        let size = 3;
+        if(this.type == TaskType.OBJ){
+            size = 4;
+        }
+
+        this.selected = [];
+        for (let i = 0; i < size; i++) {
+            const intern: Array<boolean> = [];
+            for(let j = 0; j < size; j++){
+                intern.push(false);
+            }
+            this.selected.push(intern);
+        }
     }
 
     /**
@@ -153,17 +176,73 @@ export default class Task {
      * Determins the Type of the Task
      */
     private async getType(): Promise<void>{
-        while(this.table == null){
-            await delay(10);
-        }
-        const splittedClass = this.table.className.split("-");
-        if(splittedClass[splittedClass.length -1] == "33"){
+        if(this.table){
+            const splittedClass = this.table.className.split("-");
+            if(splittedClass[splittedClass.length -1] == "33"){
             // 3x3 Matrix
-            this.type = TaskType.SIM;
-        } else if (splittedClass[splittedClass.length - 1] == "44"){
-            // 4x4 Matrix
-            this.type = TaskType.OBJ;
+                this.type = TaskType.SIM;
+            } else {
+                for(const splitted of splittedClass){
+                    if(splitted.match(/44/)){
+                        // 4x4 Matrix
+                        this.type = TaskType.OBJ;
+                        return;
+                    }
+                }
+            }
         }
+    }
+
+    /**
+     * Will be called for each Timer Tick
+     * Checks if a new cell was selected
+     */
+    private onTick(): void {
+        if(this.table && this.selected){
+            const rows = this.table.getElementsByTagName("TR");
+            for(let i = 0; i< rows.length; i++){
+                const row = rows[i];
+                const cells = row.getElementsByTagName("TD");
+                for (let j = 0; j < cells.length; j++){
+                    const cell = cells[j] as HTMLTableDataCellElement;
+                    if(cell.className.match(/rc-imageselect-dynamic-selected/)){
+                        this.type = TaskType.DYN;
+                        if(!this.selected[i][j]){
+                            this.events.push({
+                                id: i*3+j,
+                                selected: true,
+                                time: new Date().getTime(),
+                            });
+                            this.selected[i][j] = true;
+                        }
+                    } else  if (this.type != TaskType.DYN){
+                        const marked = this.selected[i][j];
+                        const sel = cell.className.match(/rc-imageselect-tileselected/);
+
+                        if (!(marked ||sel) || sel && marked) {
+                            // nothing new
+                            continue;
+                        } else {
+                            this.selected[i][j] = sel != null;
+                            this.events.push({
+                                id: i * this.type==TaskType.OBJ? 4: 3 + j,
+                                selected: true,
+                                time: new Date().getTime(),
+                            });
+                        }
+                    } else {
+                        this.selected[i][j] = false;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Starts the Timer
+     */
+    private async startTimer(): Promise<void> {
+        this.timer = window.setInterval(this.onTick.bind(this),100);
     }
 }
 
