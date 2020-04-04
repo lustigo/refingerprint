@@ -14,6 +14,13 @@ type BrowserInfo struct {
 	UserAgent     string   `json:"userAgent"`
 }
 
+// CellEvent represents a Click Event on a Cell in the Task Matrix
+type CellEvent struct {
+	ID       uint8  `json:"id"`
+	Time     uint64 `json:"time"`
+	Selected bool   `json:"selected"`
+}
+
 // ClickData represents a MouseClick Event
 type ClickData struct {
 	MouseData
@@ -35,6 +42,7 @@ type Data struct {
 	FramePosition FramePosition `json:"FramePosition"`
 	MouseClicks   []ClickData   `json:"MouseClicks"`
 	ScrollEvents  []ScrollData  `json:"ScrollEvents"`
+	TaskEvents    []TaskData    `json:"TaskEvents"`
 }
 
 // FramePosition represents the Positions of the Frames
@@ -86,6 +94,28 @@ type ScrollData struct {
 	DeltaY    int16 `json:"deltaY"`
 	DeltaZ    int16 `json:"deltaZ"`
 	DeltaMode uint8 `json:"deltaMode"`
+}
+
+// TaskType represents the Type of a ReCaptcha Task
+type TaskType uint8
+
+// TaskTypes
+const (
+	TaskTypeNO  = uint(0)
+	TaskTypeSIM = uint(2)
+	TaskTypeDYN = uint(3)
+	TaskTypeOBJ = uint(4)
+)
+
+// TaskData represents the Data which is collected per Task
+type TaskData struct {
+	Candidate string      `json:"candidate"`
+	Term      string      `json:"term"`
+	Type      TaskType    `json:"type"`
+	Failed    bool        `json:"failed"`
+	Solved    bool        `json:"solved"`
+	Events    []CellEvent `json:"events"`
+	Selected  [][]bool    `json:"selected"`
 }
 
 // Time represents Start and End time of the ReCaptcha

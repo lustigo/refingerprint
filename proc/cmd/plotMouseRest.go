@@ -1,7 +1,3 @@
-/*
-Copyright © 2020 Lukas Klassen <luftigo@yahoo.de>
-
-*/
 package cmd
 
 import (
