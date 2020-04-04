@@ -1,5 +1,7 @@
 # frontend
 
+![Survey Frontend](https://github.com/lustigo/refingerprint/workflows/Survey%20Frontend/badge.svg)
+
 ## Project setup
 ```
 npm install
