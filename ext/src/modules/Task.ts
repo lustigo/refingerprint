@@ -17,6 +17,11 @@ export default class Task {
     private frame: HTMLIFrameElement;
 
     /**
+     * Reference to the Image Matrix
+     */
+    private table: HTMLTableElement | null = null;
+
+    /**
      * Term to search for
      */
     private term = "";
@@ -60,6 +65,8 @@ export default class Task {
         this.frame = taskFrame;
         this.getTerm();
         this.getCandidate();
+        this.getTable();
+        this.getType();
     }
 
     /**
@@ -118,6 +125,42 @@ export default class Task {
                     this.candidate = candidate[0].className.substr(13);
                 }
             } 
+        }
+    }
+
+    /**
+     * Stores the Reference to the Table
+     */
+    private async getTable(): Promise<void> {
+        while (!(this.frame && this.frame.contentDocument)) {
+            await delay(10);
+        }
+        let tableDiv = this.frame.contentDocument.getElementsByClassName("rc-imageselect-target");
+        while (tableDiv.length == 0) {
+            await delay(10);
+            tableDiv = this.frame.contentDocument.getElementsByClassName("rc-imageselect-target");
+        }
+
+        const table = tableDiv[0].getElementsByTagName("TABLE");
+        if(table.length > 0){
+            this.table = table[0] as HTMLTableElement;
+        }
+    }
+
+    /**
+     * Determins the Type of the Task
+     */
+    private async getType(): Promise<void>{
+        while(this.table == null){
+            await delay(10);
+        }
+        const splittedClass = this.table.className.split("-");
+        if(splittedClass[splittedClass.length -1] == "33"){
+            // 3x3 Matrix
+            this.type = TaskType.SIM;
+        } else if (splittedClass[splittedClass.length - 1] == "44"){
+            // 4x4 Matrix
+            this.type = TaskType.OBJ;
         }
     }
 }
