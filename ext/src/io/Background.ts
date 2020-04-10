@@ -49,6 +49,6 @@ function downloadData(req: Record<string, any>): void {
 chrome.runtime.onMessage.addListener(downloadData);
 
 /**
- * When the cookies are changed, remove the Goolge Cookies
+ * When the cookies are changed, remove the Google Cookies
  */
 chrome.cookies.onChanged.addListener(onCookieUpdate);
