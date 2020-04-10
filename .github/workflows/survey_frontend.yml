@@ -17,6 +17,8 @@ jobs:
         working-directory: ${{env.working-dir}}
       - run: ./node_modules/eslint/bin/eslint.js src/**/**/*.ts
         working-directory: ${{env.working-dir}}
+      - run: ./node_modules/eslint/bin/eslint.js src/**/**/*.vue
+        working-directory: ${{env.working-dir}}
 
   build:
     name: Build
