@@ -78,7 +78,6 @@ export default class TaskListener implements Module {
      */
     private addTask(): void {
         if (this.taskFrame) {
-            console.log(`New Task for ${this.taskFrame.getBoundingClientRect().x}`);
             this.tasks.push(new Task(this.taskFrame));
             this.timeout = window.setTimeout(this.onTimeout.bind(this), CAPTCHA_TIMEOUT * 1000);
             this.registerListeners();
@@ -93,7 +92,6 @@ export default class TaskListener implements Module {
             const errorDiv = this.taskFrame.contentDocument.getElementsByClassName("rc-imageselect-incorrect-response");
             if(errorDiv.length > 0){
                 if((errorDiv[0] as HTMLDivElement).style.display != "none"){
-                    console.log("CheckError true");
                     this.tasks[this.tasks.length - 2].failed = true;
 
                     // Object Identification tasks in series are treated as one task, so if the last one failes, all failed
@@ -200,7 +198,6 @@ export default class TaskListener implements Module {
      * Checks if the Task failed and calls onEvent
      */
     private onVerify(): void {
-        console.log("Verify");
         if (this.taskFrame) {
             const resp = this.taskFrame.getElementsByClassName("rc-imageselect-incorrect-response");
             if (resp[0] && (resp[0] as HTMLDivElement).style.display != "none") {
@@ -217,7 +214,6 @@ export default class TaskListener implements Module {
         if (this.taskFrame && this.taskFrame.contentDocument) {
             const reload = this.taskFrame.contentDocument.getElementById("recaptcha-reload-button");
             const verify = this.taskFrame.contentDocument.getElementById("recaptcha-verify-button");
-            console.log(verify);
             const audio = this.taskFrame.contentDocument.getElementById("recaptcha-audio-button");
 
             if (reload) {
@@ -225,14 +221,10 @@ export default class TaskListener implements Module {
             }
             if (verify) {
                 verify.addEventListener("click", this.onVerify.bind(this), { once: true });
-            } else {
-                console.log("No Verify");
             }
             if (audio) {
                 audio.addEventListener("click", this.onAudio.bind(this), { once: true });
             }
-        } else {
-            console.log("No Listener");
         }
     }
 
