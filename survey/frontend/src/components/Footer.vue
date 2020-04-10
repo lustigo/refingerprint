@@ -35,11 +35,13 @@ export default Vue.extend({
             this.navigationOptions.canForward = false;
             this.navigationOptions.canBack = true;
             this.navigationOptions.currentPage ++;
+            this.$emit("input", this.navigationOptions);
         },
         pageBackward: function(){
             this.navigationOptions.canForward = true;
             this.navigationOptions.currentPage --;
             this.navigationOptions.canBack = this.navigationOptions.currentPage > 0;
+            this.$emit("input", this.navigationOptions);
         },
     }
 });

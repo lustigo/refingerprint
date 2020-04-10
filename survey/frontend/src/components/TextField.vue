@@ -8,7 +8,7 @@
         <v-text-field
             v-model="structure.content"
             outlined
-            v-on:change="$emit('completed', !req || structure.content != '')"
+            v-on:change="onChange"
         ></v-text-field>
         </v-col>
     </v-row>
@@ -27,6 +27,12 @@ export default Vue.extend({
         req: false,
         structure: {} as TextFieldDescription,
     }),
+    methods: {
+        onChange: function (){
+            this.$emit("completed", !this.req || this.structure.content != "");
+            this.$emit("input", this.structure);
+        },
+    },
     mounted() {
         this.structure = this.value;
         if(!this.structure.content){

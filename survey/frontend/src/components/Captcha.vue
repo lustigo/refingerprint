@@ -59,6 +59,7 @@ export default Vue.extend({
                         headers: { "content-type": "application/json" }
                     });
                     this.structure.completed = success.status == 200;
+                    this.$emit("input", this.structure);
                     this.$emit("completed", this.structure.completed);
                 }
             });

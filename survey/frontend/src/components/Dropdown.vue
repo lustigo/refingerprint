@@ -10,7 +10,7 @@
         solo
         v-bind:label="structure.label"
         v-model="structure.selected"
-        v-on:change="$emit('completed', !req || structure.selected != '')"
+        v-on:change="onChange"
       ></v-select>
     </v-col>
   </v-row>
@@ -29,6 +29,12 @@ export default Vue.extend({
         req: false,
         structure: {} as DropdownDescription,
     }),
+    methods: {
+        onChange: function (){
+            this.$emit("completed", !this.req || this.structure.selected != "");
+            this.$emit("input", this.structure);
+        },
+    },
     mounted() {
         this.structure = this.value;
         if(!this.structure.selected){

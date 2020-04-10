@@ -8,6 +8,7 @@
         v-model="widgets[index].structure"
         v-bind:required="widgets[index].required"
         v-on:completed="(data) => onCompleted(index,data)"
+        v-on:input="$emit('input', widgets)"
       />
     </v-container>
     <v-container class="text-left" absolute height="auto" style="margin-bottom:4%; bottom: 0; position:fixed" v-if="isSomethingRequired">

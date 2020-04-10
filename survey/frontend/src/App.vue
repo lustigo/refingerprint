@@ -11,7 +11,7 @@
             <Page v-model="structure.pages[navigationOptions.currentPage]" v-on:completed="completedHandler"/>
         </v-content>
        
-        <Footer v-model="this.navigationOptions" v-on:send="send"/>
+        <Footer v-model="navigationOptions" v-on:send="send"/>
     </div>
 
 
