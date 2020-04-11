@@ -144,7 +144,7 @@ function extractSurveyId(path: string): string {
  * Checks wheter the survey exists
  * @param surveyPath Path to check
  */
-async function checkExistense(surveyPath: string): Promise<boolean> {
+async function checkExistence(surveyPath: string): Promise<boolean> {
     if (await exists(surveyPath)) {
         return await exists(surveyPath + "/structure.json");
     }
@@ -198,7 +198,7 @@ app.use(mount("/", async (ctx: Koa.Context) => {
     try {
         const surveyId = extractSurveyId(ctx.path);
         const surveyPath = (process.env.DATA_PATH as string) + surveyId;
-        if (!await checkExistense(surveyPath)) {
+        if (!await checkExistence(surveyPath)) {
             ctx.body = "This is not a valid SurveyId";
             ctx.status = 400;
             return;
