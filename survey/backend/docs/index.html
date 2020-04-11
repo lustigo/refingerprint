@@ -53,7 +53,7 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="index.html">Globals</a>
+					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
 			<h1>refingerprint_backend</h1>
@@ -63,28 +63,418 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel-group tsd-index-group">
-				<h2>Index</h2>
-				<section class="tsd-panel tsd-index-panel">
-					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>External modules</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-external-module"><a href="modules/_api_.html" class="tsd-kind-icon">&quot;api&quot;</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_frontend_.html" class="tsd-kind-icon">&quot;frontend&quot;</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_index_.html" class="tsd-kind-icon">&quot;index&quot;</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_router_.html" class="tsd-kind-icon">&quot;router&quot;</a></li>
-							</ul>
-						</section>
-					</div>
-				</section>
-			</section>
+			<div class="tsd-panel tsd-typography">
+				<a href="#refingerprint-survey" id="refingerprint-survey" style="color: inherit; text-decoration: none;">
+					<h1>ReFingerprint Survey</h1>
+				</a>
+				<p><img src="https://github.com/lustigo/refingerprint/workflows/Survey%20Frontend/badge.svg" alt="Survey Frontend">
+				<img src="https://github.com/lustigo/refingerprint/workflows/Survey%20Backend/badge.svg" alt="Survey Backend"></p>
+				<p>Dies ist das Hauptverzeichnis der Umfragen-Applikation.</p>
+				<p>Der Frontend-Teil wurde mit dem Vue-Framework im Material Design erstellt.</p>
+				<p>Der Backend-Teil wurde mit Node.js umgesetzt.</p>
+				<p>Beide Teile verwenden Typescript.</p>
+				<a href="#inhaltsverzeichnis" id="inhaltsverzeichnis" style="color: inherit; text-decoration: none;">
+					<h2>Inhaltsverzeichnis</h2>
+				</a>
+				<ul>
+					<li><a href="#installation">Installation</a></li>
+					<li><a href="#konfiguration">Konfiguration</a><ul>
+							<li><a href="#konfiguration-server">Server</a></li>
+							<li><a href="#konfiguration-umfragen">Umfragen</a><ul>
+									<li><a href="#konfiguration-widgets">Widgets</a><ul>
+											<li><a href="#konfiguration-captcha">Captcha</a></li>
+											<li><a href="#konfiguration-checkbox">Checkbox</a></li>
+											<li><a href="#konfiguration-dropdown">Dropdown</a></li>
+											<li><a href="#konfiguration-matrix">Matrix</a></li>
+											<li><a href="#konfiguration-textbox">Textbox</a></li>
+											<li><a href="#konfiguration-textfield">Textfield</a></li>
+											<li><a href="#konfiguration-text">Text</a></li>
+											<li><a href="#konfiguration-vector">Vector</a></li>
+										</ul>
+									</li>
+									<li><a href="#beispiel-umfrage">Beispiel Umfrage</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#benutzung">Benutzung</a></li>
+					<li><a href="#server-client-kommunikation">Server-Client Kommunikation</a></li>
+					<li><a href="#aufbau-der-app">Aufbau der App</a></li>
+				</ul>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<p>Container bauen:</p>
+				<pre><code class="language-bash">DOCKER_BUILDKIT=1 docker build -t refingerprint .</code></pre>
+				<p>Erstes Starten:</p>
+				<pre><code class="language-bash">docker run -d -p 443:443 --env RECAPTCHA_SECRET=&lt;Secret einfügen&gt; -v <span class="hljs-string">"<span class="hljs-variable">$(pwd)</span>"</span>&lt;relativer Datenpfad&gt;:/data --name refingerprint refingerprint</code></pre>
+				<p>Stoppen:</p>
+				<pre><code class="language-bash">docker stop refingerprint</code></pre>
+				<p>Starten:</p>
+				<pre><code class="language-bash">docker start refingerprint</code></pre>
+				<a href="#konfiguration" id="konfiguration" style="color: inherit; text-decoration: none;">
+					<h2>Konfiguration</h2>
+				</a>
+				<ul>
+					<li><a href="#konfiguration-server">Server</a></li>
+					<li><a href="#konfiguration-survey">Umfragen</a><ul>
+							<li><a href="#konfiguration-widgets">Widgets</a><ul>
+									<li><a href="#konfiguration-captcha">Captcha</a></li>
+									<li><a href="#konfiguration-checkbox">Checkbox</a></li>
+									<li><a href="#konfiguration-dropdown">Dropdown</a></li>
+									<li><a href="#konfiguration-matrix">Matrix</a></li>
+									<li><a href="#konfiguration-textbox">Textbox</a></li>
+									<li><a href="#konfiguration-textfield">Textfield</a></li>
+									<li><a href="#konfiguration-text">Text</a></li>
+									<li><a href="#konfiguration-vector">Vector</a></li>
+								</ul>
+							</li>
+							<li><a href="#beispiel-umfrage">Beispiel Umfrage</a></li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#konfiguration-server" id="konfiguration-server" style="color: inherit; text-decoration: none;">
+					<h3>Konfiguration Server</h3>
+				</a>
+				<p>Für das Starten des Servers benötigen Sie einen API-Schlüssel von ReCaptcha, welchen Sie <a href="https://www.google.com/recaptcha/intro/v3.html">hier</a> in der Admin Console erhalten. Bitte achten Sie darauf, dass Sie die die reCAPTCHA Version 2 mit dem Kästchen &quot;Ich bin kein Roboter.&quot; auswählen.</p>
+				<p>Sie erhalten einen Websitenschlüssel, welchen Sie <a href="#konfiguration-captcha">später</a> benötigen, und einen Geheimen Schlüssel, welchen Sie in den obigen Befehl für das erste Starten (anstatt <code>&lt;Secret einfügen&gt;</code>) einfügen.</p>
+				<p>Zudem müssen Sie einen Ordner erstellen und den relativen Pfad anstatt <code>&lt;relativer Pfad&gt;</code> in denselben Befehl einfügen.
+				Dieser Ordner ist der Hauptordner für die zu erstellenden Umfragen-Ordner, welche die Beschreibung und anschließend die Rückmeldungen enthalten werden.</p>
+				<p>In diesem Ordner müssen zudem von Ihnen noch der TLS-Schlüssel und das TLS-Zertifikat abgelegt werden.</p>
+				<p>Wenn Sie das Programm lokal testen wollen, können Sie mit dem folgendem Befehl ein selbst-signiertes Zertifikat erstellen:</p>
+				<pre><code class="language-bash">openssl req -newkey rsa:4096 -nodes -keyout key.pem -x509 -days 365 -out crt.pem</code></pre>
+				<p>Bitte speichern Sie die beiden generierten Dateien in dem zuvor erstellten Ordner ab.</p>
+				<p>Falls Sie den Dateinamen ändern, oder die Dateien in einem Unterverzeichnis speichern möchten, müssen Sie die Umgebungsvariablen setzen.
+				Im Folgenden sehen Sie die Umgebungsvariablen für die TLS-Konfiguration mit deren Standardwerten:</p>
+				<pre><code class="language-TOML"><span class="hljs-attr">TLS_KEY_PATH</span>=<span class="hljs-string">"/data/key.pem"</span>
+<span class="hljs-attr">TLS_CERT_PATH</span>=<span class="hljs-string">"/data/crt.pem"</span></code></pre>
+				<p>Für den realen Einsatz fragen Sie bitte Ihren IT-Administrator oder erzeugen Sie ein Zertifikat für Ihre Domain und lassen dieses von einer CA unterschreiben (zum Beispiel von Let&#39;s Encrypt).</p>
+				<a href="#konfiguration-umfragen" id="konfiguration-umfragen" style="color: inherit; text-decoration: none;">
+					<h3>Konfiguration Umfragen</h3>
+				</a>
+				<p>Um eine neue Umfrage anzulegen, müssen Sie einen neuen Ordner in Ihrem Datenpfad anlegen.</p>
+				<p>Der Ordnername ist die eindeutige Bezeichnung der Umfrage und muss eine sogenannte UUID sein.
+				Um eine UUID zu generieren <a href="https://www.uuidgenerator.net/version4">klicken Sie hier</a>.</p>
+				<p>In diesem Verzeichnis werden die Antworten der Teilnehmer abgespeichert und die Beschreibung der Umfrage.</p>
+				<p>Die Beschreibung der Umfrage muss in dem Umfragenordner in der Datei <code>structure.json</code> liegen und ein valides <code>json</code>-Dokument sein.</p>
+				<p>Die Beschreibung hat folgende Form:</p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"survey"</span>: <span class="hljs-string">"&lt;Hier die soeben generierte UUID einfügen&gt;"</span>,
+  <span class="hljs-attr">"pages"</span>: [
+    []
+    ...
+  ],
+}</code></pre>
+				<p>Der Pages-Wert ist ein Mehrdimensionales Array, er listet die verschiedenen Seiten auf.</p>
+				<p>Auf jeder Seite können mehrere Widgets platziert werden, deshalb ist jede Seite ein Array.</p>
+				<a href="#konfiguration-widgets" id="konfiguration-widgets" style="color: inherit; text-decoration: none;">
+					<h4>Konfiguration Widgets</h4>
+				</a>
+				<p>Die Beschreibung eines Widgets ist folgendermaßen aufgebaut:</p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"&lt;Typbezeichnung&gt;"</span>,
+  <span class="hljs-attr">"required"</span>: <span class="hljs-literal">true</span>|<span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"structure"</span>: {}
+}</code></pre>
+				<p>Mit dem <code>required</code> Wert können Sie bestimmen, ob dieses Widget ausgefüllt werden muss oder nicht.</p>
+				<p>Mit dem <code>type</code> Wert bestimmen Sie, welches Widget Sie anzeigen möchten.
+				Die Werte für diesen Wert finden Sie bei der Dokumentation des jeweiligen Widgets.</p>
+				<p>Mit dem <code>structure</code> Wert konfigurieren Sie ein Widget näher.
+					Diese Konfiguration hängt aber von dem jeweiligen Widget ab.
+				Bitte entnehmen Sie das Konfigurationschema der Dokumentation des jeweiligen Widgets.</p>
+				<p>Folgende Widgets sind möglich:</p>
+				<ul>
+					<li><a href="#konfiguration-captcha">Captcha</a></li>
+					<li><a href="#konfiguration-checkbox">Checkbox</a></li>
+					<li><a href="#konfiguration-dropdown">Dropdown</a></li>
+					<li><a href="#konfiguration-matrix">Matrix</a></li>
+					<li><a href="#konfiguration-textbox">Textbox</a></li>
+					<li><a href="#konfiguration-textfield">Textfield</a></li>
+					<li><a href="#konfiguration-text">Text</a></li>
+					<li><a href="#konfiguration-vector">Vector</a></li>
+				</ul>
+				<a href="#konfiguration-captcha" id="konfiguration-captcha" style="color: inherit; text-decoration: none;">
+					<h5>Konfiguration Captcha</h5>
+				</a>
+				<p>Stellt eine Captcha-Abfrage dar.</p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"captcha"</span>,
+  <span class="hljs-attr">"required"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"structure"</span>: {
+    <span class="hljs-attr">"sitekey"</span>: <span class="hljs-string">"&lt;Ihr ReCaptcha Websitenschlüssel&gt;"</span>
+  }
+}</code></pre>
+				<a href="#konfiguration-checkbox" id="konfiguration-checkbox" style="color: inherit; text-decoration: none;">
+					<h5>Konfiguration Checkbox</h5>
+				</a>
+				<p>Stellt eine Frage mit vorgegebenen Antwortmöglichkeiten dar.
+				Es können mehrere Antwortmöglichkeiten gewählt werden.</p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"checkbox"</span>,
+  <span class="hljs-attr">"required"</span>: <span class="hljs-literal">true</span>|<span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"structure"</span>: {
+    <span class="hljs-attr">"question"</span>: <span class="hljs-string">"&lt;Ihre Frage&gt;"</span>,
+    <span class="hljs-attr">"selection"</span>: [<span class="hljs-string">"Antwortmöglichkeit A"</span>, <span class="hljs-string">"B"</span>, ...]
+  }
+}</code></pre>
+				<p><strong>Beispiel</strong>:</p>
+				<p><img src="img/checkbox.png" alt="Checkbox"></p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"checkbox"</span>,
+  <span class="hljs-attr">"required"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"structure"</span>: {
+    <span class="hljs-attr">"question"</span>: <span class="hljs-string">"&lt;Ihre Frage&gt;"</span>,
+    <span class="hljs-attr">"selection"</span>: [<span class="hljs-string">"Antwortmöglichkeit A"</span>, <span class="hljs-string">"B"</span>, <span class="hljs-string">"C"</span>, <span class="hljs-string">"D"</span>]
+  }
+}</code></pre>
+				<a href="#konfiguration-dropdown" id="konfiguration-dropdown" style="color: inherit; text-decoration: none;">
+					<h5>Konfiguration Dropdown</h5>
+				</a>
+				<p>Stellt eine Frage mit vorgegebenen Antwortmöglichkeiten dar.
+					Es kann nur eine Antwortmöglichkeit gewählt werden.
+				Die Möglichkeiten sind erst nach einem Klick sichtbar und werden dann vertikal angezeigt.</p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"dropdown"</span>,
+  <span class="hljs-attr">"required"</span>: <span class="hljs-literal">true</span>|<span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"structure"</span>: {
+    <span class="hljs-attr">"items"</span>: [<span class="hljs-string">"Antwortmöglichkeit A"</span>, <span class="hljs-string">"B"</span>, ...],
+    <span class="hljs-attr">"label"</span>: <span class="hljs-string">"&lt;Vorschautext&gt;"</span>,
+    <span class="hljs-attr">"question"</span>: <span class="hljs-string">"&lt;Ihre Frage&gt;"</span>
+  }
+}</code></pre>
+				<p><strong>Beispiel</strong>:</p>
+				<p><img src="img/dropdown1.png" alt="Dropdown ohne Interaktion">
+					<img src="img/dropdown2.png" alt="Dropdown angeklickt">
+				<img src="img/dropdown3.png" alt="Dropdown ausgewählt"></p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"dropdown"</span>,
+  <span class="hljs-attr">"required"</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"structure"</span>: {
+    <span class="hljs-attr">"items"</span>: [<span class="hljs-string">"Antwortmöglichkeit A"</span>, <span class="hljs-string">"B"</span>, <span class="hljs-string">"C"</span>, <span class="hljs-string">"D"</span>],
+    <span class="hljs-attr">"label"</span>: <span class="hljs-string">"Bitte auswählen"</span>,
+    <span class="hljs-attr">"question"</span>: <span class="hljs-string">"&lt;Ihre Frage&gt;"</span>
+  }
+}</code></pre>
+				<a href="#konfiguration-matrix" id="konfiguration-matrix" style="color: inherit; text-decoration: none;">
+					<h5>Konfiguration Matrix</h5>
+				</a>
+				<p>Hier wird eine Frage gestellt und anschließend eine Tabelle gezeigt.
+					Pro Tabellenzeile wird ein weiterer Text angezeigt und pro Tabellenspalte gibt es eine Antwortmöglichkeit.
+				Pro Zeile kann nur eine Antwortmöglichkeit gewählt werden.</p>
+				<pre><code class="language-json">{
+  "type": "matrix",
+  "required": true|false,
+  "structure": {
+    "question": "&lt;Ihre Frage&gt;",
+    "structure": ["Antwortmöglichkeit A", "B", ...],
+    "answers": {
+      "Zeilentext 1": -1,
+      "Zeilentext 2": -1,
+      "Zeilentext 3": -1,
+      ...
+    }
+  }
+}</code></pre>
+				<p>Sie können pro Zeile entweder -1 angeben, was keine Vorauswahl bedeutet, oder eine andere Zahl im Intervall [0, Länge des structure.structe Arrays[ angeben, sodass diese Antwortmöglichkeit bereits vorausgewählt ist.</p>
+				<p><strong>Beispiel</strong>:</p>
+				<p><img src="img/matrix.png" alt="Matrix"></p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"matrix"</span>,
+  <span class="hljs-attr">"required"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"structure"</span>: {
+    <span class="hljs-attr">"question"</span>: <span class="hljs-string">"&lt;Ihre Frage&gt;"</span>,
+    <span class="hljs-attr">"structure"</span>: [<span class="hljs-string">"Antwortmöglichkeit A"</span>, <span class="hljs-string">"B"</span>, <span class="hljs-string">"C"</span>],
+    <span class="hljs-attr">"answers"</span>: {
+      <span class="hljs-attr">"Zeilentext 1"</span>: <span class="hljs-number">-1</span>,
+      <span class="hljs-attr">"Zeilentext 2"</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">"Zeilentext 3"</span>: <span class="hljs-number">2</span>
+    }
+  }
+}</code></pre>
+				<a href="#konfiguration-textbox" id="konfiguration-textbox" style="color: inherit; text-decoration: none;">
+					<h5>Konfiguration Textbox</h5>
+				</a>
+				<p>Stellt eine Frage mit einer großen, mehrzeiligen Box dar, in welche ein Text geschrieben werden kann.</p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"textbox"</span>,
+  <span class="hljs-attr">"required"</span>: <span class="hljs-literal">true</span>|<span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"structure"</span>: {
+    <span class="hljs-attr">"question"</span>: <span class="hljs-string">"&lt;Ihre Frage&gt;"</span>,
+    <span class="hljs-attr">"rows"</span>: &lt;Anzahl der Zeilen&gt;
+  }
+}</code></pre>
+				<p><strong>Beispiel</strong>:</p>
+				<p><img src="img/textbox.png" alt="Textbox"></p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"textbox"</span>,
+  <span class="hljs-attr">"required"</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"structure"</span>: {
+    <span class="hljs-attr">"question"</span>: <span class="hljs-string">"&lt;Ihre Frage&gt;"</span>,
+    <span class="hljs-attr">"rows"</span>: <span class="hljs-number">4</span>
+  }
+}</code></pre>
+				<a href="#konfiguration-textfield" id="konfiguration-textfield" style="color: inherit; text-decoration: none;">
+					<h5>Konfiguration Textfield</h5>
+				</a>
+				<p>Stellt eine Frage mit einer kleinen, einzeiligen Box dar, in welche ein Text geschrieben werden kann.</p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"textfield"</span>,
+  <span class="hljs-attr">"required"</span>: <span class="hljs-literal">true</span>|<span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"structure"</span>: {
+    <span class="hljs-attr">"question"</span>: <span class="hljs-string">"&lt;Ihre Frage&gt;"</span>
+  }
+}</code></pre>
+				<p><strong>Beispiel</strong>:</p>
+				<p><img src="img/textfield.png" alt="Textfield"></p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"textfield"</span>,
+  <span class="hljs-attr">"required"</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"structure"</span>: {
+   <span class="hljs-attr">"question"</span>: <span class="hljs-string">"&lt;Ihre Frage&gt;"</span>
+  }
+}</code></pre>
+				<a href="#konfiguration-text" id="konfiguration-text" style="color: inherit; text-decoration: none;">
+					<h5>Konfiguration Text</h5>
+				</a>
+				<p>Stellt einen festen Text dar, ohne Eingabemöglichkeiten.
+				Der Text unterstützt Markdown-Funktionalität.</p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"textwidget"</span>,
+  <span class="hljs-attr">"required"</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"structure"</span>: {
+    <span class="hljs-attr">"content"</span>: <span class="hljs-string">"&lt;Ihr Text&gt;"</span>
+  }
+}</code></pre>
+				<p><strong>Beispiel</strong>:</p>
+				<p><img src="img/text.png" alt="Textwidget"></p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"textwidget"</span>,
+  <span class="hljs-attr">"required"</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"structure"</span>: {
+    <span class="hljs-attr">"content"</span>: <span class="hljs-string">"Dies ist ein schöner Text. Man kann auch **Markdown** benutzen und damit Textbestandteile *kursiv* darstellen"</span>
+  }
+}</code></pre>
+				<a href="#konfiguration-vector" id="konfiguration-vector" style="color: inherit; text-decoration: none;">
+					<h5>Konfiguration Vector</h5>
+				</a>
+				<p>Stellt eine Frage mit mehreren Antwortmöglichkeiten dar, wobei nur eine Antwort ausgewählt werden kann.</p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"vector"</span>,
+  <span class="hljs-attr">"required"</span>: <span class="hljs-literal">true</span>|<span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"structure"</span>: {
+    <span class="hljs-attr">"question"</span>: <span class="hljs-string">"&lt;Ihre Frage&gt;"</span>,
+    <span class="hljs-attr">"selection"</span>: [<span class="hljs-string">"Antwortmöglichkeit A"</span>, <span class="hljs-string">"B"</span>, ...]
+  }
+}</code></pre>
+				<p><strong>Beispiel</strong>:</p>
+				<p><img src="img/vector.png" alt="Vector"></p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"vector"</span>,
+  <span class="hljs-attr">"required"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"structure"</span>: {
+    <span class="hljs-attr">"question"</span>: <span class="hljs-string">"&lt;Ihre Frage&gt;"</span>,
+    <span class="hljs-attr">"selection"</span>: [<span class="hljs-string">"Antwortmöglichkeit A"</span>, <span class="hljs-string">"B"</span>, <span class="hljs-string">"C"</span>, <span class="hljs-string">"D"</span>]
+  }
+}</code></pre>
+				<a href="#beispiel-umfrage" id="beispiel-umfrage" style="color: inherit; text-decoration: none;">
+					<h4>Beispiel Umfrage</h4>
+				</a>
+				<p>Hier finden Sie eine Umfrage inklusive der Konfiguration:</p>
+				<p><img src="img/example1.png" alt="Seite 1 des Beispiels"></p>
+				<p><img src="img/example2.png" alt="Seite 2 des Beispiels"></p>
+				<p><img src="img/example3.png" alt="Seite 3 des Beispiels"></p>
+				<p><img src="img/example4.png" alt="Seite 4 des Beispiels"></p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"survey"</span>: <span class="hljs-string">"220d2741-376d-4ed9-861b-b9e0845d7674"</span>,
+  <span class="hljs-attr">"pages"</span>: [
+    [{
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"textwidget"</span>,
+      <span class="hljs-attr">"required"</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-attr">"structure"</span>: {
+        <span class="hljs-attr">"content"</span>: <span class="hljs-string">"Willkommen zu dieser *grandiosen* Umfrage!\nIch hoffe Sie haben **Spaß**!"</span>
+      }
+    }],
+    [{
+        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"checkbox"</span>,
+        <span class="hljs-attr">"required"</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">"structure"</span>: {
+          <span class="hljs-attr">"question"</span>: <span class="hljs-string">"&lt;Ihre Frage&gt;"</span>,
+          <span class="hljs-attr">"selection"</span>: [
+            <span class="hljs-string">"Antwortmöglichkeit A"</span>,
+            <span class="hljs-string">"B"</span>,
+            <span class="hljs-string">"C"</span>,
+            <span class="hljs-string">"D"</span>
+          ]
+        }
+      },
+      {
+        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"dropdown"</span>,
+        <span class="hljs-attr">"required"</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">"structure"</span>: {
+          <span class="hljs-attr">"items"</span>: [
+            <span class="hljs-string">"Antwortmöglichkeit A"</span>,
+            <span class="hljs-string">"B"</span>,
+            <span class="hljs-string">"C"</span>,
+            <span class="hljs-string">"D"</span>
+          ],
+          <span class="hljs-attr">"question"</span>: <span class="hljs-string">"&lt;Ihre Frage&gt;"</span>,
+          <span class="hljs-attr">"label"</span>: <span class="hljs-string">"Bitte auswählen"</span>
+        }
+      }
+    ],
+    [{
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"matrix"</span>,
+      <span class="hljs-attr">"required"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"structure"</span>: {
+        <span class="hljs-attr">"question"</span>: <span class="hljs-string">"&lt;Ihre Frage&gt;"</span>,
+        <span class="hljs-attr">"structure"</span>: [
+          <span class="hljs-string">"Antwortmöglichkeit A"</span>,
+          <span class="hljs-string">"B"</span>,
+          <span class="hljs-string">"C"</span>
+        ],
+        <span class="hljs-attr">"answers"</span>: {
+          <span class="hljs-attr">"Zeilentext 1"</span>: <span class="hljs-number">-1</span>,
+          <span class="hljs-attr">"Zeilentext 2"</span>: <span class="hljs-number">0</span>,
+          <span class="hljs-attr">"Zeilentext 3"</span>: <span class="hljs-number">2</span>
+        }
+      }
+    }],
+    [{
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"vector"</span>,
+      <span class="hljs-attr">"required"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"structure"</span>: {
+        <span class="hljs-attr">"question"</span>: <span class="hljs-string">"&lt;Ihre Frage&gt;"</span>,
+        <span class="hljs-attr">"selection"</span>: [
+          <span class="hljs-string">"Antwortmöglichkeit A"</span>,
+          <span class="hljs-string">"B"</span>,
+          <span class="hljs-string">"C"</span>,
+          <span class="hljs-string">"D"</span>
+        ]
+      }
+    }]
+  ]
+}</code></pre>
+				<a href="#benutzung" id="benutzung" style="color: inherit; text-decoration: none;">
+					<h2>Benutzung</h2>
+				</a>
+				<p>Ihren Teilnehmern müssen Sie folgenden Link geben:</p>
+				<pre><code class="language-URL">https://&lt;IhreDomain&gt;/?&lt;Ihre Umfragen-UUID&gt;</code></pre>
+				<p>In dem Datenpfad unter Ihrer Umfragen-UUID finden Sie die Rückmeldungen Ihrer Teilnehmer in jeweiligen <code>json</code>-Dateien.</p>
+				<a href="#server-client-kommunikation" id="server-client-kommunikation" style="color: inherit; text-decoration: none;">
+					<h2>Server-Client Kommunikation</h2>
+				</a>
+				<p><img src="img/Flow.png" alt="Flowchart"></p>
+				<a href="#aufbau-der-app" id="aufbau-der-app" style="color: inherit; text-decoration: none;">
+					<h2>Aufbau der App</h2>
+				</a>
+				<p><img src="img/structure.png" alt="Strukturdiagramm"></p>
+			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals current ">
-						<a href="index.html"><em>Globals</em></a>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_api_.html">&quot;api&quot;</a>
