@@ -28,6 +28,7 @@ interface TaskData {
     solved: boolean;
     events: Array<CellEvent>;
     selected: Array<Array<boolean>> | null; // For Type Sim. Image or Obj. Ident. the selected Cells during Verify, for Dyn. Sim. Image this is null
+    images: Array<string>;
 }
 
 export { CellEvent, TaskData, TaskType };

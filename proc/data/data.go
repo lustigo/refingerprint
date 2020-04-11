@@ -116,6 +116,7 @@ type TaskData struct {
 	Solved    bool        `json:"solved"`
 	Events    []CellEvent `json:"events"`
 	Selected  [][]bool    `json:"selected"`
+	Images    []string    `json:"images"` // Data URIs of the used images
 }
 
 // Time represents Start and End time of the ReCaptcha

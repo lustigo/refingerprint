@@ -12,6 +12,11 @@ export default class Task {
     private candidate = "";
 
     /**
+     * The payload of this task
+     */
+    private images: Array<string> = [];
+
+    /**
      * Reference to TaskFrame
      */
     private frame: HTMLIFrameElement;
@@ -68,6 +73,7 @@ export default class Task {
         this.getTable()
             .then(() => delay(100))
             .then(this.getType.bind(this))
+            .then(this.getImage.bind(this))
             .then(this.buildMatrix.bind(this))
             .then(this.startTimer.bind(this));
     }
@@ -94,6 +100,7 @@ export default class Task {
             solved: this.solved,
             events: this.events,
             selected: this.type == TaskType.DYN ? null : this.selected,
+            images: this.images,
         };
     }
 
@@ -113,6 +120,27 @@ export default class Task {
                 intern.push(false);
             }
             this.selected.push(intern);
+        }
+    }
+
+    /**
+     * Saves the initial payload of the Task
+     */
+    private async getImage(): Promise<void> {
+        if(this.frame.contentDocument){
+            let imgEle;
+            if(this.type == TaskType.SIM){
+                imgEle = this.frame.contentDocument.getElementsByClassName("rc-image-tile-33");
+            } else if(this.type == TaskType.OBJ){
+                imgEle = this.frame.contentDocument.getElementsByClassName("rc-image-tile-44");
+            }
+            if (imgEle && imgEle.length > 0) {
+                this.images.push(this.toDataURL(imgEle[0] as HTMLImageElement));
+            } else {
+                await delay(100);
+                this.getImage();
+                return;
+            }
         }
     }
 
@@ -231,6 +259,12 @@ export default class Task {
                             });
                         }
                     } else {
+                        if(this.type == TaskType.DYN && this.selected[i][j]){
+                            const imgEle = cell.getElementsByClassName("rc-image-tile-11");
+                            if(imgEle && imgEle.length > 0 ){
+                                this.images.push(this.toDataURL(imgEle[0] as HTMLImageElement));
+                            }
+                        }
                         this.selected[i][j] = false;
                     }
                 }
@@ -243,6 +277,23 @@ export default class Task {
      */
     private async startTimer(): Promise<void> {
         this.timer = window.setInterval(this.onTick.bind(this),100);
+    }
+
+    /**
+     * Converts the Image to a Data URI
+     * @param img Image Element to convert
+     * @return Data URI of that image
+     * @src https://www.tutorialspoint.com/convert-image-to-data-uri-with-javascript
+     */
+    private toDataURL(img: HTMLImageElement): string {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        if(ctx){
+            ctx.drawImage(img, 0, 0);
+        }
+        return canvas.toDataURL("image/jpeg");
     }
 }
 
