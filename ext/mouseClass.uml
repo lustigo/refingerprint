@@ -1,0 +1,112 @@
+@startuml
+interface Module {
+ + name: string
+ + start(): void
+ + stop(): void
+ + getCollectedData(): Record<string, any> | string | number
+}
+
+enum MouseKey {
+ LEFT
+ RIGHT
+ MIDDLE
+}
+
+interface ClickData {
+ + release: boolean
+}
+
+ClickData "1" *-- "1" MouseKey : key
+
+interface MouseData {
+ + x: number
+ + y: number
+ + time: number
+}
+
+interface ScrollData {
+ + deltaX: number
+ + deltaY: number
+ + deltaZ: number
+ + deltaMode: number
+}
+
+MouseData <|-- ClickData
+MouseData <|-- ScrollData
+
+abstract class MouseListener {
+ + name: string
+ # {field} removeHandler: Array<() => void> 
+ + start(): void
+ + stop(): void
+ + {abstract} getCollectedData(): Array<any>
+ # stopTracking(): void
+}
+
+Module <|-- MouseListener
+MouseListener <|-- MouseMovement
+MouseMovement "1" *-- "0..*" MouseData: # path
+
+
+abstract class MouseMovement {
+ # running: boolean
+ + getCollectedData(): Array<MouseData>
+ # registerMouseListener(Event => any): () => void
+ # onMouseMove(Event): void
+}
+
+class MouseClickListener {
+ + name: string
+ + start(): void
+ + stop(): void
+ + getCollectedData: Array<ClickData>
+ - registerClickListener("mousedown" | "mouseup", MouseEvent => any): () => void
+ - registerOnFrames(MouseEvent => any, MouseEvent => any): Promise<void>
+ - getClickHandler(boolean): MouseEvent => void
+ - onMouseClick(MouseEvent, boolean): void
+}
+
+MouseListener <|-- MouseClickListener
+MouseClickListener "1" *-- "0..*" ClickData: - events
+
+class ScrollListener {
+ + name: string
+ + start(): void
+ + stop(): void
+ + getCollectedData(): Array<ScrollData>
+ - registerOnFrames(WheelEvent => any): Promise<void>
+ - registerWheelListener(WheelEvent => void): () => void
+ - onWheel(WheelEvent): void
+}
+
+MouseListener <|-- ScrollListener
+ScrollListener "1" *-- "0..*" ScrollData: - events
+
+class MouseMovementCheckbox {
+ + name: string
+ + start(): void
+ + stop(): void
+}
+MouseMovement <|-- MouseMovementCheckbox
+
+class MouseMovementRest {
+ + name: string
+ + start(): void
+ + stop(): void
+ - startTracking(): void
+}
+MouseMovement <|-- MouseMovementRest
+
+
+class FrameListener {
+ - captchaFrame: HTMLIFrameElement | null
+ - taskFrame: HTMLIframElement | null
+ + getCaptchaFrame(): HTMLIframeElement | null
+ + getTaskFrame(): HTMLIframeElement | null
+ + registerCaptchaFrameClickListener(Event => any, any): () => void
+ + registerCaptchaFrameMoveListener(Event => any, any): () => void
+ + registerTaskFrameClickListener(Event => any, any): () => void
+ + registerTaskFrameMoveListener(Event => any, any): () => void
+ - registerIframeListener(() => HTMLIframeElement | null, string, Event => any): () => void
+}
+@enduml
