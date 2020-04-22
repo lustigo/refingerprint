@@ -48,7 +48,7 @@ class Task {
 	- getType(): Promise<void>
 	- onTick(): void
 	- startTimer(): Promise<void>
-	- toDataURL(HTMLImageElement): string
+	- {static} toDataURL(HTMLImageElement): string
 }
 
 interface CellEvent {
