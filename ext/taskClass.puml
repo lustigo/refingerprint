@@ -1,0 +1,83 @@
+@startuml
+
+interface Module {
+ + name: string
+ + start(): void
+ + stop(): void
+ + getCollectedData(): Record<string, any> | string | number
+}
+
+class TaskListener {
+	+ name: string
+	- stopped: boolean
+	- taskFrame: HTMLIFrameElement | null
+	- timeout: number
+	+ start(): void
+	+ stop(): void
+	+ getCollectedData(): Array<TaskData>
+	- addTask(): void
+	- checkError(): void
+	- hasVerifyError(): boolean
+	- listenToOpen(): Promise<void>
+	- onAudio(): void
+	- onEvent(): Promise<void>
+	- onTimeout(): void
+	- onVerify(): void
+	- registerListeners(): void
+	- stopTask(): void
+}
+
+class Task {
+	+ failed: boolean
+	+ solved: boolean
+	- candidate: string
+	- images: Array<string>
+	- frame: HTMLIFrameElement
+	- table: HTMLTableElement | null
+	- term: string
+	- timer: number | null
+	- selected: Array<Array<boolean>> | null
+	+ Task(HTMLIFrameElement)
+	+ stop(): void
+	+ getData(): TaskData
+	- buildMatrix(): Promise<void>
+	- getImage(): Promise<void>
+	- getTerm(): Promise<void>
+	- getCandidate(): Promise<void>
+	- getTable(): Promise<void>
+	- getType(): Promise<void>
+	- onTick(): void
+	- startTimer(): Promise<void>
+	- toDataURL(HTMLImageElement): string
+}
+
+interface CellEvent {
+	id: number
+	time: number
+	selected: boolean
+}
+enum TaskType {
+	NO
+	SIM
+	DYN
+	OBJ
+}
+interface TaskData {
+	candidate: string
+	term: string
+	failed: boolean
+	solved: boolean
+	selected: Array<Array<boolean>> | null
+	images: Array<string>
+}
+
+Module <|-- TaskListener
+TaskListener "1" *-- "0..*" Task: - tasks
+Task "1" *-- "1" TaskType: + type
+TaskData "1" *-- "1" TaskType: type
+Task "1" *-- "0..*" CellEvent: - events
+TaskData "1" *-- "0..*" CellEvent: events
+
+
+
+@enduml
