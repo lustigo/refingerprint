@@ -98,6 +98,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_modules_frameposition_.frameposition.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_modules_frameposition_.frameposition.html#stopped" class="tsd-kind-icon">stopped</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
@@ -129,12 +130,27 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_interfaces_module_.module.html">Module</a>.<a href="../interfaces/_interfaces_module_.module.html#name">name</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/c4f3900/ext/src/modules/FramePosition.ts#L34">modules/FramePosition.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/51568a8/ext/src/modules/FramePosition.ts#L39">modules/FramePosition.ts:39</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Name of the module</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="stopped" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> stopped</h3>
+					<div class="tsd-signature tsd-kind-icon">stopped<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/51568a8/ext/src/modules/FramePosition.ts#L34">modules/FramePosition.ts:34</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If the Collection stopped</p>
 						</div>
 					</div>
 				</section>
@@ -151,7 +167,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/c4f3900/ext/src/modules/FramePosition.ts#L48">modules/FramePosition.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/51568a8/ext/src/modules/FramePosition.ts#L53">modules/FramePosition.ts:53</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -174,7 +190,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_interfaces_module_.module.html">Module</a>.<a href="../interfaces/_interfaces_module_.module.html#getcollecteddata">getCollectedData</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/c4f3900/ext/src/modules/FramePosition.ts#L93">modules/FramePosition.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/51568a8/ext/src/modules/FramePosition.ts#L104">modules/FramePosition.ts:104</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -196,7 +212,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/c4f3900/ext/src/modules/FramePosition.ts#L64">modules/FramePosition.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/51568a8/ext/src/modules/FramePosition.ts#L69">modules/FramePosition.ts:69</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -219,7 +235,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_interfaces_module_.module.html">Module</a>.<a href="../interfaces/_interfaces_module_.module.html#start">start</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/c4f3900/ext/src/modules/FramePosition.ts#L40">modules/FramePosition.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/51568a8/ext/src/modules/FramePosition.ts#L45">modules/FramePosition.ts:45</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -243,13 +259,13 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_interfaces_module_.module.html">Module</a>.<a href="../interfaces/_interfaces_module_.module.html#stop">stop</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/c4f3900/ext/src/modules/FramePosition.ts#L88">modules/FramePosition.ts:88</a></li>
+									<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/51568a8/ext/src/modules/FramePosition.ts#L97">modules/FramePosition.ts:97</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Will be called when the Captcha is solved
-									does nothing</p>
+									Stops a possible Loop</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -265,7 +281,7 @@
 					<div class="tsd-signature tsd-kind-icon">captcha<wbr>Pos<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/c4f3900/ext/src/modules/FramePosition.ts#L14">modules/FramePosition.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/51568a8/ext/src/modules/FramePosition.ts#L14">modules/FramePosition.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -279,7 +295,7 @@
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/c4f3900/ext/src/modules/FramePosition.ts#L18">modules/FramePosition.ts:18</a></li>
+								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/51568a8/ext/src/modules/FramePosition.ts#L18">modules/FramePosition.ts:18</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -289,7 +305,7 @@
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/c4f3900/ext/src/modules/FramePosition.ts#L17">modules/FramePosition.ts:17</a></li>
+								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/51568a8/ext/src/modules/FramePosition.ts#L17">modules/FramePosition.ts:17</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -299,7 +315,7 @@
 						<div class="tsd-signature tsd-kind-icon">x<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/c4f3900/ext/src/modules/FramePosition.ts#L15">modules/FramePosition.ts:15</a></li>
+								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/51568a8/ext/src/modules/FramePosition.ts#L15">modules/FramePosition.ts:15</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -309,7 +325,7 @@
 						<div class="tsd-signature tsd-kind-icon">y<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/c4f3900/ext/src/modules/FramePosition.ts#L16">modules/FramePosition.ts:16</a></li>
+								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/51568a8/ext/src/modules/FramePosition.ts#L16">modules/FramePosition.ts:16</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -320,7 +336,7 @@
 					<div class="tsd-signature tsd-kind-icon">task<wbr>Pos<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/c4f3900/ext/src/modules/FramePosition.ts#L24">modules/FramePosition.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/51568a8/ext/src/modules/FramePosition.ts#L24">modules/FramePosition.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -334,7 +350,7 @@
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/c4f3900/ext/src/modules/FramePosition.ts#L28">modules/FramePosition.ts:28</a></li>
+								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/51568a8/ext/src/modules/FramePosition.ts#L28">modules/FramePosition.ts:28</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -344,7 +360,7 @@
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/c4f3900/ext/src/modules/FramePosition.ts#L27">modules/FramePosition.ts:27</a></li>
+								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/51568a8/ext/src/modules/FramePosition.ts#L27">modules/FramePosition.ts:27</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -354,7 +370,7 @@
 						<div class="tsd-signature tsd-kind-icon">x<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/c4f3900/ext/src/modules/FramePosition.ts#L25">modules/FramePosition.ts:25</a></li>
+								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/51568a8/ext/src/modules/FramePosition.ts#L25">modules/FramePosition.ts:25</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -364,7 +380,7 @@
 						<div class="tsd-signature tsd-kind-icon">y<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/c4f3900/ext/src/modules/FramePosition.ts#L26">modules/FramePosition.ts:26</a></li>
+								<li>Defined in <a href="https://github.com/lustigo/refingerprint/blob/51568a8/ext/src/modules/FramePosition.ts#L26">modules/FramePosition.ts:26</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -391,6 +407,9 @@
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
 								<a href="_modules_frameposition_.frameposition.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="_modules_frameposition_.frameposition.html#stopped" class="tsd-kind-icon">stopped</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
 								<a href="_modules_frameposition_.frameposition.html#getcaptchapos" class="tsd-kind-icon">get<wbr>Captcha<wbr>Pos</a>
