@@ -135,7 +135,7 @@ export default class Task {
                 imgEle = this.frame.contentDocument.getElementsByClassName("rc-image-tile-44");
             }
             if (imgEle && imgEle.length > 0) {
-                this.images.push(this.toDataURL(imgEle[0] as HTMLImageElement));
+                this.images.push(Task.toDataURL(imgEle[0] as HTMLImageElement));
             } else {
                 await delay(100);
                 this.getImage();
@@ -262,7 +262,7 @@ export default class Task {
                         if(this.type == TaskType.DYN && this.selected[i][j]){
                             const imgEle = cell.getElementsByClassName("rc-image-tile-11");
                             if(imgEle && imgEle.length > 0 ){
-                                this.images.push(this.toDataURL(imgEle[0] as HTMLImageElement));
+                                this.images.push(Task.toDataURL(imgEle[0] as HTMLImageElement));
                             }
                         }
                         this.selected[i][j] = false;
@@ -285,7 +285,7 @@ export default class Task {
      * @return Data URI of that image
      * @src https://www.tutorialspoint.com/convert-image-to-data-uri-with-javascript
      */
-    private toDataURL(img: HTMLImageElement): string {
+    private static toDataURL(img: HTMLImageElement): string {
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
         canvas.width = img.width;
