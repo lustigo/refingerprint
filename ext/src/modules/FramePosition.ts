@@ -29,6 +29,11 @@ export default class FramePosition implements Module {
     };
 
     /**
+     * If the Collection stopped
+     */
+    private stopped = false;
+
+    /**
      * Name of the module
      */
     public readonly name = "FramePosition";
@@ -62,6 +67,10 @@ export default class FramePosition implements Module {
      * Gets the Position of the Task Frame
      */
     private getTaskPos(): void {
+        if(this.stopped){
+            return;
+        }
+        
         const frame = frameListener.getTaskFrame();
         if (!frame) {
             delay(10).then(this.getTaskPos.bind(this));
@@ -82,10 +91,12 @@ export default class FramePosition implements Module {
 
     /**
      * Will be called when the Captcha is solved
-     * does nothing
+     * Stops a possible Loop
      */
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    public stop(): void { }
+    public stop(): void {
+        this.stopped = true;
+    }
 
     /**
      * Returns the position of the Frames.
