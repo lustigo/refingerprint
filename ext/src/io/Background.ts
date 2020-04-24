@@ -30,13 +30,13 @@ function onCookieUpdate(): void {
  */
 function downloadData(req: Record<string, any>): void {
     const data = JSON.stringify(req);
-    const blob = new Blob([data]);
+    const blob = new Blob([data], { type: "application/json"});
     const url = window.webkitURL.createObjectURL(blob);
 
-    // Hash of Data (only first 10 chars) as Filename
+    // Hash of Data (only first 16 chars) as Filename
     const hasher = new jsSHA("SHA-512", "TEXT");
     hasher.update(data);
-    const filename = hasher.getHash("B64").substr(0, 10).replace("/", "").replace("\\", "") + ".json";
+    const filename = hasher.getHash("HEX").substr(0, 16).replace("/", "").replace("\\", "") + ".json";
 
     chrome.downloads.download({
         url,
