@@ -26,8 +26,8 @@ func getFile(toSave bool, files []string) string {
 	return filepath.Join(filepath.Dir(files[0]), fname[:len(fname)-len(filepath.Ext(files[0]))]) + ".svg"
 }
 
-// GetPlot generates the plot of the Mousepath and saves it to the given file. Crop defines if the plot should be cropped to the mouse path
-func getPlot(w, h int16, path []data.NormalizedMouseData, rect data.Rectangle, crop bool, file string) {
+// GetPlot generates the plot of the Mousepath and saves it to the given file.
+func getPlot(w, h int16, path []data.NormalizedMouseData, rect data.Rectangle, file string) {
 	p, _ := plot.New()
 	x := p.X
 	x.Min = 0
@@ -37,9 +37,8 @@ func getPlot(w, h int16, path []data.NormalizedMouseData, rect data.Rectangle, c
 	y.Max = float64(h)
 	p.HideAxes()
 
-	if !crop {
-		p.Add(plotAntiCrop(w, h))
-	}
+	p.Add(plotAntiCrop(w, h))
+
 	r := plotRectangle(w, h, rect)
 	p.Add(r)
 	points := plotMousePoints(w, h, path)
@@ -101,17 +100,17 @@ func plotRectangle(w, h int16, rect data.Rectangle) *plotter.Polygon {
 // ShowWindows displays the Image in the given file in a GUI
 func showWindow(image string) {
 	a := app.New()
-	w := a.NewWindow("ReFingerPrint MousePathCheckbox")
+	w := a.NewWindow("ReFingerPrint MousePath")
 	i := canvas.NewImageFromFile(image)
 	i.FillMode = canvas.ImageFillOriginal
 	w.SetContent(i)
 	w.ShowAndRun()
 }
 
-// Creates and saves the graph of the given path in the given resolution in the given file Crop defines if the plot should be cropped to the mouse path
-func saveGraph(w, h int16, path []data.MouseData, screen data.ScreenInfo, rect data.Rectangle, time data.Time, crop bool, file string) {
+// Creates and saves the graph of the given path in the given resolution in the given file.
+func saveGraph(w, h int16, path []data.MouseData, screen data.ScreenInfo, rect data.Rectangle, time data.Time, file string) {
 	npath := data.NormalizeMouseData(path, screen, time)
-	getPlot(w, h, npath, rect.Normalize(screen), crop, file)
+	getPlot(w, h, npath, rect.Normalize(screen), file)
 }
 
 // Gets the Screen Size (widht,height) of the Flags (if provided) or from the provided Data
