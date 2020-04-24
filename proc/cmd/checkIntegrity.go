@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"crypto/sha512"
+	"encoding/hex"
 	"fmt"
 
 	"github.com/lustigo/refingerprint/proc/io"
@@ -35,7 +37,20 @@ func checkIntegrity(filepath string) {
 	_, err := io.ParseData(filepath)
 	if err != nil {
 		fmt.Printf("%v is not valid: %v\n", filepath, err)
+	}
+	content, err := io.ReadFile(filepath)
+	if err != nil {
+		fmt.Printf("%v is not valid: %v\n", filepath, err)
+	} else if !checkHash(filepath, content) {
+		fmt.Printf("%v is not upright\n", filepath)
 	} else {
 		fmt.Printf("%v is valid\n", filepath)
 	}
+}
+
+// Checks the Hash of the content and compares it with the given filename
+func checkHash(filepath string, content []byte) bool {
+	hash := sha512.Sum512(content)
+	hexHash := hex.EncodeToString(hash[0:8])
+	return hexHash == io.GetFileName(filepath)
 }
