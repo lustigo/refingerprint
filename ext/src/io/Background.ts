@@ -13,6 +13,14 @@ if (chrome.downloads.setShelfEnabled) {
 function onCookieUpdate(): void {
     chrome.cookies.remove({ name: "NID", "url": "https://google.com" });
     chrome.cookies.remove({ name: "ANID", "url": "https://google.com" });
+    chrome.cookies.remove({ name: "SID", "url": "https://google.com" });
+    chrome.cookies.remove({ name: "HSID", "url": "https://google.com" });
+    chrome.cookies.remove({ name: "DSID", "url": "https://google.com" });
+    chrome.cookies.remove({ name: "FLC", "url": "https://google.com" });
+    chrome.cookies.remove({ name: "AID", "url": "https://google.com" });
+    chrome.cookies.remove({ name: "TAID", "url": "https://google.com" });
+    chrome.cookies.remove({ name: "exchange_uid", "url": "https://google.com" });
+    chrome.cookies.remove({ name: "IDE", "url": "https://doubleclick.net" });
 }
 
 
