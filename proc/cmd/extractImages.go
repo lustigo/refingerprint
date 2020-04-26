@@ -20,10 +20,7 @@ var extractImagesCmd = &cobra.Command{
 	It saves the extracted images as filename_tasknumber_imagenumber.extension .`,
 	Run: func(cmd *cobra.Command, args []string) {
 		files, err := GetFiles(args)
-		if err != nil {
-			fmt.Println(err.Error())
-			return
-		}
+		checkErr(err)
 
 		for _, file := range files {
 			extractImages(file)

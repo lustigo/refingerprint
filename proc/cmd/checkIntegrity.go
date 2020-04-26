@@ -17,10 +17,7 @@ var checkIntegrityCmd = &cobra.Command{
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		files, err := GetFiles(args)
-		if err != nil {
-			fmt.Println(err.Error())
-			return
-		}
+		checkErr(err)
 
 		for _, file := range files {
 			checkIntegrity(file)
