@@ -4,13 +4,15 @@ import "github.com/sbinet/go-arff"
 
 // ProcessedFeatures contains all the extracted and calculated features from the raw data set
 type ProcessedFeatures struct {
-	UserID string `arff:"userID" csv:"userID"`
+	UserID         string `arff:"userID" csv:"userID"`
+	ProcessingTime uint64 `arff:"processingTime" csv:"processing time"`
 }
 
 // GetARFFHeader returns the Header for an ARFF file which contains ProcessedFeatures instances
 func GetARFFHeader() arff.Header {
 	header := arff.Header{}
 	header.AddAttr("userID", arff.String, nil)
+	header.AddAttr("processingTime", arff.Numeric, nil)
 	header.Relation = "refingerprint"
 	return header
 }
@@ -19,5 +21,6 @@ func GetARFFHeader() arff.Header {
 func ExtractFeatures(data *Data) *ProcessedFeatures {
 	features := &ProcessedFeatures{}
 	features.UserID = data.UserID
+	features.ProcessingTime = data.Time.End - data.Time.Start
 	return features
 }
