@@ -14,7 +14,7 @@ import (
 
 // extractImagesCmd represents the extractImages command
 var extractImagesCmd = &cobra.Command{
-	Use:   "extractImages",
+	Use:   "extractImages <single file or folder>",
 	Short: "Extracts the images of that file",
 	Long: `Extracts all the images of the taks of the given file or files.
 	It saves the extracted images as filename_tasknumber_imagenumber.extension .`,
