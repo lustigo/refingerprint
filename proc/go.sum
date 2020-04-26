@@ -95,8 +95,6 @@ github.com/kr/logfmt v0.0.0-20140226030751-b84e30acd515/go.mod h1:+0opPa2QZZtGFB
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
 github.com/kr/text v0.1.0/go.mod h1:4Jbv+DJW3UT/LiOwJeYQe1efqtUx/iVham/4vfdArNI=
-github.com/lustigo/go-arff v0.0.0-20200426184547-8bc066a73276 h1:RZzs9WDfMmlogKP5BI2462/pmCddHc4zeuJpsi6Quz8=
-github.com/lustigo/go-arff v0.0.0-20200426184547-8bc066a73276/go.mod h1:oCuzjs0ZvdAL4jsHcF3YJd3711eknc1t4QyRtGZGAxg=
 github.com/lustigo/refingerprint v0.0.0-20200319231326-c8dd170c271c h1:FMyI71N/Vjp9C1HD2eWHsptMvtb8oAJPtEOSpXwBJes=
 github.com/magiconair/properties v1.8.0 h1:LLgXmsheXeRoUOBOjtwPQCWIYqM/LU1ayDtDePerRcY=
 github.com/magiconair/properties v1.8.0/go.mod h1:PppfXfuXeibc/6YijjN8zIbojt8czPbwD3XqdrwzmxQ=
@@ -129,8 +127,8 @@ github.com/remyoudompheng/bigfft v0.0.0-20190728182440-6a916e37a237/go.mod h1:qq
 github.com/rogpeppe/fastuuid v0.0.0-20150106093220-6724a57986af/go.mod h1:XWv6SoW27p1b0cqNHllgS5HIMJraePCO15w5zCzIWYg=
 github.com/russross/blackfriday/v2 v2.0.1/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
 github.com/ruudk/golang-pdf417 v0.0.0-20181029194003-1af4ab5afa58/go.mod h1:6lfFZQK844Gfx8o5WFuvpxWRwnSoipWe/p622j1v06w=
-github.com/sbinet/go-arff v0.0.0-20130619114203-5a542c3feeed h1:otONk/l3yo0IRjB4YhOIG5oKtMNW6+hD07k3gXW9zVo=
-github.com/sbinet/go-arff v0.0.0-20130619114203-5a542c3feeed/go.mod h1:wNHNg130+F7EehexgrD/dxhDai0Zix6ThBGDcwdT6LA=
+github.com/sbinet/go-arff v0.0.0-20200426185419-a73917216409 h1:Gq1PEs0yFnwK1qZyvBtfr9qK3MPo7hhLkj0NuXkk/bs=
+github.com/sbinet/go-arff v0.0.0-20200426185419-a73917216409/go.mod h1:wNHNg130+F7EehexgrD/dxhDai0Zix6ThBGDcwdT6LA=
 github.com/shurcooL/sanitized_anchor_name v1.0.0/go.mod h1:1NzhyTcUVG4SuEtjjoZeVRXNmyL/1OwPU0+IJeTBvfc=
 github.com/sirupsen/logrus v1.2.0/go.mod h1:LxeOpSwHxABJmUn/MG1IvRgCAasNZTLOkJPxbbu5VWo=
 github.com/soheilhy/cmux v0.1.4/go.mod h1:IM3LyeVVIOuxMH7sFAkER9+bJ4dT7Ms6E4xg4kGIyLM=

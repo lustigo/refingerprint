@@ -10,7 +10,7 @@ require (
 	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20200420212212-258d9bec320e // indirect
 	github.com/gocarina/gocsv v0.0.0-20200330101823-46266ca37bd3
 	github.com/jung-kurt/gofpdf v1.16.2 // indirect
-	github.com/lustigo/go-arff v0.0.0-20200426184547-8bc066a73276
+	github.com/sbinet/go-arff v0.0.0-20200426185419-a73917216409
 	github.com/spf13/cobra v1.0.0
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/srwiley/rasterx v0.0.0-20200120212402-85cb7272f5e9 // indirect

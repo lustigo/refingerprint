@@ -1,6 +1,6 @@
 package data
 
-import "github.com/lustigo/go-arff"
+import "github.com/sbinet/go-arff"
 
 // ProcessedFeatures contains all the extracted and calculated features from the raw data set
 type ProcessedFeatures struct {

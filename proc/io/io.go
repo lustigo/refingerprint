@@ -10,8 +10,8 @@ import (
 	"strings"
 
 	"github.com/gocarina/gocsv"
-	"github.com/lustigo/go-arff"
 	"github.com/lustigo/refingerprint/proc/data"
+	"github.com/sbinet/go-arff"
 )
 
 // ParseData reads the given Filename and parses the content to the Data Structure
