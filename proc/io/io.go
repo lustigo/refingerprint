@@ -1,3 +1,4 @@
+// Package io contains files for the interaction with the filesystem
 package io
 
 import (
