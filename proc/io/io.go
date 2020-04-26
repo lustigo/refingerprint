@@ -9,6 +9,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/gocarina/gocsv"
+	"github.com/lustigo/go-arff"
 	"github.com/lustigo/refingerprint/proc/data"
 )
 
@@ -53,4 +55,45 @@ func GetFileName(path string) string {
 		return ""
 	}
 	return splitted[0]
+}
+
+// WriteCSVFile writes the given Features to the given path as a CSV File
+func WriteCSVFile(path string, data []*data.ProcessedFeatures) {
+	file, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE, os.ModePerm)
+	if err != nil {
+		fmt.Printf("Could not open file %v: %v\n", file, err)
+		return
+	}
+	defer file.Close()
+
+	err = gocsv.MarshalFile(data, file)
+	if err != nil {
+		fmt.Printf("Could not write to file %v: %v\n", file, err)
+	}
+}
+
+// WriteARFFFile writes the given Features to the given path as a ARFF File
+func WriteARFFFile(path string, d []*data.ProcessedFeatures) {
+	file, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE, os.ModePerm)
+	if err != nil {
+		fmt.Printf("Could not open file %v: %v\n", file, err)
+		return
+	}
+
+	enc, err := arff.NewEncoder(file)
+	if err != nil {
+		fmt.Printf("Could not get an ARFF Encoder: %v\n", err)
+		file.Close()
+		return
+	}
+
+	enc.Header = data.GetARFFHeader()
+	for _, feature := range d {
+		if err = enc.Encode(feature); err != nil {
+			fmt.Printf("Could not encode %v: %v\n", feature, err)
+		}
+	}
+
+	file.Sync()
+	file.Close()
 }
