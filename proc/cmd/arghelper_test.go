@@ -64,3 +64,39 @@ func TestCheckFileAndAppend(t *testing.T) {
 		}
 	}
 }
+
+// Generates an ordered string array with the given length
+func generateArray(number int) []string {
+	s := "a"
+	arr := []string{}
+	for i := 0; i < number; i++ {
+		arr = append(arr, s)
+		s = s + "a"
+	}
+	return arr
+}
+
+// BenchmarkLinSearch1 benchmarks a linear search where a needle is not found with 1 element
+func BenchmarkLinSearch1(b *testing.B) {
+	Contains(generateArray(1), "no language")
+}
+
+// BenchmarkLinSearch10 benchmarks a linear search where a needle is not found with 10 element
+func BenchmarkLinSearch10(b *testing.B) {
+	Contains(generateArray(10), "no language")
+}
+
+// BenchmarkLinSearch100 benchmarks a linear search where a needle is not found with 100 element
+func BenchmarkLinSearch100(b *testing.B) {
+	Contains(generateArray(100), "no language")
+}
+
+// BenchmarkLinSearch1000 benchmarks a linear search where a needle is not found with 1000 element
+func BenchmarkLinSearch1000(b *testing.B) {
+	Contains(generateArray(1000), "no language")
+}
+
+// BenchmarkLinSearch10000 benchmarks a linear search where a needle is not found with 10000 element
+func BenchmarkLinSearch10000(b *testing.B) {
+	Contains(generateArray(10000), "no language")
+}

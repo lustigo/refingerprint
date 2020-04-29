@@ -5,6 +5,7 @@ go 1.13
 require (
 	fyne.io/fyne v1.2.4
 	github.com/ajstarks/svgo v0.0.0-20200320125537-f189e35d30ca // indirect
+	github.com/avct/uasurfer v0.0.0-20191028135549-26b5daa857f1
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/go-gl/glfw v0.0.0-20200420212212-258d9bec320e // indirect
 	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20200420212212-258d9bec320e // indirect
