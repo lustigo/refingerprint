@@ -155,7 +155,7 @@ func GetARFFHeader() arff.Header {
 	header.AddAttr("mime-multipart_byteranges", arff.Numeric, nil)
 	// TODO: Plugins
 	// Platforms
-	header.AddAttr("platform", arff.Nominal, platforms)
+	header.AddAttr("platform", arff.Nominal, getPlatformList())
 	// User Agent
 	header.AddAttr("browsername", arff.Nominal, browsername)
 	header.AddAttr("deviceType", arff.Nominal, devicetype)
