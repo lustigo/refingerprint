@@ -64,6 +64,45 @@ type ProcessedFeatures struct {
 	AppleVersion   uint64 `arff:"appleVersion" csv:"Apple Version"`
 	LinuxVersion   uint64 `arff:"linVersion" csv:"Linux/Android Version"`
 	DeviceType     string `arff:"deviceType" csv:"Device Type"`
+	// WebGL Extensions
+	WebGLExtMore                 uint16 `arff:"webglExtMore" csv:"Number of additional Extensions"`
+	WebGLExtOESTextFloat         uint8  `arff:"webglExtOESTextFloat" csv:"OES_texture_float"`
+	WebGLExtOESTextHalfFloat     uint8  `arff:"webglExtOESTextHalfFloat" csv:"OES_texture_half_float"`
+	WebGLExtLose                 uint8  `arff:"webglExtLose" csv:"WEBGL_lose_context"`
+	WebGLExtOESStd               uint8  `arff:"webglExtOESStd" csv:"OES_standard_derivatives"`
+	WebGLExtOESVert              uint8  `arff:"webglExtOESVert" csv:"OES_vertex_array_object"`
+	WebGLExtDebugRender          uint8  `arff:"webglExtDebugRender" csv:"WEBGL_debug_renderer_info"`
+	WebGLExtDebugShader          uint8  `arff:"webglExtDebugShader" csv:"WEBGL_debug_shaders"`
+	WebGLExtCompressTextS3TC     uint8  `arff:"webglExtCompressTextS3TC" csv:"WEBGL_compressed_texture_s3tc"`
+	WebGLExtDepth                uint8  `arff:"webglExtDepth" csv:"WEBGL_depth_texture"`
+	WebGLExtCompressTextPVRTC    uint8  `arff:"webglExtCompressTextPVRTC" csv:"WEBGL_compressed_texture_pvrtc"`
+	WebGLExtCompressTextATC      uint8  `arff:"webglExtCompressTextATC" csv:"WEBGL_compressed_texture_atc"`
+	WebGLExtOESEle               uint8  `arff:"webglExtOESEle" csv:"OES_element_index_uint"`
+	WebGLExtTextFilter           uint8  `arff:"webglExtTextFilter" csv:"EXT_texture_filter_anisotropic"`
+	WebGLExtFrag                 uint8  `arff:"webglExtFrag" csv:"EXT_frag_depth"`
+	WebGLExtDraw                 uint8  `arff:"webglExtDraw" csv:"WEBGL_draw_buffers"`
+	WebGLExtAngle                uint8  `arff:"webglExtAngle" csv:"ANGLE_instanced_arrays"`
+	WebGLExtOESTextFloatLin      uint8  `arff:"webglExtOESTextFloatLin" csv:"OES_texture_float_linear"`
+	WebGLExtOESTextHalfFloatLin  uint8  `arff:"webglExtOESTextHalfFloatLin" csv:"OES_texture_half_float_linear"`
+	WebGLExtBlend                uint8  `arff:"webglExtBlend" csv:"EXT_blend_minmax"`
+	WebGLExtShader               uint8  `arff:"webglExtShader" csv:"EXT_shader_texture_lod"`
+	WebGLExtColorBuffFloat       uint8  `arff:"webglExtColorBuffFloat" csv:"EXT_color_buffer_float"`
+	WebGLExtGLColorBuffFloat     uint8  `arff:"webglExtGLColorBuffFloat" csv:"WEBGL_color_buffer_float"`
+	WebGLExtColorBuffHalfFloat   uint8  `arff:"webglExtColorBuffHalfFloat" csv:"EXT_color_buffer_half_float"`
+	WebGLExtSrgb                 uint8  `arff:"webglExtSrgb" csv:"EXT_sRGB"`
+	WebGLExtCompressTextETC1     uint8  `arff:"webglExtCompressTextETC1" csv:"WEBGL_compressed_texture_etc1"`
+	WebGLExtDisjoint             uint8  `arff:"webglExtDisjoint" csv:"EXT_disjoint_timer_query"`
+	WebGLExtOESFbo               uint8  `arff:"webglExtOESFbo" csv:"OES_fbo_render_mipmap"`
+	WebGLExtCompressTextASTC     uint8  `arff:"webglExtCompressTextASTC" csv:"WEBGL_compressed_texture_astc"`
+	WebGLExtCompressTextETC      uint8  `arff:"webglExtCompressTextETC" csv:"WEBGL_compressed_texture_etc"`
+	WebGLExtCompressTextS3TCSrgb uint8  `arff:"webglExtCompressTextS3TCSrgb" csv:"WEBGL_compressed_texture_s3tc_srgb"`
+	WebGLExtDisjointGL2          uint8  `arff:"webglExtDisjointGL2" csv:"EXT_disjoint_timer_query_webgl2"`
+	WebGLExtFloat                uint8  `arff:"webglExtFloat" csv:"EXT_float_blend"`
+	WebGLExtOVR                  uint8  `arff:"webglExtOVR" csv:"OVR_multiview2"`
+	WebGLExtKHR                  uint8  `arff:"webglExtKHR" csv:"KHR_parallel_shader_compile"`
+	WebGLExtTextCompressBPTC     uint8  `arff:"webglExtTextCompressBPTC" csv:"EXT_texture_compression_bptc"`
+	WebGLExtTextCompressRGTC     uint8  `arff:"webglExtTextCompressRGTC" csv:"EXT_texture_compression_rgtc"`
+	// TODO: Vendor and Model
 }
 
 // GetARFFHeader returns the Header for an ARFF file which contains ProcessedFeatures instances
@@ -129,6 +168,45 @@ func GetARFFHeader() arff.Header {
 	header.AddAttr("winVersion", arff.Numeric, nil)
 	header.AddAttr("appleVersion", arff.Numeric, nil)
 	header.AddAttr("linVersion", arff.Numeric, nil)
+	// WebGL Extensions
+	header.AddAttr("webglExtMore", arff.Numeric, nil)
+	header.AddAttr("webglExtOESTextFloat", arff.Numeric, nil)
+	header.AddAttr("webglExtOESTextHalfFloat", arff.Numeric, nil)
+	header.AddAttr("webglExtLose", arff.Numeric, nil)
+	header.AddAttr("webglExtOESStd", arff.Numeric, nil)
+	header.AddAttr("webglExtOESVert", arff.Numeric, nil)
+	header.AddAttr("webglExtDebugRender", arff.Numeric, nil)
+	header.AddAttr("webglExtDebugShader", arff.Numeric, nil)
+	header.AddAttr("webglExtCompressTextS3TC", arff.Numeric, nil)
+	header.AddAttr("webglExtCompressTextPVRTC", arff.Numeric, nil)
+	header.AddAttr("webglExtCompressTextATC", arff.Numeric, nil)
+	header.AddAttr("webglExtDepth", arff.Numeric, nil)
+	header.AddAttr("webglExtOESEle", arff.Numeric, nil)
+	header.AddAttr("webglExtTextFilter", arff.Numeric, nil)
+	header.AddAttr("webglExtFrag", arff.Numeric, nil)
+	header.AddAttr("webglExtDraw", arff.Numeric, nil)
+	header.AddAttr("webglExtAngle", arff.Numeric, nil)
+	header.AddAttr("webglExtOESTextFloatLin", arff.Numeric, nil)
+	header.AddAttr("webglExtOESTextHalfFloatLin", arff.Numeric, nil)
+	header.AddAttr("webglExtBlend", arff.Numeric, nil)
+	header.AddAttr("webglExtShader", arff.Numeric, nil)
+	header.AddAttr("webglExtColorBuffFloat", arff.Numeric, nil)
+	header.AddAttr("webglExtGLColorBuffFloat", arff.Numeric, nil)
+	header.AddAttr("webglExtColorBuffHalfFloat", arff.Numeric, nil)
+	header.AddAttr("webglExtCompressTextETC1", arff.Numeric, nil)
+	header.AddAttr("webglExtCompressTextETC", arff.Numeric, nil)
+	header.AddAttr("webglExtSrgb", arff.Numeric, nil)
+	header.AddAttr("webglExtDisjoint", arff.Numeric, nil)
+	header.AddAttr("webglExtOESFbo", arff.Numeric, nil)
+	header.AddAttr("webglExtCompressTextASTC", arff.Numeric, nil)
+	header.AddAttr("webglExtCompressTextS3TCSrgb", arff.Numeric, nil)
+	header.AddAttr("webglExtDisjointGL2", arff.Numeric, nil)
+	header.AddAttr("webglExtFloat", arff.Numeric, nil)
+	header.AddAttr("webglExtOVR", arff.Numeric, nil)
+	header.AddAttr("webglExtKHR", arff.Numeric, nil)
+	header.AddAttr("webglExtTextCompressBPTC", arff.Numeric, nil)
+	header.AddAttr("webglExtTextCompressRGTC", arff.Numeric, nil)
+	// TODO: Vendor&Model
 
 	header.Relation = "refingerprint"
 	return header
@@ -142,6 +220,7 @@ func ExtractFeatures(data *Data) *ProcessedFeatures {
 	features.Canvas = data.Canvas
 	features.Audio = data.Audio
 	features.ExtractBrowserFeatures(data)
+	features.ExtractWebGLExtensions(data.WebGL)
 	return features
 }
 
