@@ -111,6 +111,15 @@ type ProcessedFeatures struct {
 	InnerHeight  uint16 `arff:"screenInnerY" csv:"Inner height of the screen"`
 	ScreenDeltaX uint16 `arff:"screenDX" csv:"Screen Delta X"`
 	ScreenDeltaY uint16 `arff:"screenDY" csv:"Screen Delta Y"`
+	// Frame Position
+	CaptchaX      float64 `arff:"captchaX" csv:"Captchaframepos X"`
+	CaptchaY      float64 `arff:"captchaY" csv:"Captchaframepos Y"`
+	CaptchaWidth  float64 `arff:"captchaWidth" csv:"Captchaframepos Width"`
+	CaptchaHeight float64 `arff:"captchaHeight" csv:"Captchaframepos Height"`
+	TaskX         float64 `arff:"taskX" csv:"Taskframepos X"`
+	TaskY         float64 `arff:"taskY" csv:"Taskframepos Y"`
+	TaskWidth     float64 `arff:"taskWidth" csv:"Taskframepos Width"`
+	TaskHeight    float64 `arff:"taskHeight" csv:"Taskframepos Height"`
 }
 
 // GetARFFHeader returns the Header for an ARFF file which contains ProcessedFeatures instances
@@ -223,6 +232,15 @@ func GetARFFHeader() arff.Header {
 	header.AddAttr("screenDensity", arff.Numeric, nil)
 	header.AddAttr("screenInnerX", arff.Numeric, nil)
 	header.AddAttr("screenInnerY", arff.Numeric, nil)
+	// Frame Positions
+	header.AddAttr("captchaX", arff.Numeric, nil)
+	header.AddAttr("captchaY", arff.Numeric, nil)
+	header.AddAttr("captchaWidth", arff.Numeric, nil)
+	header.AddAttr("captchaHeight", arff.Numeric, nil)
+	header.AddAttr("taskX", arff.Numeric, nil)
+	header.AddAttr("taskY", arff.Numeric, nil)
+	header.AddAttr("taskWidth", arff.Numeric, nil)
+	header.AddAttr("taskHeight", arff.Numeric, nil)
 
 	header.Relation = "refingerprint"
 	return header
@@ -238,6 +256,7 @@ func ExtractFeatures(data *Data) *ProcessedFeatures {
 	features.ExtractBrowserFeatures(data)
 	features.ExtractWebGLExtensions(data.WebGL)
 	features.ExtractScreenInfo(data.Screen)
+	features.ExtractFramePosition(data.FramePosition)
 	return features
 }
 
@@ -277,4 +296,16 @@ func (features *ProcessedFeatures) ExtractScreenInfo(sinfo ScreenInfo) {
 	features.ScreenWidth = sinfo.Width
 	features.InnerHeight = sinfo.InnerHeight
 	features.InnerWidth = sinfo.InnerWidth
+}
+
+// ExtractFramePosition saves the information about the frame rectangles
+func (features *ProcessedFeatures) ExtractFramePosition(pinfo FramePosition) {
+	features.CaptchaHeight = pinfo.Captcha.Height
+	features.CaptchaWidth = pinfo.Captcha.Width
+	features.CaptchaX = pinfo.Captcha.X
+	features.CaptchaY = pinfo.Captcha.Y
+	features.TaskHeight = pinfo.Task.Height
+	features.TaskWidth = pinfo.Task.Width
+	features.TaskX = pinfo.Task.X
+	features.TaskY = pinfo.Task.Y
 }
