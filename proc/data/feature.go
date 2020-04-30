@@ -103,6 +103,14 @@ type ProcessedFeatures struct {
 	WebGLExtTextCompressBPTC     uint8  `arff:"webglExtTextCompressBPTC" csv:"EXT_texture_compression_bptc"`
 	WebGLExtTextCompressRGTC     uint8  `arff:"webglExtTextCompressRGTC" csv:"EXT_texture_compression_rgtc"`
 	// TODO: Vendor and Model
+	// Screen Resolution
+	ScreenHeight uint16 `arff:"screenY" csv:"Screen Height"`
+	PixelDensity uint16 `arff:"screenDensity" csv:"Pixel Density"`
+	ScreenWidth  uint16 `arff:"screenX" csv:"Screen Width"`
+	InnerWidth   uint16 `arff:"screenInnerX" csv:"Inner width of the screen"`
+	InnerHeight  uint16 `arff:"screenInnerY" csv:"Inner height of the screen"`
+	ScreenDeltaX uint16 `arff:"screenDX" csv:"Screen Delta X"`
+	ScreenDeltaY uint16 `arff:"screenDY" csv:"Screen Delta Y"`
 }
 
 // GetARFFHeader returns the Header for an ARFF file which contains ProcessedFeatures instances
@@ -207,6 +215,14 @@ func GetARFFHeader() arff.Header {
 	header.AddAttr("webglExtTextCompressBPTC", arff.Numeric, nil)
 	header.AddAttr("webglExtTextCompressRGTC", arff.Numeric, nil)
 	// TODO: Vendor&Model
+	// Screen Resolution
+	header.AddAttr("screenX", arff.Numeric, nil)
+	header.AddAttr("screenY", arff.Numeric, nil)
+	header.AddAttr("screenDX", arff.Numeric, nil)
+	header.AddAttr("screenDY", arff.Numeric, nil)
+	header.AddAttr("screenDensity", arff.Numeric, nil)
+	header.AddAttr("screenInnerX", arff.Numeric, nil)
+	header.AddAttr("screenInnerY", arff.Numeric, nil)
 
 	header.Relation = "refingerprint"
 	return header
@@ -221,6 +237,7 @@ func ExtractFeatures(data *Data) *ProcessedFeatures {
 	features.Audio = data.Audio
 	features.ExtractBrowserFeatures(data)
 	features.ExtractWebGLExtensions(data.WebGL)
+	features.ExtractScreenInfo(data.Screen)
 	return features
 }
 
@@ -249,4 +266,15 @@ func (features *ProcessedFeatures) ExtractBrowserFeatures(data *Data) {
 	features.ExtractMIMETypes(binfo)
 	features.ExtractPlatform(binfo)
 	features.ExtractUserAgentInformation(binfo)
+}
+
+// ExtractScreenInfo saves the information about the screen
+func (features *ProcessedFeatures) ExtractScreenInfo(sinfo ScreenInfo) {
+	features.ScreenDeltaX = sinfo.DeltaX
+	features.ScreenDeltaY = sinfo.DeltaY
+	features.PixelDensity = sinfo.PixelDensity
+	features.ScreenHeight = sinfo.Height
+	features.ScreenWidth = sinfo.Width
+	features.InnerHeight = sinfo.InnerHeight
+	features.InnerWidth = sinfo.InnerWidth
 }
