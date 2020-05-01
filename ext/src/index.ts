@@ -14,6 +14,7 @@ import ScrollListener from "./modules/ScrollListener";
 import TaskListener from "./modules/TaskListener";
 import Time from "./modules/Time";
 import WebGL from "./modules/WebGL";
+import { delay } from "./misc/Helper";
 
 /**
  * All module classes that should be used for the Collection
@@ -25,3 +26,17 @@ const modules: Array<{ new(): Module }> = [Time, Canvas, Audio, MouseMovementChe
  * Start Data Collector
  */
 new Collector(modules);
+
+/**
+ * Inform the user that the browser was correctly installed
+ */
+async function setCheckmark(): Promise<void> {
+    const checkmark = document.getElementById("refingerprint-ext");
+    if(checkmark){
+        checkmark.dispatchEvent(new Event("refextLoaded"));
+    }else{
+        await delay(10);
+        setCheckmark();
+    }
+}
+setCheckmark();
