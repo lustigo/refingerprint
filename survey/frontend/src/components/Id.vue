@@ -1,9 +1,9 @@
 <template>
-  <span id="userId">{{ id }}</span>
+  <span id="sessionId">{{ id }}</span>
 </template>
 
 <style>
-#userId {
+#sessionId {
   visibility: hidden;
   display: none;
 }

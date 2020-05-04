@@ -5,7 +5,7 @@ import "github.com/sbinet/go-arff"
 // ProcessedFeatures contains all the extracted and calculated features from the raw data set
 type ProcessedFeatures struct {
 	// General Data
-	UserID         string `arff:"userID" csv:"userID"`
+	SessionID      string `arff:"sessionID" csv:"sessionID"`
 	ProcessingTime uint64 `arff:"processingTime" csv:"processing time"`
 	Canvas         string `arff:"canvasFingerprint" csv:"Canvas Fingerprint"`
 	Audio          string `arff:"audioFingerprint" csv:"Audio Fingerprint"`
@@ -126,7 +126,7 @@ type ProcessedFeatures struct {
 func GetARFFHeader() arff.Header {
 	header := arff.Header{}
 	// General Data
-	header.AddAttr("userID", arff.String, nil)
+	header.AddAttr("sessionID", arff.String, nil)
 	header.AddAttr("processingTime", arff.Numeric, nil)
 	header.AddAttr("canvasFingerprint", arff.String, nil)
 	header.AddAttr("audioFingerprint", arff.String, nil)
@@ -249,7 +249,7 @@ func GetARFFHeader() arff.Header {
 // ExtractFeatures extracts the Features from the raw data
 func ExtractFeatures(data *Data) *ProcessedFeatures {
 	features := &ProcessedFeatures{}
-	features.UserID = data.UserID
+	features.SessionID = data.SessionID
 	features.ProcessingTime = data.Time.End - data.Time.Start
 	features.Canvas = data.Canvas
 	features.Audio = data.Audio

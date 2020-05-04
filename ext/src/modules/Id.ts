@@ -1,22 +1,22 @@
 import Module from "../interfaces/Module";
 
 /**
- * Module which collects the UserId
+ * Module which collects the SessionId
  */
 export default class Id implements Module {
 
     /**
      * Name of the module
      */
-    public readonly name = "UserId";
+    public readonly name = "SessionId";
 
     /**
-     * Id of the User
+     * Id of the Session
      */
     private id = "UNKNOWN";
 
     /**
-     * Gets the Id of the User.
+     * Gets the Id of the Session.
      */
     public constructor() {
         this.getId();
@@ -40,19 +40,19 @@ export default class Id implements Module {
     public stop(): void { }
 
     /**
-     * Returns the UserId
-     * @return Id of the User
+     * Returns the SessionId
+     * @return Id of the Session
      */
     public getCollectedData(): string {
         return this.id;
     }
 
     /**
-     * Gets the UserId from the DOM and stores it in this.id
+     * Gets the SessionId from the DOM and stores it in this.id
      */
     private getId(): void {
-        const userId = document.getElementById("userId");
-        this.id = userId ? userId.innerHTML : "UNKNOWN";
+        const sessionId = document.getElementById("sessionId");
+        this.id = sessionId ? sessionId.innerHTML : "UNKNOWN";
     }
 
 }

@@ -37,7 +37,7 @@ type Data struct {
 	MouseRest     []MouseData   `json:"MouseRest"`
 	Browser       BrowserInfo   `json:"Browser"`
 	Screen        ScreenInfo    `json:"Screen"`
-	UserID        string        `json:"UserId"`
+	SessionID     string        `json:"SessionId"`
 	WebGL         WebGLInfo     `json:"WebGL"`
 	FramePosition FramePosition `json:"FramePosition"`
 	MouseClicks   []ClickData   `json:"MouseClicks"`

@@ -5,7 +5,7 @@ import WidgetData from "./WidgetData";
  */
 export default interface SurveyData {
     readonly survey: UUID;
-    readonly user: UUID;
+    readonly session: UUID;
     pages: WidgetData[][];
     // eslint-disable-next-line semi
 }

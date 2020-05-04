@@ -72,15 +72,15 @@ async function getSurveyStructure(surveyPath: string, ctx: Koa.Context): Promise
  */
 async function saveSurveyData(surveyPath: string, surveyId: string, ctx: Koa.Context): Promise<void> {
     const data = ctx.request.body;
-    if (!data || !data.user || !data.survey || !data.pages || data.survey != surveyId) {
+    if (!data || !data.session || !data.survey || !data.pages || data.survey != surveyId) {
         ctx.body = "Invalid request";
         ctx.status = 400;
         return;
     }
 
     try {
-        const userId = extractUUID(data.user);
-        const dataPath = surveyPath + `/${userId}.json`;
+        const sessionId = extractUUID(data.session);
+        const dataPath = surveyPath + `/${sessionId}.json`;
         // Check if Data was already saved
         if (await exists(dataPath)) {
             ctx.body = "Already sent.";
@@ -113,7 +113,7 @@ async function saveSurveyData(surveyPath: string, surveyId: string, ctx: Koa.Con
  * @param captchaResponse Response of the Captcha
  * @param ctx Request-Context
  */
-async function validateCaptcha(captchaResponse: string, ctx: Koa.Context): Promise<void>{
+async function validateCaptcha(captchaResponse: string, ctx: Koa.Context): Promise<void> {
     const formData = {
         secret: process.env.RECAPTCHA_SECRET as string,
         response: captchaResponse
@@ -126,7 +126,7 @@ async function validateCaptcha(captchaResponse: string, ctx: Koa.Context): Promi
         },
         formData
     });
-    ctx.status = JSON.parse(response.body).success ? 200: 400;
+    ctx.status = JSON.parse(response.body).success ? 200 : 400;
 }
 
 
@@ -166,8 +166,8 @@ app.use(bodyparser({
 /**
  * Register the captcha endpoint
  */
-app.use(mount("/captcha", async(ctx: Koa.Context) => {
-    if (ctx.method != "POST"){
+app.use(mount("/captcha", async (ctx: Koa.Context) => {
+    if (ctx.method != "POST") {
         ctx.status = 405;
         ctx.body = "Method not allowed";
         return;
@@ -180,7 +180,7 @@ app.use(mount("/captcha", async(ctx: Koa.Context) => {
         return;
     }
 
-    await validateCaptcha(data.response,ctx);
+    await validateCaptcha(data.response, ctx);
 }));
 
 /**

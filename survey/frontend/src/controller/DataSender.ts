@@ -25,12 +25,12 @@ export default class DataSender {
     /**
      * Constructs a new Datasender with the given Data
      * @param data All Widgets with their respective data
-     * @param userId Unique ID of the User
+     * @param sessionId Unique ID of the Session
      */
-    public constructor(data: SurveyDescription, userId: UUID) {
+    public constructor(data: SurveyDescription, sessionId: UUID) {
         this.data = {
             survey: data.survey,
-            user: userId,
+            session: sessionId,
             pages: new Array<WidgetData[]>(data.pages.length),
         };
         this.convertData(data);
