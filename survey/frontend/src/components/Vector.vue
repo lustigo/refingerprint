@@ -1,6 +1,6 @@
 <template>
     <v-container class="font-regular font-weight-light text-center">
-        <span cols="0">{{structure.question}} <span v-if="req" style="color:red;">*</span></span>
+        <span cols="0"><strong>{{structure.question}}</strong> <span v-if="req" style="color:red;">*</span></span>
         <span style="margin-left:5%;">
             <span
                 v-for="(value,key) in structure.selection" v-bind:key="value+key"
@@ -18,6 +18,12 @@
         </span>
     </v-container>
 </template>
+
+<style scoped>
+strong{
+    font-weight: bold;
+}
+</style>
 
 <script type="ts">
 import Vue from "vue";
@@ -41,7 +47,7 @@ export default Vue.extend({
     mounted() {
         this.structure = this.value;
         this.req = this.required;
-        if(!this.structure.answer){
+        if(!this.structure.answer && this.structure.answer !== 0){
             this.structure.answer = -1;
         }
         this.$emit("completed",!this.req || this.structure.answer != -1);
