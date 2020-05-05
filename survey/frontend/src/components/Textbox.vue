@@ -38,6 +38,10 @@ export default Vue.extend({
             this.structure.answer="";
         }
         this.$emit("completed",!this.req || this.structure.answer != "");
-    }
+    },watch: {
+        value: function(newValue) {
+            this.structure = newValue;
+            this.$emit("completed",!this.req || this.structure.answer != "");
+        }}
 });
 </script>

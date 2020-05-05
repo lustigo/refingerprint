@@ -21,6 +21,10 @@ export default Vue.extend({
     mounted() {
         this.structure = this.value;
         this.$emit("completed",true);
-    }
+    }, watch: {
+        value: function(newValue: TextWidgetDescription) {
+            this.structure = newValue;
+            this.$emit("completed",true);
+        }}
 });
 </script>

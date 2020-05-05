@@ -40,6 +40,10 @@ export default Vue.extend({
         }
         this.req = this.required;
         this.$emit("completed",!this.req || this.structure.content.trim() != "");
-    }
+    },watch: {
+        value: function(newValue) {
+            this.structure = newValue;
+            this.$emit("completed",!this.req || this.structure.content != "");
+        }}
 });
 </script>

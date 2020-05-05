@@ -44,6 +44,10 @@ export default Vue.extend({
         if(!this.req || this.structure.selected != ""){
             this.$emit("completed",true);
         }
-    }
+    },watch: {
+        value: function(newValue) {
+            this.structure = newValue;
+            this.$emit("completed",!this.req || this.structure.selected != "");
+        }}
 });
 </script>

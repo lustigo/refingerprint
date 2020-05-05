@@ -45,6 +45,10 @@ export default Vue.extend({
             this.structure.answer = -1;
         }
         this.$emit("completed",!this.req || this.structure.answer != -1);
-    }
+    },watch: {
+        value: function(newValue) {
+            this.structure = newValue;
+            this.$emit("completed",!this.req || this.structure.answer != -1);
+        }}
 });
 </script>

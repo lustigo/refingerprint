@@ -64,6 +64,10 @@ export default Vue.extend({
                 }
             });
         }
-    }
+    }, watch: {
+        value: function(newValue: CaptchaDescription) {
+            this.structure = newValue;
+            this.captchaCreated();
+        }}
 });
 </script>

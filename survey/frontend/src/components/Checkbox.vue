@@ -37,6 +37,14 @@ export default Vue.extend({
         }
         // Widget is completed, if it is not required or at least one checkbox is filled
         this.$emit("completed",!this.req || this.structure.checked.find(v => v) != undefined);
-    }
+    },watch: {
+        value: function(newValue) {
+            this.structure = newValue;
+            if(!this.structure.checked){
+                this.structure.checked = this.structure.selection.map(_ => false);
+            }
+            // Widget is completed, if it is not required or at least one checkbox is filled
+            this.$emit("completed",!this.req || this.structure.checked.find(v => v) != undefined);
+        }}
 });
 </script>
