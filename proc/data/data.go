@@ -63,9 +63,9 @@ type MouseKey uint8
 
 // MouseKeys
 const (
-	MouseKeyLEFT   = uint8(0)
-	MouseKeyMIDDLE = uint8(1)
-	MouseKeyRIGHT  = uint8(2)
+	MouseKeyLEFT   = MouseKey(0)
+	MouseKeyMIDDLE = MouseKey(1)
+	MouseKeyRIGHT  = MouseKey(2)
 )
 
 // Rectangle represents a Rectangle. Position (x|y) is the top left corner of the Rectangle.
@@ -101,10 +101,10 @@ type TaskType uint8
 
 // TaskTypes
 const (
-	TaskTypeNO  = uint(0)
-	TaskTypeSIM = uint(2)
-	TaskTypeDYN = uint(3)
-	TaskTypeOBJ = uint(4)
+	TaskTypeNO  = TaskType(0)
+	TaskTypeSIM = TaskType(2)
+	TaskTypeDYN = TaskType(3)
+	TaskTypeOBJ = TaskType(4)
 )
 
 // TaskData represents the Data which is collected per Task
