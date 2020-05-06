@@ -1,6 +1,8 @@
 package data
 
-import "github.com/sbinet/go-arff"
+import (
+	"github.com/sbinet/go-arff"
+)
 
 // ProcessedFeatures contains all the extracted and calculated features from the raw data set
 type ProcessedFeatures struct {
@@ -257,6 +259,7 @@ func ExtractFeatures(data *Data) *ProcessedFeatures {
 	features.ExtractWebGLExtensions(data.WebGL)
 	features.ExtractScreenInfo(data.Screen)
 	features.ExtractFramePosition(data.FramePosition)
+	features.ExtractMouseData(data)
 	return features
 }
 
@@ -308,4 +311,15 @@ func (features *ProcessedFeatures) ExtractFramePosition(pinfo FramePosition) {
 	features.TaskWidth = pinfo.Task.Width
 	features.TaskX = pinfo.Task.X
 	features.TaskY = pinfo.Task.Y
+}
+
+// ExtractMouseData extracts relevant MouseMovement Features
+func (features *ProcessedFeatures) ExtractMouseData(data *Data) {
+	cleanedCheck := RemoveDuplicateMousePoints(NormalizeMouseData(data.MouseCheckbox, data.Screen, data.Time))
+	cleanedRest := RemoveDuplicateMousePoints(NormalizeMouseData(data.MouseRest, data.Screen, data.Time))
+	cleanedScroll := RemoveDuplicateScrollEvents(NormalizeScrollEvents(data.ScrollEvents, data.Screen, data.Time))
+	cleanedClick := RemoveDuplicateClickEvents(NormalizeClickEvents(data.MouseClicks, data.Screen, data.Time))
+
+	cleanedCheck, cleanedScroll = RemoveConcurrentEvents(cleanedClick, cleanedCheck, cleanedScroll)
+	cleanedRest, cleanedScroll = RemoveConcurrentEvents(cleanedClick, cleanedRest, cleanedScroll)
 }

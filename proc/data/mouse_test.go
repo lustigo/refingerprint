@@ -106,3 +106,114 @@ func equalPoints(points, otherPoints []NormalizedMouseData) bool {
 	}
 	return true
 }
+
+// equalScrolls checks if two arrays are the same
+func equalScrolls(scrolls, otherScrolls []NormalizedScrollEvent) bool {
+	if len(scrolls) != len(otherScrolls) {
+		return false
+	}
+	for i := range scrolls {
+		if !scrolls[i].Equals(otherScrolls[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+// TestRemoveConcurrentEvents tests the RemoveConcurrentEvent function
+func TestRemoveConcurrentEvents(t *testing.T) {
+	cases := []struct {
+		name            string
+		clicks          []NormalizedClickEvent
+		points          []NormalizedMouseData
+		scrolls         []NormalizedScrollEvent
+		expectedPoints  []NormalizedMouseData
+		expectedScrolls []NormalizedScrollEvent
+	}{
+		{
+			name:            "No concurrent Events",
+			clicks:          []NormalizedClickEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 5}, MouseKeyLEFT, false}, {NormalizedMouseData{X: 1, Y: 1, Time: 10}, MouseKeyLEFT, false}},
+			points:          []NormalizedMouseData{{X: 1, Y: 1, Time: 6}, {X: 1, Y: 1, Time: 8}},
+			scrolls:         []NormalizedScrollEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 7}, 1, 2, 3, 0}, {NormalizedMouseData{X: 1, Y: 1, Time: 9}, 1, 2, 3, 0}},
+			expectedPoints:  []NormalizedMouseData{{X: 1, Y: 1, Time: 6}, {X: 1, Y: 1, Time: 8}},
+			expectedScrolls: []NormalizedScrollEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 7}, 1, 2, 3, 0}, {NormalizedMouseData{X: 1, Y: 1, Time: 9}, 1, 2, 3, 0}},
+		},
+		{
+			name:            "Concurrent Move and Scroll removes Scroll",
+			clicks:          []NormalizedClickEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 5}, MouseKeyLEFT, false}, {NormalizedMouseData{X: 1, Y: 1, Time: 10}, MouseKeyLEFT, false}},
+			points:          []NormalizedMouseData{{X: 1, Y: 1, Time: 6}, {X: 1, Y: 1, Time: 8}},
+			scrolls:         []NormalizedScrollEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 6}, 1, 2, 3, 0}, {NormalizedMouseData{X: 1, Y: 1, Time: 9}, 1, 2, 3, 0}},
+			expectedPoints:  []NormalizedMouseData{{X: 1, Y: 1, Time: 6}, {X: 1, Y: 1, Time: 8}},
+			expectedScrolls: []NormalizedScrollEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 9}, 1, 2, 3, 0}},
+		}, {
+			name:            "Concurrent Click and Move removes Move",
+			clicks:          []NormalizedClickEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 5}, MouseKeyLEFT, false}, {NormalizedMouseData{X: 1, Y: 1, Time: 10}, MouseKeyLEFT, false}},
+			points:          []NormalizedMouseData{{X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 8}},
+			scrolls:         []NormalizedScrollEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 7}, 1, 2, 3, 0}, {NormalizedMouseData{X: 1, Y: 1, Time: 9}, 1, 2, 3, 0}},
+			expectedPoints:  []NormalizedMouseData{{X: 1, Y: 1, Time: 8}},
+			expectedScrolls: []NormalizedScrollEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 7}, 1, 2, 3, 0}, {NormalizedMouseData{X: 1, Y: 1, Time: 9}, 1, 2, 3, 0}},
+		}, {
+			name:            "Concurrent Click and Scroll removes Scroll",
+			clicks:          []NormalizedClickEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 5}, MouseKeyLEFT, false}, {NormalizedMouseData{X: 1, Y: 1, Time: 10}, MouseKeyLEFT, false}},
+			points:          []NormalizedMouseData{{X: 1, Y: 1, Time: 6}, {X: 1, Y: 1, Time: 8}},
+			scrolls:         []NormalizedScrollEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 5}, 1, 2, 3, 0}, {NormalizedMouseData{X: 1, Y: 1, Time: 9}, 1, 2, 3, 0}},
+			expectedPoints:  []NormalizedMouseData{{X: 1, Y: 1, Time: 6}, {X: 1, Y: 1, Time: 8}},
+			expectedScrolls: []NormalizedScrollEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 9}, 1, 2, 3, 0}},
+		},
+		{
+			name:            "Concurrent Click and Move and Scroll removes Move and Scroll",
+			clicks:          []NormalizedClickEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 5}, MouseKeyLEFT, false}, {NormalizedMouseData{X: 1, Y: 1, Time: 10}, MouseKeyLEFT, false}},
+			points:          []NormalizedMouseData{{X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 8}},
+			scrolls:         []NormalizedScrollEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 5}, 1, 2, 3, 0}, {NormalizedMouseData{X: 1, Y: 1, Time: 9}, 1, 2, 3, 0}},
+			expectedPoints:  []NormalizedMouseData{{X: 1, Y: 1, Time: 8}},
+			expectedScrolls: []NormalizedScrollEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 9}, 1, 2, 3, 0}},
+		},
+		{
+			name:            "Unordered Concurrency with Click and the others",
+			clicks:          []NormalizedClickEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 5}, MouseKeyLEFT, false}, {NormalizedMouseData{X: 1, Y: 1, Time: 4}, MouseKeyLEFT, false}},
+			points:          []NormalizedMouseData{{X: 1, Y: 1, Time: 6}, {X: 1, Y: 1, Time: 4}},
+			scrolls:         []NormalizedScrollEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 7}, 1, 2, 3, 0}, {NormalizedMouseData{X: 1, Y: 1, Time: 5}, 1, 2, 3, 0}},
+			expectedPoints:  []NormalizedMouseData{{X: 1, Y: 1, Time: 6}},
+			expectedScrolls: []NormalizedScrollEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 7}, 1, 2, 3, 0}},
+		},
+		{
+			name:            "Unordered Concurrency between Point and Scroll",
+			clicks:          []NormalizedClickEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 5}, MouseKeyLEFT, false}, {NormalizedMouseData{X: 1, Y: 1, Time: 35}, MouseKeyLEFT, false}},
+			points:          []NormalizedMouseData{{X: 1, Y: 1, Time: 6}, {X: 1, Y: 1, Time: 10}},
+			scrolls:         []NormalizedScrollEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 10}, 1, 2, 3, 0}, {NormalizedMouseData{X: 1, Y: 1, Time: 6}, 1, 2, 3, 0}, {NormalizedMouseData{X: 1, Y: 1, Time: 11}, 1, 2, 3, 0}},
+			expectedPoints:  []NormalizedMouseData{{X: 1, Y: 1, Time: 6}, {X: 1, Y: 1, Time: 10}},
+			expectedScrolls: []NormalizedScrollEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 11}, 1, 2, 3, 0}},
+		},
+		{
+			name:            "Empty Scrolls no error",
+			clicks:          []NormalizedClickEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 5}, MouseKeyLEFT, false}, {NormalizedMouseData{X: 1, Y: 1, Time: 10}, MouseKeyLEFT, false}},
+			points:          []NormalizedMouseData{{X: 1, Y: 1, Time: 6}, {X: 1, Y: 1, Time: 8}},
+			scrolls:         []NormalizedScrollEvent{},
+			expectedPoints:  []NormalizedMouseData{{X: 1, Y: 1, Time: 6}, {X: 1, Y: 1, Time: 8}},
+			expectedScrolls: []NormalizedScrollEvent{},
+		},
+		{
+			name:            "Empty Points no error",
+			clicks:          []NormalizedClickEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 5}, MouseKeyLEFT, false}, {NormalizedMouseData{X: 1, Y: 1, Time: 10}, MouseKeyLEFT, false}},
+			points:          []NormalizedMouseData{},
+			scrolls:         []NormalizedScrollEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 7}, 1, 2, 3, 0}, {NormalizedMouseData{X: 1, Y: 1, Time: 9}, 1, 2, 3, 0}},
+			expectedPoints:  []NormalizedMouseData{},
+			expectedScrolls: []NormalizedScrollEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 7}, 1, 2, 3, 0}, {NormalizedMouseData{X: 1, Y: 1, Time: 9}, 1, 2, 3, 0}},
+		},
+		{
+			name:            "Empty Clicks no error",
+			clicks:          []NormalizedClickEvent{},
+			points:          []NormalizedMouseData{{X: 1, Y: 1, Time: 6}, {X: 1, Y: 1, Time: 8}},
+			scrolls:         []NormalizedScrollEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 7}, 1, 2, 3, 0}, {NormalizedMouseData{X: 1, Y: 1, Time: 9}, 1, 2, 3, 0}},
+			expectedPoints:  []NormalizedMouseData{{X: 1, Y: 1, Time: 6}, {X: 1, Y: 1, Time: 8}},
+			expectedScrolls: []NormalizedScrollEvent{{NormalizedMouseData{X: 1, Y: 1, Time: 7}, 1, 2, 3, 0}, {NormalizedMouseData{X: 1, Y: 1, Time: 9}, 1, 2, 3, 0}},
+		},
+	}
+
+	for _, test := range cases {
+		points, scrolls := RemoveConcurrentEvents(test.clicks, test.points, test.scrolls)
+		if !equalPoints(points, test.expectedPoints) || !equalScrolls(scrolls, test.expectedScrolls) {
+			t.Errorf("%v failed: Excpected %v and %v, but got %v and %v\n", test.name, test.expectedPoints, test.expectedScrolls, points, scrolls)
+		}
+	}
+}

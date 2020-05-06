@@ -67,6 +67,9 @@ func NormalizeClickEvents(events []ClickData, screen ScreenInfo, time Time) []No
 
 // RemoveDuplicateMousePoints removes identical events that are next to each other or events that have the same timestamp
 func RemoveDuplicateMousePoints(points []NormalizedMouseData) []NormalizedMouseData {
+	if len(points) == 0 {
+		return points
+	}
 	// Remove Duplicates
 	cleaned := make([]NormalizedMouseData, 1)
 	cleaned[0] = points[0]
@@ -113,6 +116,9 @@ func RemoveDuplicateMousePoints(points []NormalizedMouseData) []NormalizedMouseD
 
 // RemoveDuplicateScrollEvents removes identical events that are next to each other or events that have the same timestamp
 func RemoveDuplicateScrollEvents(events []NormalizedScrollEvent) []NormalizedScrollEvent {
+	if len(events) == 0 {
+		return events
+	}
 	// Remove Duplicates
 	cleaned := make([]NormalizedScrollEvent, 1)
 	cleaned[0] = events[0]
@@ -159,6 +165,9 @@ func RemoveDuplicateScrollEvents(events []NormalizedScrollEvent) []NormalizedScr
 
 // RemoveDuplicateClickEvents removes identical events that are next to each other or events that have the same timestamp
 func RemoveDuplicateClickEvents(events []NormalizedClickEvent) []NormalizedClickEvent {
+	if len(events) == 0 {
+		return events
+	}
 	// Remove Duplicates
 	cleaned := make([]NormalizedClickEvent, 1)
 	cleaned[0] = events[0]
@@ -201,4 +210,88 @@ func RemoveDuplicateClickEvents(events []NormalizedClickEvent) []NormalizedClick
 	}
 
 	return cleaned
+}
+
+// RemoveConcurrentEvents removes events which happened at the same time. ClickEvents have priority before MouseMovements before ScrollEvents
+func RemoveConcurrentEvents(clicks []NormalizedClickEvent, points []NormalizedMouseData, scrolls []NormalizedScrollEvent) ([]NormalizedMouseData, []NormalizedScrollEvent) {
+	// Check which one to remove
+	pointsToRemove := make([]int, 0)
+	scrollsToRemove := make([]int, 0)
+
+	for _, click := range clicks {
+		for i, point := range points {
+			if point.Equals(click.NormalizedMouseData) {
+				pointsToRemove = append(pointsToRemove, i)
+			}
+		}
+		for i, scroll := range scrolls {
+			if scroll.NormalizedMouseData.Equals(click.NormalizedMouseData) {
+				scrollsToRemove = append(scrollsToRemove, i)
+			}
+		}
+	}
+
+	sort.Ints(pointsToRemove)
+	sort.Ints(scrollsToRemove)
+	pointRemoveCounter := 0
+	scrollRemoveCounter := 0
+
+	for i, point := range points {
+		if len(pointsToRemove) > pointRemoveCounter && pointsToRemove[pointRemoveCounter] == i {
+			pointRemoveCounter++
+			continue
+		}
+		scrollRemoveCounter = 0
+		for j, scroll := range scrolls {
+			if len(scrollsToRemove) > scrollRemoveCounter && scrollsToRemove[scrollRemoveCounter] == j {
+				scrollRemoveCounter++
+				continue
+			}
+			if point.Equals(scroll.NormalizedMouseData) {
+				scrollsToRemove = append(scrollsToRemove, j)
+			}
+		}
+	}
+
+	sort.Ints(scrollsToRemove)
+	// Remove
+	var cleanedPoints []NormalizedMouseData
+	var cleanedScrolls []NormalizedScrollEvent
+
+	if len(pointsToRemove) > 0 {
+		cleanedPoints = make([]NormalizedMouseData, len(points)-len(pointsToRemove))
+		rawCounter := 0
+		toRemoveCounter := 0
+		cleanedCounter := 0
+		for rawCounter < len(points) {
+			if toRemoveCounter == len(pointsToRemove) || rawCounter != pointsToRemove[toRemoveCounter] {
+				cleanedPoints[cleanedCounter] = points[rawCounter]
+				cleanedCounter++
+			} else {
+				toRemoveCounter++
+			}
+			rawCounter++
+		}
+	} else {
+		cleanedPoints = points
+	}
+	if len(scrollsToRemove) > 0 {
+		cleanedScrolls = make([]NormalizedScrollEvent, len(scrolls)-len(scrollsToRemove))
+		rawCounter := 0
+		toRemoveCounter := 0
+		cleanedCounter := 0
+		for rawCounter < len(scrolls) {
+			if toRemoveCounter == len(scrollsToRemove) || rawCounter != scrollsToRemove[toRemoveCounter] {
+				cleanedScrolls[cleanedCounter] = scrolls[rawCounter]
+				cleanedCounter++
+			} else {
+				toRemoveCounter++
+			}
+			rawCounter++
+		}
+	} else {
+		cleanedScrolls = scrolls
+	}
+
+	return cleanedPoints, cleanedScrolls
 }
