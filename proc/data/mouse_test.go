@@ -36,3 +36,73 @@ func TestNormalizeMouseData(t *testing.T) {
 		}
 	}
 }
+
+// TestRemoveDuplicateMousePoints tests the RemoveDuplicateMousePoints function
+func TestRemoveDuplicateMousePoints(t *testing.T) {
+	cases := []struct {
+		given    []NormalizedMouseData
+		expected []NormalizedMouseData
+		name     string
+	}{
+		{
+			given:    []NormalizedMouseData{{X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 6}},
+			expected: []NormalizedMouseData{{X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 6}},
+			name:     "Two Double Points at beginning",
+		},
+		{
+			given:    []NormalizedMouseData{{X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 6}},
+			expected: []NormalizedMouseData{{X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 6}},
+			name:     "Three Double Points at beginning",
+		},
+		{
+			given:    []NormalizedMouseData{{X: 1, Y: 1, Time: 5}},
+			expected: []NormalizedMouseData{{X: 1, Y: 1, Time: 5}},
+			name:     "Only one point",
+		},
+		{
+			given:    []NormalizedMouseData{{X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 6}, {X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 6}},
+			expected: []NormalizedMouseData{{X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 6}},
+			name:     "Two points at the same time, not next to each other",
+		},
+		{
+			given:    []NormalizedMouseData{{X: 1, Y: 1, Time: 4}, {X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 6}},
+			expected: []NormalizedMouseData{{X: 1, Y: 1, Time: 4}, {X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 6}},
+			name:     "Two Double Points in the middle",
+		},
+
+		{
+			given:    []NormalizedMouseData{{X: 1, Y: 1, Time: 4}, {X: 1, Y: 1, Time: 4}, {X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 6}},
+			expected: []NormalizedMouseData{{X: 1, Y: 1, Time: 4}, {X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 6}},
+			name:     "Two Double Points at the beginning and in the middle",
+		},
+		{
+			given:    []NormalizedMouseData{{X: 1, Y: 1, Time: 4}, {X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 5}},
+			expected: []NormalizedMouseData{{X: 1, Y: 1, Time: 4}, {X: 1, Y: 1, Time: 5}},
+			name:     "Two Double Points at the end",
+		},
+		{
+			given:    []NormalizedMouseData{{X: 1, Y: 1, Time: 4}, {X: 1, Y: 1, Time: 4}, {X: 1, Y: 1, Time: 5}, {X: 1, Y: 1, Time: 5}},
+			expected: []NormalizedMouseData{{X: 1, Y: 1, Time: 4}, {X: 1, Y: 1, Time: 5}},
+			name:     "Two Double Points at the beginning and end",
+		},
+	}
+
+	for _, test := range cases {
+		if res := RemoveDuplicateMousePoints(test.given); !equalPoints(res, test.expected) {
+			t.Errorf("%v failed: %v given, expected %v\n", test.name, res, test.expected)
+		}
+	}
+}
+
+// equalPoints checks if two arrays are the same
+func equalPoints(points, otherPoints []NormalizedMouseData) bool {
+	if len(points) != len(otherPoints) {
+		return false
+	}
+	for i := range points {
+		if !points[i].Equals(otherPoints[i]) {
+			return false
+		}
+	}
+	return true
+}
