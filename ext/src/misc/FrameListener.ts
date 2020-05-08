@@ -66,7 +66,7 @@ class FrameListener {
      * @returns Method to remove the Listener
      */
     public registerCaptchaFrameClickListener(listener: (ev: Event) => any, t: any): () => void {
-        return this.registerIframeListener(this.getCaptchaFrame.bind(this), "mousedown", listener.bind(t));
+        return this.registerIframeListener(this.getCaptchaFrame.bind(this), "mouseup", listener.bind(t));
     }
 
     /**
@@ -86,7 +86,7 @@ class FrameListener {
      * @returns Method to remove the Listener
      */
     public registerTaskFrameClickListener(listener: (ev: Event) => any, t: any): () => void {
-        return this.registerIframeListener(this.getTaskFrame.bind(this), "mousedown", listener.bind(t));
+        return this.registerIframeListener(this.getTaskFrame.bind(this), "mouseup", listener.bind(t));
     }
 
     /**
