@@ -1,6 +1,8 @@
 package data
 
 import (
+	"sort"
+
 	"github.com/sbinet/go-arff"
 )
 
@@ -322,4 +324,13 @@ func (features *ProcessedFeatures) ExtractMouseData(data *Data) {
 
 	cleanedCheck, cleanedScroll = RemoveConcurrentEvents(cleanedClick, cleanedCheck, cleanedScroll)
 	cleanedRest, cleanedScroll = RemoveConcurrentEvents(cleanedClick, cleanedRest, cleanedScroll)
+
+	// Sort the Data according to the time
+	// Using sort.SliceStable (InsertionSort) instead of sort.Slice (QuickSort) because data should already be sorted
+	sort.SliceStable(cleanedCheck, func(i, j int) bool { return cleanedCheck[i].Time < cleanedCheck[j].Time })
+	sort.SliceStable(cleanedRest, func(i, j int) bool { return cleanedRest[i].Time < cleanedRest[j].Time })
+	sort.SliceStable(cleanedScroll, func(i, j int) bool { return cleanedScroll[i].Time < cleanedScroll[j].Time })
+	sort.SliceStable(cleanedClick, func(i, j int) bool { return cleanedClick[i].Time < cleanedClick[j].Time })
+
+	checkBoxPath, otherPaths := ExtractPaths(cleanedCheck, cleanedRest, cleanedClick, cleanedScroll)
 }
