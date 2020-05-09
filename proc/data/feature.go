@@ -333,4 +333,5 @@ func (features *ProcessedFeatures) ExtractMouseData(data *Data) {
 	sort.SliceStable(cleanedClick, func(i, j int) bool { return cleanedClick[i].Time < cleanedClick[j].Time })
 
 	checkBoxPath, otherPaths := ExtractPaths(cleanedCheck, cleanedRest, cleanedClick, cleanedScroll)
+	otherPaths = RemoveSmallPaths(otherPaths)
 }

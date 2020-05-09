@@ -115,3 +115,30 @@ func getAmountOfPaths(clicks []NormalizedClickEvent) int {
 	}
 	return paths
 }
+
+// RemoveSmallPaths removes every path that has less than 4 movement events
+func RemoveSmallPaths(paths []Path) []Path {
+	indexToRemove := make([]int, 0)
+	for i, path := range paths {
+		if len(path.Movements) < 4 {
+			indexToRemove = append(indexToRemove, i)
+		}
+	}
+
+	if len(indexToRemove) == 0 {
+		return paths
+	}
+
+	cleanedPaths := make([]Path, len(paths)-len(indexToRemove))
+	newCounter := 0
+	removeCounter := 0
+	for i, path := range paths {
+		if removeCounter < len(indexToRemove) && i == indexToRemove[removeCounter] {
+			removeCounter++
+		} else {
+			cleanedPaths[newCounter] = path
+			newCounter++
+		}
+	}
+	return cleanedPaths
+}
