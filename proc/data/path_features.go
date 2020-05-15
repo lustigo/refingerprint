@@ -17,6 +17,7 @@ type PathFeatures struct {
 	PairwiseAcceleration             []float64
 	MeanAcceleration                 float64
 	PairwiseAngle                    []float64
+	AngleBetweenMovementAndStartEnd  []float64 // Angle between Movement Point, Start Point and Click Up Point
 	PairwiseAngularVelocity          []float64
 	AngleStartEndPoint               float64
 	PairwiseDuration                 []uint64
@@ -54,7 +55,7 @@ type PathFeatures struct {
 // GetRawFeatures calculates the raw PathFeatures from the path
 func (path Path) GetRawFeatures() *PathFeatures {
 	features := &PathFeatures{}
-	features.calculateMovementFeatures(path.StartClickUp, path.EndClickDown, path.Movements)
+	features.calculateMovementFeatures(path.StartClickUp, path.EndClickDown, path.EndClickUp, path.Movements)
 	features.calculateScrollFeatures(path.ScrollEvents)
 	features.calculateStartEndFeatures(path.StartClickUp, path.EndClickUp)
 	features.calculateMovementAcceleration()
@@ -70,14 +71,18 @@ func (path Path) GetRawFeatures() *PathFeatures {
 }
 
 // calculateMovementFeatures calculates and sets the features extracted from the movement data and the start and end click
-func (features *PathFeatures) calculateMovementFeatures(startClick, endClickDown NormalizedClickEvent, points []NormalizedMouseData) {
+func (features *PathFeatures) calculateMovementFeatures(startClick, endClickDown, endClickUp NormalizedClickEvent, points []NormalizedMouseData) {
 	features.NumberOfMovementPoints = uint16(len(points))
+	startPoint := startClick.NormalizedMouseData
+	startVector := r2.Point{X: startPoint.X, Y: startPoint.Y}
+	endPoint := endClickUp.NormalizedMouseData
+	endVector := r2.Point{X: endPoint.X, Y: endPoint.Y}
 
 	i := -1
 	for i < len(points) {
 		var point NormalizedMouseData
 		if i == -1 {
-			point = startClick.NormalizedMouseData
+			point = startPoint
 		} else {
 			point = points[i]
 		}
@@ -110,6 +115,11 @@ func (features *PathFeatures) calculateMovementFeatures(startClick, endClickDown
 		yDistance := math.Abs(nextPoint.Y - point.Y)
 		xVelocity := xDistance / float64(duration)
 		yVelocity := yDistance / float64(duration)
+
+		wayToStart := vector.Sub(startVector)
+		wayToEnd := endVector.Sub(vector)
+		angle = math.Acos(wayToStart.Dot(wayToEnd) / (wayToStart.Norm() * wayToEnd.Norm()))
+		features.AngleBetweenMovementAndStartEnd = append(features.AngleBetweenMovementAndStartEnd, angle)
 
 		features.PairwiseXDistance = append(features.PairwiseXDistance, xDistance)
 		features.PairwiseYDistance = append(features.PairwiseYDistance, yDistance)
