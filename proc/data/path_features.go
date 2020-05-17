@@ -159,10 +159,14 @@ func (features *PathFeatures) calculateMovementAcceleration() {
 		accSum := 0.0
 		for i, vel := range features.PairwiseVelocity {
 			features.MeanVelocity += vel
+
+			var beforeVel float64
 			if i == 0 {
-				continue
+				beforeVel = 0.0
+			} else {
+				beforeVel = features.PairwiseVelocity[i-1]
 			}
-			acc := (vel - features.PairwiseVelocity[i-1]) / float64(features.PairwiseDuration[i])
+			acc := (vel - beforeVel) / float64(features.PairwiseDuration[i])
 			accSum += acc
 			features.PairwiseAcceleration = append(features.PairwiseAcceleration, acc)
 		}
@@ -264,9 +268,17 @@ func (features *PathFeatures) calculateMovementDuringClicks(clicks []NormalizedC
 
 // calculateMovementDuringClickAcceleration calculates and stores the MovementDuringClickAcceleration value
 func (features *PathFeatures) calculateMovementDuringClickAcceleration() {
-	i := 1
+	i := 0
+
 	for i < len(features.MovementDuringClickVelocity) {
-		acc := (features.MovementDuringClickVelocity[i] - features.MovementDuringClickVelocity[i-1]) / float64(features.TimeBetweenClickAndRelease[i])
+		var beforeVel float64
+		if i == 0 {
+			beforeVel = 0.0
+		} else {
+			beforeVel = features.MovementDuringClickVelocity[i-1]
+		}
+
+		acc := (features.MovementDuringClickVelocity[i] - beforeVel) / float64(features.TimeBetweenClickAndRelease[i])
 		features.MovementDuringCickAcceleration = append(features.MovementDuringCickAcceleration, acc)
 		i++
 	}
