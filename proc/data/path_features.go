@@ -30,7 +30,7 @@ type PathFeatures struct {
 	BreakTimeTotalTimeRatio          float64
 	MovementDuringClickDistance      []float64
 	MovementDuringClickVelocity      []float64
-	MovementDuringCickAcceleration   []float64
+	MovementDuringClickAcceleration  []float64
 	MovementDuringClickAngle         []float64
 	NumberOfRightClicks              uint8
 	NumberOfMiddleClicks             uint8
@@ -279,7 +279,7 @@ func (features *PathFeatures) calculateMovementDuringClickAcceleration() {
 		}
 
 		acc := (features.MovementDuringClickVelocity[i] - beforeVel) / float64(features.TimeBetweenClickAndRelease[i])
-		features.MovementDuringCickAcceleration = append(features.MovementDuringCickAcceleration, acc)
+		features.MovementDuringClickAcceleration = append(features.MovementDuringClickAcceleration, acc)
 		i++
 	}
 }
