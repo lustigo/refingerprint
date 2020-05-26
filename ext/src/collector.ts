@@ -1,4 +1,5 @@
 import Module from "./interfaces/Module";
+import frameListener from "./misc/FrameListener";
 
 /**
  * Data Collector
@@ -61,6 +62,7 @@ export default class Collector {
      */
     private reset(): void {
         this.collectors = this.modules.map(Mod => new Mod());
+        frameListener.reset();
     }
 
     /**

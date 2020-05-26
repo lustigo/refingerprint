@@ -116,6 +116,14 @@ class FrameListener {
         return (): void => { if (frame && frame.contentWindow) { frame.contentWindow.removeEventListener(event, listener); } };
     }
 
+    /**
+     * Resets the saved frames
+     */
+    public reset(): void {
+        this.captchaFrame = null;
+        this.taskFrame = null;
+    }
+
 }
 
 // frameListener gives access to the Captcha Frames
