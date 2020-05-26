@@ -55,9 +55,9 @@ type PathFeatures struct {
 // GetRawFeatures calculates the raw PathFeatures from the path
 func (path Path) GetRawFeatures() *PathFeatures {
 	features := &PathFeatures{}
+	features.calculateStartEndFeatures(path.StartClickUp, path.EndClickUp)
 	features.calculateMovementFeatures(path.StartClickUp, path.EndClickDown, path.EndClickUp, path.Movements)
 	features.calculateScrollFeatures(path.ScrollEvents)
-	features.calculateStartEndFeatures(path.StartClickUp, path.EndClickUp)
 	features.calculateMovementAcceleration()
 	features.calculateMovementDuringClicks(append(path.OtherClickEvents, path.EndClickUp, path.EndClickDown))
 	features.calculateMovementDuringClickAcceleration()
@@ -118,7 +118,7 @@ func (features *PathFeatures) calculateMovementFeatures(startClick, endClickDown
 
 		wayToStart := vector.Sub(startVector)
 		wayToEnd := endVector.Sub(vector)
-		angle = math.Acos(wayToStart.Dot(wayToEnd) / (wayToStart.Norm() * wayToEnd.Norm()))
+		angle = math.Acos((math.Pow(wayToStart.Norm(), 2.0) + math.Pow(wayToEnd.Norm(), 2.0) - math.Pow(features.DistanceStartEndPoint, 2.0)) / (2 * wayToEnd.Norm() * wayToStart.Norm()))
 		features.AngleBetweenMovementAndStartEnd = append(features.AngleBetweenMovementAndStartEnd, angle)
 
 		features.PairwiseXDistance = append(features.PairwiseXDistance, xDistance)
