@@ -2,7 +2,7 @@
 
     "manifest_version": 2,
     "name": "ReFingerprint",
-    "version": "1.0",
+    "version": "1.1",
 
     "description": "WebExtension für ReFingerprint",
 
@@ -11,7 +11,7 @@
     },
 
     "content_scripts": [{
-        "matches": ["*://localhost/*","https://survey.lifeofensidias.de:444/*"],
+        "matches": ["*://localhost/*", "https://survey.lifeofensidias.de:444/*"],
         "js": ["dist/bundle.js"]
     }],
 
