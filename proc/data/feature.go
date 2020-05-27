@@ -3,6 +3,7 @@ package data
 import (
 	"sort"
 
+	"github.com/cpmech/gosl/rnd"
 	"github.com/sbinet/go-arff"
 )
 
@@ -124,6 +125,186 @@ type ProcessedFeatures struct {
 	TaskY         float64 `arff:"taskY" csv:"Taskframepos Y"`
 	TaskWidth     float64 `arff:"taskWidth" csv:"Taskframepos Width"`
 	TaskHeight    float64 `arff:"taskHeight" csv:"Taskframepos Height"`
+	//
+	// Movement
+	//
+	NumberOfPaths uint16 `arff:"numberOfPaths" csv:"Number of Paths including checkboxPath"`
+	// Checkbox Path Features
+	CheckboxPathDistanceStartEndPoint            float64 `arff:"checkBoxPathDistStartEnd" csv:"checkBoxPathDistStartEnd"`
+	CheckboxPathNumberOfMovementPoints           uint16  `arff:"checkBoxPathNumMovementPoints" csv:"checkBoxPathNumMovementPoints"`
+	CheckboxPathAngleStartEndPoint               float64 `arff:"checkBoxPathAngleStartEnd" csv:"checkBoxPathAngleStartEnd"`
+	CheckboxPathDurationOfPath                   uint64  `arff:"checkBoxPathDurPath" csv:"checkBoxPathDurPath"`
+	CheckboxPathTimeBetweenClickAndMovement      uint64  `arff:"checkBoxPathTimeClickMovement" csv:"checkBoxPathTimeClickMovement"`
+	CheckboxPathTimeBetweeenMovementAndDownClick uint64  `arff:"checkBoxPathTimeMovementClick" csv:"checkBoxPathTimeMovementClick"`
+	CheckboxPathNumberOfBreaks                   uint16  `arff:"checkBoxPathNoBreaks" csv:"checkBoxPathNoBreaks"`
+	CheckboxPathBreakTimeTotalTimeRatio          float64 `arff:"checkBoxPathBreakRatio" csv:"checkBoxPathBreakRatio"`
+	CheckboxPathNumberOfRightClicks              uint8   `arff:"checkBoxPathNoRightClick" csv:"checkBoxPathNoRightClick"`
+	CheckboxPathNumberOfMiddleClicks             uint8   `arff:"checkBoxPathNoMiddleClick" csv:"checkBoxPathNoMiddleClick"`
+	CheckboxPathNumberOfScrolls                  uint8   `arff:"checkBoxPathNoScrolls" csv:"checkBoxPathNoScrolls"`
+	CheckboxPathStraightness                     float64 `arff:"checkBoxPathStraightness" csv:"checkBoxPathStraightness"`
+	// Auto-Generated
+	//
+	CheckBoxPathPairwiseDistanceMin                   float64 `arff:"checkboxpathPairwiseDistanceMin" csv:"checkboxpathPairwiseDistanceMin"`
+	CheckBoxPathPairwiseDistanceMax                   float64 `arff:"checkboxpathPairwiseDistanceMax" csv:"checkboxpathPairwiseDistanceMax"`
+	CheckBoxPathPairwiseDistanceDiff                  float64 `arff:"checkboxpathPairwiseDistanceDiff" csv:"checkboxpathPairwiseDistanceDiff"`
+	CheckBoxPathPairwiseDistanceSum                   float64 `arff:"checkboxpathPairwiseDistanceSum" csv:"checkboxpathPairwiseDistanceSum"`
+	CheckBoxPathPairwiseDistanceMean                  float64 `arff:"checkboxpathPairwiseDistanceMean" csv:"checkboxpathPairwiseDistanceMean"`
+	CheckBoxPathPairwiseDistanceStdDev                float64 `arff:"checkboxpathPairwiseDistanceStdDev" csv:"checkboxpathPairwiseDistanceStdDev"`
+	CheckBoxPathPairwiseDistanceSkew                  float64 `arff:"checkboxpathPairwiseDistanceSkew" csv:"checkboxpathPairwiseDistanceSkew"`
+	CheckBoxPathPairwiseVelocityMin                   float64 `arff:"checkboxpathPairwiseVelocityMin" csv:"checkboxpathPairwiseVelocityMin"`
+	CheckBoxPathPairwiseVelocityMax                   float64 `arff:"checkboxpathPairwiseVelocityMax" csv:"checkboxpathPairwiseVelocityMax"`
+	CheckBoxPathPairwiseVelocityDiff                  float64 `arff:"checkboxpathPairwiseVelocityDiff" csv:"checkboxpathPairwiseVelocityDiff"`
+	CheckBoxPathPairwiseVelocitySum                   float64 `arff:"checkboxpathPairwiseVelocitySum" csv:"checkboxpathPairwiseVelocitySum"`
+	CheckBoxPathPairwiseVelocityMean                  float64 `arff:"checkboxpathPairwiseVelocityMean" csv:"checkboxpathPairwiseVelocityMean"`
+	CheckBoxPathPairwiseVelocityStdDev                float64 `arff:"checkboxpathPairwiseVelocityStdDev" csv:"checkboxpathPairwiseVelocityStdDev"`
+	CheckBoxPathPairwiseVelocitySkew                  float64 `arff:"checkboxpathPairwiseVelocitySkew" csv:"checkboxpathPairwiseVelocitySkew"`
+	CheckBoxPathPairwiseAccelerationMin               float64 `arff:"checkboxpathPairwiseAccelerationMin" csv:"checkboxpathPairwiseAccelerationMin"`
+	CheckBoxPathPairwiseAccelerationMax               float64 `arff:"checkboxpathPairwiseAccelerationMax" csv:"checkboxpathPairwiseAccelerationMax"`
+	CheckBoxPathPairwiseAccelerationDiff              float64 `arff:"checkboxpathPairwiseAccelerationDiff" csv:"checkboxpathPairwiseAccelerationDiff"`
+	CheckBoxPathPairwiseAccelerationSum               float64 `arff:"checkboxpathPairwiseAccelerationSum" csv:"checkboxpathPairwiseAccelerationSum"`
+	CheckBoxPathPairwiseAccelerationMean              float64 `arff:"checkboxpathPairwiseAccelerationMean" csv:"checkboxpathPairwiseAccelerationMean"`
+	CheckBoxPathPairwiseAccelerationStdDev            float64 `arff:"checkboxpathPairwiseAccelerationStdDev" csv:"checkboxpathPairwiseAccelerationStdDev"`
+	CheckBoxPathPairwiseAccelerationSkew              float64 `arff:"checkboxpathPairwiseAccelerationSkew" csv:"checkboxpathPairwiseAccelerationSkew"`
+	CheckBoxPathPairwiseAngleMin                      float64 `arff:"checkboxpathPairwiseAngleMin" csv:"checkboxpathPairwiseAngleMin"`
+	CheckBoxPathPairwiseAngleMax                      float64 `arff:"checkboxpathPairwiseAngleMax" csv:"checkboxpathPairwiseAngleMax"`
+	CheckBoxPathPairwiseAngleDiff                     float64 `arff:"checkboxpathPairwiseAngleDiff" csv:"checkboxpathPairwiseAngleDiff"`
+	CheckBoxPathPairwiseAngleSum                      float64 `arff:"checkboxpathPairwiseAngleSum" csv:"checkboxpathPairwiseAngleSum"`
+	CheckBoxPathPairwiseAngleMean                     float64 `arff:"checkboxpathPairwiseAngleMean" csv:"checkboxpathPairwiseAngleMean"`
+	CheckBoxPathPairwiseAngleStdDev                   float64 `arff:"checkboxpathPairwiseAngleStdDev" csv:"checkboxpathPairwiseAngleStdDev"`
+	CheckBoxPathPairwiseAngleSkew                     float64 `arff:"checkboxpathPairwiseAngleSkew" csv:"checkboxpathPairwiseAngleSkew"`
+	CheckBoxPathAngleBetweenMovementAndStartEndMin    float64 `arff:"checkboxpathAngleBetweenMovementAndStartEndMin" csv:"checkboxpathAngleBetweenMovementAndStartEndMin"`
+	CheckBoxPathAngleBetweenMovementAndStartEndMax    float64 `arff:"checkboxpathAngleBetweenMovementAndStartEndMax" csv:"checkboxpathAngleBetweenMovementAndStartEndMax"`
+	CheckBoxPathAngleBetweenMovementAndStartEndDiff   float64 `arff:"checkboxpathAngleBetweenMovementAndStartEndDiff" csv:"checkboxpathAngleBetweenMovementAndStartEndDiff"`
+	CheckBoxPathAngleBetweenMovementAndStartEndSum    float64 `arff:"checkboxpathAngleBetweenMovementAndStartEndSum" csv:"checkboxpathAngleBetweenMovementAndStartEndSum"`
+	CheckBoxPathAngleBetweenMovementAndStartEndMean   float64 `arff:"checkboxpathAngleBetweenMovementAndStartEndMean" csv:"checkboxpathAngleBetweenMovementAndStartEndMean"`
+	CheckBoxPathAngleBetweenMovementAndStartEndStdDev float64 `arff:"checkboxpathAngleBetweenMovementAndStartEndStdDev" csv:"checkboxpathAngleBetweenMovementAndStartEndStdDev"`
+	CheckBoxPathAngleBetweenMovementAndStartEndSkew   float64 `arff:"checkboxpathAngleBetweenMovementAndStartEndSkew" csv:"checkboxpathAngleBetweenMovementAndStartEndSkew"`
+	CheckBoxPathPairwiseAngularVelocityMin            float64 `arff:"checkboxpathPairwiseAngularVelocityMin" csv:"checkboxpathPairwiseAngularVelocityMin"`
+	CheckBoxPathPairwiseAngularVelocityMax            float64 `arff:"checkboxpathPairwiseAngularVelocityMax" csv:"checkboxpathPairwiseAngularVelocityMax"`
+	CheckBoxPathPairwiseAngularVelocityDiff           float64 `arff:"checkboxpathPairwiseAngularVelocityDiff" csv:"checkboxpathPairwiseAngularVelocityDiff"`
+	CheckBoxPathPairwiseAngularVelocitySum            float64 `arff:"checkboxpathPairwiseAngularVelocitySum" csv:"checkboxpathPairwiseAngularVelocitySum"`
+	CheckBoxPathPairwiseAngularVelocityMean           float64 `arff:"checkboxpathPairwiseAngularVelocityMean" csv:"checkboxpathPairwiseAngularVelocityMean"`
+	CheckBoxPathPairwiseAngularVelocityStdDev         float64 `arff:"checkboxpathPairwiseAngularVelocityStdDev" csv:"checkboxpathPairwiseAngularVelocityStdDev"`
+	CheckBoxPathPairwiseAngularVelocitySkew           float64 `arff:"checkboxpathPairwiseAngularVelocitySkew" csv:"checkboxpathPairwiseAngularVelocitySkew"`
+	CheckBoxPathPairwiseDurationMin                   uint64  `arff:"checkboxpathPairwiseDurationMin" csv:"checkboxpathPairwiseDurationMin"`
+	CheckBoxPathPairwiseDurationMax                   uint64  `arff:"checkboxpathPairwiseDurationMax" csv:"checkboxpathPairwiseDurationMax"`
+	CheckBoxPathPairwiseDurationDiff                  uint64  `arff:"checkboxpathPairwiseDurationDiff" csv:"checkboxpathPairwiseDurationDiff"`
+	CheckBoxPathPairwiseDurationSum                   uint64  `arff:"checkboxpathPairwiseDurationSum" csv:"checkboxpathPairwiseDurationSum"`
+	CheckBoxPathPairwiseDurationMean                  float64 `arff:"checkboxpathPairwiseDurationMean" csv:"checkboxpathPairwiseDurationMean"`
+	CheckBoxPathPairwiseDurationStdDev                float64 `arff:"checkboxpathPairwiseDurationStdDev" csv:"checkboxpathPairwiseDurationStdDev"`
+	CheckBoxPathPairwiseDurationSkew                  float64 `arff:"checkboxpathPairwiseDurationSkew" csv:"checkboxpathPairwiseDurationSkew"`
+	CheckBoxPathTimeBetweenClickAndReleaseMin         uint64  `arff:"checkboxpathTimeBetweenClickAndReleaseMin" csv:"checkboxpathTimeBetweenClickAndReleaseMin"`
+	CheckBoxPathTimeBetweenClickAndReleaseMax         uint64  `arff:"checkboxpathTimeBetweenClickAndReleaseMax" csv:"checkboxpathTimeBetweenClickAndReleaseMax"`
+	CheckBoxPathTimeBetweenClickAndReleaseDiff        uint64  `arff:"checkboxpathTimeBetweenClickAndReleaseDiff" csv:"checkboxpathTimeBetweenClickAndReleaseDiff"`
+	CheckBoxPathTimeBetweenClickAndReleaseSum         uint64  `arff:"checkboxpathTimeBetweenClickAndReleaseSum" csv:"checkboxpathTimeBetweenClickAndReleaseSum"`
+	CheckBoxPathTimeBetweenClickAndReleaseMean        float64 `arff:"checkboxpathTimeBetweenClickAndReleaseMean" csv:"checkboxpathTimeBetweenClickAndReleaseMean"`
+	CheckBoxPathTimeBetweenClickAndReleaseStdDev      float64 `arff:"checkboxpathTimeBetweenClickAndReleaseStdDev" csv:"checkboxpathTimeBetweenClickAndReleaseStdDev"`
+	CheckBoxPathTimeBetweenClickAndReleaseSkew        float64 `arff:"checkboxpathTimeBetweenClickAndReleaseSkew" csv:"checkboxpathTimeBetweenClickAndReleaseSkew"`
+	CheckBoxPathBreakTimesMin                         uint64  `arff:"checkboxpathBreakTimesMin" csv:"checkboxpathBreakTimesMin"`
+	CheckBoxPathBreakTimesMax                         uint64  `arff:"checkboxpathBreakTimesMax" csv:"checkboxpathBreakTimesMax"`
+	CheckBoxPathBreakTimesDiff                        uint64  `arff:"checkboxpathBreakTimesDiff" csv:"checkboxpathBreakTimesDiff"`
+	CheckBoxPathBreakTimesSum                         uint64  `arff:"checkboxpathBreakTimesSum" csv:"checkboxpathBreakTimesSum"`
+	CheckBoxPathBreakTimesMean                        float64 `arff:"checkboxpathBreakTimesMean" csv:"checkboxpathBreakTimesMean"`
+	CheckBoxPathBreakTimesStdDev                      float64 `arff:"checkboxpathBreakTimesStdDev" csv:"checkboxpathBreakTimesStdDev"`
+	CheckBoxPathBreakTimesSkew                        float64 `arff:"checkboxpathBreakTimesSkew" csv:"checkboxpathBreakTimesSkew"`
+	CheckBoxPathMovementDuringClickDistanceMin        float64 `arff:"checkboxpathMovementDuringClickDistanceMin" csv:"checkboxpathMovementDuringClickDistanceMin"`
+	CheckBoxPathMovementDuringClickDistanceMax        float64 `arff:"checkboxpathMovementDuringClickDistanceMax" csv:"checkboxpathMovementDuringClickDistanceMax"`
+	CheckBoxPathMovementDuringClickDistanceDiff       float64 `arff:"checkboxpathMovementDuringClickDistanceDiff" csv:"checkboxpathMovementDuringClickDistanceDiff"`
+	CheckBoxPathMovementDuringClickDistanceSum        float64 `arff:"checkboxpathMovementDuringClickDistanceSum" csv:"checkboxpathMovementDuringClickDistanceSum"`
+	CheckBoxPathMovementDuringClickDistanceMean       float64 `arff:"checkboxpathMovementDuringClickDistanceMean" csv:"checkboxpathMovementDuringClickDistanceMean"`
+	CheckBoxPathMovementDuringClickDistanceStdDev     float64 `arff:"checkboxpathMovementDuringClickDistanceStdDev" csv:"checkboxpathMovementDuringClickDistanceStdDev"`
+	CheckBoxPathMovementDuringClickDistanceSkew       float64 `arff:"checkboxpathMovementDuringClickDistanceSkew" csv:"checkboxpathMovementDuringClickDistanceSkew"`
+	CheckBoxPathMovementDuringClickVelocityMin        float64 `arff:"checkboxpathMovementDuringClickVelocityMin" csv:"checkboxpathMovementDuringClickVelocityMin"`
+	CheckBoxPathMovementDuringClickVelocityMax        float64 `arff:"checkboxpathMovementDuringClickVelocityMax" csv:"checkboxpathMovementDuringClickVelocityMax"`
+	CheckBoxPathMovementDuringClickVelocityDiff       float64 `arff:"checkboxpathMovementDuringClickVelocityDiff" csv:"checkboxpathMovementDuringClickVelocityDiff"`
+	CheckBoxPathMovementDuringClickVelocitySum        float64 `arff:"checkboxpathMovementDuringClickVelocitySum" csv:"checkboxpathMovementDuringClickVelocitySum"`
+	CheckBoxPathMovementDuringClickVelocityMean       float64 `arff:"checkboxpathMovementDuringClickVelocityMean" csv:"checkboxpathMovementDuringClickVelocityMean"`
+	CheckBoxPathMovementDuringClickVelocityStdDev     float64 `arff:"checkboxpathMovementDuringClickVelocityStdDev" csv:"checkboxpathMovementDuringClickVelocityStdDev"`
+	CheckBoxPathMovementDuringClickVelocitySkew       float64 `arff:"checkboxpathMovementDuringClickVelocitySkew" csv:"checkboxpathMovementDuringClickVelocitySkew"`
+	CheckBoxPathMovementDuringClickAccelerationMin    float64 `arff:"checkboxpathMovementDuringClickAccelerationMin" csv:"checkboxpathMovementDuringCilckAccelerationMin"`
+	CheckBoxPathMovementDuringClickAccelerationMax    float64 `arff:"checkboxpathMovementDuringClickAccelerationMax" csv:"checkboxpathMovementDuringCilckAccelerationMax"`
+	CheckBoxPathMovementDuringClickAccelerationDiff   float64 `arff:"checkboxpathMovementDuringClickAccelerationDiff" csv:"checkboxpathMovementDuringClickAccelerationDiff"`
+	CheckBoxPathMovementDuringClickAccelerationSum    float64 `arff:"checkboxpathMovementDuringClickAccelerationSum" csv:"checkboxpathMovementDuringCilckAccelerationSum"`
+	CheckBoxPathMovementDuringClickAccelerationMean   float64 `arff:"checkboxpathMovementDuringClickAccelerationMean" csv:"checkboxpathMovementDuringClickAccelerationMean"`
+	CheckBoxPathMovementDuringClickAccelerationStdDev float64 `arff:"checkboxpathMovementDuringClickAccelerationStdDev" csv:"checkboxpathMovementDurinlgCickAccelerationStdDev"`
+	CheckBoxPathMovementDuringClickAccelerationSkew   float64 `arff:"checkboxpathMovementDuringClickAccelerationSkew" csv:"checkboxpathMovementDuringClickAccelerationSkew"`
+	CheckBoxPathMovementDuringClickAngleMin           float64 `arff:"checkboxpathMovementDuringClickAngleMin" csv:"checkboxpathMovementDuringClickAngleMin"`
+	CheckBoxPathMovementDuringClickAngleMax           float64 `arff:"checkboxpathMovementDuringClickAngleMax" csv:"checkboxpathMovementDuringClickAngleMax"`
+	CheckBoxPathMovementDuringClickAngleDiff          float64 `arff:"checkboxpathMovementDuringClickAngleDiff" csv:"checkboxpathMovementDuringClickAngleDiff"`
+	CheckBoxPathMovementDuringClickAngleSum           float64 `arff:"checkboxpathMovementDuringClickAngleSum" csv:"checkboxpathMovementDuringClickAngleSum"`
+	CheckBoxPathMovementDuringClickAngleMean          float64 `arff:"checkboxpathMovementDuringClickAngleMean" csv:"checkboxpathMovementDuringClickAngleMean"`
+	CheckBoxPathMovementDuringClickAngleStdDev        float64 `arff:"checkboxpathMovementDuringClickAngleStdDev" csv:"checkboxpathMovementDuringClickAngleStdDev"`
+	CheckBoxPathMovementDuringClickAngleSkew          float64 `arff:"checkboxpathMovementDuringClickAngleSkew" csv:"checkboxpathMovementDuringClickAngleSkew"`
+	CheckBoxPathScrollDXMin                           int16   `arff:"checkboxpathScrollDXMin" csv:"checkboxpathScrollDXMin"`
+	CheckBoxPathScrollDXMax                           int16   `arff:"checkboxpathScrollDXMax" csv:"checkboxpathScrollDXMax"`
+	CheckBoxPathScrollDXDiff                          int16   `arff:"checkboxpathScrollDXDiff" csv:"checkboxpathScrollDXDiff"`
+	CheckBoxPathScrollDXSum                           int16   `arff:"checkboxpathScrollDXSum" csv:"checkboxpathScrollDXSum"`
+	CheckBoxPathScrollDXMean                          float64 `arff:"checkboxpathScrollDXMean" csv:"checkboxpathScrollDXMean"`
+	CheckBoxPathScrollDXStdDev                        float64 `arff:"checkboxpathScrollDXStdDev" csv:"checkboxpathScrollDXStdDev"`
+	CheckBoxPathScrollDXSkew                          float64 `arff:"checkboxpathScrollDXSkew" csv:"checkboxpathScrollDXSkew"`
+	CheckBoxPathScrollDYMin                           int16   `arff:"checkboxpathScrollDYMin" csv:"checkboxpathScrollDYMin"`
+	CheckBoxPathScrollDYMax                           int16   `arff:"checkboxpathScrollDYMax" csv:"checkboxpathScrollDYMax"`
+	CheckBoxPathScrollDYDiff                          int16   `arff:"checkboxpathScrollDYDiff" csv:"checkboxpathScrollDYDiff"`
+	CheckBoxPathScrollDYSum                           int16   `arff:"checkboxpathScrollDYSum" csv:"checkboxpathScrollDYSum"`
+	CheckBoxPathScrollDYMean                          float64 `arff:"checkboxpathScrollDYMean" csv:"checkboxpathScrollDYMean"`
+	CheckBoxPathScrollDYStdDev                        float64 `arff:"checkboxpathScrollDYStdDev" csv:"checkboxpathScrollDYStdDev"`
+	CheckBoxPathScrollDYSkew                          float64 `arff:"checkboxpathScrollDYSkew" csv:"checkboxpathScrollDYSkew"`
+	CheckBoxPathScrollDZMin                           int16   `arff:"checkboxpathScrollDZMin" csv:"checkboxpathScrollDZMin"`
+	CheckBoxPathScrollDZMax                           int16   `arff:"checkboxpathScrollDZMax" csv:"checkboxpathScrollDZMax"`
+	CheckBoxPathScrollDZDiff                          int16   `arff:"checkboxpathScrollDZDiff" csv:"checkboxpathScrollDZDiff"`
+	CheckBoxPathScrollDZSum                           int16   `arff:"checkboxpathScrollDZSum" csv:"checkboxpathScrollDZSum"`
+	CheckBoxPathScrollDZMean                          float64 `arff:"checkboxpathScrollDZMean" csv:"checkboxpathScrollDZMean"`
+	CheckBoxPathScrollDZStdDev                        float64 `arff:"checkboxpathScrollDZStdDev" csv:"checkboxpathScrollDZStdDev"`
+	CheckBoxPathScrollDZSkew                          float64 `arff:"checkboxpathScrollDZSkew" csv:"checkboxpathScrollDZSkew"`
+	CheckBoxPathScrollDMMin                           uint8   `arff:"checkboxpathScrollDMMin" csv:"checkboxpathScrollDMMin"`
+	CheckBoxPathScrollDMMax                           uint8   `arff:"checkboxpathScrollDMMax" csv:"checkboxpathScrollDMMax"`
+	CheckBoxPathScrollDMDiff                          uint8   `arff:"checkboxpathScrollDMDiff" csv:"checkboxpathScrollDMDiff"`
+	CheckBoxPathScrollDMSum                           uint8   `arff:"checkboxpathScrollDMSum" csv:"checkboxpathScrollDMSum"`
+	CheckBoxPathScrollDMMean                          float64 `arff:"checkboxpathScrollDMMean" csv:"checkboxpathScrollDMMean"`
+	CheckBoxPathScrollDMStdDev                        float64 `arff:"checkboxpathScrollDMStdDev" csv:"checkboxpathScrollDMStdDev"`
+	CheckBoxPathScrollDMSkew                          float64 `arff:"checkboxpathScrollDMSkew" csv:"checkboxpathScrollDMSkew"`
+	CheckBoxPathXPointsMin                            float64 `arff:"checkboxpathXPointsMin" csv:"checkboxpathXPointsMin"`
+	CheckBoxPathXPointsMax                            float64 `arff:"checkboxpathXPointsMax" csv:"checkboxpathXPointsMax"`
+	CheckBoxPathXPointsDiff                           float64 `arff:"checkboxpathXPointsDiff" csv:"checkboxpathXPointsDiff"`
+	CheckBoxPathXPointsSum                            float64 `arff:"checkboxpathXPointsSum" csv:"checkboxpathXPointsSum"`
+	CheckBoxPathXPointsMean                           float64 `arff:"checkboxpathXPointsMean" csv:"checkboxpathXPointsMean"`
+	CheckBoxPathXPointsStdDev                         float64 `arff:"checkboxpathXPointsStdDev" csv:"checkboxpathXPointsStdDev"`
+	CheckBoxPathXPointsSkew                           float64 `arff:"checkboxpathXPointsSkew" csv:"checkboxpathXPointsSkew"`
+	CheckBoxPathYPointsMin                            float64 `arff:"checkboxpathYPointsMin" csv:"checkboxpathYPointsMin"`
+	CheckBoxPathYPointsMax                            float64 `arff:"checkboxpathYPointsMax" csv:"checkboxpathYPointsMax"`
+	CheckBoxPathYPointsDiff                           float64 `arff:"checkboxpathYPointsDiff" csv:"checkboxpathYPointsDiff"`
+	CheckBoxPathYPointsSum                            float64 `arff:"checkboxpathYPointsSum" csv:"checkboxpathYPointsSum"`
+	CheckBoxPathYPointsMean                           float64 `arff:"checkboxpathYPointsMean" csv:"checkboxpathYPointsMean"`
+	CheckBoxPathYPointsStdDev                         float64 `arff:"checkboxpathYPointsStdDev" csv:"checkboxpathYPointsStdDev"`
+	CheckBoxPathYPointsSkew                           float64 `arff:"checkboxpathYPointsSkew" csv:"checkboxpathYPointsSkew"`
+	CheckBoxPathPairwiseXVelocityMin                  float64 `arff:"checkboxpathPairwiseXVelocityMin" csv:"checkboxpathPairwiseXVelocityMin"`
+	CheckBoxPathPairwiseXVelocityMax                  float64 `arff:"checkboxpathPairwiseXVelocityMax" csv:"checkboxpathPairwiseXVelocityMax"`
+	CheckBoxPathPairwiseXVelocityDiff                 float64 `arff:"checkboxpathPairwiseXVelocityDiff" csv:"checkboxpathPairwiseXVelocityDiff"`
+	CheckBoxPathPairwiseXVelocitySum                  float64 `arff:"checkboxpathPairwiseXVelocitySum" csv:"checkboxpathPairwiseXVelocitySum"`
+	CheckBoxPathPairwiseXVelocityMean                 float64 `arff:"checkboxpathPairwiseXVelocityMean" csv:"checkboxpathPairwiseXVelocityMean"`
+	CheckBoxPathPairwiseXVelocityStdDev               float64 `arff:"checkboxpathPairwiseXVelocityStdDev" csv:"checkboxpathPairwiseXVelocityStdDev"`
+	CheckBoxPathPairwiseXVelocitySkew                 float64 `arff:"checkboxpathPairwiseXVelocitySkew" csv:"checkboxpathPairwiseXVelocitySkew"`
+	CheckBoxPathPairwiseYVelocityMin                  float64 `arff:"checkboxpathPairwiseYVelocityMin" csv:"checkboxpathPairwiseYVelocityMin"`
+	CheckBoxPathPairwiseYVelocityMax                  float64 `arff:"checkboxpathPairwiseYVelocityMax" csv:"checkboxpathPairwiseYVelocityMax"`
+	CheckBoxPathPairwiseYVelocityDiff                 float64 `arff:"checkboxpathPairwiseYVelocityDiff" csv:"checkboxpathPairwiseYVelocityDiff"`
+	CheckBoxPathPairwiseYVelocitySum                  float64 `arff:"checkboxpathPairwiseYVelocitySum" csv:"checkboxpathPairwiseYVelocitySum"`
+	CheckBoxPathPairwiseYVelocityMean                 float64 `arff:"checkboxpathPairwiseYVelocityMean" csv:"checkboxpathPairwiseYVelocityMean"`
+	CheckBoxPathPairwiseYVelocityStdDev               float64 `arff:"checkboxpathPairwiseYVelocityStdDev" csv:"checkboxpathPairwiseYVelocityStdDev"`
+	CheckBoxPathPairwiseYVelocitySkew                 float64 `arff:"checkboxpathPairwiseYVelocitySkew" csv:"checkboxpathPairwiseYVelocitySkew"`
+	CheckBoxPathPairwiseXDistanceMin                  float64 `arff:"checkboxpathPairwiseXDistanceMin" csv:"checkboxpathPairwiseXDistanceMin"`
+	CheckBoxPathPairwiseXDistanceMax                  float64 `arff:"checkboxpathPairwiseXDistanceMax" csv:"checkboxpathPairwiseXDistanceMax"`
+	CheckBoxPathPairwiseXDistanceDiff                 float64 `arff:"checkboxpathPairwiseXDistanceDiff" csv:"checkboxpathPairwiseXDistanceDiff"`
+	CheckBoxPathPairwiseXDistanceSum                  float64 `arff:"checkboxpathPairwiseXDistanceSum" csv:"checkboxpathPairwiseXDistanceSum"`
+	CheckBoxPathPairwiseXDistanceMean                 float64 `arff:"checkboxpathPairwiseXDistanceMean" csv:"checkboxpathPairwiseXDistanceMean"`
+	CheckBoxPathPairwiseXDistanceStdDev               float64 `arff:"checkboxpathPairwiseXDistanceStdDev" csv:"checkboxpathPairwiseXDistanceStdDev"`
+	CheckBoxPathPairwiseXDistanceSkew                 float64 `arff:"checkboxpathPairwiseXDistanceSkew" csv:"checkboxpathPairwiseXDistanceSkew"`
+	CheckBoxPathPairwiseYDistanceMin                  float64 `arff:"checkboxpathPairwiseYDistanceMin" csv:"checkboxpathPairwiseYDistanceMin"`
+	CheckBoxPathPairwiseYDistanceMax                  float64 `arff:"checkboxpathPairwiseYDistanceMax" csv:"checkboxpathPairwiseYDistanceMax"`
+	CheckBoxPathPairwiseYDistanceDiff                 float64 `arff:"checkboxpathPairwiseYDistanceDiff" csv:"checkboxpathPairwiseYDistanceDiff"`
+	CheckBoxPathPairwiseYDistanceSum                  float64 `arff:"checkboxpathPairwiseYDistanceSum" csv:"checkboxpathPairwiseYDistanceSum"`
+	CheckBoxPathPairwiseYDistanceMean                 float64 `arff:"checkboxpathPairwiseYDistanceMean" csv:"checkboxpathPairwiseYDistanceMean"`
+	CheckBoxPathPairwiseYDistanceStdDev               float64 `arff:"checkboxpathPairwiseYDistanceStdDev" csv:"checkboxpathPairwiseYDistanceStdDev"`
+	CheckBoxPathPairwiseYDistanceSkew                 float64 `arff:"checkboxpathPairwiseYDistanceSkew" csv:"checkboxpathPairwiseYDistanceSkew"`
 }
 
 // GetARFFHeader returns the Header for an ARFF file which contains ProcessedFeatures instances
@@ -245,6 +426,187 @@ func GetARFFHeader() arff.Header {
 	header.AddAttr("taskY", arff.Numeric, nil)
 	header.AddAttr("taskWidth", arff.Numeric, nil)
 	header.AddAttr("taskHeight", arff.Numeric, nil)
+	//
+	// Movement Features
+	//
+	header.AddAttr("numberOfPaths", arff.Numeric, nil)
+	// CheckBoxPath
+	header.AddAttr("checkBoxPathStraightness", arff.Numeric, nil)
+	header.AddAttr("checkBoxPathNoScrolls", arff.Numeric, nil)
+	header.AddAttr("checkBoxPathNoMiddleClick", arff.Numeric, nil)
+	header.AddAttr("checkBoxPathNoRightClick", arff.Numeric, nil)
+	header.AddAttr("checkBoxPathBreakRatio", arff.Numeric, nil)
+	header.AddAttr("checkBoxPathNoBreaks", arff.Numeric, nil)
+	header.AddAttr("checkBoxPathTimeMovementClick", arff.Numeric, nil)
+	header.AddAttr("checkBoxPathTimeClickMovement", arff.Numeric, nil)
+	header.AddAttr("checkBoxPathDurPath", arff.Numeric, nil)
+	header.AddAttr("checkBoxPathAngleStartEnd", arff.Numeric, nil)
+	header.AddAttr("checkBoxPathNumMovementPoints", arff.Numeric, nil)
+	header.AddAttr("checkBoxPathDistStartEnd", arff.Numeric, nil)
+	// Auto-Generated
+	//
+	header.AddAttr("checkboxpathPairwiseDistanceMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseDistanceMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseDistanceDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseDistanceSum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseDistanceMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseDistanceStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseDistanceSkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseVelocityMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseVelocityMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseVelocityDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseVelocitySum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseVelocityMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseVelocityStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseVelocitySkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAccelerationMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAccelerationMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAccelerationDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAccelerationSum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAccelerationMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAccelerationStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAccelerationSkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAngleMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAngleMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAngleDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAngleSum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAngleMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAngleStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAngleSkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathAngleBetweenMovementAndStartEndMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathAngleBetweenMovementAndStartEndMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathAngleBetweenMovementAndStartEndDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathAngleBetweenMovementAndStartEndSum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathAngleBetweenMovementAndStartEndMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathAngleBetweenMovementAndStartEndStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathAngleBetweenMovementAndStartEndSkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAngularVelocityMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAngularVelocityMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAngularVelocityDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAngularVelocitySum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAngularVelocityMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAngularVelocityStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseAngularVelocitySkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseDurationMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseDurationMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseDurationDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseDurationSum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseDurationMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseDurationStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseDurationSkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathTimeBetweenClickAndReleaseMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathTimeBetweenClickAndReleaseMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathTimeBetweenClickAndReleaseDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathTimeBetweenClickAndReleaseSum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathTimeBetweenClickAndReleaseMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathTimeBetweenClickAndReleaseStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathTimeBetweenClickAndReleaseSkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathBreakTimesMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathBreakTimesMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathBreakTimesDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathBreakTimesSum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathBreakTimesMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathBreakTimesStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathBreakTimesSkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickDistanceMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickDistanceMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickDistanceDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickDistanceSum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickDistanceMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickDistanceStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickDistanceSkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickVelocityMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickVelocityMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickVelocityDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickVelocitySum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickVelocityMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickVelocityStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickVelocitySkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickAccelerationMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickAccelerationMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickAccelerationDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickAccelerationSum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickAccelerationMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickAccelerationStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickAccelerationSkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickAngleMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickAngleMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickAngleDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickAngleSum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickAngleMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickAngleStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathMovementDuringClickAngleSkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDXMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDXMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDXDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDXSum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDXMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDXStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDXSkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDYMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDYMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDYDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDYSum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDYMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDYStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDYSkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDZMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDZMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDZDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDZSum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDZMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDZStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDZSkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDMMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDMMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDMDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDMSum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDMMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDMStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathScrollDMSkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathXPointsMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathXPointsMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathXPointsDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathXPointsSum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathXPointsMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathXPointsStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathXPointsSkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathYPointsMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathYPointsMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathYPointsDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathYPointsSum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathYPointsMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathYPointsStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathYPointsSkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseXVelocityMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseXVelocityMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseXVelocityDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseXVelocitySum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseXVelocityMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseXVelocityStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseXVelocitySkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseYVelocityMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseYVelocityMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseYVelocityDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseYVelocitySum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseYVelocityMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseYVelocityStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseYVelocitySkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseXDistanceMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseXDistanceMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseXDistanceDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseXDistanceSum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseXDistanceMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseXDistanceStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseXDistanceSkew", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseYDistanceMin", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseYDistanceMax", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseYDistanceDiff", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseYDistanceSum", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseYDistanceMean", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseYDistanceStdDev", arff.Numeric, nil)
+	header.AddAttr("checkboxpathPairwiseYDistanceSkew", arff.Numeric, nil)
+	// RestPaths
 
 	header.Relation = "refingerprint"
 	return header
@@ -334,4 +696,376 @@ func (features *ProcessedFeatures) ExtractMouseData(data *Data) {
 
 	checkBoxPath, otherPaths := ExtractPaths(cleanedCheck, cleanedRest, cleanedClick, cleanedScroll)
 	otherPaths = RemoveSmallPaths(otherPaths)
+	features.AddCheckBoxFeatures(checkBoxPath.GetRawFeatures())
+
+	features.NumberOfPaths = uint16(len(otherPaths)) + 1
+
+	restPaths := make([]*PathFeatures, len(otherPaths))
+	for i, path := range otherPaths {
+		pathFeature := path.GetRawFeatures()
+		restPaths[i] = pathFeature
+	}
+	features.AddRestPathFeatures(restPaths)
+}
+
+// AddCheckBoxFeatures adds the features of the CheckboxPath to the FeatureSet
+func (features *ProcessedFeatures) AddCheckBoxFeatures(path *PathFeatures) {
+	features.CheckboxPathDistanceStartEndPoint = path.DistanceStartEndPoint
+	features.CheckboxPathNumberOfMovementPoints = path.NumberOfMovementPoints
+	features.CheckboxPathAngleStartEndPoint = path.AngleStartEndPoint
+	features.CheckboxPathDurationOfPath = path.DurationOfPath
+	features.CheckboxPathTimeBetweenClickAndMovement = path.TimeBetweenClickAndMovement
+	features.CheckboxPathTimeBetweeenMovementAndDownClick = path.TimeBetweeenMovementAndDownClick
+	features.CheckboxPathNumberOfBreaks = path.NumberOfBreaks
+	features.CheckboxPathBreakTimeTotalTimeRatio = path.BreakTimeTotalTimeRatio
+	features.CheckboxPathNumberOfRightClicks = path.NumberOfRightClicks
+	features.CheckboxPathNumberOfMiddleClicks = path.NumberOfMiddleClicks
+	features.CheckboxPathNumberOfScrolls = path.NumberOfScrolls
+	features.CheckboxPathStraightness = path.Straightness
+	features.GenerateCheckboxCalculation(path)
+}
+
+// AddRestPathFeatures adds the features of the rest paths to the FeatureSet
+func (features *ProcessedFeatures) AddRestPathFeatures(paths []*PathFeatures) {}
+
+// calcCheckBoxPathPairwiseDistanceFeatures calculates the features of the PairwiseDistance vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathPairwiseDistanceFeatures(path *PathFeatures) {
+	features.CheckBoxPathPairwiseDistanceMin, features.CheckBoxPathPairwiseDistanceMean, features.CheckBoxPathPairwiseDistanceMax, features.CheckBoxPathPairwiseDistanceStdDev = rnd.StatBasic(path.PairwiseDistance, true)
+	features.CheckBoxPathPairwiseDistanceSum = SumFloat(path.PairwiseDistance)
+	if len(path.PairwiseDistance) == 1 {
+		features.CheckBoxPathPairwiseDistanceMin, features.CheckBoxPathPairwiseDistanceMean, features.CheckBoxPathPairwiseDistanceMax = path.PairwiseDistance[0], path.PairwiseDistance[0], path.PairwiseDistance[0]
+	}
+	features.CheckBoxPathPairwiseDistanceDiff = features.CheckBoxPathPairwiseDistanceMax - features.CheckBoxPathPairwiseDistanceMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.CheckBoxPathPairwiseDistanceSkew, _ = rnd.StatMoments(path.PairwiseDistance)
+}
+
+// calcCheckBoxPathPairwiseVelocityFeatures calculates the features of the PairwiseVelocity vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathPairwiseVelocityFeatures(path *PathFeatures) {
+	features.CheckBoxPathPairwiseVelocityMin, features.CheckBoxPathPairwiseVelocityMean, features.CheckBoxPathPairwiseVelocityMax, features.CheckBoxPathPairwiseVelocityStdDev = rnd.StatBasic(path.PairwiseVelocity, true)
+	features.CheckBoxPathPairwiseVelocitySum = SumFloat(path.PairwiseVelocity)
+	if len(path.PairwiseVelocity) == 1 {
+		features.CheckBoxPathPairwiseVelocityMin, features.CheckBoxPathPairwiseVelocityMean, features.CheckBoxPathPairwiseVelocityMax = path.PairwiseVelocity[0], path.PairwiseVelocity[0], path.PairwiseVelocity[0]
+	}
+	features.CheckBoxPathPairwiseVelocityDiff = features.CheckBoxPathPairwiseVelocityMax - features.CheckBoxPathPairwiseVelocityMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.CheckBoxPathPairwiseVelocitySkew, _ = rnd.StatMoments(path.PairwiseVelocity)
+}
+
+// calcCheckBoxPathPairwiseAccelerationFeatures calculates the features of the PairwiseAcceleration vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathPairwiseAccelerationFeatures(path *PathFeatures) {
+	features.CheckBoxPathPairwiseAccelerationMin, features.CheckBoxPathPairwiseAccelerationMean, features.CheckBoxPathPairwiseAccelerationMax, features.CheckBoxPathPairwiseAccelerationStdDev = rnd.StatBasic(path.PairwiseAcceleration, true)
+	features.CheckBoxPathPairwiseAccelerationSum = SumFloat(path.PairwiseAcceleration)
+	if len(path.PairwiseAcceleration) == 1 {
+		features.CheckBoxPathPairwiseAccelerationMin, features.CheckBoxPathPairwiseAccelerationMean, features.CheckBoxPathPairwiseAccelerationMax = path.PairwiseAcceleration[0], path.PairwiseAcceleration[0], path.PairwiseAcceleration[0]
+	}
+	features.CheckBoxPathPairwiseAccelerationDiff = features.CheckBoxPathPairwiseAccelerationMax - features.CheckBoxPathPairwiseAccelerationMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.CheckBoxPathPairwiseAccelerationSkew, _ = rnd.StatMoments(path.PairwiseAcceleration)
+}
+
+// calcCheckBoxPathPairwiseAngleFeatures calculates the features of the PairwiseAngle vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathPairwiseAngleFeatures(path *PathFeatures) {
+	features.CheckBoxPathPairwiseAngleMin, features.CheckBoxPathPairwiseAngleMean, features.CheckBoxPathPairwiseAngleMax, features.CheckBoxPathPairwiseAngleStdDev = rnd.StatBasic(path.PairwiseAngle, true)
+	features.CheckBoxPathPairwiseAngleSum = SumFloat(path.PairwiseAngle)
+	if len(path.PairwiseAngle) == 1 {
+		features.CheckBoxPathPairwiseAngleMin, features.CheckBoxPathPairwiseAngleMean, features.CheckBoxPathPairwiseAngleMax = path.PairwiseAngle[0], path.PairwiseAngle[0], path.PairwiseAngle[0]
+	}
+	features.CheckBoxPathPairwiseAngleDiff = features.CheckBoxPathPairwiseAngleMax - features.CheckBoxPathPairwiseAngleMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.CheckBoxPathPairwiseAngleSkew, _ = rnd.StatMoments(path.PairwiseAngle)
+}
+
+// calcCheckBoxPathAngleBetweenMovementAndStartEndFeatures calculates the features of the AngleBetweenMovementAndStartEnd vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathAngleBetweenMovementAndStartEndFeatures(path *PathFeatures) {
+	features.CheckBoxPathAngleBetweenMovementAndStartEndMin, features.CheckBoxPathAngleBetweenMovementAndStartEndMean, features.CheckBoxPathAngleBetweenMovementAndStartEndMax, features.CheckBoxPathAngleBetweenMovementAndStartEndStdDev = rnd.StatBasic(path.AngleBetweenMovementAndStartEnd, true)
+	features.CheckBoxPathAngleBetweenMovementAndStartEndSum = SumFloat(path.AngleBetweenMovementAndStartEnd)
+	if len(path.AngleBetweenMovementAndStartEnd) == 1 {
+		features.CheckBoxPathAngleBetweenMovementAndStartEndMin, features.CheckBoxPathAngleBetweenMovementAndStartEndMean, features.CheckBoxPathAngleBetweenMovementAndStartEndMax = path.AngleBetweenMovementAndStartEnd[0], path.AngleBetweenMovementAndStartEnd[0], path.AngleBetweenMovementAndStartEnd[0]
+	}
+	features.CheckBoxPathAngleBetweenMovementAndStartEndDiff = features.CheckBoxPathAngleBetweenMovementAndStartEndMax - features.CheckBoxPathAngleBetweenMovementAndStartEndMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.CheckBoxPathAngleBetweenMovementAndStartEndSkew, _ = rnd.StatMoments(path.AngleBetweenMovementAndStartEnd)
+}
+
+// calcCheckBoxPathPairwiseAngularVelocityFeatures calculates the features of the PairwiseAngularVelocity vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathPairwiseAngularVelocityFeatures(path *PathFeatures) {
+	features.CheckBoxPathPairwiseAngularVelocityMin, features.CheckBoxPathPairwiseAngularVelocityMean, features.CheckBoxPathPairwiseAngularVelocityMax, features.CheckBoxPathPairwiseAngularVelocityStdDev = rnd.StatBasic(path.PairwiseAngularVelocity, true)
+	features.CheckBoxPathPairwiseAngularVelocitySum = SumFloat(path.PairwiseAngularVelocity)
+	if len(path.PairwiseAngularVelocity) == 1 {
+		features.CheckBoxPathPairwiseAngularVelocityMin, features.CheckBoxPathPairwiseAngularVelocityMean, features.CheckBoxPathPairwiseAngularVelocityMax = path.PairwiseAngularVelocity[0], path.PairwiseAngularVelocity[0], path.PairwiseAngularVelocity[0]
+	}
+	features.CheckBoxPathPairwiseAngularVelocityDiff = features.CheckBoxPathPairwiseAngularVelocityMax - features.CheckBoxPathPairwiseAngularVelocityMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.CheckBoxPathPairwiseAngularVelocitySkew, _ = rnd.StatMoments(path.PairwiseAngularVelocity)
+}
+
+// calcCheckBoxPathPairwiseDurationFeatures calculates the features of the PairwiseDuration vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathPairwiseDurationFeatures(path *PathFeatures) {
+	features.CheckBoxPathPairwiseDurationMax = MaxUint64(path.PairwiseDuration)
+	features.CheckBoxPathPairwiseDurationMin = MinUint64(path.PairwiseDuration)
+	features.CheckBoxPathPairwiseDurationDiff = features.CheckBoxPathPairwiseDurationMax - features.CheckBoxPathPairwiseDurationMin
+	features.CheckBoxPathPairwiseDurationSum = SumUint64(path.PairwiseDuration)
+	features.CheckBoxPathPairwiseDurationMean = Mean(ConvertUint64ToFloat64(path.PairwiseDuration), float64(features.CheckBoxPathPairwiseDurationSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.CheckBoxPathPairwiseDurationStdDev, features.CheckBoxPathPairwiseDurationSkew, _ = rnd.StatMoments(ConvertUint64ToFloat64(path.PairwiseDuration))
+}
+
+// calcCheckBoxPathTimeBetweenClickAndReleaseFeatures calculates the features of the TimeBetweenClickAndRelease vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathTimeBetweenClickAndReleaseFeatures(path *PathFeatures) {
+	features.CheckBoxPathTimeBetweenClickAndReleaseMax = MaxUint64(path.TimeBetweenClickAndRelease)
+	features.CheckBoxPathTimeBetweenClickAndReleaseMin = MinUint64(path.TimeBetweenClickAndRelease)
+	features.CheckBoxPathTimeBetweenClickAndReleaseDiff = features.CheckBoxPathTimeBetweenClickAndReleaseMax - features.CheckBoxPathTimeBetweenClickAndReleaseMin
+	features.CheckBoxPathTimeBetweenClickAndReleaseSum = SumUint64(path.TimeBetweenClickAndRelease)
+	features.CheckBoxPathTimeBetweenClickAndReleaseMean = Mean(ConvertUint64ToFloat64(path.TimeBetweenClickAndRelease), float64(features.CheckBoxPathTimeBetweenClickAndReleaseSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.CheckBoxPathTimeBetweenClickAndReleaseStdDev, features.CheckBoxPathTimeBetweenClickAndReleaseSkew, _ = rnd.StatMoments(ConvertUint64ToFloat64(path.TimeBetweenClickAndRelease))
+}
+
+// calcCheckBoxPathBreakTimesFeatures calculates the features of the BreakTimes vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathBreakTimesFeatures(path *PathFeatures) {
+	features.CheckBoxPathBreakTimesMax = MaxUint64(path.BreakTimes)
+	features.CheckBoxPathBreakTimesMin = MinUint64(path.BreakTimes)
+	features.CheckBoxPathBreakTimesDiff = features.CheckBoxPathBreakTimesMax - features.CheckBoxPathBreakTimesMin
+	features.CheckBoxPathBreakTimesSum = SumUint64(path.BreakTimes)
+	features.CheckBoxPathBreakTimesMean = Mean(ConvertUint64ToFloat64(path.BreakTimes), float64(features.CheckBoxPathBreakTimesSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.CheckBoxPathBreakTimesStdDev, features.CheckBoxPathBreakTimesSkew, _ = rnd.StatMoments(ConvertUint64ToFloat64(path.BreakTimes))
+}
+
+// calcCheckBoxPathMovementDuringClickDistanceFeatures calculates the features of the MovementDuringClickDistance vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathMovementDuringClickDistanceFeatures(path *PathFeatures) {
+	features.CheckBoxPathMovementDuringClickDistanceMin, features.CheckBoxPathMovementDuringClickDistanceMean, features.CheckBoxPathMovementDuringClickDistanceMax, features.CheckBoxPathMovementDuringClickDistanceStdDev = rnd.StatBasic(path.MovementDuringClickDistance, true)
+	features.CheckBoxPathMovementDuringClickDistanceSum = SumFloat(path.MovementDuringClickDistance)
+	if len(path.MovementDuringClickDistance) == 1 {
+		features.CheckBoxPathMovementDuringClickDistanceMin, features.CheckBoxPathMovementDuringClickDistanceMean, features.CheckBoxPathMovementDuringClickDistanceMax = path.MovementDuringClickDistance[0], path.MovementDuringClickDistance[0], path.MovementDuringClickDistance[0]
+	}
+	features.CheckBoxPathMovementDuringClickDistanceDiff = features.CheckBoxPathMovementDuringClickDistanceMax - features.CheckBoxPathMovementDuringClickDistanceMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.CheckBoxPathMovementDuringClickDistanceSkew, _ = rnd.StatMoments(path.MovementDuringClickDistance)
+}
+
+// calcCheckBoxPathMovementDuringClickVelocityFeatures calculates the features of the MovementDuringClickVelocity vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathMovementDuringClickVelocityFeatures(path *PathFeatures) {
+	features.CheckBoxPathMovementDuringClickVelocityMin, features.CheckBoxPathMovementDuringClickVelocityMean, features.CheckBoxPathMovementDuringClickVelocityMax, features.CheckBoxPathMovementDuringClickVelocityStdDev = rnd.StatBasic(path.MovementDuringClickVelocity, true)
+	features.CheckBoxPathMovementDuringClickVelocitySum = SumFloat(path.MovementDuringClickVelocity)
+	if len(path.MovementDuringClickVelocity) == 1 {
+		features.CheckBoxPathMovementDuringClickVelocityMin, features.CheckBoxPathMovementDuringClickVelocityMean, features.CheckBoxPathMovementDuringClickVelocityMax = path.MovementDuringClickVelocity[0], path.MovementDuringClickVelocity[0], path.MovementDuringClickVelocity[0]
+	}
+	features.CheckBoxPathMovementDuringClickVelocityDiff = features.CheckBoxPathMovementDuringClickVelocityMax - features.CheckBoxPathMovementDuringClickVelocityMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.CheckBoxPathMovementDuringClickVelocitySkew, _ = rnd.StatMoments(path.MovementDuringClickVelocity)
+}
+
+// calcCheckBoxPathMovementDuringClickAccelerationFeatures calculates the features of the MovementDuringClickAcceleration vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathMovementDuringClickAccelerationFeatures(path *PathFeatures) {
+	features.CheckBoxPathMovementDuringClickAccelerationMin, features.CheckBoxPathMovementDuringClickAccelerationMean, features.CheckBoxPathMovementDuringClickAccelerationMax, features.CheckBoxPathMovementDuringClickAccelerationStdDev = rnd.StatBasic(path.MovementDuringClickAcceleration, true)
+	features.CheckBoxPathMovementDuringClickAccelerationSum = SumFloat(path.MovementDuringClickAcceleration)
+	if len(path.MovementDuringClickAcceleration) == 1 {
+		features.CheckBoxPathMovementDuringClickAccelerationMin, features.CheckBoxPathMovementDuringClickAccelerationMean, features.CheckBoxPathMovementDuringClickAccelerationMax = path.MovementDuringClickAcceleration[0], path.MovementDuringClickAcceleration[0], path.MovementDuringClickAcceleration[0]
+	}
+	features.CheckBoxPathMovementDuringClickAccelerationDiff = features.CheckBoxPathMovementDuringClickAccelerationMax - features.CheckBoxPathMovementDuringClickAccelerationMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.CheckBoxPathMovementDuringClickAccelerationSkew, _ = rnd.StatMoments(path.MovementDuringClickAcceleration)
+}
+
+// calcCheckBoxPathMovementDuringClickAngleFeatures calculates the features of the MovementDuringClickAngle vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathMovementDuringClickAngleFeatures(path *PathFeatures) {
+	features.CheckBoxPathMovementDuringClickAngleMin, features.CheckBoxPathMovementDuringClickAngleMean, features.CheckBoxPathMovementDuringClickAngleMax, features.CheckBoxPathMovementDuringClickAngleStdDev = rnd.StatBasic(path.MovementDuringClickAngle, true)
+	features.CheckBoxPathMovementDuringClickAngleSum = SumFloat(path.MovementDuringClickAngle)
+	if len(path.MovementDuringClickAngle) == 1 {
+		features.CheckBoxPathMovementDuringClickAngleMin, features.CheckBoxPathMovementDuringClickAngleMean, features.CheckBoxPathMovementDuringClickAngleMax = path.MovementDuringClickAngle[0], path.MovementDuringClickAngle[0], path.MovementDuringClickAngle[0]
+	}
+	features.CheckBoxPathMovementDuringClickAngleDiff = features.CheckBoxPathMovementDuringClickAngleMax - features.CheckBoxPathMovementDuringClickAngleMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.CheckBoxPathMovementDuringClickAngleSkew, _ = rnd.StatMoments(path.MovementDuringClickAngle)
+}
+
+// calcCheckBoxPathScrollDXFeatures calculates the features of the ScrollDX vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathScrollDXFeatures(path *PathFeatures) {
+	features.CheckBoxPathScrollDXMax = MaxInt(path.ScrollDX)
+	features.CheckBoxPathScrollDXMin = MinInt(path.ScrollDX)
+	features.CheckBoxPathScrollDXDiff = features.CheckBoxPathScrollDXMax - features.CheckBoxPathScrollDXMin
+	features.CheckBoxPathScrollDXSum = SumInt(path.ScrollDX)
+	features.CheckBoxPathScrollDXMean = Mean(ConvertInt16ToFloat64(path.ScrollDX), float64(features.CheckBoxPathScrollDXSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.CheckBoxPathScrollDXStdDev, features.CheckBoxPathScrollDXSkew, _ = rnd.StatMoments(ConvertInt16ToFloat64(path.ScrollDX))
+}
+
+// calcCheckBoxPathScrollDYFeatures calculates the features of the ScrollDY vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathScrollDYFeatures(path *PathFeatures) {
+	features.CheckBoxPathScrollDYMax = MaxInt(path.ScrollDY)
+	features.CheckBoxPathScrollDYMin = MinInt(path.ScrollDY)
+	features.CheckBoxPathScrollDYDiff = features.CheckBoxPathScrollDYMax - features.CheckBoxPathScrollDYMin
+	features.CheckBoxPathScrollDYSum = SumInt(path.ScrollDY)
+	features.CheckBoxPathScrollDYMean = Mean(ConvertInt16ToFloat64(path.ScrollDY), float64(features.CheckBoxPathScrollDYSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.CheckBoxPathScrollDYStdDev, features.CheckBoxPathScrollDYSkew, _ = rnd.StatMoments(ConvertInt16ToFloat64(path.ScrollDY))
+}
+
+// calcCheckBoxPathScrollDZFeatures calculates the features of the ScrollDZ vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathScrollDZFeatures(path *PathFeatures) {
+	features.CheckBoxPathScrollDZMax = MaxInt(path.ScrollDZ)
+	features.CheckBoxPathScrollDZMin = MinInt(path.ScrollDZ)
+	features.CheckBoxPathScrollDZDiff = features.CheckBoxPathScrollDZMax - features.CheckBoxPathScrollDZMin
+	features.CheckBoxPathScrollDZSum = SumInt(path.ScrollDZ)
+	features.CheckBoxPathScrollDZMean = Mean(ConvertInt16ToFloat64(path.ScrollDZ), float64(features.CheckBoxPathScrollDZSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.CheckBoxPathScrollDZStdDev, features.CheckBoxPathScrollDZSkew, _ = rnd.StatMoments(ConvertInt16ToFloat64(path.ScrollDZ))
+}
+
+// calcCheckBoxPathScrollDMFeatures calculates the features of the ScrollDM vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathScrollDMFeatures(path *PathFeatures) {
+	features.CheckBoxPathScrollDMMax = MaxUint8(path.ScrollDM)
+	features.CheckBoxPathScrollDMMin = MinUint8(path.ScrollDM)
+	features.CheckBoxPathScrollDMDiff = features.CheckBoxPathScrollDMMax - features.CheckBoxPathScrollDMMin
+	features.CheckBoxPathScrollDMSum = SumUint8(path.ScrollDM)
+	features.CheckBoxPathScrollDMMean = Mean(ConvertUint8ToFloat64(path.ScrollDM), float64(features.CheckBoxPathScrollDMSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.CheckBoxPathScrollDMStdDev, features.CheckBoxPathScrollDMSkew, _ = rnd.StatMoments(ConvertUint8ToFloat64(path.ScrollDM))
+}
+
+// calcCheckBoxPathXPointsFeatures calculates the features of the XPoints vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathXPointsFeatures(path *PathFeatures) {
+	features.CheckBoxPathXPointsMin, features.CheckBoxPathXPointsMean, features.CheckBoxPathXPointsMax, features.CheckBoxPathXPointsStdDev = rnd.StatBasic(path.XPoints, true)
+	features.CheckBoxPathXPointsSum = SumFloat(path.XPoints)
+	if len(path.XPoints) == 1 {
+		features.CheckBoxPathXPointsMin, features.CheckBoxPathXPointsMean, features.CheckBoxPathXPointsMax = path.XPoints[0], path.XPoints[0], path.XPoints[0]
+	}
+	features.CheckBoxPathXPointsDiff = features.CheckBoxPathXPointsMax - features.CheckBoxPathXPointsMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.CheckBoxPathXPointsSkew, _ = rnd.StatMoments(path.XPoints)
+}
+
+// calcCheckBoxPathYPointsFeatures calculates the features of the YPoints vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathYPointsFeatures(path *PathFeatures) {
+	features.CheckBoxPathYPointsMin, features.CheckBoxPathYPointsMean, features.CheckBoxPathYPointsMax, features.CheckBoxPathYPointsStdDev = rnd.StatBasic(path.YPoints, true)
+	features.CheckBoxPathYPointsSum = SumFloat(path.YPoints)
+	if len(path.YPoints) == 1 {
+		features.CheckBoxPathYPointsMin, features.CheckBoxPathYPointsMean, features.CheckBoxPathYPointsMax = path.YPoints[0], path.YPoints[0], path.YPoints[0]
+	}
+	features.CheckBoxPathYPointsDiff = features.CheckBoxPathYPointsMax - features.CheckBoxPathYPointsMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.CheckBoxPathYPointsSkew, _ = rnd.StatMoments(path.YPoints)
+}
+
+// calcCheckBoxPathPairwiseXVelocityFeatures calculates the features of the PairwiseXVelocity vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathPairwiseXVelocityFeatures(path *PathFeatures) {
+	features.CheckBoxPathPairwiseXVelocityMin, features.CheckBoxPathPairwiseXVelocityMean, features.CheckBoxPathPairwiseXVelocityMax, features.CheckBoxPathPairwiseXVelocityStdDev = rnd.StatBasic(path.PairwiseXVelocity, true)
+	features.CheckBoxPathPairwiseXVelocitySum = SumFloat(path.PairwiseXVelocity)
+	if len(path.PairwiseXVelocity) == 1 {
+		features.CheckBoxPathPairwiseXVelocityMin, features.CheckBoxPathPairwiseXVelocityMean, features.CheckBoxPathPairwiseXVelocityMax = path.PairwiseXVelocity[0], path.PairwiseXVelocity[0], path.PairwiseXVelocity[0]
+	}
+	features.CheckBoxPathPairwiseXVelocityDiff = features.CheckBoxPathPairwiseXVelocityMax - features.CheckBoxPathPairwiseXVelocityMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.CheckBoxPathPairwiseXVelocitySkew, _ = rnd.StatMoments(path.PairwiseXVelocity)
+}
+
+// calcCheckBoxPathPairwiseYVelocityFeatures calculates the features of the PairwiseYVelocity vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathPairwiseYVelocityFeatures(path *PathFeatures) {
+	features.CheckBoxPathPairwiseYVelocityMin, features.CheckBoxPathPairwiseYVelocityMean, features.CheckBoxPathPairwiseYVelocityMax, features.CheckBoxPathPairwiseYVelocityStdDev = rnd.StatBasic(path.PairwiseYVelocity, true)
+	features.CheckBoxPathPairwiseYVelocitySum = SumFloat(path.PairwiseYVelocity)
+	if len(path.PairwiseYVelocity) == 1 {
+		features.CheckBoxPathPairwiseYVelocityMin, features.CheckBoxPathPairwiseYVelocityMean, features.CheckBoxPathPairwiseYVelocityMax = path.PairwiseYVelocity[0], path.PairwiseYVelocity[0], path.PairwiseYVelocity[0]
+	}
+	features.CheckBoxPathPairwiseYVelocityDiff = features.CheckBoxPathPairwiseYVelocityMax - features.CheckBoxPathPairwiseYVelocityMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.CheckBoxPathPairwiseYVelocitySkew, _ = rnd.StatMoments(path.PairwiseYVelocity)
+}
+
+// calcCheckBoxPathPairwiseXDistanceFeatures calculates the features of the PairwiseXDistance vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathPairwiseXDistanceFeatures(path *PathFeatures) {
+	features.CheckBoxPathPairwiseXDistanceMin, features.CheckBoxPathPairwiseXDistanceMean, features.CheckBoxPathPairwiseXDistanceMax, features.CheckBoxPathPairwiseXDistanceStdDev = rnd.StatBasic(path.PairwiseXDistance, true)
+	features.CheckBoxPathPairwiseXDistanceSum = SumFloat(path.PairwiseXDistance)
+	if len(path.PairwiseXDistance) == 1 {
+		features.CheckBoxPathPairwiseXDistanceMin, features.CheckBoxPathPairwiseXDistanceMean, features.CheckBoxPathPairwiseXDistanceMax = path.PairwiseXDistance[0], path.PairwiseXDistance[0], path.PairwiseXDistance[0]
+	}
+	features.CheckBoxPathPairwiseXDistanceDiff = features.CheckBoxPathPairwiseXDistanceMax - features.CheckBoxPathPairwiseXDistanceMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.CheckBoxPathPairwiseXDistanceSkew, _ = rnd.StatMoments(path.PairwiseXDistance)
+}
+
+// calcCheckBoxPathPairwiseYDistanceFeatures calculates the features of the PairwiseYDistance vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcCheckBoxPathPairwiseYDistanceFeatures(path *PathFeatures) {
+	features.CheckBoxPathPairwiseYDistanceMin, features.CheckBoxPathPairwiseYDistanceMean, features.CheckBoxPathPairwiseYDistanceMax, features.CheckBoxPathPairwiseYDistanceStdDev = rnd.StatBasic(path.PairwiseYDistance, true)
+	features.CheckBoxPathPairwiseYDistanceSum = SumFloat(path.PairwiseYDistance)
+	if len(path.PairwiseYDistance) == 1 {
+		features.CheckBoxPathPairwiseYDistanceMin, features.CheckBoxPathPairwiseYDistanceMean, features.CheckBoxPathPairwiseYDistanceMax = path.PairwiseYDistance[0], path.PairwiseYDistance[0], path.PairwiseYDistance[0]
+	}
+	features.CheckBoxPathPairwiseYDistanceDiff = features.CheckBoxPathPairwiseYDistanceMax - features.CheckBoxPathPairwiseYDistanceMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.CheckBoxPathPairwiseYDistanceSkew, _ = rnd.StatMoments(path.PairwiseYDistance)
+}
+
+// GenerateCheckboxCalculation calculates the features from the checkbox movement path; Auto-generated
+func (features *ProcessedFeatures) GenerateCheckboxCalculation(path *PathFeatures) {
+	features.calcCheckBoxPathPairwiseDistanceFeatures(path)
+	features.calcCheckBoxPathPairwiseVelocityFeatures(path)
+	features.calcCheckBoxPathPairwiseAccelerationFeatures(path)
+	features.calcCheckBoxPathPairwiseAngleFeatures(path)
+	features.calcCheckBoxPathAngleBetweenMovementAndStartEndFeatures(path)
+	features.calcCheckBoxPathPairwiseAngularVelocityFeatures(path)
+	features.calcCheckBoxPathPairwiseDurationFeatures(path)
+	features.calcCheckBoxPathTimeBetweenClickAndReleaseFeatures(path)
+	features.calcCheckBoxPathBreakTimesFeatures(path)
+	features.calcCheckBoxPathMovementDuringClickDistanceFeatures(path)
+	features.calcCheckBoxPathMovementDuringClickVelocityFeatures(path)
+	features.calcCheckBoxPathMovementDuringClickAccelerationFeatures(path)
+	features.calcCheckBoxPathMovementDuringClickAngleFeatures(path)
+	features.calcCheckBoxPathScrollDXFeatures(path)
+	features.calcCheckBoxPathScrollDYFeatures(path)
+	features.calcCheckBoxPathScrollDZFeatures(path)
+	features.calcCheckBoxPathScrollDMFeatures(path)
+	features.calcCheckBoxPathXPointsFeatures(path)
+	features.calcCheckBoxPathYPointsFeatures(path)
+	features.calcCheckBoxPathPairwiseXVelocityFeatures(path)
+	features.calcCheckBoxPathPairwiseYVelocityFeatures(path)
+	features.calcCheckBoxPathPairwiseXDistanceFeatures(path)
+	features.calcCheckBoxPathPairwiseYDistanceFeatures(path)
 }
