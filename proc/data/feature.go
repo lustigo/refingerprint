@@ -235,24 +235,24 @@ type ProcessedFeatures struct {
 	CheckBoxPathMovementDuringClickAngleMean          float64 `arff:"checkboxpathMovementDuringClickAngleMean" csv:"checkboxpathMovementDuringClickAngleMean"`
 	CheckBoxPathMovementDuringClickAngleStdDev        float64 `arff:"checkboxpathMovementDuringClickAngleStdDev" csv:"checkboxpathMovementDuringClickAngleStdDev"`
 	CheckBoxPathMovementDuringClickAngleSkew          float64 `arff:"checkboxpathMovementDuringClickAngleSkew" csv:"checkboxpathMovementDuringClickAngleSkew"`
-	CheckBoxPathScrollDXMin                           int16   `arff:"checkboxpathScrollDXMin" csv:"checkboxpathScrollDXMin"`
-	CheckBoxPathScrollDXMax                           int16   `arff:"checkboxpathScrollDXMax" csv:"checkboxpathScrollDXMax"`
-	CheckBoxPathScrollDXDiff                          int16   `arff:"checkboxpathScrollDXDiff" csv:"checkboxpathScrollDXDiff"`
-	CheckBoxPathScrollDXSum                           int16   `arff:"checkboxpathScrollDXSum" csv:"checkboxpathScrollDXSum"`
+	CheckBoxPathScrollDXMin                           float64 `arff:"checkboxpathScrollDXMin" csv:"checkboxpathScrollDXMin"`
+	CheckBoxPathScrollDXMax                           float64 `arff:"checkboxpathScrollDXMax" csv:"checkboxpathScrollDXMax"`
+	CheckBoxPathScrollDXDiff                          float64 `arff:"checkboxpathScrollDXDiff" csv:"checkboxpathScrollDXDiff"`
+	CheckBoxPathScrollDXSum                           float64 `arff:"checkboxpathScrollDXSum" csv:"checkboxpathScrollDXSum"`
 	CheckBoxPathScrollDXMean                          float64 `arff:"checkboxpathScrollDXMean" csv:"checkboxpathScrollDXMean"`
 	CheckBoxPathScrollDXStdDev                        float64 `arff:"checkboxpathScrollDXStdDev" csv:"checkboxpathScrollDXStdDev"`
 	CheckBoxPathScrollDXSkew                          float64 `arff:"checkboxpathScrollDXSkew" csv:"checkboxpathScrollDXSkew"`
-	CheckBoxPathScrollDYMin                           int16   `arff:"checkboxpathScrollDYMin" csv:"checkboxpathScrollDYMin"`
-	CheckBoxPathScrollDYMax                           int16   `arff:"checkboxpathScrollDYMax" csv:"checkboxpathScrollDYMax"`
-	CheckBoxPathScrollDYDiff                          int16   `arff:"checkboxpathScrollDYDiff" csv:"checkboxpathScrollDYDiff"`
-	CheckBoxPathScrollDYSum                           int16   `arff:"checkboxpathScrollDYSum" csv:"checkboxpathScrollDYSum"`
+	CheckBoxPathScrollDYMin                           float64 `arff:"checkboxpathScrollDYMin" csv:"checkboxpathScrollDYMin"`
+	CheckBoxPathScrollDYMax                           float64 `arff:"checkboxpathScrollDYMax" csv:"checkboxpathScrollDYMax"`
+	CheckBoxPathScrollDYDiff                          float64 `arff:"checkboxpathScrollDYDiff" csv:"checkboxpathScrollDYDiff"`
+	CheckBoxPathScrollDYSum                           float64 `arff:"checkboxpathScrollDYSum" csv:"checkboxpathScrollDYSum"`
 	CheckBoxPathScrollDYMean                          float64 `arff:"checkboxpathScrollDYMean" csv:"checkboxpathScrollDYMean"`
 	CheckBoxPathScrollDYStdDev                        float64 `arff:"checkboxpathScrollDYStdDev" csv:"checkboxpathScrollDYStdDev"`
 	CheckBoxPathScrollDYSkew                          float64 `arff:"checkboxpathScrollDYSkew" csv:"checkboxpathScrollDYSkew"`
-	CheckBoxPathScrollDZMin                           int16   `arff:"checkboxpathScrollDZMin" csv:"checkboxpathScrollDZMin"`
-	CheckBoxPathScrollDZMax                           int16   `arff:"checkboxpathScrollDZMax" csv:"checkboxpathScrollDZMax"`
-	CheckBoxPathScrollDZDiff                          int16   `arff:"checkboxpathScrollDZDiff" csv:"checkboxpathScrollDZDiff"`
-	CheckBoxPathScrollDZSum                           int16   `arff:"checkboxpathScrollDZSum" csv:"checkboxpathScrollDZSum"`
+	CheckBoxPathScrollDZMin                           float64 `arff:"checkboxpathScrollDZMin" csv:"checkboxpathScrollDZMin"`
+	CheckBoxPathScrollDZMax                           float64 `arff:"checkboxpathScrollDZMax" csv:"checkboxpathScrollDZMax"`
+	CheckBoxPathScrollDZDiff                          float64 `arff:"checkboxpathScrollDZDiff" csv:"checkboxpathScrollDZDiff"`
+	CheckBoxPathScrollDZSum                           float64 `arff:"checkboxpathScrollDZSum" csv:"checkboxpathScrollDZSum"`
 	CheckBoxPathScrollDZMean                          float64 `arff:"checkboxpathScrollDZMean" csv:"checkboxpathScrollDZMean"`
 	CheckBoxPathScrollDZStdDev                        float64 `arff:"checkboxpathScrollDZStdDev" csv:"checkboxpathScrollDZStdDev"`
 	CheckBoxPathScrollDZSkew                          float64 `arff:"checkboxpathScrollDZSkew" csv:"checkboxpathScrollDZSkew"`
@@ -722,7 +722,7 @@ func (features *ProcessedFeatures) AddCheckBoxFeatures(path *PathFeatures) {
 	features.CheckboxPathNumberOfMiddleClicks = path.NumberOfMiddleClicks
 	features.CheckboxPathNumberOfScrolls = path.NumberOfScrolls
 	features.CheckboxPathStraightness = path.Straightness
-	features.GenerateCheckboxCalculation(path)
+	//features.GenerateCheckboxCalculation(path)
 }
 
 // AddRestPathFeatures adds the features of the rest paths to the FeatureSet
@@ -909,41 +909,44 @@ func (features *ProcessedFeatures) calcCheckBoxPathMovementDuringClickAngleFeatu
 
 // calcCheckBoxPathScrollDXFeatures calculates the features of the ScrollDX vector from the given path; Auto-generated
 func (features *ProcessedFeatures) calcCheckBoxPathScrollDXFeatures(path *PathFeatures) {
-	features.CheckBoxPathScrollDXMax = MaxInt(path.ScrollDX)
-	features.CheckBoxPathScrollDXMin = MinInt(path.ScrollDX)
+	features.CheckBoxPathScrollDXMin, features.CheckBoxPathScrollDXMean, features.CheckBoxPathScrollDXMax, features.CheckBoxPathScrollDXStdDev = rnd.StatBasic(path.ScrollDX, true)
+	features.CheckBoxPathScrollDXSum = SumFloat(path.ScrollDX)
+	if len(path.ScrollDX) == 1 {
+		features.CheckBoxPathScrollDXMin, features.CheckBoxPathScrollDXMean, features.CheckBoxPathScrollDXMax = path.ScrollDX[0], path.ScrollDX[0], path.ScrollDX[0]
+	}
 	features.CheckBoxPathScrollDXDiff = features.CheckBoxPathScrollDXMax - features.CheckBoxPathScrollDXMin
-	features.CheckBoxPathScrollDXSum = SumInt(path.ScrollDX)
-	features.CheckBoxPathScrollDXMean = Mean(ConvertInt16ToFloat64(path.ScrollDX), float64(features.CheckBoxPathScrollDXSum))
 	defer func() {
 		recover()
 	}()
-	_, _, _, _, features.CheckBoxPathScrollDXStdDev, features.CheckBoxPathScrollDXSkew, _ = rnd.StatMoments(ConvertInt16ToFloat64(path.ScrollDX))
+	_, _, _, _, _, features.CheckBoxPathScrollDXSkew, _ = rnd.StatMoments(path.ScrollDX)
 }
 
 // calcCheckBoxPathScrollDYFeatures calculates the features of the ScrollDY vector from the given path; Auto-generated
 func (features *ProcessedFeatures) calcCheckBoxPathScrollDYFeatures(path *PathFeatures) {
-	features.CheckBoxPathScrollDYMax = MaxInt(path.ScrollDY)
-	features.CheckBoxPathScrollDYMin = MinInt(path.ScrollDY)
+	features.CheckBoxPathScrollDYMin, features.CheckBoxPathScrollDYMean, features.CheckBoxPathScrollDYMax, features.CheckBoxPathScrollDYStdDev = rnd.StatBasic(path.ScrollDY, true)
+	features.CheckBoxPathScrollDYSum = SumFloat(path.ScrollDY)
+	if len(path.ScrollDY) == 1 {
+		features.CheckBoxPathScrollDYMin, features.CheckBoxPathScrollDYMean, features.CheckBoxPathScrollDYMax = path.ScrollDY[0], path.ScrollDY[0], path.ScrollDY[0]
+	}
 	features.CheckBoxPathScrollDYDiff = features.CheckBoxPathScrollDYMax - features.CheckBoxPathScrollDYMin
-	features.CheckBoxPathScrollDYSum = SumInt(path.ScrollDY)
-	features.CheckBoxPathScrollDYMean = Mean(ConvertInt16ToFloat64(path.ScrollDY), float64(features.CheckBoxPathScrollDYSum))
 	defer func() {
 		recover()
 	}()
-	_, _, _, _, features.CheckBoxPathScrollDYStdDev, features.CheckBoxPathScrollDYSkew, _ = rnd.StatMoments(ConvertInt16ToFloat64(path.ScrollDY))
+	_, _, _, _, _, features.CheckBoxPathScrollDYSkew, _ = rnd.StatMoments(path.ScrollDY)
 }
 
 // calcCheckBoxPathScrollDZFeatures calculates the features of the ScrollDZ vector from the given path; Auto-generated
 func (features *ProcessedFeatures) calcCheckBoxPathScrollDZFeatures(path *PathFeatures) {
-	features.CheckBoxPathScrollDZMax = MaxInt(path.ScrollDZ)
-	features.CheckBoxPathScrollDZMin = MinInt(path.ScrollDZ)
+	features.CheckBoxPathScrollDZMin, features.CheckBoxPathScrollDZMean, features.CheckBoxPathScrollDZMax, features.CheckBoxPathScrollDZStdDev = rnd.StatBasic(path.ScrollDZ, true)
+	features.CheckBoxPathScrollDZSum = SumFloat(path.ScrollDZ)
+	if len(path.ScrollDZ) == 1 {
+		features.CheckBoxPathScrollDZMin, features.CheckBoxPathScrollDZMean, features.CheckBoxPathScrollDZMax = path.ScrollDZ[0], path.ScrollDZ[0], path.ScrollDZ[0]
+	}
 	features.CheckBoxPathScrollDZDiff = features.CheckBoxPathScrollDZMax - features.CheckBoxPathScrollDZMin
-	features.CheckBoxPathScrollDZSum = SumInt(path.ScrollDZ)
-	features.CheckBoxPathScrollDZMean = Mean(ConvertInt16ToFloat64(path.ScrollDZ), float64(features.CheckBoxPathScrollDZSum))
 	defer func() {
 		recover()
 	}()
-	_, _, _, _, features.CheckBoxPathScrollDZStdDev, features.CheckBoxPathScrollDZSkew, _ = rnd.StatMoments(ConvertInt16ToFloat64(path.ScrollDZ))
+	_, _, _, _, _, features.CheckBoxPathScrollDZSkew, _ = rnd.StatMoments(path.ScrollDZ)
 }
 
 // calcCheckBoxPathScrollDMFeatures calculates the features of the ScrollDM vector from the given path; Auto-generated

@@ -90,10 +90,10 @@ type ScreenInfo struct {
 // ScrollData represents a Wheel Event
 type ScrollData struct {
 	MouseData
-	DeltaX    int16 `json:"deltaX"`
-	DeltaY    int16 `json:"deltaY"`
-	DeltaZ    int16 `json:"deltaZ"`
-	DeltaMode uint8 `json:"deltaMode"`
+	DeltaX    float64 `json:"deltaX"`
+	DeltaY    float64 `json:"deltaY"`
+	DeltaZ    float64 `json:"deltaZ"`
+	DeltaMode uint8   `json:"deltaMode"`
 }
 
 // TaskType represents the Type of a ReCaptcha Task

@@ -10,9 +10,9 @@ type NormalizedMouseData struct {
 // NormalizedScrollEvent represents the ScrollEvent relative to the Screenresolution at a specific moment
 type NormalizedScrollEvent struct {
 	NormalizedMouseData
-	DeltaX    int16
-	DeltaY    int16
-	DeltaZ    int16
+	DeltaX    float64
+	DeltaY    float64
+	DeltaZ    float64
 	DeltaMode uint8
 }
 

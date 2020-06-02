@@ -35,9 +35,9 @@ type PathFeatures struct {
 	NumberOfRightClicks              uint8
 	NumberOfMiddleClicks             uint8
 	NumberOfScrolls                  uint8
-	ScrollDX                         []int16
-	ScrollDY                         []int16
-	ScrollDZ                         []int16
+	ScrollDX                         []float64
+	ScrollDY                         []float64
+	ScrollDZ                         []float64
 	ScrollDM                         []uint8
 	XPoints                          []float64
 	YPoints                          []float64
