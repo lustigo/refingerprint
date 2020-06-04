@@ -24,6 +24,9 @@ jobs:
       - name: Test Io
         run: go test ./io
         working-directory: ${{env.working-dir}}
+      - name: Test Gen
+        run: go test ./gen
+        working-directory: ${{env.working-dir}}
 
   build:
     name: Build

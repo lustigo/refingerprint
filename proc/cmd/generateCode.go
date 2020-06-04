@@ -15,6 +15,7 @@ Also code is generated for  calculating these features.
 The features and descriptions are generated for the Movement Features.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		gen.GenerateCheckbox()
+		gen.GenerateRest()
 	},
 }
 
