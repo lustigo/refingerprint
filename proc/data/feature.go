@@ -305,6 +305,301 @@ type ProcessedFeatures struct {
 	CheckBoxPathPairwiseYDistanceMean                 float64 `arff:"checkboxpathPairwiseYDistanceMean" csv:"checkboxpathPairwiseYDistanceMean"`
 	CheckBoxPathPairwiseYDistanceStdDev               float64 `arff:"checkboxpathPairwiseYDistanceStdDev" csv:"checkboxpathPairwiseYDistanceStdDev"`
 	CheckBoxPathPairwiseYDistanceSkew                 float64 `arff:"checkboxpathPairwiseYDistanceSkew" csv:"checkboxpathPairwiseYDistanceSkew"`
+	// Rest Paths
+	RestPathPairwiseDistanceMin                    float64 `arff:"restpathPairwiseDistanceMin" csv:"restpathPairwiseDistanceMin"`
+	RestPathPairwiseDistanceMax                    float64 `arff:"restpathPairwiseDistanceMax" csv:"restpathPairwiseDistanceMax"`
+	RestPathPairwiseDistanceDiff                   float64 `arff:"restpathPairwiseDistanceDiff" csv:"restpathPairwiseDistanceDiff"`
+	RestPathPairwiseDistanceSum                    float64 `arff:"restpathPairwiseDistanceSum" csv:"restpathPairwiseDistanceSum"`
+	RestPathPairwiseDistanceMean                   float64 `arff:"restpathPairwiseDistanceMean" csv:"restpathPairwiseDistanceMean"`
+	RestPathPairwiseDistanceStdDev                 float64 `arff:"restpathPairwiseDistanceStdDev" csv:"restpathPairwiseDistanceStdDev"`
+	RestPathPairwiseDistanceSkew                   float64 `arff:"restpathPairwiseDistanceSkew" csv:"restpathPairwiseDistanceSkew"`
+	RestPathPairwiseVelocityMin                    float64 `arff:"restpathPairwiseVelocityMin" csv:"restpathPairwiseVelocityMin"`
+	RestPathPairwiseVelocityMax                    float64 `arff:"restpathPairwiseVelocityMax" csv:"restpathPairwiseVelocityMax"`
+	RestPathPairwiseVelocityDiff                   float64 `arff:"restpathPairwiseVelocityDiff" csv:"restpathPairwiseVelocityDiff"`
+	RestPathPairwiseVelocitySum                    float64 `arff:"restpathPairwiseVelocitySum" csv:"restpathPairwiseVelocitySum"`
+	RestPathPairwiseVelocityMean                   float64 `arff:"restpathPairwiseVelocityMean" csv:"restpathPairwiseVelocityMean"`
+	RestPathPairwiseVelocityStdDev                 float64 `arff:"restpathPairwiseVelocityStdDev" csv:"restpathPairwiseVelocityStdDev"`
+	RestPathPairwiseVelocitySkew                   float64 `arff:"restpathPairwiseVelocitySkew" csv:"restpathPairwiseVelocitySkew"`
+	RestPathPairwiseAccelerationMin                float64 `arff:"restpathPairwiseAccelerationMin" csv:"restpathPairwiseAccelerationMin"`
+	RestPathPairwiseAccelerationMax                float64 `arff:"restpathPairwiseAccelerationMax" csv:"restpathPairwiseAccelerationMax"`
+	RestPathPairwiseAccelerationDiff               float64 `arff:"restpathPairwiseAccelerationDiff" csv:"restpathPairwiseAccelerationDiff"`
+	RestPathPairwiseAccelerationSum                float64 `arff:"restpathPairwiseAccelerationSum" csv:"restpathPairwiseAccelerationSum"`
+	RestPathPairwiseAccelerationMean               float64 `arff:"restpathPairwiseAccelerationMean" csv:"restpathPairwiseAccelerationMean"`
+	RestPathPairwiseAccelerationStdDev             float64 `arff:"restpathPairwiseAccelerationStdDev" csv:"restpathPairwiseAccelerationStdDev"`
+	RestPathPairwiseAccelerationSkew               float64 `arff:"restpathPairwiseAccelerationSkew" csv:"restpathPairwiseAccelerationSkew"`
+	RestPathPairwiseAngleMin                       float64 `arff:"restpathPairwiseAngleMin" csv:"restpathPairwiseAngleMin"`
+	RestPathPairwiseAngleMax                       float64 `arff:"restpathPairwiseAngleMax" csv:"restpathPairwiseAngleMax"`
+	RestPathPairwiseAngleDiff                      float64 `arff:"restpathPairwiseAngleDiff" csv:"restpathPairwiseAngleDiff"`
+	RestPathPairwiseAngleSum                       float64 `arff:"restpathPairwiseAngleSum" csv:"restpathPairwiseAngleSum"`
+	RestPathPairwiseAngleMean                      float64 `arff:"restpathPairwiseAngleMean" csv:"restpathPairwiseAngleMean"`
+	RestPathPairwiseAngleStdDev                    float64 `arff:"restpathPairwiseAngleStdDev" csv:"restpathPairwiseAngleStdDev"`
+	RestPathPairwiseAngleSkew                      float64 `arff:"restpathPairwiseAngleSkew" csv:"restpathPairwiseAngleSkew"`
+	RestPathAngleBetweenMovementAndStartEndMin     float64 `arff:"restpathAngleBetweenMovementAndStartEndMin" csv:"restpathAngleBetweenMovementAndStartEndMin"`
+	RestPathAngleBetweenMovementAndStartEndMax     float64 `arff:"restpathAngleBetweenMovementAndStartEndMax" csv:"restpathAngleBetweenMovementAndStartEndMax"`
+	RestPathAngleBetweenMovementAndStartEndDiff    float64 `arff:"restpathAngleBetweenMovementAndStartEndDiff" csv:"restpathAngleBetweenMovementAndStartEndDiff"`
+	RestPathAngleBetweenMovementAndStartEndSum     float64 `arff:"restpathAngleBetweenMovementAndStartEndSum" csv:"restpathAngleBetweenMovementAndStartEndSum"`
+	RestPathAngleBetweenMovementAndStartEndMean    float64 `arff:"restpathAngleBetweenMovementAndStartEndMean" csv:"restpathAngleBetweenMovementAndStartEndMean"`
+	RestPathAngleBetweenMovementAndStartEndStdDev  float64 `arff:"restpathAngleBetweenMovementAndStartEndStdDev" csv:"restpathAngleBetweenMovementAndStartEndStdDev"`
+	RestPathAngleBetweenMovementAndStartEndSkew    float64 `arff:"restpathAngleBetweenMovementAndStartEndSkew" csv:"restpathAngleBetweenMovementAndStartEndSkew"`
+	RestPathPairwiseAngularVelocityMin             float64 `arff:"restpathPairwiseAngularVelocityMin" csv:"restpathPairwiseAngularVelocityMin"`
+	RestPathPairwiseAngularVelocityMax             float64 `arff:"restpathPairwiseAngularVelocityMax" csv:"restpathPairwiseAngularVelocityMax"`
+	RestPathPairwiseAngularVelocityDiff            float64 `arff:"restpathPairwiseAngularVelocityDiff" csv:"restpathPairwiseAngularVelocityDiff"`
+	RestPathPairwiseAngularVelocitySum             float64 `arff:"restpathPairwiseAngularVelocitySum" csv:"restpathPairwiseAngularVelocitySum"`
+	RestPathPairwiseAngularVelocityMean            float64 `arff:"restpathPairwiseAngularVelocityMean" csv:"restpathPairwiseAngularVelocityMean"`
+	RestPathPairwiseAngularVelocityStdDev          float64 `arff:"restpathPairwiseAngularVelocityStdDev" csv:"restpathPairwiseAngularVelocityStdDev"`
+	RestPathPairwiseAngularVelocitySkew            float64 `arff:"restpathPairwiseAngularVelocitySkew" csv:"restpathPairwiseAngularVelocitySkew"`
+	RestPathPairwiseDurationMin                    uint64  `arff:"restpathPairwiseDurationMin" csv:"restpathPairwiseDurationMin"`
+	RestPathPairwiseDurationMax                    uint64  `arff:"restpathPairwiseDurationMax" csv:"restpathPairwiseDurationMax"`
+	RestPathPairwiseDurationDiff                   uint64  `arff:"restpathPairwiseDurationDiff" csv:"restpathPairwiseDurationDiff"`
+	RestPathPairwiseDurationSum                    uint64  `arff:"restpathPairwiseDurationSum" csv:"restpathPairwiseDurationSum"`
+	RestPathPairwiseDurationMean                   float64 `arff:"restpathPairwiseDurationMean" csv:"restpathPairwiseDurationMean"`
+	RestPathPairwiseDurationStdDev                 float64 `arff:"restpathPairwiseDurationStdDev" csv:"restpathPairwiseDurationStdDev"`
+	RestPathPairwiseDurationSkew                   float64 `arff:"restpathPairwiseDurationSkew" csv:"restpathPairwiseDurationSkew"`
+	RestPathTimeBetweenClickAndReleaseMin          uint64  `arff:"restpathTimeBetweenClickAndReleaseMin" csv:"restpathTimeBetweenClickAndReleaseMin"`
+	RestPathTimeBetweenClickAndReleaseMax          uint64  `arff:"restpathTimeBetweenClickAndReleaseMax" csv:"restpathTimeBetweenClickAndReleaseMax"`
+	RestPathTimeBetweenClickAndReleaseDiff         uint64  `arff:"restpathTimeBetweenClickAndReleaseDiff" csv:"restpathTimeBetweenClickAndReleaseDiff"`
+	RestPathTimeBetweenClickAndReleaseSum          uint64  `arff:"restpathTimeBetweenClickAndReleaseSum" csv:"restpathTimeBetweenClickAndReleaseSum"`
+	RestPathTimeBetweenClickAndReleaseMean         float64 `arff:"restpathTimeBetweenClickAndReleaseMean" csv:"restpathTimeBetweenClickAndReleaseMean"`
+	RestPathTimeBetweenClickAndReleaseStdDev       float64 `arff:"restpathTimeBetweenClickAndReleaseStdDev" csv:"restpathTimeBetweenClickAndReleaseStdDev"`
+	RestPathTimeBetweenClickAndReleaseSkew         float64 `arff:"restpathTimeBetweenClickAndReleaseSkew" csv:"restpathTimeBetweenClickAndReleaseSkew"`
+	RestPathBreakTimesMin                          uint64  `arff:"restpathBreakTimesMin" csv:"restpathBreakTimesMin"`
+	RestPathBreakTimesMax                          uint64  `arff:"restpathBreakTimesMax" csv:"restpathBreakTimesMax"`
+	RestPathBreakTimesDiff                         uint64  `arff:"restpathBreakTimesDiff" csv:"restpathBreakTimesDiff"`
+	RestPathBreakTimesSum                          uint64  `arff:"restpathBreakTimesSum" csv:"restpathBreakTimesSum"`
+	RestPathBreakTimesMean                         float64 `arff:"restpathBreakTimesMean" csv:"restpathBreakTimesMean"`
+	RestPathBreakTimesStdDev                       float64 `arff:"restpathBreakTimesStdDev" csv:"restpathBreakTimesStdDev"`
+	RestPathBreakTimesSkew                         float64 `arff:"restpathBreakTimesSkew" csv:"restpathBreakTimesSkew"`
+	RestPathMovementDuringClickDistanceMin         float64 `arff:"restpathMovementDuringClickDistanceMin" csv:"restpathMovementDuringClickDistanceMin"`
+	RestPathMovementDuringClickDistanceMax         float64 `arff:"restpathMovementDuringClickDistanceMax" csv:"restpathMovementDuringClickDistanceMax"`
+	RestPathMovementDuringClickDistanceDiff        float64 `arff:"restpathMovementDuringClickDistanceDiff" csv:"restpathMovementDuringClickDistanceDiff"`
+	RestPathMovementDuringClickDistanceSum         float64 `arff:"restpathMovementDuringClickDistanceSum" csv:"restpathMovementDuringClickDistanceSum"`
+	RestPathMovementDuringClickDistanceMean        float64 `arff:"restpathMovementDuringClickDistanceMean" csv:"restpathMovementDuringClickDistanceMean"`
+	RestPathMovementDuringClickDistanceStdDev      float64 `arff:"restpathMovementDuringClickDistanceStdDev" csv:"restpathMovementDuringClickDistanceStdDev"`
+	RestPathMovementDuringClickDistanceSkew        float64 `arff:"restpathMovementDuringClickDistanceSkew" csv:"restpathMovementDuringClickDistanceSkew"`
+	RestPathMovementDuringClickVelocityMin         float64 `arff:"restpathMovementDuringClickVelocityMin" csv:"restpathMovementDuringClickVelocityMin"`
+	RestPathMovementDuringClickVelocityMax         float64 `arff:"restpathMovementDuringClickVelocityMax" csv:"restpathMovementDuringClickVelocityMax"`
+	RestPathMovementDuringClickVelocityDiff        float64 `arff:"restpathMovementDuringClickVelocityDiff" csv:"restpathMovementDuringClickVelocityDiff"`
+	RestPathMovementDuringClickVelocitySum         float64 `arff:"restpathMovementDuringClickVelocitySum" csv:"restpathMovementDuringClickVelocitySum"`
+	RestPathMovementDuringClickVelocityMean        float64 `arff:"restpathMovementDuringClickVelocityMean" csv:"restpathMovementDuringClickVelocityMean"`
+	RestPathMovementDuringClickVelocityStdDev      float64 `arff:"restpathMovementDuringClickVelocityStdDev" csv:"restpathMovementDuringClickVelocityStdDev"`
+	RestPathMovementDuringClickVelocitySkew        float64 `arff:"restpathMovementDuringClickVelocitySkew" csv:"restpathMovementDuringClickVelocitySkew"`
+	RestPathMovementDuringClickAccelerationMin     float64 `arff:"restpathMovementDuringClickAccelerationMin" csv:"restpathMovementDuringClickAccelerationMin"`
+	RestPathMovementDuringClickAccelerationMax     float64 `arff:"restpathMovementDuringClickAccelerationMax" csv:"restpathMovementDuringClickAccelerationMax"`
+	RestPathMovementDuringClickAccelerationDiff    float64 `arff:"restpathMovementDuringClickAccelerationDiff" csv:"restpathMovementDuringClickAccelerationDiff"`
+	RestPathMovementDuringClickAccelerationSum     float64 `arff:"restpathMovementDuringClickAccelerationSum" csv:"restpathMovementDuringClickAccelerationSum"`
+	RestPathMovementDuringClickAccelerationMean    float64 `arff:"restpathMovementDuringClickAccelerationMean" csv:"restpathMovementDuringClickAccelerationMean"`
+	RestPathMovementDuringClickAccelerationStdDev  float64 `arff:"restpathMovementDuringClickAccelerationStdDev" csv:"restpathMovementDuringClickAccelerationStdDev"`
+	RestPathMovementDuringClickAccelerationSkew    float64 `arff:"restpathMovementDuringClickAccelerationSkew" csv:"restpathMovementDuringClickAccelerationSkew"`
+	RestPathMovementDuringClickAngleMin            float64 `arff:"restpathMovementDuringClickAngleMin" csv:"restpathMovementDuringClickAngleMin"`
+	RestPathMovementDuringClickAngleMax            float64 `arff:"restpathMovementDuringClickAngleMax" csv:"restpathMovementDuringClickAngleMax"`
+	RestPathMovementDuringClickAngleDiff           float64 `arff:"restpathMovementDuringClickAngleDiff" csv:"restpathMovementDuringClickAngleDiff"`
+	RestPathMovementDuringClickAngleSum            float64 `arff:"restpathMovementDuringClickAngleSum" csv:"restpathMovementDuringClickAngleSum"`
+	RestPathMovementDuringClickAngleMean           float64 `arff:"restpathMovementDuringClickAngleMean" csv:"restpathMovementDuringClickAngleMean"`
+	RestPathMovementDuringClickAngleStdDev         float64 `arff:"restpathMovementDuringClickAngleStdDev" csv:"restpathMovementDuringClickAngleStdDev"`
+	RestPathMovementDuringClickAngleSkew           float64 `arff:"restpathMovementDuringClickAngleSkew" csv:"restpathMovementDuringClickAngleSkew"`
+	RestPathScrollDXMin                            float64 `arff:"restpathScrollDXMin" csv:"restpathScrollDXMin"`
+	RestPathScrollDXMax                            float64 `arff:"restpathScrollDXMax" csv:"restpathScrollDXMax"`
+	RestPathScrollDXDiff                           float64 `arff:"restpathScrollDXDiff" csv:"restpathScrollDXDiff"`
+	RestPathScrollDXSum                            float64 `arff:"restpathScrollDXSum" csv:"restpathScrollDXSum"`
+	RestPathScrollDXMean                           float64 `arff:"restpathScrollDXMean" csv:"restpathScrollDXMean"`
+	RestPathScrollDXStdDev                         float64 `arff:"restpathScrollDXStdDev" csv:"restpathScrollDXStdDev"`
+	RestPathScrollDXSkew                           float64 `arff:"restpathScrollDXSkew" csv:"restpathScrollDXSkew"`
+	RestPathScrollDYMin                            float64 `arff:"restpathScrollDYMin" csv:"restpathScrollDYMin"`
+	RestPathScrollDYMax                            float64 `arff:"restpathScrollDYMax" csv:"restpathScrollDYMax"`
+	RestPathScrollDYDiff                           float64 `arff:"restpathScrollDYDiff" csv:"restpathScrollDYDiff"`
+	RestPathScrollDYSum                            float64 `arff:"restpathScrollDYSum" csv:"restpathScrollDYSum"`
+	RestPathScrollDYMean                           float64 `arff:"restpathScrollDYMean" csv:"restpathScrollDYMean"`
+	RestPathScrollDYStdDev                         float64 `arff:"restpathScrollDYStdDev" csv:"restpathScrollDYStdDev"`
+	RestPathScrollDYSkew                           float64 `arff:"restpathScrollDYSkew" csv:"restpathScrollDYSkew"`
+	RestPathScrollDZMin                            float64 `arff:"restpathScrollDZMin" csv:"restpathScrollDZMin"`
+	RestPathScrollDZMax                            float64 `arff:"restpathScrollDZMax" csv:"restpathScrollDZMax"`
+	RestPathScrollDZDiff                           float64 `arff:"restpathScrollDZDiff" csv:"restpathScrollDZDiff"`
+	RestPathScrollDZSum                            float64 `arff:"restpathScrollDZSum" csv:"restpathScrollDZSum"`
+	RestPathScrollDZMean                           float64 `arff:"restpathScrollDZMean" csv:"restpathScrollDZMean"`
+	RestPathScrollDZStdDev                         float64 `arff:"restpathScrollDZStdDev" csv:"restpathScrollDZStdDev"`
+	RestPathScrollDZSkew                           float64 `arff:"restpathScrollDZSkew" csv:"restpathScrollDZSkew"`
+	RestPathScrollDMMin                            uint8   `arff:"restpathScrollDMMin" csv:"restpathScrollDMMin"`
+	RestPathScrollDMMax                            uint8   `arff:"restpathScrollDMMax" csv:"restpathScrollDMMax"`
+	RestPathScrollDMDiff                           uint8   `arff:"restpathScrollDMDiff" csv:"restpathScrollDMDiff"`
+	RestPathScrollDMSum                            uint8   `arff:"restpathScrollDMSum" csv:"restpathScrollDMSum"`
+	RestPathScrollDMMean                           float64 `arff:"restpathScrollDMMean" csv:"restpathScrollDMMean"`
+	RestPathScrollDMStdDev                         float64 `arff:"restpathScrollDMStdDev" csv:"restpathScrollDMStdDev"`
+	RestPathScrollDMSkew                           float64 `arff:"restpathScrollDMSkew" csv:"restpathScrollDMSkew"`
+	RestPathXPointsMin                             float64 `arff:"restpathXPointsMin" csv:"restpathXPointsMin"`
+	RestPathXPointsMax                             float64 `arff:"restpathXPointsMax" csv:"restpathXPointsMax"`
+	RestPathXPointsDiff                            float64 `arff:"restpathXPointsDiff" csv:"restpathXPointsDiff"`
+	RestPathXPointsSum                             float64 `arff:"restpathXPointsSum" csv:"restpathXPointsSum"`
+	RestPathXPointsMean                            float64 `arff:"restpathXPointsMean" csv:"restpathXPointsMean"`
+	RestPathXPointsStdDev                          float64 `arff:"restpathXPointsStdDev" csv:"restpathXPointsStdDev"`
+	RestPathXPointsSkew                            float64 `arff:"restpathXPointsSkew" csv:"restpathXPointsSkew"`
+	RestPathYPointsMin                             float64 `arff:"restpathYPointsMin" csv:"restpathYPointsMin"`
+	RestPathYPointsMax                             float64 `arff:"restpathYPointsMax" csv:"restpathYPointsMax"`
+	RestPathYPointsDiff                            float64 `arff:"restpathYPointsDiff" csv:"restpathYPointsDiff"`
+	RestPathYPointsSum                             float64 `arff:"restpathYPointsSum" csv:"restpathYPointsSum"`
+	RestPathYPointsMean                            float64 `arff:"restpathYPointsMean" csv:"restpathYPointsMean"`
+	RestPathYPointsStdDev                          float64 `arff:"restpathYPointsStdDev" csv:"restpathYPointsStdDev"`
+	RestPathYPointsSkew                            float64 `arff:"restpathYPointsSkew" csv:"restpathYPointsSkew"`
+	RestPathPairwiseXVelocityMin                   float64 `arff:"restpathPairwiseXVelocityMin" csv:"restpathPairwiseXVelocityMin"`
+	RestPathPairwiseXVelocityMax                   float64 `arff:"restpathPairwiseXVelocityMax" csv:"restpathPairwiseXVelocityMax"`
+	RestPathPairwiseXVelocityDiff                  float64 `arff:"restpathPairwiseXVelocityDiff" csv:"restpathPairwiseXVelocityDiff"`
+	RestPathPairwiseXVelocitySum                   float64 `arff:"restpathPairwiseXVelocitySum" csv:"restpathPairwiseXVelocitySum"`
+	RestPathPairwiseXVelocityMean                  float64 `arff:"restpathPairwiseXVelocityMean" csv:"restpathPairwiseXVelocityMean"`
+	RestPathPairwiseXVelocityStdDev                float64 `arff:"restpathPairwiseXVelocityStdDev" csv:"restpathPairwiseXVelocityStdDev"`
+	RestPathPairwiseXVelocitySkew                  float64 `arff:"restpathPairwiseXVelocitySkew" csv:"restpathPairwiseXVelocitySkew"`
+	RestPathPairwiseYVelocityMin                   float64 `arff:"restpathPairwiseYVelocityMin" csv:"restpathPairwiseYVelocityMin"`
+	RestPathPairwiseYVelocityMax                   float64 `arff:"restpathPairwiseYVelocityMax" csv:"restpathPairwiseYVelocityMax"`
+	RestPathPairwiseYVelocityDiff                  float64 `arff:"restpathPairwiseYVelocityDiff" csv:"restpathPairwiseYVelocityDiff"`
+	RestPathPairwiseYVelocitySum                   float64 `arff:"restpathPairwiseYVelocitySum" csv:"restpathPairwiseYVelocitySum"`
+	RestPathPairwiseYVelocityMean                  float64 `arff:"restpathPairwiseYVelocityMean" csv:"restpathPairwiseYVelocityMean"`
+	RestPathPairwiseYVelocityStdDev                float64 `arff:"restpathPairwiseYVelocityStdDev" csv:"restpathPairwiseYVelocityStdDev"`
+	RestPathPairwiseYVelocitySkew                  float64 `arff:"restpathPairwiseYVelocitySkew" csv:"restpathPairwiseYVelocitySkew"`
+	RestPathPairwiseXDistanceMin                   float64 `arff:"restpathPairwiseXDistanceMin" csv:"restpathPairwiseXDistanceMin"`
+	RestPathPairwiseXDistanceMax                   float64 `arff:"restpathPairwiseXDistanceMax" csv:"restpathPairwiseXDistanceMax"`
+	RestPathPairwiseXDistanceDiff                  float64 `arff:"restpathPairwiseXDistanceDiff" csv:"restpathPairwiseXDistanceDiff"`
+	RestPathPairwiseXDistanceSum                   float64 `arff:"restpathPairwiseXDistanceSum" csv:"restpathPairwiseXDistanceSum"`
+	RestPathPairwiseXDistanceMean                  float64 `arff:"restpathPairwiseXDistanceMean" csv:"restpathPairwiseXDistanceMean"`
+	RestPathPairwiseXDistanceStdDev                float64 `arff:"restpathPairwiseXDistanceStdDev" csv:"restpathPairwiseXDistanceStdDev"`
+	RestPathPairwiseXDistanceSkew                  float64 `arff:"restpathPairwiseXDistanceSkew" csv:"restpathPairwiseXDistanceSkew"`
+	RestPathPairwiseYDistanceMin                   float64 `arff:"restpathPairwiseYDistanceMin" csv:"restpathPairwiseYDistanceMin"`
+	RestPathPairwiseYDistanceMax                   float64 `arff:"restpathPairwiseYDistanceMax" csv:"restpathPairwiseYDistanceMax"`
+	RestPathPairwiseYDistanceDiff                  float64 `arff:"restpathPairwiseYDistanceDiff" csv:"restpathPairwiseYDistanceDiff"`
+	RestPathPairwiseYDistanceSum                   float64 `arff:"restpathPairwiseYDistanceSum" csv:"restpathPairwiseYDistanceSum"`
+	RestPathPairwiseYDistanceMean                  float64 `arff:"restpathPairwiseYDistanceMean" csv:"restpathPairwiseYDistanceMean"`
+	RestPathPairwiseYDistanceStdDev                float64 `arff:"restpathPairwiseYDistanceStdDev" csv:"restpathPairwiseYDistanceStdDev"`
+	RestPathPairwiseYDistanceSkew                  float64 `arff:"restpathPairwiseYDistanceSkew" csv:"restpathPairwiseYDistanceSkew"`
+	RestPathSumYDistanceMin                        float64 `arff:"restpathSumYDistanceMin" csv:"restpathSumYDistanceMin"`
+	RestPathSumYDistanceMax                        float64 `arff:"restpathSumYDistanceMax" csv:"restpathSumYDistanceMax"`
+	RestPathSumYDistanceDiff                       float64 `arff:"restpathSumYDistanceDiff" csv:"restpathSumYDistanceDiff"`
+	RestPathSumYDistanceSum                        float64 `arff:"restpathSumYDistanceSum" csv:"restpathSumYDistanceSum"`
+	RestPathSumYDistanceMean                       float64 `arff:"restpathSumYDistanceMean" csv:"restpathSumYDistanceMean"`
+	RestPathSumYDistanceStdDev                     float64 `arff:"restpathSumYDistanceStdDev" csv:"restpathSumYDistanceStdDev"`
+	RestPathSumYDistanceSkew                       float64 `arff:"restpathSumYDistanceSkew" csv:"restpathSumYDistanceSkew"`
+	RestPathMeanYVelocityMin                       float64 `arff:"restpathMeanYVelocityMin" csv:"restpathMeanYVelocityMin"`
+	RestPathMeanYVelocityMax                       float64 `arff:"restpathMeanYVelocityMax" csv:"restpathMeanYVelocityMax"`
+	RestPathMeanYVelocityDiff                      float64 `arff:"restpathMeanYVelocityDiff" csv:"restpathMeanYVelocityDiff"`
+	RestPathMeanYVelocitySum                       float64 `arff:"restpathMeanYVelocitySum" csv:"restpathMeanYVelocitySum"`
+	RestPathMeanYVelocityMean                      float64 `arff:"restpathMeanYVelocityMean" csv:"restpathMeanYVelocityMean"`
+	RestPathMeanYVelocityStdDev                    float64 `arff:"restpathMeanYVelocityStdDev" csv:"restpathMeanYVelocityStdDev"`
+	RestPathMeanYVelocitySkew                      float64 `arff:"restpathMeanYVelocitySkew" csv:"restpathMeanYVelocitySkew"`
+	RestPathSumXDistanceMin                        float64 `arff:"restpathSumXDistanceMin" csv:"restpathSumXDistanceMin"`
+	RestPathSumXDistanceMax                        float64 `arff:"restpathSumXDistanceMax" csv:"restpathSumXDistanceMax"`
+	RestPathSumXDistanceDiff                       float64 `arff:"restpathSumXDistanceDiff" csv:"restpathSumXDistanceDiff"`
+	RestPathSumXDistanceSum                        float64 `arff:"restpathSumXDistanceSum" csv:"restpathSumXDistanceSum"`
+	RestPathSumXDistanceMean                       float64 `arff:"restpathSumXDistanceMean" csv:"restpathSumXDistanceMean"`
+	RestPathSumXDistanceStdDev                     float64 `arff:"restpathSumXDistanceStdDev" csv:"restpathSumXDistanceStdDev"`
+	RestPathSumXDistanceSkew                       float64 `arff:"restpathSumXDistanceSkew" csv:"restpathSumXDistanceSkew"`
+	RestPathMeanXVelocityMin                       float64 `arff:"restpathMeanXVelocityMin" csv:"restpathMeanXVelocityMin"`
+	RestPathMeanXVelocityMax                       float64 `arff:"restpathMeanXVelocityMax" csv:"restpathMeanXVelocityMax"`
+	RestPathMeanXVelocityDiff                      float64 `arff:"restpathMeanXVelocityDiff" csv:"restpathMeanXVelocityDiff"`
+	RestPathMeanXVelocitySum                       float64 `arff:"restpathMeanXVelocitySum" csv:"restpathMeanXVelocitySum"`
+	RestPathMeanXVelocityMean                      float64 `arff:"restpathMeanXVelocityMean" csv:"restpathMeanXVelocityMean"`
+	RestPathMeanXVelocityStdDev                    float64 `arff:"restpathMeanXVelocityStdDev" csv:"restpathMeanXVelocityStdDev"`
+	RestPathMeanXVelocitySkew                      float64 `arff:"restpathMeanXVelocitySkew" csv:"restpathMeanXVelocitySkew"`
+	RestPathStraightnessMin                        float64 `arff:"restpathStraightnessMin" csv:"restpathStraightnessMin"`
+	RestPathStraightnessMax                        float64 `arff:"restpathStraightnessMax" csv:"restpathStraightnessMax"`
+	RestPathStraightnessDiff                       float64 `arff:"restpathStraightnessDiff" csv:"restpathStraightnessDiff"`
+	RestPathStraightnessSum                        float64 `arff:"restpathStraightnessSum" csv:"restpathStraightnessSum"`
+	RestPathStraightnessMean                       float64 `arff:"restpathStraightnessMean" csv:"restpathStraightnessMean"`
+	RestPathStraightnessStdDev                     float64 `arff:"restpathStraightnessStdDev" csv:"restpathStraightnessStdDev"`
+	RestPathStraightnessSkew                       float64 `arff:"restpathStraightnessSkew" csv:"restpathStraightnessSkew"`
+	RestPathNumberOfRightClicksMin                 uint8   `arff:"restpathNumberOfRightClicksMin" csv:"restpathNumberOfRightClicksMin"`
+	RestPathNumberOfRightClicksMax                 uint8   `arff:"restpathNumberOfRightClicksMax" csv:"restpathNumberOfRightClicksMax"`
+	RestPathNumberOfRightClicksDiff                uint8   `arff:"restpathNumberOfRightClicksDiff" csv:"restpathNumberOfRightClicksDiff"`
+	RestPathNumberOfRightClicksSum                 uint8   `arff:"restpathNumberOfRightClicksSum" csv:"restpathNumberOfRightClicksSum"`
+	RestPathNumberOfRightClicksMean                float64 `arff:"restpathNumberOfRightClicksMean" csv:"restpathNumberOfRightClicksMean"`
+	RestPathNumberOfRightClicksStdDev              float64 `arff:"restpathNumberOfRightClicksStdDev" csv:"restpathNumberOfRightClicksStdDev"`
+	RestPathNumberOfRightClicksSkew                float64 `arff:"restpathNumberOfRightClicksSkew" csv:"restpathNumberOfRightClicksSkew"`
+	RestPathNumberOfMiddleClicksMin                uint8   `arff:"restpathNumberOfMiddleClicksMin" csv:"restpathNumberOfMiddleClicksMin"`
+	RestPathNumberOfMiddleClicksMax                uint8   `arff:"restpathNumberOfMiddleClicksMax" csv:"restpathNumberOfMiddleClicksMax"`
+	RestPathNumberOfMiddleClicksDiff               uint8   `arff:"restpathNumberOfMiddleClicksDiff" csv:"restpathNumberOfMiddleClicksDiff"`
+	RestPathNumberOfMiddleClicksSum                uint8   `arff:"restpathNumberOfMiddleClicksSum" csv:"restpathNumberOfMiddleClicksSum"`
+	RestPathNumberOfMiddleClicksMean               float64 `arff:"restpathNumberOfMiddleClicksMean" csv:"restpathNumberOfMiddleClicksMean"`
+	RestPathNumberOfMiddleClicksStdDev             float64 `arff:"restpathNumberOfMiddleClicksStdDev" csv:"restpathNumberOfMiddleClicksStdDev"`
+	RestPathNumberOfMiddleClicksSkew               float64 `arff:"restpathNumberOfMiddleClicksSkew" csv:"restpathNumberOfMiddleClicksSkew"`
+	RestPathNumberOfScrollsMin                     uint8   `arff:"restpathNumberOfScrollsMin" csv:"restpathNumberOfScrollsMin"`
+	RestPathNumberOfScrollsMax                     uint8   `arff:"restpathNumberOfScrollsMax" csv:"restpathNumberOfScrollsMax"`
+	RestPathNumberOfScrollsDiff                    uint8   `arff:"restpathNumberOfScrollsDiff" csv:"restpathNumberOfScrollsDiff"`
+	RestPathNumberOfScrollsSum                     uint8   `arff:"restpathNumberOfScrollsSum" csv:"restpathNumberOfScrollsSum"`
+	RestPathNumberOfScrollsMean                    float64 `arff:"restpathNumberOfScrollsMean" csv:"restpathNumberOfScrollsMean"`
+	RestPathNumberOfScrollsStdDev                  float64 `arff:"restpathNumberOfScrollsStdDev" csv:"restpathNumberOfScrollsStdDev"`
+	RestPathNumberOfScrollsSkew                    float64 `arff:"restpathNumberOfScrollsSkew" csv:"restpathNumberOfScrollsSkew"`
+	RestPathBreakTimeTotalTimeRatioMin             float64 `arff:"restpathBreakTimeTotalTimeRatioMin" csv:"restpathBreakTimeTotalTimeRatioMin"`
+	RestPathBreakTimeTotalTimeRatioMax             float64 `arff:"restpathBreakTimeTotalTimeRatioMax" csv:"restpathBreakTimeTotalTimeRatioMax"`
+	RestPathBreakTimeTotalTimeRatioDiff            float64 `arff:"restpathBreakTimeTotalTimeRatioDiff" csv:"restpathBreakTimeTotalTimeRatioDiff"`
+	RestPathBreakTimeTotalTimeRatioSum             float64 `arff:"restpathBreakTimeTotalTimeRatioSum" csv:"restpathBreakTimeTotalTimeRatioSum"`
+	RestPathBreakTimeTotalTimeRatioMean            float64 `arff:"restpathBreakTimeTotalTimeRatioMean" csv:"restpathBreakTimeTotalTimeRatioMean"`
+	RestPathBreakTimeTotalTimeRatioStdDev          float64 `arff:"restpathBreakTimeTotalTimeRatioStdDev" csv:"restpathBreakTimeTotalTimeRatioStdDev"`
+	RestPathBreakTimeTotalTimeRatioSkew            float64 `arff:"restpathBreakTimeTotalTimeRatioSkew" csv:"restpathBreakTimeTotalTimeRatioSkew"`
+	RestPathNumberOfBreaksMin                      uint16  `arff:"restpathNumberOfBreaksMin" csv:"restpathNumberOfBreaksMin"`
+	RestPathNumberOfBreaksMax                      uint16  `arff:"restpathNumberOfBreaksMax" csv:"restpathNumberOfBreaksMax"`
+	RestPathNumberOfBreaksDiff                     uint16  `arff:"restpathNumberOfBreaksDiff" csv:"restpathNumberOfBreaksDiff"`
+	RestPathNumberOfBreaksSum                      uint16  `arff:"restpathNumberOfBreaksSum" csv:"restpathNumberOfBreaksSum"`
+	RestPathNumberOfBreaksMean                     float64 `arff:"restpathNumberOfBreaksMean" csv:"restpathNumberOfBreaksMean"`
+	RestPathNumberOfBreaksStdDev                   float64 `arff:"restpathNumberOfBreaksStdDev" csv:"restpathNumberOfBreaksStdDev"`
+	RestPathNumberOfBreaksSkew                     float64 `arff:"restpathNumberOfBreaksSkew" csv:"restpathNumberOfBreaksSkew"`
+	RestPathDurationOfPathMin                      uint64  `arff:"restpathDurationOfPathMin" csv:"restpathDurationOfPathMin"`
+	RestPathDurationOfPathMax                      uint64  `arff:"restpathDurationOfPathMax" csv:"restpathDurationOfPathMax"`
+	RestPathDurationOfPathDiff                     uint64  `arff:"restpathDurationOfPathDiff" csv:"restpathDurationOfPathDiff"`
+	RestPathDurationOfPathSum                      uint64  `arff:"restpathDurationOfPathSum" csv:"restpathDurationOfPathSum"`
+	RestPathDurationOfPathMean                     float64 `arff:"restpathDurationOfPathMean" csv:"restpathDurationOfPathMean"`
+	RestPathDurationOfPathStdDev                   float64 `arff:"restpathDurationOfPathStdDev" csv:"restpathDurationOfPathStdDev"`
+	RestPathDurationOfPathSkew                     float64 `arff:"restpathDurationOfPathSkew" csv:"restpathDurationOfPathSkew"`
+	RestPathTimeBetweenClickAndMovementMin         uint64  `arff:"restpathTimeBetweenClickAndMovementMin" csv:"restpathTimeBetweenClickAndMovementMin"`
+	RestPathTimeBetweenClickAndMovementMax         uint64  `arff:"restpathTimeBetweenClickAndMovementMax" csv:"restpathTimeBetweenClickAndMovementMax"`
+	RestPathTimeBetweenClickAndMovementDiff        uint64  `arff:"restpathTimeBetweenClickAndMovementDiff" csv:"restpathTimeBetweenClickAndMovementDiff"`
+	RestPathTimeBetweenClickAndMovementSum         uint64  `arff:"restpathTimeBetweenClickAndMovementSum" csv:"restpathTimeBetweenClickAndMovementSum"`
+	RestPathTimeBetweenClickAndMovementMean        float64 `arff:"restpathTimeBetweenClickAndMovementMean" csv:"restpathTimeBetweenClickAndMovementMean"`
+	RestPathTimeBetweenClickAndMovementStdDev      float64 `arff:"restpathTimeBetweenClickAndMovementStdDev" csv:"restpathTimeBetweenClickAndMovementStdDev"`
+	RestPathTimeBetweenClickAndMovementSkew        float64 `arff:"restpathTimeBetweenClickAndMovementSkew" csv:"restpathTimeBetweenClickAndMovementSkew"`
+	RestPathTimeBetweeenMovementAndDownClickMin    uint64  `arff:"restpathTimeBetweeenMovementAndDownClickMin" csv:"restpathTimeBetweeenMovementAndDownClickMin"`
+	RestPathTimeBetweeenMovementAndDownClickMax    uint64  `arff:"restpathTimeBetweeenMovementAndDownClickMax" csv:"restpathTimeBetweeenMovementAndDownClickMax"`
+	RestPathTimeBetweeenMovementAndDownClickDiff   uint64  `arff:"restpathTimeBetweeenMovementAndDownClickDiff" csv:"restpathTimeBetweeenMovementAndDownClickDiff"`
+	RestPathTimeBetweeenMovementAndDownClickSum    uint64  `arff:"restpathTimeBetweeenMovementAndDownClickSum" csv:"restpathTimeBetweeenMovementAndDownClickSum"`
+	RestPathTimeBetweeenMovementAndDownClickMean   float64 `arff:"restpathTimeBetweeenMovementAndDownClickMean" csv:"restpathTimeBetweeenMovementAndDownClickMean"`
+	RestPathTimeBetweeenMovementAndDownClickStdDev float64 `arff:"restpathTimeBetweeenMovementAndDownClickStdDev" csv:"restpathTimeBetweeenMovementAndDownClickStdDev"`
+	RestPathTimeBetweeenMovementAndDownClickSkew   float64 `arff:"restpathTimeBetweeenMovementAndDownClickSkew" csv:"restpathTimeBetweeenMovementAndDownClickSkew"`
+	RestPathAngleStartEndPointMin                  float64 `arff:"restpathAngleStartEndPointMin" csv:"restpathAngleStartEndPointMin"`
+	RestPathAngleStartEndPointMax                  float64 `arff:"restpathAngleStartEndPointMax" csv:"restpathAngleStartEndPointMax"`
+	RestPathAngleStartEndPointDiff                 float64 `arff:"restpathAngleStartEndPointDiff" csv:"restpathAngleStartEndPointDiff"`
+	RestPathAngleStartEndPointSum                  float64 `arff:"restpathAngleStartEndPointSum" csv:"restpathAngleStartEndPointSum"`
+	RestPathAngleStartEndPointMean                 float64 `arff:"restpathAngleStartEndPointMean" csv:"restpathAngleStartEndPointMean"`
+	RestPathAngleStartEndPointStdDev               float64 `arff:"restpathAngleStartEndPointStdDev" csv:"restpathAngleStartEndPointStdDev"`
+	RestPathAngleStartEndPointSkew                 float64 `arff:"restpathAngleStartEndPointSkew" csv:"restpathAngleStartEndPointSkew"`
+	RestPathMeanAccelerationMin                    float64 `arff:"restpathMeanAccelerationMin" csv:"restpathMeanAccelerationMin"`
+	RestPathMeanAccelerationMax                    float64 `arff:"restpathMeanAccelerationMax" csv:"restpathMeanAccelerationMax"`
+	RestPathMeanAccelerationDiff                   float64 `arff:"restpathMeanAccelerationDiff" csv:"restpathMeanAccelerationDiff"`
+	RestPathMeanAccelerationSum                    float64 `arff:"restpathMeanAccelerationSum" csv:"restpathMeanAccelerationSum"`
+	RestPathMeanAccelerationMean                   float64 `arff:"restpathMeanAccelerationMean" csv:"restpathMeanAccelerationMean"`
+	RestPathMeanAccelerationStdDev                 float64 `arff:"restpathMeanAccelerationStdDev" csv:"restpathMeanAccelerationStdDev"`
+	RestPathMeanAccelerationSkew                   float64 `arff:"restpathMeanAccelerationSkew" csv:"restpathMeanAccelerationSkew"`
+	RestPathMeanVelocityMin                        float64 `arff:"restpathMeanVelocityMin" csv:"restpathMeanVelocityMin"`
+	RestPathMeanVelocityMax                        float64 `arff:"restpathMeanVelocityMax" csv:"restpathMeanVelocityMax"`
+	RestPathMeanVelocityDiff                       float64 `arff:"restpathMeanVelocityDiff" csv:"restpathMeanVelocityDiff"`
+	RestPathMeanVelocitySum                        float64 `arff:"restpathMeanVelocitySum" csv:"restpathMeanVelocitySum"`
+	RestPathMeanVelocityMean                       float64 `arff:"restpathMeanVelocityMean" csv:"restpathMeanVelocityMean"`
+	RestPathMeanVelocityStdDev                     float64 `arff:"restpathMeanVelocityStdDev" csv:"restpathMeanVelocityStdDev"`
+	RestPathMeanVelocitySkew                       float64 `arff:"restpathMeanVelocitySkew" csv:"restpathMeanVelocitySkew"`
+	RestPathDistanceStartEndPointMin               float64 `arff:"restpathDistanceStartEndPointMin" csv:"restpathDistanceStartEndPointMin"`
+	RestPathDistanceStartEndPointMax               float64 `arff:"restpathDistanceStartEndPointMax" csv:"restpathDistanceStartEndPointMax"`
+	RestPathDistanceStartEndPointDiff              float64 `arff:"restpathDistanceStartEndPointDiff" csv:"restpathDistanceStartEndPointDiff"`
+	RestPathDistanceStartEndPointSum               float64 `arff:"restpathDistanceStartEndPointSum" csv:"restpathDistanceStartEndPointSum"`
+	RestPathDistanceStartEndPointMean              float64 `arff:"restpathDistanceStartEndPointMean" csv:"restpathDistanceStartEndPointMean"`
+	RestPathDistanceStartEndPointStdDev            float64 `arff:"restpathDistanceStartEndPointStdDev" csv:"restpathDistanceStartEndPointStdDev"`
+	RestPathDistanceStartEndPointSkew              float64 `arff:"restpathDistanceStartEndPointSkew" csv:"restpathDistanceStartEndPointSkew"`
+	RestPathDistanceSumMin                         float64 `arff:"restpathDistanceSumMin" csv:"restpathDistanceSumMin"`
+	RestPathDistanceSumMax                         float64 `arff:"restpathDistanceSumMax" csv:"restpathDistanceSumMax"`
+	RestPathDistanceSumDiff                        float64 `arff:"restpathDistanceSumDiff" csv:"restpathDistanceSumDiff"`
+	RestPathDistanceSumSum                         float64 `arff:"restpathDistanceSumSum" csv:"restpathDistanceSumSum"`
+	RestPathDistanceSumMean                        float64 `arff:"restpathDistanceSumMean" csv:"restpathDistanceSumMean"`
+	RestPathDistanceSumStdDev                      float64 `arff:"restpathDistanceSumStdDev" csv:"restpathDistanceSumStdDev"`
+	RestPathDistanceSumSkew                        float64 `arff:"restpathDistanceSumSkew" csv:"restpathDistanceSumSkew"`
+	RestPathNumberOfMovementPointsMin              uint16  `arff:"restpathNumberOfMovementPointsMin" csv:"restpathNumberOfMovementPointsMin"`
+	RestPathNumberOfMovementPointsMax              uint16  `arff:"restpathNumberOfMovementPointsMax" csv:"restpathNumberOfMovementPointsMax"`
+	RestPathNumberOfMovementPointsDiff             uint16  `arff:"restpathNumberOfMovementPointsDiff" csv:"restpathNumberOfMovementPointsDiff"`
+	RestPathNumberOfMovementPointsSum              uint16  `arff:"restpathNumberOfMovementPointsSum" csv:"restpathNumberOfMovementPointsSum"`
+	RestPathNumberOfMovementPointsMean             float64 `arff:"restpathNumberOfMovementPointsMean" csv:"restpathNumberOfMovementPointsMean"`
+	RestPathNumberOfMovementPointsStdDev           float64 `arff:"restpathNumberOfMovementPointsStdDev" csv:"restpathNumberOfMovementPointsStdDev"`
+	RestPathNumberOfMovementPointsSkew             float64 `arff:"restpathNumberOfMovementPointsSkew" csv:"restpathNumberOfMovementPointsSkew"`
 }
 
 // GetARFFHeader returns the Header for an ARFF file which contains ProcessedFeatures instances
@@ -607,6 +902,300 @@ func GetARFFHeader() arff.Header {
 	header.AddAttr("checkboxpathPairwiseYDistanceStdDev", arff.Numeric, nil)
 	header.AddAttr("checkboxpathPairwiseYDistanceSkew", arff.Numeric, nil)
 	// RestPaths
+	header.AddAttr("restpathPairwiseDistanceMin", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseDistanceMax", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseDistanceDiff", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseDistanceSum", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseDistanceMean", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseDistanceStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseDistanceSkew", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseVelocityMin", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseVelocityMax", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseVelocityDiff", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseVelocitySum", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseVelocityMean", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseVelocityStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseVelocitySkew", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAccelerationMin", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAccelerationMax", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAccelerationDiff", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAccelerationSum", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAccelerationMean", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAccelerationStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAccelerationSkew", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAngleMin", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAngleMax", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAngleDiff", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAngleSum", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAngleMean", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAngleStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAngleSkew", arff.Numeric, nil)
+	header.AddAttr("restpathAngleBetweenMovementAndStartEndMin", arff.Numeric, nil)
+	header.AddAttr("restpathAngleBetweenMovementAndStartEndMax", arff.Numeric, nil)
+	header.AddAttr("restpathAngleBetweenMovementAndStartEndDiff", arff.Numeric, nil)
+	header.AddAttr("restpathAngleBetweenMovementAndStartEndSum", arff.Numeric, nil)
+	header.AddAttr("restpathAngleBetweenMovementAndStartEndMean", arff.Numeric, nil)
+	header.AddAttr("restpathAngleBetweenMovementAndStartEndStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathAngleBetweenMovementAndStartEndSkew", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAngularVelocityMin", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAngularVelocityMax", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAngularVelocityDiff", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAngularVelocitySum", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAngularVelocityMean", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAngularVelocityStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseAngularVelocitySkew", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseDurationMin", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseDurationMax", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseDurationDiff", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseDurationSum", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseDurationMean", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseDurationStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseDurationSkew", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweenClickAndReleaseMin", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweenClickAndReleaseMax", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweenClickAndReleaseDiff", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweenClickAndReleaseSum", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweenClickAndReleaseMean", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweenClickAndReleaseStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweenClickAndReleaseSkew", arff.Numeric, nil)
+	header.AddAttr("restpathBreakTimesMin", arff.Numeric, nil)
+	header.AddAttr("restpathBreakTimesMax", arff.Numeric, nil)
+	header.AddAttr("restpathBreakTimesDiff", arff.Numeric, nil)
+	header.AddAttr("restpathBreakTimesSum", arff.Numeric, nil)
+	header.AddAttr("restpathBreakTimesMean", arff.Numeric, nil)
+	header.AddAttr("restpathBreakTimesStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathBreakTimesSkew", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickDistanceMin", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickDistanceMax", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickDistanceDiff", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickDistanceSum", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickDistanceMean", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickDistanceStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickDistanceSkew", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickVelocityMin", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickVelocityMax", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickVelocityDiff", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickVelocitySum", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickVelocityMean", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickVelocityStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickVelocitySkew", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickAccelerationMin", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickAccelerationMax", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickAccelerationDiff", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickAccelerationSum", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickAccelerationMean", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickAccelerationStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickAccelerationSkew", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickAngleMin", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickAngleMax", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickAngleDiff", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickAngleSum", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickAngleMean", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickAngleStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathMovementDuringClickAngleSkew", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDXMin", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDXMax", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDXDiff", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDXSum", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDXMean", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDXStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDXSkew", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDYMin", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDYMax", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDYDiff", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDYSum", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDYMean", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDYStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDYSkew", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDZMin", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDZMax", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDZDiff", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDZSum", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDZMean", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDZStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDZSkew", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDMMin", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDMMax", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDMDiff", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDMSum", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDMMean", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDMStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathScrollDMSkew", arff.Numeric, nil)
+	header.AddAttr("restpathXPointsMin", arff.Numeric, nil)
+	header.AddAttr("restpathXPointsMax", arff.Numeric, nil)
+	header.AddAttr("restpathXPointsDiff", arff.Numeric, nil)
+	header.AddAttr("restpathXPointsSum", arff.Numeric, nil)
+	header.AddAttr("restpathXPointsMean", arff.Numeric, nil)
+	header.AddAttr("restpathXPointsStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathXPointsSkew", arff.Numeric, nil)
+	header.AddAttr("restpathYPointsMin", arff.Numeric, nil)
+	header.AddAttr("restpathYPointsMax", arff.Numeric, nil)
+	header.AddAttr("restpathYPointsDiff", arff.Numeric, nil)
+	header.AddAttr("restpathYPointsSum", arff.Numeric, nil)
+	header.AddAttr("restpathYPointsMean", arff.Numeric, nil)
+	header.AddAttr("restpathYPointsStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathYPointsSkew", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseXVelocityMin", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseXVelocityMax", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseXVelocityDiff", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseXVelocitySum", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseXVelocityMean", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseXVelocityStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseXVelocitySkew", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseYVelocityMin", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseYVelocityMax", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseYVelocityDiff", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseYVelocitySum", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseYVelocityMean", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseYVelocityStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseYVelocitySkew", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseXDistanceMin", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseXDistanceMax", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseXDistanceDiff", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseXDistanceSum", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseXDistanceMean", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseXDistanceStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseXDistanceSkew", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseYDistanceMin", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseYDistanceMax", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseYDistanceDiff", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseYDistanceSum", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseYDistanceMean", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseYDistanceStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathPairwiseYDistanceSkew", arff.Numeric, nil)
+	header.AddAttr("restpathSumYDistanceMin", arff.Numeric, nil)
+	header.AddAttr("restpathSumYDistanceMax", arff.Numeric, nil)
+	header.AddAttr("restpathSumYDistanceDiff", arff.Numeric, nil)
+	header.AddAttr("restpathSumYDistanceSum", arff.Numeric, nil)
+	header.AddAttr("restpathSumYDistanceMean", arff.Numeric, nil)
+	header.AddAttr("restpathSumYDistanceStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathSumYDistanceSkew", arff.Numeric, nil)
+	header.AddAttr("restpathMeanYVelocityMin", arff.Numeric, nil)
+	header.AddAttr("restpathMeanYVelocityMax", arff.Numeric, nil)
+	header.AddAttr("restpathMeanYVelocityDiff", arff.Numeric, nil)
+	header.AddAttr("restpathMeanYVelocitySum", arff.Numeric, nil)
+	header.AddAttr("restpathMeanYVelocityMean", arff.Numeric, nil)
+	header.AddAttr("restpathMeanYVelocityStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathMeanYVelocitySkew", arff.Numeric, nil)
+	header.AddAttr("restpathSumXDistanceMin", arff.Numeric, nil)
+	header.AddAttr("restpathSumXDistanceMax", arff.Numeric, nil)
+	header.AddAttr("restpathSumXDistanceDiff", arff.Numeric, nil)
+	header.AddAttr("restpathSumXDistanceSum", arff.Numeric, nil)
+	header.AddAttr("restpathSumXDistanceMean", arff.Numeric, nil)
+	header.AddAttr("restpathSumXDistanceStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathSumXDistanceSkew", arff.Numeric, nil)
+	header.AddAttr("restpathMeanXVelocityMin", arff.Numeric, nil)
+	header.AddAttr("restpathMeanXVelocityMax", arff.Numeric, nil)
+	header.AddAttr("restpathMeanXVelocityDiff", arff.Numeric, nil)
+	header.AddAttr("restpathMeanXVelocitySum", arff.Numeric, nil)
+	header.AddAttr("restpathMeanXVelocityMean", arff.Numeric, nil)
+	header.AddAttr("restpathMeanXVelocityStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathMeanXVelocitySkew", arff.Numeric, nil)
+	header.AddAttr("restpathStraightnessMin", arff.Numeric, nil)
+	header.AddAttr("restpathStraightnessMax", arff.Numeric, nil)
+	header.AddAttr("restpathStraightnessDiff", arff.Numeric, nil)
+	header.AddAttr("restpathStraightnessSum", arff.Numeric, nil)
+	header.AddAttr("restpathStraightnessMean", arff.Numeric, nil)
+	header.AddAttr("restpathStraightnessStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathStraightnessSkew", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfRightClicksMin", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfRightClicksMax", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfRightClicksDiff", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfRightClicksSum", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfRightClicksMean", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfRightClicksStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfRightClicksSkew", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfMiddleClicksMin", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfMiddleClicksMax", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfMiddleClicksDiff", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfMiddleClicksSum", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfMiddleClicksMean", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfMiddleClicksStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfMiddleClicksSkew", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfScrollsMin", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfScrollsMax", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfScrollsDiff", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfScrollsSum", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfScrollsMean", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfScrollsStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfScrollsSkew", arff.Numeric, nil)
+	header.AddAttr("restpathBreakTimeTotalTimeRatioMin", arff.Numeric, nil)
+	header.AddAttr("restpathBreakTimeTotalTimeRatioMax", arff.Numeric, nil)
+	header.AddAttr("restpathBreakTimeTotalTimeRatioDiff", arff.Numeric, nil)
+	header.AddAttr("restpathBreakTimeTotalTimeRatioSum", arff.Numeric, nil)
+	header.AddAttr("restpathBreakTimeTotalTimeRatioMean", arff.Numeric, nil)
+	header.AddAttr("restpathBreakTimeTotalTimeRatioStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathBreakTimeTotalTimeRatioSkew", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfBreaksMin", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfBreaksMax", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfBreaksDiff", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfBreaksSum", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfBreaksMean", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfBreaksStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfBreaksSkew", arff.Numeric, nil)
+	header.AddAttr("restpathDurationOfPathMin", arff.Numeric, nil)
+	header.AddAttr("restpathDurationOfPathMax", arff.Numeric, nil)
+	header.AddAttr("restpathDurationOfPathDiff", arff.Numeric, nil)
+	header.AddAttr("restpathDurationOfPathSum", arff.Numeric, nil)
+	header.AddAttr("restpathDurationOfPathMean", arff.Numeric, nil)
+	header.AddAttr("restpathDurationOfPathStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathDurationOfPathSkew", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweenClickAndMovementMin", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweenClickAndMovementMax", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweenClickAndMovementDiff", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweenClickAndMovementSum", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweenClickAndMovementMean", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweenClickAndMovementStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweenClickAndMovementSkew", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweeenMovementAndDownClickMin", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweeenMovementAndDownClickMax", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweeenMovementAndDownClickDiff", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweeenMovementAndDownClickSum", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweeenMovementAndDownClickMean", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweeenMovementAndDownClickStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathTimeBetweeenMovementAndDownClickSkew", arff.Numeric, nil)
+	header.AddAttr("restpathAngleStartEndPointMin", arff.Numeric, nil)
+	header.AddAttr("restpathAngleStartEndPointMax", arff.Numeric, nil)
+	header.AddAttr("restpathAngleStartEndPointDiff", arff.Numeric, nil)
+	header.AddAttr("restpathAngleStartEndPointSum", arff.Numeric, nil)
+	header.AddAttr("restpathAngleStartEndPointMean", arff.Numeric, nil)
+	header.AddAttr("restpathAngleStartEndPointStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathAngleStartEndPointSkew", arff.Numeric, nil)
+	header.AddAttr("restpathMeanAccelerationMin", arff.Numeric, nil)
+	header.AddAttr("restpathMeanAccelerationMax", arff.Numeric, nil)
+	header.AddAttr("restpathMeanAccelerationDiff", arff.Numeric, nil)
+	header.AddAttr("restpathMeanAccelerationSum", arff.Numeric, nil)
+	header.AddAttr("restpathMeanAccelerationMean", arff.Numeric, nil)
+	header.AddAttr("restpathMeanAccelerationStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathMeanAccelerationSkew", arff.Numeric, nil)
+	header.AddAttr("restpathMeanVelocityMin", arff.Numeric, nil)
+	header.AddAttr("restpathMeanVelocityMax", arff.Numeric, nil)
+	header.AddAttr("restpathMeanVelocityDiff", arff.Numeric, nil)
+	header.AddAttr("restpathMeanVelocitySum", arff.Numeric, nil)
+	header.AddAttr("restpathMeanVelocityMean", arff.Numeric, nil)
+	header.AddAttr("restpathMeanVelocityStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathMeanVelocitySkew", arff.Numeric, nil)
+	header.AddAttr("restpathDistanceStartEndPointMin", arff.Numeric, nil)
+	header.AddAttr("restpathDistanceStartEndPointMax", arff.Numeric, nil)
+	header.AddAttr("restpathDistanceStartEndPointDiff", arff.Numeric, nil)
+	header.AddAttr("restpathDistanceStartEndPointSum", arff.Numeric, nil)
+	header.AddAttr("restpathDistanceStartEndPointMean", arff.Numeric, nil)
+	header.AddAttr("restpathDistanceStartEndPointStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathDistanceStartEndPointSkew", arff.Numeric, nil)
+	header.AddAttr("restpathDistanceSumMin", arff.Numeric, nil)
+	header.AddAttr("restpathDistanceSumMax", arff.Numeric, nil)
+	header.AddAttr("restpathDistanceSumDiff", arff.Numeric, nil)
+	header.AddAttr("restpathDistanceSumSum", arff.Numeric, nil)
+	header.AddAttr("restpathDistanceSumMean", arff.Numeric, nil)
+	header.AddAttr("restpathDistanceSumStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathDistanceSumSkew", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfMovementPointsMin", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfMovementPointsMax", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfMovementPointsDiff", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfMovementPointsSum", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfMovementPointsMean", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfMovementPointsStdDev", arff.Numeric, nil)
+	header.AddAttr("restpathNumberOfMovementPointsSkew", arff.Numeric, nil)
 
 	header.Relation = "refingerprint"
 	return header
@@ -705,7 +1294,7 @@ func (features *ProcessedFeatures) ExtractMouseData(data *Data) {
 		pathFeature := path.GetRawFeatures()
 		restPaths[i] = pathFeature
 	}
-	features.AddRestPathFeatures(restPaths)
+	features.GenerateRestCalculation(restPaths)
 }
 
 // AddCheckBoxFeatures adds the features of the CheckboxPath to the FeatureSet
@@ -722,11 +1311,8 @@ func (features *ProcessedFeatures) AddCheckBoxFeatures(path *PathFeatures) {
 	features.CheckboxPathNumberOfMiddleClicks = path.NumberOfMiddleClicks
 	features.CheckboxPathNumberOfScrolls = path.NumberOfScrolls
 	features.CheckboxPathStraightness = path.Straightness
-	//features.GenerateCheckboxCalculation(path)
+	features.GenerateCheckboxCalculation(path)
 }
-
-// AddRestPathFeatures adds the features of the rest paths to the FeatureSet
-func (features *ProcessedFeatures) AddRestPathFeatures(paths []*PathFeatures) {}
 
 // calcCheckBoxPathPairwiseDistanceFeatures calculates the features of the PairwiseDistance vector from the given path; Auto-generated
 func (features *ProcessedFeatures) calcCheckBoxPathPairwiseDistanceFeatures(path *PathFeatures) {
@@ -1071,4 +1657,717 @@ func (features *ProcessedFeatures) GenerateCheckboxCalculation(path *PathFeature
 	features.calcCheckBoxPathPairwiseYVelocityFeatures(path)
 	features.calcCheckBoxPathPairwiseXDistanceFeatures(path)
 	features.calcCheckBoxPathPairwiseYDistanceFeatures(path)
+}
+
+// calcRestPathPairwiseDistanceFeatures calculates the features of the PairwiseDistance vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathPairwiseDistanceFeatures(col *collection) {
+	features.RestPathPairwiseDistanceMin, features.RestPathPairwiseDistanceMean, features.RestPathPairwiseDistanceMax, features.RestPathPairwiseDistanceStdDev = rnd.StatBasic(col.PairwiseDistance, true)
+	features.RestPathPairwiseDistanceSum = SumFloat(col.PairwiseDistance)
+	if len(col.PairwiseDistance) == 1 {
+		features.RestPathPairwiseDistanceMin, features.RestPathPairwiseDistanceMean, features.RestPathPairwiseDistanceMax = col.PairwiseDistance[0], col.PairwiseDistance[0], col.PairwiseDistance[0]
+	}
+	features.RestPathPairwiseDistanceDiff = features.RestPathPairwiseDistanceMax - features.RestPathPairwiseDistanceMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathPairwiseDistanceSkew, _ = rnd.StatMoments(col.PairwiseDistance)
+}
+
+// calcRestPathPairwiseVelocityFeatures calculates the features of the PairwiseVelocity vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathPairwiseVelocityFeatures(col *collection) {
+	features.RestPathPairwiseVelocityMin, features.RestPathPairwiseVelocityMean, features.RestPathPairwiseVelocityMax, features.RestPathPairwiseVelocityStdDev = rnd.StatBasic(col.PairwiseVelocity, true)
+	features.RestPathPairwiseVelocitySum = SumFloat(col.PairwiseVelocity)
+	if len(col.PairwiseVelocity) == 1 {
+		features.RestPathPairwiseVelocityMin, features.RestPathPairwiseVelocityMean, features.RestPathPairwiseVelocityMax = col.PairwiseVelocity[0], col.PairwiseVelocity[0], col.PairwiseVelocity[0]
+	}
+	features.RestPathPairwiseVelocityDiff = features.RestPathPairwiseVelocityMax - features.RestPathPairwiseVelocityMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathPairwiseVelocitySkew, _ = rnd.StatMoments(col.PairwiseVelocity)
+}
+
+// calcRestPathPairwiseAccelerationFeatures calculates the features of the PairwiseAcceleration vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathPairwiseAccelerationFeatures(col *collection) {
+	features.RestPathPairwiseAccelerationMin, features.RestPathPairwiseAccelerationMean, features.RestPathPairwiseAccelerationMax, features.RestPathPairwiseAccelerationStdDev = rnd.StatBasic(col.PairwiseAcceleration, true)
+	features.RestPathPairwiseAccelerationSum = SumFloat(col.PairwiseAcceleration)
+	if len(col.PairwiseAcceleration) == 1 {
+		features.RestPathPairwiseAccelerationMin, features.RestPathPairwiseAccelerationMean, features.RestPathPairwiseAccelerationMax = col.PairwiseAcceleration[0], col.PairwiseAcceleration[0], col.PairwiseAcceleration[0]
+	}
+	features.RestPathPairwiseAccelerationDiff = features.RestPathPairwiseAccelerationMax - features.RestPathPairwiseAccelerationMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathPairwiseAccelerationSkew, _ = rnd.StatMoments(col.PairwiseAcceleration)
+}
+
+// calcRestPathPairwiseAngleFeatures calculates the features of the PairwiseAngle vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathPairwiseAngleFeatures(col *collection) {
+	features.RestPathPairwiseAngleMin, features.RestPathPairwiseAngleMean, features.RestPathPairwiseAngleMax, features.RestPathPairwiseAngleStdDev = rnd.StatBasic(col.PairwiseAngle, true)
+	features.RestPathPairwiseAngleSum = SumFloat(col.PairwiseAngle)
+	if len(col.PairwiseAngle) == 1 {
+		features.RestPathPairwiseAngleMin, features.RestPathPairwiseAngleMean, features.RestPathPairwiseAngleMax = col.PairwiseAngle[0], col.PairwiseAngle[0], col.PairwiseAngle[0]
+	}
+	features.RestPathPairwiseAngleDiff = features.RestPathPairwiseAngleMax - features.RestPathPairwiseAngleMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathPairwiseAngleSkew, _ = rnd.StatMoments(col.PairwiseAngle)
+}
+
+// calcRestPathAngleBetweenMovementAndStartEndFeatures calculates the features of the AngleBetweenMovementAndStartEnd vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathAngleBetweenMovementAndStartEndFeatures(col *collection) {
+	features.RestPathAngleBetweenMovementAndStartEndMin, features.RestPathAngleBetweenMovementAndStartEndMean, features.RestPathAngleBetweenMovementAndStartEndMax, features.RestPathAngleBetweenMovementAndStartEndStdDev = rnd.StatBasic(col.AngleBetweenMovementAndStartEnd, true)
+	features.RestPathAngleBetweenMovementAndStartEndSum = SumFloat(col.AngleBetweenMovementAndStartEnd)
+	if len(col.AngleBetweenMovementAndStartEnd) == 1 {
+		features.RestPathAngleBetweenMovementAndStartEndMin, features.RestPathAngleBetweenMovementAndStartEndMean, features.RestPathAngleBetweenMovementAndStartEndMax = col.AngleBetweenMovementAndStartEnd[0], col.AngleBetweenMovementAndStartEnd[0], col.AngleBetweenMovementAndStartEnd[0]
+	}
+	features.RestPathAngleBetweenMovementAndStartEndDiff = features.RestPathAngleBetweenMovementAndStartEndMax - features.RestPathAngleBetweenMovementAndStartEndMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathAngleBetweenMovementAndStartEndSkew, _ = rnd.StatMoments(col.AngleBetweenMovementAndStartEnd)
+}
+
+// calcRestPathPairwiseAngularVelocityFeatures calculates the features of the PairwiseAngularVelocity vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathPairwiseAngularVelocityFeatures(col *collection) {
+	features.RestPathPairwiseAngularVelocityMin, features.RestPathPairwiseAngularVelocityMean, features.RestPathPairwiseAngularVelocityMax, features.RestPathPairwiseAngularVelocityStdDev = rnd.StatBasic(col.PairwiseAngularVelocity, true)
+	features.RestPathPairwiseAngularVelocitySum = SumFloat(col.PairwiseAngularVelocity)
+	if len(col.PairwiseAngularVelocity) == 1 {
+		features.RestPathPairwiseAngularVelocityMin, features.RestPathPairwiseAngularVelocityMean, features.RestPathPairwiseAngularVelocityMax = col.PairwiseAngularVelocity[0], col.PairwiseAngularVelocity[0], col.PairwiseAngularVelocity[0]
+	}
+	features.RestPathPairwiseAngularVelocityDiff = features.RestPathPairwiseAngularVelocityMax - features.RestPathPairwiseAngularVelocityMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathPairwiseAngularVelocitySkew, _ = rnd.StatMoments(col.PairwiseAngularVelocity)
+}
+
+// calcRestPathPairwiseDurationFeatures calculates the features of the PairwiseDuration vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathPairwiseDurationFeatures(col *collection) {
+	features.RestPathPairwiseDurationMax = MaxUint64(col.PairwiseDuration)
+	features.RestPathPairwiseDurationMin = MinUint64(col.PairwiseDuration)
+	features.RestPathPairwiseDurationDiff = features.RestPathPairwiseDurationMax - features.RestPathPairwiseDurationMin
+	features.RestPathPairwiseDurationSum = SumUint64(col.PairwiseDuration)
+	features.RestPathPairwiseDurationMean = Mean(ConvertUint64ToFloat64(col.PairwiseDuration), float64(features.RestPathPairwiseDurationSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.RestPathPairwiseDurationStdDev, features.RestPathPairwiseDurationSkew, _ = rnd.StatMoments(ConvertUint64ToFloat64(col.PairwiseDuration))
+}
+
+// calcRestPathTimeBetweenClickAndReleaseFeatures calculates the features of the TimeBetweenClickAndRelease vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathTimeBetweenClickAndReleaseFeatures(col *collection) {
+	features.RestPathTimeBetweenClickAndReleaseMax = MaxUint64(col.TimeBetweenClickAndRelease)
+	features.RestPathTimeBetweenClickAndReleaseMin = MinUint64(col.TimeBetweenClickAndRelease)
+	features.RestPathTimeBetweenClickAndReleaseDiff = features.RestPathTimeBetweenClickAndReleaseMax - features.RestPathTimeBetweenClickAndReleaseMin
+	features.RestPathTimeBetweenClickAndReleaseSum = SumUint64(col.TimeBetweenClickAndRelease)
+	features.RestPathTimeBetweenClickAndReleaseMean = Mean(ConvertUint64ToFloat64(col.TimeBetweenClickAndRelease), float64(features.RestPathTimeBetweenClickAndReleaseSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.RestPathTimeBetweenClickAndReleaseStdDev, features.RestPathTimeBetweenClickAndReleaseSkew, _ = rnd.StatMoments(ConvertUint64ToFloat64(col.TimeBetweenClickAndRelease))
+}
+
+// calcRestPathBreakTimesFeatures calculates the features of the BreakTimes vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathBreakTimesFeatures(col *collection) {
+	features.RestPathBreakTimesMax = MaxUint64(col.BreakTimes)
+	features.RestPathBreakTimesMin = MinUint64(col.BreakTimes)
+	features.RestPathBreakTimesDiff = features.RestPathBreakTimesMax - features.RestPathBreakTimesMin
+	features.RestPathBreakTimesSum = SumUint64(col.BreakTimes)
+	features.RestPathBreakTimesMean = Mean(ConvertUint64ToFloat64(col.BreakTimes), float64(features.RestPathBreakTimesSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.RestPathBreakTimesStdDev, features.RestPathBreakTimesSkew, _ = rnd.StatMoments(ConvertUint64ToFloat64(col.BreakTimes))
+}
+
+// calcRestPathMovementDuringClickDistanceFeatures calculates the features of the MovementDuringClickDistance vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathMovementDuringClickDistanceFeatures(col *collection) {
+	features.RestPathMovementDuringClickDistanceMin, features.RestPathMovementDuringClickDistanceMean, features.RestPathMovementDuringClickDistanceMax, features.RestPathMovementDuringClickDistanceStdDev = rnd.StatBasic(col.MovementDuringClickDistance, true)
+	features.RestPathMovementDuringClickDistanceSum = SumFloat(col.MovementDuringClickDistance)
+	if len(col.MovementDuringClickDistance) == 1 {
+		features.RestPathMovementDuringClickDistanceMin, features.RestPathMovementDuringClickDistanceMean, features.RestPathMovementDuringClickDistanceMax = col.MovementDuringClickDistance[0], col.MovementDuringClickDistance[0], col.MovementDuringClickDistance[0]
+	}
+	features.RestPathMovementDuringClickDistanceDiff = features.RestPathMovementDuringClickDistanceMax - features.RestPathMovementDuringClickDistanceMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathMovementDuringClickDistanceSkew, _ = rnd.StatMoments(col.MovementDuringClickDistance)
+}
+
+// calcRestPathMovementDuringClickVelocityFeatures calculates the features of the MovementDuringClickVelocity vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathMovementDuringClickVelocityFeatures(col *collection) {
+	features.RestPathMovementDuringClickVelocityMin, features.RestPathMovementDuringClickVelocityMean, features.RestPathMovementDuringClickVelocityMax, features.RestPathMovementDuringClickVelocityStdDev = rnd.StatBasic(col.MovementDuringClickVelocity, true)
+	features.RestPathMovementDuringClickVelocitySum = SumFloat(col.MovementDuringClickVelocity)
+	if len(col.MovementDuringClickVelocity) == 1 {
+		features.RestPathMovementDuringClickVelocityMin, features.RestPathMovementDuringClickVelocityMean, features.RestPathMovementDuringClickVelocityMax = col.MovementDuringClickVelocity[0], col.MovementDuringClickVelocity[0], col.MovementDuringClickVelocity[0]
+	}
+	features.RestPathMovementDuringClickVelocityDiff = features.RestPathMovementDuringClickVelocityMax - features.RestPathMovementDuringClickVelocityMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathMovementDuringClickVelocitySkew, _ = rnd.StatMoments(col.MovementDuringClickVelocity)
+}
+
+// calcRestPathMovementDuringClickAccelerationFeatures calculates the features of the MovementDuringClickAcceleration vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathMovementDuringClickAccelerationFeatures(col *collection) {
+	features.RestPathMovementDuringClickAccelerationMin, features.RestPathMovementDuringClickAccelerationMean, features.RestPathMovementDuringClickAccelerationMax, features.RestPathMovementDuringClickAccelerationStdDev = rnd.StatBasic(col.MovementDuringClickAcceleration, true)
+	features.RestPathMovementDuringClickAccelerationSum = SumFloat(col.MovementDuringClickAcceleration)
+	if len(col.MovementDuringClickAcceleration) == 1 {
+		features.RestPathMovementDuringClickAccelerationMin, features.RestPathMovementDuringClickAccelerationMean, features.RestPathMovementDuringClickAccelerationMax = col.MovementDuringClickAcceleration[0], col.MovementDuringClickAcceleration[0], col.MovementDuringClickAcceleration[0]
+	}
+	features.RestPathMovementDuringClickAccelerationDiff = features.RestPathMovementDuringClickAccelerationMax - features.RestPathMovementDuringClickAccelerationMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathMovementDuringClickAccelerationSkew, _ = rnd.StatMoments(col.MovementDuringClickAcceleration)
+}
+
+// calcRestPathMovementDuringClickAngleFeatures calculates the features of the MovementDuringClickAngle vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathMovementDuringClickAngleFeatures(col *collection) {
+	features.RestPathMovementDuringClickAngleMin, features.RestPathMovementDuringClickAngleMean, features.RestPathMovementDuringClickAngleMax, features.RestPathMovementDuringClickAngleStdDev = rnd.StatBasic(col.MovementDuringClickAngle, true)
+	features.RestPathMovementDuringClickAngleSum = SumFloat(col.MovementDuringClickAngle)
+	if len(col.MovementDuringClickAngle) == 1 {
+		features.RestPathMovementDuringClickAngleMin, features.RestPathMovementDuringClickAngleMean, features.RestPathMovementDuringClickAngleMax = col.MovementDuringClickAngle[0], col.MovementDuringClickAngle[0], col.MovementDuringClickAngle[0]
+	}
+	features.RestPathMovementDuringClickAngleDiff = features.RestPathMovementDuringClickAngleMax - features.RestPathMovementDuringClickAngleMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathMovementDuringClickAngleSkew, _ = rnd.StatMoments(col.MovementDuringClickAngle)
+}
+
+// calcRestPathScrollDXFeatures calculates the features of the ScrollDX vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathScrollDXFeatures(col *collection) {
+	features.RestPathScrollDXMin, features.RestPathScrollDXMean, features.RestPathScrollDXMax, features.RestPathScrollDXStdDev = rnd.StatBasic(col.ScrollDX, true)
+	features.RestPathScrollDXSum = SumFloat(col.ScrollDX)
+	if len(col.ScrollDX) == 1 {
+		features.RestPathScrollDXMin, features.RestPathScrollDXMean, features.RestPathScrollDXMax = col.ScrollDX[0], col.ScrollDX[0], col.ScrollDX[0]
+	}
+	features.RestPathScrollDXDiff = features.RestPathScrollDXMax - features.RestPathScrollDXMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathScrollDXSkew, _ = rnd.StatMoments(col.ScrollDX)
+}
+
+// calcRestPathScrollDYFeatures calculates the features of the ScrollDY vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathScrollDYFeatures(col *collection) {
+	features.RestPathScrollDYMin, features.RestPathScrollDYMean, features.RestPathScrollDYMax, features.RestPathScrollDYStdDev = rnd.StatBasic(col.ScrollDY, true)
+	features.RestPathScrollDYSum = SumFloat(col.ScrollDY)
+	if len(col.ScrollDY) == 1 {
+		features.RestPathScrollDYMin, features.RestPathScrollDYMean, features.RestPathScrollDYMax = col.ScrollDY[0], col.ScrollDY[0], col.ScrollDY[0]
+	}
+	features.RestPathScrollDYDiff = features.RestPathScrollDYMax - features.RestPathScrollDYMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathScrollDYSkew, _ = rnd.StatMoments(col.ScrollDY)
+}
+
+// calcRestPathScrollDZFeatures calculates the features of the ScrollDZ vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathScrollDZFeatures(col *collection) {
+	features.RestPathScrollDZMin, features.RestPathScrollDZMean, features.RestPathScrollDZMax, features.RestPathScrollDZStdDev = rnd.StatBasic(col.ScrollDZ, true)
+	features.RestPathScrollDZSum = SumFloat(col.ScrollDZ)
+	if len(col.ScrollDZ) == 1 {
+		features.RestPathScrollDZMin, features.RestPathScrollDZMean, features.RestPathScrollDZMax = col.ScrollDZ[0], col.ScrollDZ[0], col.ScrollDZ[0]
+	}
+	features.RestPathScrollDZDiff = features.RestPathScrollDZMax - features.RestPathScrollDZMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathScrollDZSkew, _ = rnd.StatMoments(col.ScrollDZ)
+}
+
+// calcRestPathScrollDMFeatures calculates the features of the ScrollDM vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathScrollDMFeatures(col *collection) {
+	features.RestPathScrollDMMax = MaxUint8(col.ScrollDM)
+	features.RestPathScrollDMMin = MinUint8(col.ScrollDM)
+	features.RestPathScrollDMDiff = features.RestPathScrollDMMax - features.RestPathScrollDMMin
+	features.RestPathScrollDMSum = SumUint8(col.ScrollDM)
+	features.RestPathScrollDMMean = Mean(ConvertUint8ToFloat64(col.ScrollDM), float64(features.RestPathScrollDMSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.RestPathScrollDMStdDev, features.RestPathScrollDMSkew, _ = rnd.StatMoments(ConvertUint8ToFloat64(col.ScrollDM))
+}
+
+// calcRestPathXPointsFeatures calculates the features of the XPoints vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathXPointsFeatures(col *collection) {
+	features.RestPathXPointsMin, features.RestPathXPointsMean, features.RestPathXPointsMax, features.RestPathXPointsStdDev = rnd.StatBasic(col.XPoints, true)
+	features.RestPathXPointsSum = SumFloat(col.XPoints)
+	if len(col.XPoints) == 1 {
+		features.RestPathXPointsMin, features.RestPathXPointsMean, features.RestPathXPointsMax = col.XPoints[0], col.XPoints[0], col.XPoints[0]
+	}
+	features.RestPathXPointsDiff = features.RestPathXPointsMax - features.RestPathXPointsMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathXPointsSkew, _ = rnd.StatMoments(col.XPoints)
+}
+
+// calcRestPathYPointsFeatures calculates the features of the YPoints vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathYPointsFeatures(col *collection) {
+	features.RestPathYPointsMin, features.RestPathYPointsMean, features.RestPathYPointsMax, features.RestPathYPointsStdDev = rnd.StatBasic(col.YPoints, true)
+	features.RestPathYPointsSum = SumFloat(col.YPoints)
+	if len(col.YPoints) == 1 {
+		features.RestPathYPointsMin, features.RestPathYPointsMean, features.RestPathYPointsMax = col.YPoints[0], col.YPoints[0], col.YPoints[0]
+	}
+	features.RestPathYPointsDiff = features.RestPathYPointsMax - features.RestPathYPointsMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathYPointsSkew, _ = rnd.StatMoments(col.YPoints)
+}
+
+// calcRestPathPairwiseXVelocityFeatures calculates the features of the PairwiseXVelocity vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathPairwiseXVelocityFeatures(col *collection) {
+	features.RestPathPairwiseXVelocityMin, features.RestPathPairwiseXVelocityMean, features.RestPathPairwiseXVelocityMax, features.RestPathPairwiseXVelocityStdDev = rnd.StatBasic(col.PairwiseXVelocity, true)
+	features.RestPathPairwiseXVelocitySum = SumFloat(col.PairwiseXVelocity)
+	if len(col.PairwiseXVelocity) == 1 {
+		features.RestPathPairwiseXVelocityMin, features.RestPathPairwiseXVelocityMean, features.RestPathPairwiseXVelocityMax = col.PairwiseXVelocity[0], col.PairwiseXVelocity[0], col.PairwiseXVelocity[0]
+	}
+	features.RestPathPairwiseXVelocityDiff = features.RestPathPairwiseXVelocityMax - features.RestPathPairwiseXVelocityMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathPairwiseXVelocitySkew, _ = rnd.StatMoments(col.PairwiseXVelocity)
+}
+
+// calcRestPathPairwiseYVelocityFeatures calculates the features of the PairwiseYVelocity vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathPairwiseYVelocityFeatures(col *collection) {
+	features.RestPathPairwiseYVelocityMin, features.RestPathPairwiseYVelocityMean, features.RestPathPairwiseYVelocityMax, features.RestPathPairwiseYVelocityStdDev = rnd.StatBasic(col.PairwiseYVelocity, true)
+	features.RestPathPairwiseYVelocitySum = SumFloat(col.PairwiseYVelocity)
+	if len(col.PairwiseYVelocity) == 1 {
+		features.RestPathPairwiseYVelocityMin, features.RestPathPairwiseYVelocityMean, features.RestPathPairwiseYVelocityMax = col.PairwiseYVelocity[0], col.PairwiseYVelocity[0], col.PairwiseYVelocity[0]
+	}
+	features.RestPathPairwiseYVelocityDiff = features.RestPathPairwiseYVelocityMax - features.RestPathPairwiseYVelocityMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathPairwiseYVelocitySkew, _ = rnd.StatMoments(col.PairwiseYVelocity)
+}
+
+// calcRestPathPairwiseXDistanceFeatures calculates the features of the PairwiseXDistance vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathPairwiseXDistanceFeatures(col *collection) {
+	features.RestPathPairwiseXDistanceMin, features.RestPathPairwiseXDistanceMean, features.RestPathPairwiseXDistanceMax, features.RestPathPairwiseXDistanceStdDev = rnd.StatBasic(col.PairwiseXDistance, true)
+	features.RestPathPairwiseXDistanceSum = SumFloat(col.PairwiseXDistance)
+	if len(col.PairwiseXDistance) == 1 {
+		features.RestPathPairwiseXDistanceMin, features.RestPathPairwiseXDistanceMean, features.RestPathPairwiseXDistanceMax = col.PairwiseXDistance[0], col.PairwiseXDistance[0], col.PairwiseXDistance[0]
+	}
+	features.RestPathPairwiseXDistanceDiff = features.RestPathPairwiseXDistanceMax - features.RestPathPairwiseXDistanceMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathPairwiseXDistanceSkew, _ = rnd.StatMoments(col.PairwiseXDistance)
+}
+
+// calcRestPathPairwiseYDistanceFeatures calculates the features of the PairwiseYDistance vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathPairwiseYDistanceFeatures(col *collection) {
+	features.RestPathPairwiseYDistanceMin, features.RestPathPairwiseYDistanceMean, features.RestPathPairwiseYDistanceMax, features.RestPathPairwiseYDistanceStdDev = rnd.StatBasic(col.PairwiseYDistance, true)
+	features.RestPathPairwiseYDistanceSum = SumFloat(col.PairwiseYDistance)
+	if len(col.PairwiseYDistance) == 1 {
+		features.RestPathPairwiseYDistanceMin, features.RestPathPairwiseYDistanceMean, features.RestPathPairwiseYDistanceMax = col.PairwiseYDistance[0], col.PairwiseYDistance[0], col.PairwiseYDistance[0]
+	}
+	features.RestPathPairwiseYDistanceDiff = features.RestPathPairwiseYDistanceMax - features.RestPathPairwiseYDistanceMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathPairwiseYDistanceSkew, _ = rnd.StatMoments(col.PairwiseYDistance)
+}
+
+// calcRestPathSumYDistanceFeatures calculates the features of the SumYDistance vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathSumYDistanceFeatures(col *collection) {
+	features.RestPathSumYDistanceMin, features.RestPathSumYDistanceMean, features.RestPathSumYDistanceMax, features.RestPathSumYDistanceStdDev = rnd.StatBasic(col.SumYDistance, true)
+	features.RestPathSumYDistanceSum = SumFloat(col.SumYDistance)
+	if len(col.SumYDistance) == 1 {
+		features.RestPathSumYDistanceMin, features.RestPathSumYDistanceMean, features.RestPathSumYDistanceMax = col.SumYDistance[0], col.SumYDistance[0], col.SumYDistance[0]
+	}
+	features.RestPathSumYDistanceDiff = features.RestPathSumYDistanceMax - features.RestPathSumYDistanceMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathSumYDistanceSkew, _ = rnd.StatMoments(col.SumYDistance)
+}
+
+// calcRestPathMeanYVelocityFeatures calculates the features of the MeanYVelocity vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathMeanYVelocityFeatures(col *collection) {
+	features.RestPathMeanYVelocityMin, features.RestPathMeanYVelocityMean, features.RestPathMeanYVelocityMax, features.RestPathMeanYVelocityStdDev = rnd.StatBasic(col.MeanYVelocity, true)
+	features.RestPathMeanYVelocitySum = SumFloat(col.MeanYVelocity)
+	if len(col.MeanYVelocity) == 1 {
+		features.RestPathMeanYVelocityMin, features.RestPathMeanYVelocityMean, features.RestPathMeanYVelocityMax = col.MeanYVelocity[0], col.MeanYVelocity[0], col.MeanYVelocity[0]
+	}
+	features.RestPathMeanYVelocityDiff = features.RestPathMeanYVelocityMax - features.RestPathMeanYVelocityMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathMeanYVelocitySkew, _ = rnd.StatMoments(col.MeanYVelocity)
+}
+
+// calcRestPathSumXDistanceFeatures calculates the features of the SumXDistance vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathSumXDistanceFeatures(col *collection) {
+	features.RestPathSumXDistanceMin, features.RestPathSumXDistanceMean, features.RestPathSumXDistanceMax, features.RestPathSumXDistanceStdDev = rnd.StatBasic(col.SumXDistance, true)
+	features.RestPathSumXDistanceSum = SumFloat(col.SumXDistance)
+	if len(col.SumXDistance) == 1 {
+		features.RestPathSumXDistanceMin, features.RestPathSumXDistanceMean, features.RestPathSumXDistanceMax = col.SumXDistance[0], col.SumXDistance[0], col.SumXDistance[0]
+	}
+	features.RestPathSumXDistanceDiff = features.RestPathSumXDistanceMax - features.RestPathSumXDistanceMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathSumXDistanceSkew, _ = rnd.StatMoments(col.SumXDistance)
+}
+
+// calcRestPathMeanXVelocityFeatures calculates the features of the MeanXVelocity vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathMeanXVelocityFeatures(col *collection) {
+	features.RestPathMeanXVelocityMin, features.RestPathMeanXVelocityMean, features.RestPathMeanXVelocityMax, features.RestPathMeanXVelocityStdDev = rnd.StatBasic(col.MeanXVelocity, true)
+	features.RestPathMeanXVelocitySum = SumFloat(col.MeanXVelocity)
+	if len(col.MeanXVelocity) == 1 {
+		features.RestPathMeanXVelocityMin, features.RestPathMeanXVelocityMean, features.RestPathMeanXVelocityMax = col.MeanXVelocity[0], col.MeanXVelocity[0], col.MeanXVelocity[0]
+	}
+	features.RestPathMeanXVelocityDiff = features.RestPathMeanXVelocityMax - features.RestPathMeanXVelocityMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathMeanXVelocitySkew, _ = rnd.StatMoments(col.MeanXVelocity)
+}
+
+// calcRestPathStraightnessFeatures calculates the features of the Straightness vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathStraightnessFeatures(col *collection) {
+	features.RestPathStraightnessMin, features.RestPathStraightnessMean, features.RestPathStraightnessMax, features.RestPathStraightnessStdDev = rnd.StatBasic(col.Straightness, true)
+	features.RestPathStraightnessSum = SumFloat(col.Straightness)
+	if len(col.Straightness) == 1 {
+		features.RestPathStraightnessMin, features.RestPathStraightnessMean, features.RestPathStraightnessMax = col.Straightness[0], col.Straightness[0], col.Straightness[0]
+	}
+	features.RestPathStraightnessDiff = features.RestPathStraightnessMax - features.RestPathStraightnessMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathStraightnessSkew, _ = rnd.StatMoments(col.Straightness)
+}
+
+// calcRestPathNumberOfRightClicksFeatures calculates the features of the NumberOfRightClicks vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathNumberOfRightClicksFeatures(col *collection) {
+	features.RestPathNumberOfRightClicksMax = MaxUint8(col.NumberOfRightClicks)
+	features.RestPathNumberOfRightClicksMin = MinUint8(col.NumberOfRightClicks)
+	features.RestPathNumberOfRightClicksDiff = features.RestPathNumberOfRightClicksMax - features.RestPathNumberOfRightClicksMin
+	features.RestPathNumberOfRightClicksSum = SumUint8(col.NumberOfRightClicks)
+	features.RestPathNumberOfRightClicksMean = Mean(ConvertUint8ToFloat64(col.NumberOfRightClicks), float64(features.RestPathNumberOfRightClicksSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.RestPathNumberOfRightClicksStdDev, features.RestPathNumberOfRightClicksSkew, _ = rnd.StatMoments(ConvertUint8ToFloat64(col.NumberOfRightClicks))
+}
+
+// calcRestPathNumberOfMiddleClicksFeatures calculates the features of the NumberOfMiddleClicks vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathNumberOfMiddleClicksFeatures(col *collection) {
+	features.RestPathNumberOfMiddleClicksMax = MaxUint8(col.NumberOfMiddleClicks)
+	features.RestPathNumberOfMiddleClicksMin = MinUint8(col.NumberOfMiddleClicks)
+	features.RestPathNumberOfMiddleClicksDiff = features.RestPathNumberOfMiddleClicksMax - features.RestPathNumberOfMiddleClicksMin
+	features.RestPathNumberOfMiddleClicksSum = SumUint8(col.NumberOfMiddleClicks)
+	features.RestPathNumberOfMiddleClicksMean = Mean(ConvertUint8ToFloat64(col.NumberOfMiddleClicks), float64(features.RestPathNumberOfMiddleClicksSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.RestPathNumberOfMiddleClicksStdDev, features.RestPathNumberOfMiddleClicksSkew, _ = rnd.StatMoments(ConvertUint8ToFloat64(col.NumberOfMiddleClicks))
+}
+
+// calcRestPathNumberOfScrollsFeatures calculates the features of the NumberOfScrolls vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathNumberOfScrollsFeatures(col *collection) {
+	features.RestPathNumberOfScrollsMax = MaxUint8(col.NumberOfScrolls)
+	features.RestPathNumberOfScrollsMin = MinUint8(col.NumberOfScrolls)
+	features.RestPathNumberOfScrollsDiff = features.RestPathNumberOfScrollsMax - features.RestPathNumberOfScrollsMin
+	features.RestPathNumberOfScrollsSum = SumUint8(col.NumberOfScrolls)
+	features.RestPathNumberOfScrollsMean = Mean(ConvertUint8ToFloat64(col.NumberOfScrolls), float64(features.RestPathNumberOfScrollsSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.RestPathNumberOfScrollsStdDev, features.RestPathNumberOfScrollsSkew, _ = rnd.StatMoments(ConvertUint8ToFloat64(col.NumberOfScrolls))
+}
+
+// calcRestPathBreakTimeTotalTimeRatioFeatures calculates the features of the BreakTimeTotalTimeRatio vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathBreakTimeTotalTimeRatioFeatures(col *collection) {
+	features.RestPathBreakTimeTotalTimeRatioMin, features.RestPathBreakTimeTotalTimeRatioMean, features.RestPathBreakTimeTotalTimeRatioMax, features.RestPathBreakTimeTotalTimeRatioStdDev = rnd.StatBasic(col.BreakTimeTotalTimeRatio, true)
+	features.RestPathBreakTimeTotalTimeRatioSum = SumFloat(col.BreakTimeTotalTimeRatio)
+	if len(col.BreakTimeTotalTimeRatio) == 1 {
+		features.RestPathBreakTimeTotalTimeRatioMin, features.RestPathBreakTimeTotalTimeRatioMean, features.RestPathBreakTimeTotalTimeRatioMax = col.BreakTimeTotalTimeRatio[0], col.BreakTimeTotalTimeRatio[0], col.BreakTimeTotalTimeRatio[0]
+	}
+	features.RestPathBreakTimeTotalTimeRatioDiff = features.RestPathBreakTimeTotalTimeRatioMax - features.RestPathBreakTimeTotalTimeRatioMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathBreakTimeTotalTimeRatioSkew, _ = rnd.StatMoments(col.BreakTimeTotalTimeRatio)
+}
+
+// calcRestPathNumberOfBreaksFeatures calculates the features of the NumberOfBreaks vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathNumberOfBreaksFeatures(col *collection) {
+	features.RestPathNumberOfBreaksMax = MaxUint16(col.NumberOfBreaks)
+	features.RestPathNumberOfBreaksMin = MinUint16(col.NumberOfBreaks)
+	features.RestPathNumberOfBreaksDiff = features.RestPathNumberOfBreaksMax - features.RestPathNumberOfBreaksMin
+	features.RestPathNumberOfBreaksSum = SumUint16(col.NumberOfBreaks)
+	features.RestPathNumberOfBreaksMean = Mean(ConvertUint16ToFloat64(col.NumberOfBreaks), float64(features.RestPathNumberOfBreaksSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.RestPathNumberOfBreaksStdDev, features.RestPathNumberOfBreaksSkew, _ = rnd.StatMoments(ConvertUint16ToFloat64(col.NumberOfBreaks))
+}
+
+// calcRestPathDurationOfPathFeatures calculates the features of the DurationOfPath vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathDurationOfPathFeatures(col *collection) {
+	features.RestPathDurationOfPathMax = MaxUint64(col.DurationOfPath)
+	features.RestPathDurationOfPathMin = MinUint64(col.DurationOfPath)
+	features.RestPathDurationOfPathDiff = features.RestPathDurationOfPathMax - features.RestPathDurationOfPathMin
+	features.RestPathDurationOfPathSum = SumUint64(col.DurationOfPath)
+	features.RestPathDurationOfPathMean = Mean(ConvertUint64ToFloat64(col.DurationOfPath), float64(features.RestPathDurationOfPathSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.RestPathDurationOfPathStdDev, features.RestPathDurationOfPathSkew, _ = rnd.StatMoments(ConvertUint64ToFloat64(col.DurationOfPath))
+}
+
+// calcRestPathTimeBetweenClickAndMovementFeatures calculates the features of the TimeBetweenClickAndMovement vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathTimeBetweenClickAndMovementFeatures(col *collection) {
+	features.RestPathTimeBetweenClickAndMovementMax = MaxUint64(col.TimeBetweenClickAndMovement)
+	features.RestPathTimeBetweenClickAndMovementMin = MinUint64(col.TimeBetweenClickAndMovement)
+	features.RestPathTimeBetweenClickAndMovementDiff = features.RestPathTimeBetweenClickAndMovementMax - features.RestPathTimeBetweenClickAndMovementMin
+	features.RestPathTimeBetweenClickAndMovementSum = SumUint64(col.TimeBetweenClickAndMovement)
+	features.RestPathTimeBetweenClickAndMovementMean = Mean(ConvertUint64ToFloat64(col.TimeBetweenClickAndMovement), float64(features.RestPathTimeBetweenClickAndMovementSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.RestPathTimeBetweenClickAndMovementStdDev, features.RestPathTimeBetweenClickAndMovementSkew, _ = rnd.StatMoments(ConvertUint64ToFloat64(col.TimeBetweenClickAndMovement))
+}
+
+// calcRestPathTimeBetweeenMovementAndDownClickFeatures calculates the features of the TimeBetweeenMovementAndDownClick vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathTimeBetweeenMovementAndDownClickFeatures(col *collection) {
+	features.RestPathTimeBetweeenMovementAndDownClickMax = MaxUint64(col.TimeBetweeenMovementAndDownClick)
+	features.RestPathTimeBetweeenMovementAndDownClickMin = MinUint64(col.TimeBetweeenMovementAndDownClick)
+	features.RestPathTimeBetweeenMovementAndDownClickDiff = features.RestPathTimeBetweeenMovementAndDownClickMax - features.RestPathTimeBetweeenMovementAndDownClickMin
+	features.RestPathTimeBetweeenMovementAndDownClickSum = SumUint64(col.TimeBetweeenMovementAndDownClick)
+	features.RestPathTimeBetweeenMovementAndDownClickMean = Mean(ConvertUint64ToFloat64(col.TimeBetweeenMovementAndDownClick), float64(features.RestPathTimeBetweeenMovementAndDownClickSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.RestPathTimeBetweeenMovementAndDownClickStdDev, features.RestPathTimeBetweeenMovementAndDownClickSkew, _ = rnd.StatMoments(ConvertUint64ToFloat64(col.TimeBetweeenMovementAndDownClick))
+}
+
+// calcRestPathAngleStartEndPointFeatures calculates the features of the AngleStartEndPoint vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathAngleStartEndPointFeatures(col *collection) {
+	features.RestPathAngleStartEndPointMin, features.RestPathAngleStartEndPointMean, features.RestPathAngleStartEndPointMax, features.RestPathAngleStartEndPointStdDev = rnd.StatBasic(col.AngleStartEndPoint, true)
+	features.RestPathAngleStartEndPointSum = SumFloat(col.AngleStartEndPoint)
+	if len(col.AngleStartEndPoint) == 1 {
+		features.RestPathAngleStartEndPointMin, features.RestPathAngleStartEndPointMean, features.RestPathAngleStartEndPointMax = col.AngleStartEndPoint[0], col.AngleStartEndPoint[0], col.AngleStartEndPoint[0]
+	}
+	features.RestPathAngleStartEndPointDiff = features.RestPathAngleStartEndPointMax - features.RestPathAngleStartEndPointMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathAngleStartEndPointSkew, _ = rnd.StatMoments(col.AngleStartEndPoint)
+}
+
+// calcRestPathMeanAccelerationFeatures calculates the features of the MeanAcceleration vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathMeanAccelerationFeatures(col *collection) {
+	features.RestPathMeanAccelerationMin, features.RestPathMeanAccelerationMean, features.RestPathMeanAccelerationMax, features.RestPathMeanAccelerationStdDev = rnd.StatBasic(col.MeanAcceleration, true)
+	features.RestPathMeanAccelerationSum = SumFloat(col.MeanAcceleration)
+	if len(col.MeanAcceleration) == 1 {
+		features.RestPathMeanAccelerationMin, features.RestPathMeanAccelerationMean, features.RestPathMeanAccelerationMax = col.MeanAcceleration[0], col.MeanAcceleration[0], col.MeanAcceleration[0]
+	}
+	features.RestPathMeanAccelerationDiff = features.RestPathMeanAccelerationMax - features.RestPathMeanAccelerationMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathMeanAccelerationSkew, _ = rnd.StatMoments(col.MeanAcceleration)
+}
+
+// calcRestPathMeanVelocityFeatures calculates the features of the MeanVelocity vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathMeanVelocityFeatures(col *collection) {
+	features.RestPathMeanVelocityMin, features.RestPathMeanVelocityMean, features.RestPathMeanVelocityMax, features.RestPathMeanVelocityStdDev = rnd.StatBasic(col.MeanVelocity, true)
+	features.RestPathMeanVelocitySum = SumFloat(col.MeanVelocity)
+	if len(col.MeanVelocity) == 1 {
+		features.RestPathMeanVelocityMin, features.RestPathMeanVelocityMean, features.RestPathMeanVelocityMax = col.MeanVelocity[0], col.MeanVelocity[0], col.MeanVelocity[0]
+	}
+	features.RestPathMeanVelocityDiff = features.RestPathMeanVelocityMax - features.RestPathMeanVelocityMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathMeanVelocitySkew, _ = rnd.StatMoments(col.MeanVelocity)
+}
+
+// calcRestPathDistanceStartEndPointFeatures calculates the features of the DistanceStartEndPoint vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathDistanceStartEndPointFeatures(col *collection) {
+	features.RestPathDistanceStartEndPointMin, features.RestPathDistanceStartEndPointMean, features.RestPathDistanceStartEndPointMax, features.RestPathDistanceStartEndPointStdDev = rnd.StatBasic(col.DistanceStartEndPoint, true)
+	features.RestPathDistanceStartEndPointSum = SumFloat(col.DistanceStartEndPoint)
+	if len(col.DistanceStartEndPoint) == 1 {
+		features.RestPathDistanceStartEndPointMin, features.RestPathDistanceStartEndPointMean, features.RestPathDistanceStartEndPointMax = col.DistanceStartEndPoint[0], col.DistanceStartEndPoint[0], col.DistanceStartEndPoint[0]
+	}
+	features.RestPathDistanceStartEndPointDiff = features.RestPathDistanceStartEndPointMax - features.RestPathDistanceStartEndPointMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathDistanceStartEndPointSkew, _ = rnd.StatMoments(col.DistanceStartEndPoint)
+}
+
+// calcRestPathDistanceSumFeatures calculates the features of the DistanceSum vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathDistanceSumFeatures(col *collection) {
+	features.RestPathDistanceSumMin, features.RestPathDistanceSumMean, features.RestPathDistanceSumMax, features.RestPathDistanceSumStdDev = rnd.StatBasic(col.DistanceSum, true)
+	features.RestPathDistanceSumSum = SumFloat(col.DistanceSum)
+	if len(col.DistanceSum) == 1 {
+		features.RestPathDistanceSumMin, features.RestPathDistanceSumMean, features.RestPathDistanceSumMax = col.DistanceSum[0], col.DistanceSum[0], col.DistanceSum[0]
+	}
+	features.RestPathDistanceSumDiff = features.RestPathDistanceSumMax - features.RestPathDistanceSumMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.RestPathDistanceSumSkew, _ = rnd.StatMoments(col.DistanceSum)
+}
+
+// calcRestPathNumberOfMovementPointsFeatures calculates the features of the NumberOfMovementPoints vector from the given path; Auto-generated
+func (features *ProcessedFeatures) calcRestPathNumberOfMovementPointsFeatures(col *collection) {
+	features.RestPathNumberOfMovementPointsMax = MaxUint16(col.NumberOfMovementPoints)
+	features.RestPathNumberOfMovementPointsMin = MinUint16(col.NumberOfMovementPoints)
+	features.RestPathNumberOfMovementPointsDiff = features.RestPathNumberOfMovementPointsMax - features.RestPathNumberOfMovementPointsMin
+	features.RestPathNumberOfMovementPointsSum = SumUint16(col.NumberOfMovementPoints)
+	features.RestPathNumberOfMovementPointsMean = Mean(ConvertUint16ToFloat64(col.NumberOfMovementPoints), float64(features.RestPathNumberOfMovementPointsSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.RestPathNumberOfMovementPointsStdDev, features.RestPathNumberOfMovementPointsSkew, _ = rnd.StatMoments(ConvertUint16ToFloat64(col.NumberOfMovementPoints))
+}
+
+//collection is a struct to collect all the paths; Auto-generated
+type collection struct {
+	PairwiseDistance                 []float64
+	PairwiseVelocity                 []float64
+	PairwiseAcceleration             []float64
+	PairwiseAngle                    []float64
+	AngleBetweenMovementAndStartEnd  []float64
+	PairwiseAngularVelocity          []float64
+	PairwiseDuration                 []uint64
+	TimeBetweenClickAndRelease       []uint64
+	BreakTimes                       []uint64
+	MovementDuringClickDistance      []float64
+	MovementDuringClickVelocity      []float64
+	MovementDuringClickAcceleration  []float64
+	MovementDuringClickAngle         []float64
+	ScrollDX                         []float64
+	ScrollDY                         []float64
+	ScrollDZ                         []float64
+	ScrollDM                         []uint8
+	XPoints                          []float64
+	YPoints                          []float64
+	PairwiseXVelocity                []float64
+	PairwiseYVelocity                []float64
+	PairwiseXDistance                []float64
+	PairwiseYDistance                []float64
+	SumYDistance                     []float64
+	MeanYVelocity                    []float64
+	SumXDistance                     []float64
+	MeanXVelocity                    []float64
+	Straightness                     []float64
+	NumberOfRightClicks              []uint8
+	NumberOfMiddleClicks             []uint8
+	NumberOfScrolls                  []uint8
+	BreakTimeTotalTimeRatio          []float64
+	NumberOfBreaks                   []uint16
+	DurationOfPath                   []uint64
+	TimeBetweenClickAndMovement      []uint64
+	TimeBetweeenMovementAndDownClick []uint64
+	AngleStartEndPoint               []float64
+	MeanAcceleration                 []float64
+	MeanVelocity                     []float64
+	DistanceStartEndPoint            []float64
+	DistanceSum                      []float64
+	NumberOfMovementPoints           []uint16
+}
+
+// GenerateRestCalculation caluclates and stores the Features of the RestPath; Auto-generated
+func (features *ProcessedFeatures) GenerateRestCalculation(paths []*PathFeatures) {
+	collected := &collection{}
+	for _, v := range paths {
+		collected.PairwiseDistance = append(collected.PairwiseDistance, v.PairwiseDistance...)
+		collected.PairwiseVelocity = append(collected.PairwiseVelocity, v.PairwiseVelocity...)
+		collected.PairwiseAcceleration = append(collected.PairwiseAcceleration, v.PairwiseAcceleration...)
+		collected.PairwiseAngle = append(collected.PairwiseAngle, v.PairwiseAngle...)
+		collected.AngleBetweenMovementAndStartEnd = append(collected.AngleBetweenMovementAndStartEnd, v.AngleBetweenMovementAndStartEnd...)
+		collected.PairwiseAngularVelocity = append(collected.PairwiseAngularVelocity, v.PairwiseAngularVelocity...)
+		collected.PairwiseDuration = append(collected.PairwiseDuration, v.PairwiseDuration...)
+		collected.TimeBetweenClickAndRelease = append(collected.TimeBetweenClickAndRelease, v.TimeBetweenClickAndRelease...)
+		collected.BreakTimes = append(collected.BreakTimes, v.BreakTimes...)
+		collected.MovementDuringClickDistance = append(collected.MovementDuringClickDistance, v.MovementDuringClickDistance...)
+		collected.MovementDuringClickVelocity = append(collected.MovementDuringClickVelocity, v.MovementDuringClickVelocity...)
+		collected.MovementDuringClickAcceleration = append(collected.MovementDuringClickAcceleration, v.MovementDuringClickAcceleration...)
+		collected.MovementDuringClickAngle = append(collected.MovementDuringClickAngle, v.MovementDuringClickAngle...)
+		collected.ScrollDX = append(collected.ScrollDX, v.ScrollDX...)
+		collected.ScrollDY = append(collected.ScrollDY, v.ScrollDY...)
+		collected.ScrollDZ = append(collected.ScrollDZ, v.ScrollDZ...)
+		collected.ScrollDM = append(collected.ScrollDM, v.ScrollDM...)
+		collected.XPoints = append(collected.XPoints, v.XPoints...)
+		collected.YPoints = append(collected.YPoints, v.YPoints...)
+		collected.PairwiseXVelocity = append(collected.PairwiseXVelocity, v.PairwiseXVelocity...)
+		collected.PairwiseYVelocity = append(collected.PairwiseYVelocity, v.PairwiseYVelocity...)
+		collected.PairwiseXDistance = append(collected.PairwiseXDistance, v.PairwiseXDistance...)
+		collected.PairwiseYDistance = append(collected.PairwiseYDistance, v.PairwiseYDistance...)
+		collected.SumYDistance = append(collected.SumYDistance, v.SumYDistance)
+		collected.MeanYVelocity = append(collected.MeanYVelocity, v.MeanYVelocity)
+		collected.SumXDistance = append(collected.SumXDistance, v.SumXDistance)
+		collected.MeanXVelocity = append(collected.MeanXVelocity, v.MeanXVelocity)
+		collected.Straightness = append(collected.Straightness, v.Straightness)
+		collected.NumberOfRightClicks = append(collected.NumberOfRightClicks, v.NumberOfRightClicks)
+		collected.NumberOfMiddleClicks = append(collected.NumberOfMiddleClicks, v.NumberOfMiddleClicks)
+		collected.NumberOfScrolls = append(collected.NumberOfScrolls, v.NumberOfScrolls)
+		collected.BreakTimeTotalTimeRatio = append(collected.BreakTimeTotalTimeRatio, v.BreakTimeTotalTimeRatio)
+		collected.NumberOfBreaks = append(collected.NumberOfBreaks, v.NumberOfBreaks)
+		collected.DurationOfPath = append(collected.DurationOfPath, v.DurationOfPath)
+		collected.TimeBetweenClickAndMovement = append(collected.TimeBetweenClickAndMovement, v.TimeBetweenClickAndMovement)
+		collected.TimeBetweeenMovementAndDownClick = append(collected.TimeBetweeenMovementAndDownClick, v.TimeBetweeenMovementAndDownClick)
+		collected.AngleStartEndPoint = append(collected.AngleStartEndPoint, v.AngleStartEndPoint)
+		collected.MeanAcceleration = append(collected.MeanAcceleration, v.MeanAcceleration)
+		collected.MeanVelocity = append(collected.MeanVelocity, v.MeanVelocity)
+		collected.DistanceStartEndPoint = append(collected.DistanceStartEndPoint, v.DistanceStartEndPoint)
+		collected.DistanceSum = append(collected.DistanceSum, v.DistanceSum)
+		collected.NumberOfMovementPoints = append(collected.NumberOfMovementPoints, v.NumberOfMovementPoints)
+	}
+	features.calcRestPathPairwiseDistanceFeatures(collected)
+	features.calcRestPathPairwiseVelocityFeatures(collected)
+	features.calcRestPathPairwiseAccelerationFeatures(collected)
+	features.calcRestPathPairwiseAngleFeatures(collected)
+	features.calcRestPathAngleBetweenMovementAndStartEndFeatures(collected)
+	features.calcRestPathPairwiseAngularVelocityFeatures(collected)
+	features.calcRestPathPairwiseDurationFeatures(collected)
+	features.calcRestPathTimeBetweenClickAndReleaseFeatures(collected)
+	features.calcRestPathBreakTimesFeatures(collected)
+	features.calcRestPathMovementDuringClickDistanceFeatures(collected)
+	features.calcRestPathMovementDuringClickVelocityFeatures(collected)
+	features.calcRestPathMovementDuringClickAccelerationFeatures(collected)
+	features.calcRestPathMovementDuringClickAngleFeatures(collected)
+	features.calcRestPathScrollDXFeatures(collected)
+	features.calcRestPathScrollDYFeatures(collected)
+	features.calcRestPathScrollDZFeatures(collected)
+	features.calcRestPathScrollDMFeatures(collected)
+	features.calcRestPathXPointsFeatures(collected)
+	features.calcRestPathYPointsFeatures(collected)
+	features.calcRestPathPairwiseXVelocityFeatures(collected)
+	features.calcRestPathPairwiseYVelocityFeatures(collected)
+	features.calcRestPathPairwiseXDistanceFeatures(collected)
+	features.calcRestPathPairwiseYDistanceFeatures(collected)
+	features.calcRestPathSumYDistanceFeatures(collected)
+	features.calcRestPathMeanYVelocityFeatures(collected)
+	features.calcRestPathSumXDistanceFeatures(collected)
+	features.calcRestPathMeanXVelocityFeatures(collected)
+	features.calcRestPathStraightnessFeatures(collected)
+	features.calcRestPathNumberOfRightClicksFeatures(collected)
+	features.calcRestPathNumberOfMiddleClicksFeatures(collected)
+	features.calcRestPathNumberOfScrollsFeatures(collected)
+	features.calcRestPathBreakTimeTotalTimeRatioFeatures(collected)
+	features.calcRestPathNumberOfBreaksFeatures(collected)
+	features.calcRestPathDurationOfPathFeatures(collected)
+	features.calcRestPathTimeBetweenClickAndMovementFeatures(collected)
+	features.calcRestPathTimeBetweeenMovementAndDownClickFeatures(collected)
+	features.calcRestPathAngleStartEndPointFeatures(collected)
+	features.calcRestPathMeanAccelerationFeatures(collected)
+	features.calcRestPathMeanVelocityFeatures(collected)
+	features.calcRestPathDistanceStartEndPointFeatures(collected)
+	features.calcRestPathDistanceSumFeatures(collected)
+	features.calcRestPathNumberOfMovementPointsFeatures(collected)
 }
