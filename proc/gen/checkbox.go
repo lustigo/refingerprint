@@ -72,16 +72,21 @@ func GenerateCheckbox() {
 	generateCheckboxCalculation(rawFeatureNames, rawFeatureTypes)
 }
 
-// generateCheckboxHeader generates the Code for the generation of the ARFF Header for the CheckboxPath Features and prints it
-func generateCheckboxHeader(rawFeatureNames, featureValueNames []string) {
+// generateHeaders generates the Code for the generation of the ARFF Header for the Features with the given prefix and prints it
+func generateHeaders(rawFeatureNames, featureValueNames []string, prefix string) {
 	fmt.Print("//\n// Headers\n// Auto-Generated\n//\n")
 	for _, v := range rawFeatureNames {
 		for _, feature := range featureValueNames {
-			fmt.Print("header.AddAttr(\"checkboxpath" + v + feature + "\", arff.Numeric, nil)\n")
+			fmt.Print("header.AddAttr(\"" + prefix + v + feature + "\", arff.Numeric, nil)\n")
 		}
 	}
 
 	fmt.Print("\n\n\n")
+}
+
+// generateCheckboxHeader generates the Code for the generation of the ARFF Header for the CheckboxPath Features and prints it
+func generateCheckboxHeader(rawFeatureNames, featureValueNames []string) {
+	generateHeaders(rawFeatureNames, featureValueNames, "checkboxpath")
 }
 
 // generateCheckboxStructFields generates the Code for ProcessedFeatures struct fields for the CheckboxPath Features and prints it
