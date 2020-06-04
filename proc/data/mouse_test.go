@@ -1,6 +1,9 @@
 package data
 
-import "testing"
+import (
+	"math"
+	"testing"
+)
 
 // TestNormalizeMouse tests the mouse.Normalize function
 func TestNormalizeMouse(t *testing.T) {
@@ -11,14 +14,14 @@ func TestNormalizeMouse(t *testing.T) {
 		startTime uint64
 		expected  NormalizedMouseData
 	}{
-		{"full size", MouseData{X: 100, Y: 70, Time: 150}, ScreenInfo{Width: 100, Height: 70}, 10, NormalizedMouseData{X: 1, Y: 1, Time: 140}},
+		{"full size", MouseData{X: 100, Y: 70, Time: 150}, ScreenInfo{Width: 100, Height: 70}, 10, NormalizedMouseData{X: 0.8192, Y: 0.5734, Time: 140}},
 		{"null", MouseData{X: 0, Y: 0, Time: 10}, ScreenInfo{Width: 100, Height: 70}, 10, NormalizedMouseData{X: 0, Y: 0, Time: 0}},
-		{"middle", MouseData{X: 50, Y: 35, Time: 160}, ScreenInfo{Width: 100, Height: 70}, 10, NormalizedMouseData{X: 0.5, Y: 0.5, Time: 150}},
+		{"middle", MouseData{X: 50, Y: 35, Time: 160}, ScreenInfo{Width: 100, Height: 70}, 10, NormalizedMouseData{X: 0.4096, Y: 0.2867, Time: 150}},
 	}
 
 	for _, c := range cases {
 		output := c.point.Normalize(c.screen, Time{Start: c.startTime})
-		if output != c.expected {
+		if output.Time != c.expected.Time || math.Abs(output.X-c.expected.X) > 0.01 || math.Abs(output.Y-c.expected.Y) > 0.01 {
 			t.Errorf("%v failed: %v was expected, but got %v\n", c.name, c.expected, output)
 		}
 	}
@@ -27,10 +30,11 @@ func TestNormalizeMouse(t *testing.T) {
 // TestNormalizeMouseData tests the NormalizeMouseData function
 func TestNormalizeMouseData(t *testing.T) {
 	cases := []MouseData{{X: 100, Y: 70, Time: 150}, {X: 0, Y: 0, Time: 10}, {X: 50, Y: 35, Time: 160}}
-	expected := []NormalizedMouseData{{X: 1, Y: 1, Time: 140}, {X: 0, Y: 0, Time: 0}, {X: 0.5, Y: 0.5, Time: 150}}
+	expected := []NormalizedMouseData{{X: 0.8192, Y: 0.5734, Time: 140}, {X: 0, Y: 0, Time: 0}, {X: 0.4096, Y: 0.2867, Time: 150}}
 	output := NormalizeMouseData(cases, ScreenInfo{Width: 100, Height: 70}, Time{Start: 10})
 	for i, o := range output {
-		if o != expected[i] {
+		c := expected[i]
+		if o.Time != c.Time || math.Abs(o.X-c.X) > 0.01 || math.Abs(o.Y-c.Y) > 0.01 {
 			t.Errorf("%v was not %v\n", output, expected)
 			break
 		}

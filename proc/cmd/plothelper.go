@@ -8,6 +8,7 @@ import (
 
 	"fyne.io/fyne/app"
 	"fyne.io/fyne/canvas"
+	"github.com/golang/geo/r2"
 	"github.com/lustigo/refingerprint/proc/data"
 	"github.com/lustigo/refingerprint/proc/io"
 	"github.com/spf13/cobra"
@@ -48,7 +49,8 @@ func getPlot(w, h int16, path []data.NormalizedMouseData, rect data.Rectangle, f
 
 // plotAntiCrop returns a Plotter, that draws the whole screen as a transparent rectangle.
 func plotAntiCrop(w, h int16) *plotter.Polygon {
-	poly := plotRectangle(w, h, data.Rectangle{X: 0, Y: 0, Width: 1, Height: 1})
+	len := r2.Point{X: float64(w), Y: float64(h)}.Norm()
+	poly := plotRectangle(w, h, data.Rectangle{X: 0, Y: 0, Width: float64(w) / len, Height: float64(h) / len})
 	col := color.NRGBA{R: 0x00, G: 0x00, B: 0x00, A: 0x00}
 	poly.Color = col
 	poly.LineStyle = draw.LineStyle{Color: col}
@@ -58,10 +60,17 @@ func plotAntiCrop(w, h int16) *plotter.Polygon {
 // plotMousePoints creates a Scatter Plot from the given MousePath and returns it
 func plotMousePoints(w, h int16, path []data.NormalizedMouseData) *plotter.Scatter {
 	pts := make(plotter.XYs, len(path))
+	len := r2.Point{X: float64(w), Y: float64(h)}.Norm()
+	var maxHeight float64
+	if len == 0 {
+		maxHeight = 0
+	} else {
+		maxHeight = float64(h) / len
+	}
 
 	for i, point := range path {
-		pts[i].X = point.X * float64(w)
-		pts[i].Y = (1 - point.Y) * float64(h)
+		pts[i].X = point.X * len
+		pts[i].Y = (maxHeight - point.Y) * len
 	}
 
 	plotter, _ := plotter.NewScatter(pts)
@@ -70,25 +79,30 @@ func plotMousePoints(w, h int16, path []data.NormalizedMouseData) *plotter.Scatt
 
 // plotRectangle creates a Polygon Plot from the given Rectangle and returns it
 func plotRectangle(w, h int16, rect data.Rectangle) *plotter.Polygon {
-	width := float64(w)
-	height := float64(h)
+	len := r2.Point{X: float64(w), Y: float64(h)}.Norm()
+	var maxHeight float64
+	if len == 0 {
+		maxHeight = 0
+	} else {
+		maxHeight = float64(h) / len
+	}
 
 	corners := &plotter.XYs{
 		{
-			X: rect.X * width,
-			Y: (1 - rect.Y) * height,
+			X: rect.X * len,
+			Y: (maxHeight - rect.Y) * len,
 		},
 		{
-			X: (rect.X + rect.Width) * width,
-			Y: (1 - rect.Y) * height,
+			X: (rect.X + rect.Width) * len,
+			Y: (maxHeight - rect.Y) * len,
 		},
 		{
-			X: (rect.X + rect.Width) * width,
-			Y: (1 - (rect.Y + rect.Height)) * height,
+			X: (rect.X + rect.Width) * len,
+			Y: (maxHeight - (rect.Y + rect.Height)) * len,
 		},
 		{
-			X: rect.X * width,
-			Y: (1 - (rect.Y + rect.Height)) * height,
+			X: rect.X * len,
+			Y: (maxHeight - (rect.Y + rect.Height)) * len,
 		},
 	}
 

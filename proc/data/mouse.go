@@ -2,6 +2,8 @@ package data
 
 import (
 	"sort"
+
+	"github.com/golang/geo/r2"
 )
 
 // Equals returns true if the two points are the same
@@ -21,9 +23,10 @@ func (event NormalizedClickEvent) Equals(otherEvent NormalizedClickEvent) bool {
 
 // Normalize normalizes the MouseData with the given Screenresolution and Time
 func (point MouseData) Normalize(screen ScreenInfo, time Time) NormalizedMouseData {
+	len := screen.Length()
 	return NormalizedMouseData{
-		X:    float64(point.X) / float64(screen.Width),
-		Y:    float64(point.Y) / float64(screen.Height),
+		X:    float64(point.X) / len,
+		Y:    float64(point.Y) / len,
 		Time: point.Time - time.Start,
 	}
 }
@@ -294,4 +297,9 @@ func RemoveConcurrentEvents(clicks []NormalizedClickEvent, points []NormalizedMo
 	}
 
 	return cleanedPoints, cleanedScrolls
+}
+
+// Length returns the vector length of the screen
+func (screen ScreenInfo) Length() float64 {
+	return r2.Point{X: float64(screen.Width), Y: float64(screen.Height)}.Norm()
 }

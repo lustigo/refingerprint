@@ -6,9 +6,10 @@ func (rect Rectangle) Normalize(screen ScreenInfo) Rectangle {
 	rect.X += float64(screen.DeltaX)
 	rect.Y += float64(screen.DeltaY)
 	// Normalize
-	rect.X /= float64(screen.Width)
-	rect.Width /= float64(screen.Width)
-	rect.Y /= float64(screen.Height)
-	rect.Height /= float64(screen.Height)
+	len := screen.Length()
+	rect.X /= len
+	rect.Width /= len
+	rect.Y /= len
+	rect.Height /= len
 	return rect
 }
