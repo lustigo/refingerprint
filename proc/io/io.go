@@ -96,4 +96,21 @@ func WriteARFFFile(path string, d []*data.ProcessedFeatures) {
 
 	file.Sync()
 	file.Close()
+
+	replaceInf(path)
+}
+
+// replaceInf replaces all the Inf strings in the given File path with 9223372036854775807 and saves it to disk
+func replaceInf(path string) {
+	r, err := ioutil.ReadFile(path)
+	if err != nil {
+		fmt.Printf("Could not open file: %v\n", err)
+	}
+
+	s := strings.ReplaceAll(string(r), "+Inf", "9223372036854775807")
+
+	err = ioutil.WriteFile(path, []byte(s), os.ModePerm)
+	if err != nil {
+		fmt.Printf("Could not write new content to file: %v\n", err)
+	}
 }
