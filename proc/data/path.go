@@ -54,6 +54,9 @@ func ExtractPaths(checkBoxMovement, restMovement []NormalizedMouseData, clicks [
 	// Rest Paths
 	//
 	restPathAmount := getAmountOfPaths(clicks) - 1
+	if restPathAmount < 0 {
+		restPathAmount = 0
+	}
 	restPaths := make([]Path, restPathAmount)
 	for restCounter < restPathAmount {
 		restPaths[restCounter] = Path{
