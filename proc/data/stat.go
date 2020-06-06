@@ -2,6 +2,13 @@ package data
 
 // MaxInt returns the Maximum number contained in the given slice
 func MaxInt(slice []int16) int16 {
+	l := len(slice)
+	if l == 0 {
+		return 0
+	} else if l == 1 {
+		return slice[1]
+	}
+
 	maxVal := int16(-32768)
 	for _, v := range slice {
 		if v > maxVal {
@@ -13,6 +20,13 @@ func MaxInt(slice []int16) int16 {
 
 // MaxUint8 returns the Maximum number contained in the given slice
 func MaxUint8(slice []uint8) uint8 {
+	l := len(slice)
+	if l == 0 {
+		return 0
+	} else if l == 1 {
+		return slice[1]
+	}
+
 	maxVal := uint8(0)
 	for _, v := range slice {
 		if v > maxVal {
@@ -24,6 +38,13 @@ func MaxUint8(slice []uint8) uint8 {
 
 // MaxUint16 returns the Maximum number contained in the given slice
 func MaxUint16(slice []uint16) uint16 {
+	l := len(slice)
+	if l == 0 {
+		return 0
+	} else if l == 1 {
+		return slice[1]
+	}
+
 	maxVal := uint16(0)
 	for _, v := range slice {
 		if v > maxVal {
@@ -35,6 +56,13 @@ func MaxUint16(slice []uint16) uint16 {
 
 // MaxUint64 returns the Maximum number contained in the given slice
 func MaxUint64(slice []uint64) uint64 {
+	l := len(slice)
+	if l == 0 {
+		return 0
+	} else if l == 1 {
+		return slice[1]
+	}
+
 	maxVal := uint64(0)
 	for _, v := range slice {
 		if v > maxVal {
@@ -46,6 +74,13 @@ func MaxUint64(slice []uint64) uint64 {
 
 // MinInt returns the Minimum number contained in the given slice
 func MinInt(slice []int16) int16 {
+	l := len(slice)
+	if l == 0 {
+		return 0
+	} else if l == 1 {
+		return slice[1]
+	}
+
 	minVal := int16(32767)
 	for _, v := range slice {
 		if v < minVal {
@@ -57,6 +92,13 @@ func MinInt(slice []int16) int16 {
 
 // MinUint8 returns the Minimum number contained in the given slice
 func MinUint8(slice []uint8) uint8 {
+	l := len(slice)
+	if l == 0 {
+		return 0
+	} else if l == 1 {
+		return slice[1]
+	}
+
 	minVal := uint8(255)
 	for _, v := range slice {
 		if v < minVal {
@@ -68,6 +110,13 @@ func MinUint8(slice []uint8) uint8 {
 
 // MinUint16 returns the Minimum number contained in the given slice
 func MinUint16(slice []uint16) uint16 {
+	l := len(slice)
+	if l == 0 {
+		return 0
+	} else if l == 1 {
+		return slice[1]
+	}
+
 	minVal := uint16(65535)
 	for _, v := range slice {
 		if v < minVal {
@@ -79,6 +128,13 @@ func MinUint16(slice []uint16) uint16 {
 
 // MinUint64 returns the Minimum number contained in the given slice
 func MinUint64(slice []uint64) uint64 {
+	l := len(slice)
+	if l == 0 {
+		return 0
+	} else if l == 1 {
+		return slice[1]
+	}
+
 	minVal := uint64(18446744073709551615)
 	for _, v := range slice {
 		if v < minVal {
