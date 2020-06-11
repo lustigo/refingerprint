@@ -125,6 +125,50 @@ type ProcessedFeatures struct {
 	TaskY         float64 `arff:"taskY" csv:"Taskframepos Y"`
 	TaskWidth     float64 `arff:"taskWidth" csv:"Taskframepos Width"`
 	TaskHeight    float64 `arff:"taskHeight" csv:"Taskframepos Height"`
+	// Task Data
+	AmountFailedTasks                uint8   `arff:"failedTasks" csv:"failedTasks"`
+	AmountTasks                      uint8   `arff:"taskAmount" csv:"taskAmount"`
+	AmountNo                         uint8   `arff:"noCaptchaAmount" csv:"noCaptchaAmount"`
+	AmountSimImg                     uint8   `arff:"similarImageAmount" csv:"similarImageAmount"`
+	AmountDynSimImg                  uint8   `arff:"dynamicSimilarImageAmount" csv:"dynamicSimilarImageAmount"`
+	AmountObjIdent                   uint8   `arff:"objectIdentificationAmount" csv:"objectIdentificationAmount"`
+	AmountCandidatesStopSign         uint8   `arff:"candidatesStopSign" csv:"candidatesStopSign"`
+	AmountCandidatesSpeedLimit       uint8   `arff:"candidatesSpeedLimit" csv:"candidatesSpeedLimit"`
+	AmountCandidatesStreetName       uint8   `arff:"candidatesStreetName" csv:"candidatesStreetName"`
+	AmountCandidatesOther            uint8   `arff:"candidatesOther" csv:"candidatesOther"`
+	AmountCandidatesCar              uint8   `arff:"candidatesCar" csv:"candidatesCar"`
+	AmountCandidatesBridge           uint8   `arff:"candidatesBridge" csv:"candidatesBridge"`
+	AmountCandidatesRoad             uint8   `arff:"candidatesRoad" csv:"candidatesRoad"`
+	AmountCandidatesBoundingbox      uint8   `arff:"candidatesBoundingBox" csv:"candidatesBoundingBox"`
+	DurationLastCellEventToStop      uint64  `arff:"durationLastCellEventToStop" csv:"durationLastCellEventToStop"`
+	TaskPicturesSelectedMin          uint16  `arff:"taskPicturesSelectedMin" csv:"taskPicturesSelectedMin"`
+	TaskPicturesSelectedMax          uint16  `arff:"taskPicturesSelectedMax" csv:"taskPicturesSelectedMax"`
+	TaskPicturesSelectedDiff         uint16  `arff:"taskPicturesSelectedDiff" csv:"taskPicturesSelectedDiff"`
+	TaskPicturesSelectedSum          uint16  `arff:"taskPicturesSelectedSum" csv:"taskPicturesSelectedSum"`
+	TaskPicturesSelectedMean         float64 `arff:"taskPicturesSelectedMean" csv:"taskPicturesSelectedMean"`
+	TaskPicturesSelectedStdDev       float64 `arff:"taskPicturesSelectedStdDev" csv:"taskPicturesSelectedStdDev"`
+	TaskPicturesSelectedSkew         float64 `arff:"taskPicturesSelectedSkew" csv:"taskPicturesSelectedSkew"`
+	AmountCellEventsMin              uint16  `arff:"cellEventsMin" csv:"cellEventsMin"`
+	AmountCellEventsMax              uint16  `arff:"cellEventsMax" csv:"cellEventsMax"`
+	AmountCellEventsDiff             uint16  `arff:"cellEventsDiff" csv:"cellEventsDiff"`
+	AmountCellEventsSum              uint16  `arff:"cellEventsSum" csv:"cellEventsSum"`
+	AmountCellEventsMean             float64 `arff:"cellEventsMean" csv:"cellEventsMean"`
+	AmountCellEventsStdDev           float64 `arff:"cellEventsStdDev" csv:"cellEventsStdDev"`
+	AmountCellEventsSkew             float64 `arff:"cellEventsSkew" csv:"cellEventsSkew"`
+	TaskDurationFirstLastEventMin    uint64  `arff:"taskDurationFirstLastEventMin" csv:"taskDurationFirstLastEventMin"`
+	TaskDurationFirstLastEventMax    uint64  `arff:"taskDurationFirstLastEventMax" csv:"taskDurationFirstLastEventMax"`
+	TaskDurationFirstLastEventDiff   uint64  `arff:"taskDurationFirstLastEventDiff" csv:"taskDurationFirstLastEventDiff"`
+	TaskDurationFirstLastEventSum    uint64  `arff:"taskDurationFirstLastEventSum" csv:"taskDurationFirstLastEventSum"`
+	TaskDurationFirstLastEventMean   float64 `arff:"taskDurationFirstLastEventMean" csv:"taskDurationFirstLastEventMean"`
+	TaskDurationFirstLastEventStdDev float64 `arff:"taskDurationFirstLastEventStdDev" csv:"taskDurationFirstLastEventStdDev"`
+	TaskDurationFirstLastEventSkew   float64 `arff:"taskDurationFirstLastEventSkew" csv:"taskDurationFirstLastEventSkew"`
+	TaskChangedSelectionsMin         uint16  `arff:"taskChangedSelectionsMin" csv:"taskChangedSelectionsMin"`
+	TaskChangedSelectionsMax         uint16  `arff:"taskChangedSelectionsMax" csv:"taskChangedSelectionsMax"`
+	TaskChangedSelectionsDiff        uint16  `arff:"taskChangedSelectionsDiff" csv:"taskChangedSelectionsDiff"`
+	TaskChangedSelectionsSum         uint16  `arff:"taskChangedSelectionsSum" csv:"taskChangedSelectionsSum"`
+	TaskChangedSelectionsMean        float64 `arff:"taskChangedSelectionsMean" csv:"taskChangedSelectionsMean"`
+	TaskChangedSelectionsStdDev      float64 `arff:"taskChangedSelectionsStdDev" csv:"taskChangedSelectionsStdDev"`
+	TaskChangedSelectionsSkew        float64 `arff:"taskChangedSelectionsSkew" csv:"taskChangedSelectionsSkew"`
 	//
 	// Movement
 	//
@@ -721,6 +765,52 @@ func GetARFFHeader() arff.Header {
 	header.AddAttr("taskY", arff.Numeric, nil)
 	header.AddAttr("taskWidth", arff.Numeric, nil)
 	header.AddAttr("taskHeight", arff.Numeric, nil)
+	// Task Features
+	header.AddAttr("failedTasks", arff.Numeric, nil)
+	header.AddAttr("taskAmount", arff.Numeric, nil)
+	header.AddAttr("noCaptchaAmount", arff.Numeric, nil)
+	header.AddAttr("similarImageAmount", arff.Numeric, nil)
+	header.AddAttr("dynamicSimilarImageAmount", arff.Numeric, nil)
+	header.AddAttr("objectIdentificationAmount", arff.Numeric, nil)
+	header.AddAttr("candidatesStopSign", arff.Numeric, nil)
+	header.AddAttr("candidatesStopSign", arff.Numeric, nil)
+	header.AddAttr("candidatesSpeedLimit", arff.Numeric, nil)
+	header.AddAttr("candidatesStreetName", arff.Numeric, nil)
+	header.AddAttr("candidatesOther", arff.Numeric, nil)
+	header.AddAttr("candidatesCar", arff.Numeric, nil)
+	header.AddAttr("candidatesBridge", arff.Numeric, nil)
+	header.AddAttr("candidatesRoad", arff.Numeric, nil)
+	header.AddAttr("candidatesBoundingBox", arff.Numeric, nil)
+	header.AddAttr("durationLastCellEventToStop", arff.Numeric, nil)
+	header.AddAttr("taskPicturesSelectedMin", arff.Numeric, nil)
+	header.AddAttr("taskPicturesSelectedMax", arff.Numeric, nil)
+	header.AddAttr("taskPicturesSelectedDiff", arff.Numeric, nil)
+	header.AddAttr("taskPicturesSelectedSum", arff.Numeric, nil)
+	header.AddAttr("taskPicturesSelectedMean", arff.Numeric, nil)
+	header.AddAttr("taskPicturesSelectedStdDev", arff.Numeric, nil)
+	header.AddAttr("taskPicturesSelectedSkew", arff.Numeric, nil)
+	header.AddAttr("cellEventsMin", arff.Numeric, nil)
+	header.AddAttr("cellEventsMax", arff.Numeric, nil)
+	header.AddAttr("cellEventsDiff", arff.Numeric, nil)
+	header.AddAttr("cellEventsSum", arff.Numeric, nil)
+	header.AddAttr("cellEventsMean", arff.Numeric, nil)
+	header.AddAttr("cellEventsStdDev", arff.Numeric, nil)
+	header.AddAttr("cellEventsSkew", arff.Numeric, nil)
+	header.AddAttr("taskDurationFirstLastEventMin", arff.Numeric, nil)
+	header.AddAttr("taskDurationFirstLastEventMax", arff.Numeric, nil)
+	header.AddAttr("taskDurationFirstLastEventDiff", arff.Numeric, nil)
+	header.AddAttr("taskDurationFirstLastEventSum", arff.Numeric, nil)
+	header.AddAttr("taskDurationFirstLastEventMean", arff.Numeric, nil)
+	header.AddAttr("taskDurationFirstLastEventStdDev", arff.Numeric, nil)
+	header.AddAttr("taskDurationFirstLastEventSkew", arff.Numeric, nil)
+	header.AddAttr("taskChangedSelectionsMin", arff.Numeric, nil)
+	header.AddAttr("taskChangedSelectionsMax", arff.Numeric, nil)
+	header.AddAttr("taskChangedSelectionsDiff", arff.Numeric, nil)
+	header.AddAttr("taskChangedSelectionsSum", arff.Numeric, nil)
+	header.AddAttr("taskChangedSelectionsMean", arff.Numeric, nil)
+	header.AddAttr("taskChangedSelectionsStdDev", arff.Numeric, nil)
+	header.AddAttr("taskChangedSelectionsSkew", arff.Numeric, nil)
+
 	//
 	// Movement Features
 	//
@@ -1213,6 +1303,7 @@ func ExtractFeatures(data *Data) *ProcessedFeatures {
 	features.ExtractScreenInfo(data.Screen)
 	features.ExtractFramePosition(data.FramePosition)
 	features.ExtractMouseData(data)
+	features.ExtractTaskData(data.TaskEvents, data.Time)
 	return features
 }
 
@@ -1312,6 +1403,138 @@ func (features *ProcessedFeatures) AddCheckBoxFeatures(path *PathFeatures) {
 	features.CheckboxPathNumberOfScrolls = path.NumberOfScrolls
 	features.CheckboxPathStraightness = path.Straightness
 	features.GenerateCheckboxCalculation(path)
+}
+
+// ExtractTaskData extracts relevant Features from the given tasks
+func (features *ProcessedFeatures) ExtractTaskData(data []TaskData, t Time) {
+	l := len(data)
+	noSelected := make([]uint16, l)
+	noEvents := make([]uint16, l)
+	timesFirstLastEvent := make([]uint64, l)
+	noChanged := make([]uint16, l) //Number of deselections/changed rectangles
+
+	for i, task := range data {
+		if task.Failed {
+			features.AmountFailedTasks++
+		}
+		switch task.Type {
+		case TaskTypeNO:
+			features.AmountNo++
+
+		case TaskTypeSIM:
+			features.AmountSimImg++
+		case TaskTypeDYN:
+			features.AmountDynSimImg++
+		case TaskTypeOBJ:
+			features.AmountObjIdent++
+		}
+		switch task.Candidate {
+		case "stop-sign":
+			features.AmountCandidatesStopSign++
+		case "speed-limit":
+			features.AmountCandidatesSpeedLimit++
+		case "street-name":
+			features.AmountCandidatesStreetName++
+		case "other":
+			features.AmountCandidatesOther++
+		case "car":
+			features.AmountCandidatesCar++
+		case "bridge":
+			features.AmountCandidatesBridge++
+		case "road":
+			features.AmountCandidatesRoad++
+		case "bounding-box":
+			features.AmountCandidatesBoundingbox++
+		}
+
+		for _, row := range task.Selected {
+			for _, cell := range row {
+				if cell {
+					noSelected[i]++
+				}
+			}
+		}
+
+		noEvents[i] = uint16(len(task.Events))
+		if noEvents[i] > 0 {
+			lastEvent := task.Events[noEvents[i]-1]
+			firstEvent := task.Events[0]
+			timesFirstLastEvent[i] = lastEvent.Time - firstEvent.Time
+		}
+
+		for _, event := range task.Events {
+			if !event.Selected {
+				noChanged[i]++
+			}
+		}
+
+	}
+
+	if l > 0 {
+		lastTask := data[l-1]
+		evL := len(lastTask.Events)
+		if evL > 0 {
+			lastEvent := lastTask.Events[evL-1]
+			features.DurationLastCellEventToStop = t.End - lastEvent.Time
+		}
+	}
+	features.AmountTasks = uint8(l)
+	features.calcTaskPictureSelected(noSelected)
+	features.calcAmountCellEvents(noEvents)
+	features.calcTaskChangedSelections(noChanged)
+	features.calcTaskDurationFirstLastEvent(timesFirstLastEvent)
+}
+
+// calcTaskPictureSelected calculates the features of the TaskPicturesSelected vector from the given vector
+func (features *ProcessedFeatures) calcTaskPictureSelected(vec []uint16) {
+	features.TaskPicturesSelectedMax = MaxUint16(vec)
+	features.TaskPicturesSelectedMin = MinUint16(vec)
+	features.TaskPicturesSelectedDiff = features.TaskPicturesSelectedMax - features.TaskPicturesSelectedMin
+	features.TaskPicturesSelectedSum = SumUint16(vec)
+	features.TaskPicturesSelectedMean = Mean(ConvertUint16ToFloat64(vec), float64(features.TaskPicturesSelectedSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.TaskPicturesSelectedStdDev, features.TaskPicturesSelectedSkew, _ = rnd.StatMoments(ConvertUint16ToFloat64(vec))
+}
+
+// calcAmountCellEvents calculates the features of the AmountCellEvents vector from the given vector
+func (features *ProcessedFeatures) calcAmountCellEvents(vec []uint16) {
+	features.AmountCellEventsMax = MaxUint16(vec)
+	features.AmountCellEventsMin = MinUint16(vec)
+	features.AmountCellEventsDiff = features.AmountCellEventsMax - features.AmountCellEventsMin
+	features.AmountCellEventsSum = SumUint16(vec)
+	features.AmountCellEventsMean = Mean(ConvertUint16ToFloat64(vec), float64(features.AmountCellEventsSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.AmountCellEventsStdDev, features.AmountCellEventsSkew, _ = rnd.StatMoments(ConvertUint16ToFloat64(vec))
+}
+
+// calcTaskChangedSelections calculates the features of the TaskChangedSelections vector from the given vector
+func (features *ProcessedFeatures) calcTaskChangedSelections(vec []uint16) {
+	features.TaskChangedSelectionsMax = MaxUint16(vec)
+	features.TaskChangedSelectionsMin = MinUint16(vec)
+	features.TaskChangedSelectionsDiff = features.TaskChangedSelectionsMax - features.TaskChangedSelectionsMin
+	features.TaskChangedSelectionsSum = SumUint16(vec)
+	features.TaskChangedSelectionsMean = Mean(ConvertUint16ToFloat64(vec), float64(features.TaskChangedSelectionsSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.TaskChangedSelectionsStdDev, features.TaskChangedSelectionsSkew, _ = rnd.StatMoments(ConvertUint16ToFloat64(vec))
+}
+
+// calcTaskDurationFirstLastEvent calculates the features of the TaskDurationFirstLastEvent vector from the given vector
+func (features *ProcessedFeatures) calcTaskDurationFirstLastEvent(vec []uint64) {
+	features.TaskDurationFirstLastEventMax = MaxUint64(vec)
+	features.TaskDurationFirstLastEventMin = MinUint64(vec)
+	features.TaskDurationFirstLastEventDiff = features.TaskDurationFirstLastEventMax - features.TaskDurationFirstLastEventMin
+	features.TaskDurationFirstLastEventSum = SumUint64(vec)
+	features.TaskDurationFirstLastEventMean = Mean(ConvertUint64ToFloat64(vec), float64(features.TaskDurationFirstLastEventSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.TaskDurationFirstLastEventStdDev, features.TaskDurationFirstLastEventSkew, _ = rnd.StatMoments(ConvertUint64ToFloat64(vec))
 }
 
 // calcCheckBoxPathPairwiseDistanceFeatures calculates the features of the PairwiseDistance vector from the given path; Auto-generated
