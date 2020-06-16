@@ -2,8 +2,8 @@ package data
 
 import "strings"
 
-// gcVendors declares the possible graphiccard vendors
-var gcVendors = []string{
+// gcVendorsRaw declares the possible graphiccard vendors
+var gcVendorsRaw = []string{
 	"Google Inc.",
 	"Intel Inc.",
 	"NOTNOM", // not nominal
@@ -11,8 +11,17 @@ var gcVendors = []string{
 	"X.Org",
 }
 
-// gcModels declares the possible graphiccard models
-var gcModels = []string{
+// gcVendors declares the possible graphiccard vendors for the feature
+var gcVendors = []string{
+	"GoogleInc.",
+	"IntelInc.",
+	"NOTNOM", // not nominal
+	"NVIDIACorporation",
+	"X.Org",
+}
+
+// gcModelsRaw declares the possible graphiccard models
+var gcModelsRaw = []string{
 	"AMD Radeon(TM) Vega 8 Graphics",
 	"ATI Radeon HD 3600",
 	"GeForce GTX 550",
@@ -24,18 +33,33 @@ var gcModels = []string{
 	"NVIDIA GeForce GTX 1070",
 	"NVIDIA GeForce GTX 970",
 	"Radeon RX 570",
-	"NOTNOM",       // not nominal
-	"OTHER AMD",    // not nominal but AMD
-	"OTHER INTEL",  // not nominal but Intel
-	"OTHER NVIDIA", // not nominal but Nvidia
+}
+
+// gcModels declares the possible graphiccard model feature values
+var gcModels = []string{
+	"AMD-Radeon(TM)Vega8Graphics",
+	"ATI-RadeonHD3600",
+	"GeForceGTX550",
+	"GeForceGTX980",
+	"Intel(R)HDGraphics",
+	"Intel(R)UHDGraphics",
+	"IntelIrisPro",
+	"NVIDIA-GeForceGTX1060",
+	"NVIDIA-GeForceGTX1070",
+	"NVIDIA-GeForceGTX970",
+	"RadeonRX570",
+	"NOTNOM",      // not nominal
+	"OTHERAMD",    // not nominal but AMD
+	"OTHERINTEL",  // not nominal but Intel
+	"OTHERNVIDIA", // not nominal but Nvidia
 }
 
 // ExtractGraphicCardInformation extracts the graphic card vendor and model from the given WebGL Info
 func (features *ProcessedFeatures) ExtractGraphicCardInformation(data WebGLInfo) {
 	found := false
-	for _, v := range gcModels {
+	for i, v := range gcModelsRaw {
 		if strings.Contains(data.GcModel, v) {
-			features.WebGLGCModel = v
+			features.WebGLGCModel = gcModels[i]
 			found = true
 			break
 		}
@@ -53,9 +77,15 @@ func (features *ProcessedFeatures) ExtractGraphicCardInformation(data WebGLInfo)
 		}
 	}
 
-	if BinSearch(gcVendors, data.GcVendor) {
-		features.WebGLGCVendor = data.GcVendor
-	} else {
+	found = false
+	for i, v := range gcVendorsRaw {
+		if v == data.GcVendor {
+			features.WebGLGCVendor = gcVendors[i]
+			found = true
+			break
+		}
+	}
+	if !found {
 		features.WebGLGCVendor = gcVendors[2]
 	}
 }
