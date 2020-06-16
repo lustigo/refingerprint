@@ -60,5 +60,3 @@ func (features *ProcessedFeatures) ExtractWebGLExtensions(winfo WebGLInfo) {
 		f.FieldByName(v).SetUint(1)
 	}
 }
-
-// TODO: Graphiccard Vendor & Model
