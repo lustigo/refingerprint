@@ -844,7 +844,6 @@ func GetARFFHeader() arff.Header {
 	header.AddAttr("dynamicSimilarImageAmount", arff.Numeric, nil)
 	header.AddAttr("objectIdentificationAmount", arff.Numeric, nil)
 	header.AddAttr("candidatesStopSign", arff.Numeric, nil)
-	header.AddAttr("candidatesStopSign", arff.Numeric, nil)
 	header.AddAttr("candidatesSpeedLimit", arff.Numeric, nil)
 	header.AddAttr("candidatesStreetName", arff.Numeric, nil)
 	header.AddAttr("candidatesOther", arff.Numeric, nil)
