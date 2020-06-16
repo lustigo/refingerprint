@@ -55,7 +55,13 @@ type ProcessedFeatures struct {
 	MIMEAppChromePDF uint8 `arff:"mime-application_chrome-pdf" csv:"mime-application_chrome-pdf"`
 	MIMEForm         uint8 `arff:"mime-multipart_form-data" csv:"mime-multipart_form-data"`
 	MIMEByte         uint8 `arff:"mime-multipart_byteranges" csv:"mime-multipart_byteranges"`
-	// TODO: Plugins
+	// Plugins
+	PluginChromePDF         uint8 `arff:"plugin-chrome-pdf" csv:"plugin-chrome-pdf"`
+	PluginChromePDFViewer   uint8 `arff:"plugin-chrome-pdf-viewer" csv:"plugin-chrome-pdf-viewer"`
+	PluginChromiumPDF       uint8 `arff:"plugin-chromium-pdf" csv:"plugin-chromium-pdf"`
+	PluginChromiumPDFViewer uint8 `arff:"plugin-chromium-pdf-viewer" csv:"plugin-chromium-pdf-viewer"`
+	PluginNativeClient      uint8 `arff:"plugin-native-client" csv:"plugin-native-client"`
+	PluginMore              uint8 `arff:"plugin-more" csv:"plugin-more"`
 	// Platforms
 	Platform string `arff:"platform" csv:"Platform"`
 	// User Agent
@@ -752,7 +758,13 @@ func GetARFFHeader() arff.Header {
 	header.AddAttr("mime-application_chrome-pdf", arff.Numeric, nil)
 	header.AddAttr("mime-multipart_form-data", arff.Numeric, nil)
 	header.AddAttr("mime-multipart_byteranges", arff.Numeric, nil)
-	// TODO: Plugins
+	// Plugins
+	header.AddAttr("plugin-chrome-pdf", arff.Numeric, nil)
+	header.AddAttr("plugin-chrome-pdf-viewer", arff.Numeric, nil)
+	header.AddAttr("plugin-chromium-pdf", arff.Numeric, nil)
+	header.AddAttr("plugin-chromium-pdf-viewer", arff.Numeric, nil)
+	header.AddAttr("plugin-native-client", arff.Numeric, nil)
+	header.AddAttr("plugin-more", arff.Numeric, nil)
 	// Platforms
 	header.AddAttr("platform", arff.Nominal, getPlatformList())
 	// User Agent
@@ -1447,6 +1459,7 @@ func (features *ProcessedFeatures) ExtractBrowserFeatures(data *Data) {
 	features.ExtractMIMETypes(binfo)
 	features.ExtractPlatform(binfo)
 	features.ExtractUserAgentInformation(binfo)
+	features.ExtractPlugins(binfo)
 }
 
 // ExtractScreenInfo saves the information about the screen
