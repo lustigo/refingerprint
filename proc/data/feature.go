@@ -1,6 +1,7 @@
 package data
 
 import (
+	"math"
 	"sort"
 
 	"github.com/cpmech/gosl/rnd"
@@ -126,49 +127,105 @@ type ProcessedFeatures struct {
 	TaskWidth     float64 `arff:"taskWidth" csv:"Taskframepos Width"`
 	TaskHeight    float64 `arff:"taskHeight" csv:"Taskframepos Height"`
 	// Task Data
-	AmountFailedTasks                uint8   `arff:"failedTasks" csv:"failedTasks"`
-	AmountTasks                      uint8   `arff:"taskAmount" csv:"taskAmount"`
-	AmountNo                         uint8   `arff:"noCaptchaAmount" csv:"noCaptchaAmount"`
-	AmountSimImg                     uint8   `arff:"similarImageAmount" csv:"similarImageAmount"`
-	AmountDynSimImg                  uint8   `arff:"dynamicSimilarImageAmount" csv:"dynamicSimilarImageAmount"`
-	AmountObjIdent                   uint8   `arff:"objectIdentificationAmount" csv:"objectIdentificationAmount"`
-	AmountCandidatesStopSign         uint8   `arff:"candidatesStopSign" csv:"candidatesStopSign"`
-	AmountCandidatesSpeedLimit       uint8   `arff:"candidatesSpeedLimit" csv:"candidatesSpeedLimit"`
-	AmountCandidatesStreetName       uint8   `arff:"candidatesStreetName" csv:"candidatesStreetName"`
-	AmountCandidatesOther            uint8   `arff:"candidatesOther" csv:"candidatesOther"`
-	AmountCandidatesCar              uint8   `arff:"candidatesCar" csv:"candidatesCar"`
-	AmountCandidatesBridge           uint8   `arff:"candidatesBridge" csv:"candidatesBridge"`
-	AmountCandidatesRoad             uint8   `arff:"candidatesRoad" csv:"candidatesRoad"`
-	AmountCandidatesBoundingbox      uint8   `arff:"candidatesBoundingBox" csv:"candidatesBoundingBox"`
-	DurationLastCellEventToStop      uint64  `arff:"durationLastCellEventToStop" csv:"durationLastCellEventToStop"`
-	TaskPicturesSelectedMin          uint16  `arff:"taskPicturesSelectedMin" csv:"taskPicturesSelectedMin"`
-	TaskPicturesSelectedMax          uint16  `arff:"taskPicturesSelectedMax" csv:"taskPicturesSelectedMax"`
-	TaskPicturesSelectedDiff         uint16  `arff:"taskPicturesSelectedDiff" csv:"taskPicturesSelectedDiff"`
-	TaskPicturesSelectedSum          uint16  `arff:"taskPicturesSelectedSum" csv:"taskPicturesSelectedSum"`
-	TaskPicturesSelectedMean         float64 `arff:"taskPicturesSelectedMean" csv:"taskPicturesSelectedMean"`
-	TaskPicturesSelectedStdDev       float64 `arff:"taskPicturesSelectedStdDev" csv:"taskPicturesSelectedStdDev"`
-	TaskPicturesSelectedSkew         float64 `arff:"taskPicturesSelectedSkew" csv:"taskPicturesSelectedSkew"`
-	AmountCellEventsMin              uint16  `arff:"cellEventsMin" csv:"cellEventsMin"`
-	AmountCellEventsMax              uint16  `arff:"cellEventsMax" csv:"cellEventsMax"`
-	AmountCellEventsDiff             uint16  `arff:"cellEventsDiff" csv:"cellEventsDiff"`
-	AmountCellEventsSum              uint16  `arff:"cellEventsSum" csv:"cellEventsSum"`
-	AmountCellEventsMean             float64 `arff:"cellEventsMean" csv:"cellEventsMean"`
-	AmountCellEventsStdDev           float64 `arff:"cellEventsStdDev" csv:"cellEventsStdDev"`
-	AmountCellEventsSkew             float64 `arff:"cellEventsSkew" csv:"cellEventsSkew"`
-	TaskDurationFirstLastEventMin    uint64  `arff:"taskDurationFirstLastEventMin" csv:"taskDurationFirstLastEventMin"`
-	TaskDurationFirstLastEventMax    uint64  `arff:"taskDurationFirstLastEventMax" csv:"taskDurationFirstLastEventMax"`
-	TaskDurationFirstLastEventDiff   uint64  `arff:"taskDurationFirstLastEventDiff" csv:"taskDurationFirstLastEventDiff"`
-	TaskDurationFirstLastEventSum    uint64  `arff:"taskDurationFirstLastEventSum" csv:"taskDurationFirstLastEventSum"`
-	TaskDurationFirstLastEventMean   float64 `arff:"taskDurationFirstLastEventMean" csv:"taskDurationFirstLastEventMean"`
-	TaskDurationFirstLastEventStdDev float64 `arff:"taskDurationFirstLastEventStdDev" csv:"taskDurationFirstLastEventStdDev"`
-	TaskDurationFirstLastEventSkew   float64 `arff:"taskDurationFirstLastEventSkew" csv:"taskDurationFirstLastEventSkew"`
-	TaskChangedSelectionsMin         uint16  `arff:"taskChangedSelectionsMin" csv:"taskChangedSelectionsMin"`
-	TaskChangedSelectionsMax         uint16  `arff:"taskChangedSelectionsMax" csv:"taskChangedSelectionsMax"`
-	TaskChangedSelectionsDiff        uint16  `arff:"taskChangedSelectionsDiff" csv:"taskChangedSelectionsDiff"`
-	TaskChangedSelectionsSum         uint16  `arff:"taskChangedSelectionsSum" csv:"taskChangedSelectionsSum"`
-	TaskChangedSelectionsMean        float64 `arff:"taskChangedSelectionsMean" csv:"taskChangedSelectionsMean"`
-	TaskChangedSelectionsStdDev      float64 `arff:"taskChangedSelectionsStdDev" csv:"taskChangedSelectionsStdDev"`
-	TaskChangedSelectionsSkew        float64 `arff:"taskChangedSelectionsSkew" csv:"taskChangedSelectionsSkew"`
+	AmountFailedTasks                  uint8   `arff:"failedTasks" csv:"failedTasks"`
+	AmountTasks                        uint8   `arff:"taskAmount" csv:"taskAmount"`
+	AmountNo                           uint8   `arff:"noCaptchaAmount" csv:"noCaptchaAmount"`
+	AmountSimImg                       uint8   `arff:"similarImageAmount" csv:"similarImageAmount"`
+	AmountDynSimImg                    uint8   `arff:"dynamicSimilarImageAmount" csv:"dynamicSimilarImageAmount"`
+	AmountObjIdent                     uint8   `arff:"objectIdentificationAmount" csv:"objectIdentificationAmount"`
+	AmountCandidatesStopSign           uint8   `arff:"candidatesStopSign" csv:"candidatesStopSign"`
+	AmountCandidatesSpeedLimit         uint8   `arff:"candidatesSpeedLimit" csv:"candidatesSpeedLimit"`
+	AmountCandidatesStreetName         uint8   `arff:"candidatesStreetName" csv:"candidatesStreetName"`
+	AmountCandidatesOther              uint8   `arff:"candidatesOther" csv:"candidatesOther"`
+	AmountCandidatesCar                uint8   `arff:"candidatesCar" csv:"candidatesCar"`
+	AmountCandidatesBridge             uint8   `arff:"candidatesBridge" csv:"candidatesBridge"`
+	AmountCandidatesRoad               uint8   `arff:"candidatesRoad" csv:"candidatesRoad"`
+	AmountCandidatesBoundingbox        uint8   `arff:"candidatesBoundingBox" csv:"candidatesBoundingBox"`
+	DurationLastCellEventToStop        uint64  `arff:"durationLastCellEventToStop" csv:"durationLastCellEventToStop"`
+	TaskPicturesSelectedMin            uint16  `arff:"taskPicturesSelectedMin" csv:"taskPicturesSelectedMin"`
+	TaskPicturesSelectedMax            uint16  `arff:"taskPicturesSelectedMax" csv:"taskPicturesSelectedMax"`
+	TaskPicturesSelectedDiff           uint16  `arff:"taskPicturesSelectedDiff" csv:"taskPicturesSelectedDiff"`
+	TaskPicturesSelectedSum            uint16  `arff:"taskPicturesSelectedSum" csv:"taskPicturesSelectedSum"`
+	TaskPicturesSelectedMean           float64 `arff:"taskPicturesSelectedMean" csv:"taskPicturesSelectedMean"`
+	TaskPicturesSelectedStdDev         float64 `arff:"taskPicturesSelectedStdDev" csv:"taskPicturesSelectedStdDev"`
+	TaskPicturesSelectedSkew           float64 `arff:"taskPicturesSelectedSkew" csv:"taskPicturesSelectedSkew"`
+	AmountCellEventsMin                uint16  `arff:"cellEventsMin" csv:"cellEventsMin"`
+	AmountCellEventsMax                uint16  `arff:"cellEventsMax" csv:"cellEventsMax"`
+	AmountCellEventsDiff               uint16  `arff:"cellEventsDiff" csv:"cellEventsDiff"`
+	AmountCellEventsSum                uint16  `arff:"cellEventsSum" csv:"cellEventsSum"`
+	AmountCellEventsMean               float64 `arff:"cellEventsMean" csv:"cellEventsMean"`
+	AmountCellEventsStdDev             float64 `arff:"cellEventsStdDev" csv:"cellEventsStdDev"`
+	AmountCellEventsSkew               float64 `arff:"cellEventsSkew" csv:"cellEventsSkew"`
+	TaskDurationFirstLastEventMin      uint64  `arff:"taskDurationFirstLastEventMin" csv:"taskDurationFirstLastEventMin"`
+	TaskDurationFirstLastEventMax      uint64  `arff:"taskDurationFirstLastEventMax" csv:"taskDurationFirstLastEventMax"`
+	TaskDurationFirstLastEventDiff     uint64  `arff:"taskDurationFirstLastEventDiff" csv:"taskDurationFirstLastEventDiff"`
+	TaskDurationFirstLastEventSum      uint64  `arff:"taskDurationFirstLastEventSum" csv:"taskDurationFirstLastEventSum"`
+	TaskDurationFirstLastEventMean     float64 `arff:"taskDurationFirstLastEventMean" csv:"taskDurationFirstLastEventMean"`
+	TaskDurationFirstLastEventStdDev   float64 `arff:"taskDurationFirstLastEventStdDev" csv:"taskDurationFirstLastEventStdDev"`
+	TaskDurationFirstLastEventSkew     float64 `arff:"taskDurationFirstLastEventSkew" csv:"taskDurationFirstLastEventSkew"`
+	TaskChangedSelectionsMin           uint16  `arff:"taskChangedSelectionsMin" csv:"taskChangedSelectionsMin"`
+	TaskChangedSelectionsMax           uint16  `arff:"taskChangedSelectionsMax" csv:"taskChangedSelectionsMax"`
+	TaskChangedSelectionsDiff          uint16  `arff:"taskChangedSelectionsDiff" csv:"taskChangedSelectionsDiff"`
+	TaskChangedSelectionsSum           uint16  `arff:"taskChangedSelectionsSum" csv:"taskChangedSelectionsSum"`
+	TaskChangedSelectionsMean          float64 `arff:"taskChangedSelectionsMean" csv:"taskChangedSelectionsMean"`
+	TaskChangedSelectionsStdDev        float64 `arff:"taskChangedSelectionsStdDev" csv:"taskChangedSelectionsStdDev"`
+	TaskChangedSelectionsSkew          float64 `arff:"taskChangedSelectionsSkew" csv:"taskChangedSelectionsSkew"`
+	AmountDisappearingImagesMin        uint8   `arff:"amountDisappearingImagesMin" csv:"amountDisappearingImagesMin"`
+	AmountDisappearingImagesMax        uint8   `arff:"amountDisappearingImagesMax" csv:"amountDisappearingImagesMax"`
+	AmountDisappearingImagesDiff       uint8   `arff:"amountDisappearingImagesDiff" csv:"amountDisappearingImagesDiff"`
+	AmountDisappearingImagesSum        uint8   `arff:"amountDisappearingImagesSum" csv:"amountDisappearingImagesSum"`
+	AmountDisappearingImagesMean       float64 `arff:"amountDisappearingImagesMean" csv:"amountDisappearingImagesMean"`
+	AmountDisappearingImagesStdDev     float64 `arff:"amountDisappearingImagesStdDev" csv:"amountDisappearingImagesStdDev"`
+	AmountDisappearingImagesSkew       float64 `arff:"amountDisappearingImagesSkew" csv:"amountDisappearingImagesSkew"`
+	ChosenTaskImagesXMin               uint8   `arff:"chosenTaskImagesXMin" csv:"chosenTaskImagesXMin"`
+	ChosenTaskImagesXMax               uint8   `arff:"chosenTaskImagesXMax" csv:"chosenTaskImagesXMax"`
+	ChosenTaskImagesXDiff              uint8   `arff:"chosenTaskImagesXDiff" csv:"chosenTaskImagesXDiff"`
+	ChosenTaskImagesXSum               uint8   `arff:"chosenTaskImagesXSum" csv:"chosenTaskImagesXSum"`
+	ChosenTaskImagesXMean              float64 `arff:"chosenTaskImagesXMean" csv:"chosenTaskImagesXMean"`
+	ChosenTaskImagesXStdDev            float64 `arff:"chosenTaskImagesXStdDev" csv:"chosenTaskImagesXStdDev"`
+	ChosenTaskImagesXSkew              float64 `arff:"chosenTaskImagesXSkew" csv:"chosenTaskImagesImagesXSkew"`
+	ChosenTaskImagesYMin               uint8   `arff:"chosenTaskImagesYMin" csv:"chosenTaskImagesYMin"`
+	ChosenTaskImagesYMax               uint8   `arff:"chosenTaskImagesYMax" csv:"chosenTaskImagesYMax"`
+	ChosenTaskImagesYDiff              uint8   `arff:"chosenTaskImagesYDiff" csv:"chosenTaskImagesYDiff"`
+	ChosenTaskImagesYSum               uint8   `arff:"chosenTaskImagesYSum" csv:"chosenTaskImagesYSum"`
+	ChosenTaskImagesYMean              float64 `arff:"chosenTaskImagesYMean" csv:"chosenTaskImagesYMean"`
+	ChosenTaskImagesYStdDev            float64 `arff:"chosenTaskImagesYStdDev" csv:"chosenTaskImagesYStdDev"`
+	ChosenTaskImagesYSkew              float64 `arff:"chosenTaskImagesYSkew" csv:"chosenTaskImagesImagesYSkew"`
+	ChosenTaskImagesYDistMin           int16   `arff:"chosenTaskImagesYDistMin" csv:"chosenTaskImagesYDistMin"`
+	ChosenTaskImagesYDistMax           int16   `arff:"chosenTaskImagesYDistMax" csv:"chosenTaskImagesYDistMax"`
+	ChosenTaskImagesYDistDiff          int16   `arff:"chosenTaskImagesYDistDiff" csv:"chosenTaskImagesYDistDiff"`
+	ChosenTaskImagesYDistSum           int16   `arff:"chosenTaskImagesYDistSum" csv:"chosenTaskImagesYDistSum"`
+	ChosenTaskImagesYDistMean          float64 `arff:"chosenTaskImagesYDistMean" csv:"chosenTaskImagesYDistMean"`
+	ChosenTaskImagesYDistStdDev        float64 `arff:"chosenTaskImagesYDistStdDev" csv:"chosenTaskImagesYDistStdDev"`
+	ChosenTaskImagesYDistSkew          float64 `arff:"chosenTaskImagesYDistSkew" csv:"chosenTaskImagesImagesYDistSkew"`
+	ChosenTaskImagesXDistMin           int16   `arff:"chosenTaskImagesXDistMin" csv:"chosenTaskImagesXDistMin"`
+	ChosenTaskImagesXDistMax           int16   `arff:"chosenTaskImagesXDistMax" csv:"chosenTaskImagesXDistMax"`
+	ChosenTaskImagesXDistDiff          int16   `arff:"chosenTaskImagesXDistDiff" csv:"chosenTaskImagesXDistDiff"`
+	ChosenTaskImagesXDistSum           int16   `arff:"chosenTaskImagesXDistSum" csv:"chosenTaskImagesXDistSum"`
+	ChosenTaskImagesXDistMean          float64 `arff:"chosenTaskImagesXDistMean" csv:"chosenTaskImagesXDistMean"`
+	ChosenTaskImagesXDistStdDev        float64 `arff:"chosenTaskImagesXDistStdDev" csv:"chosenTaskImagesXDistStdDev"`
+	ChosenTaskImagesXDistSkew          float64 `arff:"chosenTaskImagesXDistSkew" csv:"chosenTaskImagesImagesXDistSkew"`
+	ChosenTaskImagesPairwiseDistMin    float64 `arff:"chosenTaskImagesPairwiseDistMin" csv:"chosenTaskImagesPairwiseDistMin"`
+	ChosenTaskImagesPairwiseDistMax    float64 `arff:"chosenTaskImagesPairwiseDistMax" csv:"chosenTaskImagesPairwiseDistMax"`
+	ChosenTaskImagesPairwiseDistDiff   float64 `arff:"chosenTaskImagesPairwiseDistDiff" csv:"chosenTaskImagesPairwiseDistDiff"`
+	ChosenTaskImagesPairwiseDistSum    float64 `arff:"chosenTaskImagesPairwiseDistSum" csv:"chosenTaskImagesPairwiseDistSum"`
+	ChosenTaskImagesPairwiseDistMean   float64 `arff:"chosenTaskImagesPairwiseDistMean" csv:"chosenTaskImagesPairwiseDistMean"`
+	ChosenTaskImagesPairwiseDistStdDev float64 `arff:"chosenTaskImagesPairwiseDistStdDev" csv:"chosenTaskImagesPairwiseDistStdDev"`
+	ChosenTaskImagesPairwiseDistSkew   float64 `arff:"chosenTaskImagesPairwiseDistSkew" csv:"chosenTaskImagesImagesDistStartEndSkew"`
+	ChosenTaskImagesDistStartEndMin    float64 `arff:"chosenTaskImagesDistStartEndMin" csv:"chosenTaskImagesDistStartEndMin"`
+	ChosenTaskImagesDistStartEndMax    float64 `arff:"chosenTaskImagesDistStartEndMax" csv:"chosenTaskImagesDistStartEndMax"`
+	ChosenTaskImagesDistStartEndDiff   float64 `arff:"chosenTaskImagesDistStartEndDiff" csv:"chosenTaskImagesDistStartEndDiff"`
+	ChosenTaskImagesDistStartEndSum    float64 `arff:"chosenTaskImagesDistStartEndSum" csv:"chosenTaskImagesDistStartEndSum"`
+	ChosenTaskImagesDistStartEndMean   float64 `arff:"chosenTaskImagesDistStartEndMean" csv:"chosenTaskImagesDistStartEndMean"`
+	ChosenTaskImagesDistStartEndStdDev float64 `arff:"chosenTaskImagesDistStartEndStdDev" csv:"chosenTaskImagesDistStartEndStdDev"`
+	ChosenTaskImagesDistStartEndSkew   float64 `arff:"chosenTaskImagesDistStartEndSkew" csv:"chosenTaskImagesImagesDistStartEndSkew"`
+	ChosenTaskImagesDistSumMin         float64 `arff:"chosenTaskImagesDistSumMin" csv:"chosenTaskImagesDistSumMin"`
+	ChosenTaskImagesDistSumMax         float64 `arff:"chosenTaskImagesDistSumMax" csv:"chosenTaskImagesDistSumMax"`
+	ChosenTaskImagesDistSumDiff        float64 `arff:"chosenTaskImagesDistSumDiff" csv:"chosenTaskImagesDistSumDiff"`
+	ChosenTaskImagesDistSumSum         float64 `arff:"chosenTaskImagesDistSumSum" csv:"chosenTaskImagesDistSumSum"`
+	ChosenTaskImagesDistSumMean        float64 `arff:"chosenTaskImagesDistSumMean" csv:"chosenTaskImagesDistSumMean"`
+	ChosenTaskImagesDistSumStdDev      float64 `arff:"chosenTaskImagesDistSumStdDev" csv:"chosenTaskImagesDistSumStdDev"`
+	ChosenTaskImagesDistSumSkew        float64 `arff:"chosenTaskImagesDistSumSkew" csv:"chosenTaskImagesImagesDistSumSkew"`
 	//
 	// Movement
 	//
@@ -810,7 +867,62 @@ func GetARFFHeader() arff.Header {
 	header.AddAttr("taskChangedSelectionsMean", arff.Numeric, nil)
 	header.AddAttr("taskChangedSelectionsStdDev", arff.Numeric, nil)
 	header.AddAttr("taskChangedSelectionsSkew", arff.Numeric, nil)
-
+	header.AddAttr("amountDisappearingImagesMin", arff.Numeric, nil)
+	header.AddAttr("amountDisappearingImagesMax", arff.Numeric, nil)
+	header.AddAttr("amountDisappearingImagesDiff", arff.Numeric, nil)
+	header.AddAttr("amountDisappearingImagesSum", arff.Numeric, nil)
+	header.AddAttr("amountDisappearingImagesMean", arff.Numeric, nil)
+	header.AddAttr("amountDisappearingImagesStdDev", arff.Numeric, nil)
+	header.AddAttr("amountDisappearingImagesSkew", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesXMin", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesXMax", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesXDiff", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesXSum", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesXMean", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesXStdDev", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesXSkew", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesYMin", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesYMax", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesYDiff", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesYSum", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesYMean", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesYStdDev", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesYSkew", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesXDistMin", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesXDistMax", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesXDistDiff", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesXDistSum", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesXDistMean", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesXDistStdDev", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesXDistSkew", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesYDistMin", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesYDistMax", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesYDistDiff", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesYDistSum", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesYDistMean", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesYDistStdDev", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesYDistSkew", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesPairwiseDistMin", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesPairwiseDistMax", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesPairwiseDistDiff", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesPairwiseDistSum", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesPairwiseDistMean", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesPairwiseDistStdDev", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesPairwiseDistSkew", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesDistStartEndMin", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesDistStartEndMax", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesDistStartEndDiff", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesDistStartEndSum", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesDistStartEndMean", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesDistStartEndStdDev", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesDistStartEndSkew", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesDistSumMin", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesDistSumMax", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesDistSumDiff", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesDistSumSum", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesDistSumMean", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesDistSumStdDev", arff.Numeric, nil)
+	header.AddAttr("chosenTaskImagesDistSumSkew", arff.Numeric, nil)
 	//
 	// Movement Features
 	//
@@ -1412,8 +1524,18 @@ func (features *ProcessedFeatures) ExtractTaskData(data []TaskData, t Time) {
 	noEvents := make([]uint16, l)
 	timesFirstLastEvent := make([]uint64, l)
 	noChanged := make([]uint16, l) //Number of deselections/changed rectangles
+	noDiss := make([]uint8, 0)
+	xCoords := make([]uint8, 0)
+	yCoords := make([]uint8, 0)
+	xDist := make([]int16, 0)
+	yDist := make([]int16, 0)
+	dists := make([]float64, 0)
+	distStartEnd := make([]float64, l)
+	distSums := make([]float64, 0)
 
 	for i, task := range data {
+		size := uint8(3)
+
 		if task.Failed {
 			features.AmountFailedTasks++
 		}
@@ -1425,8 +1547,10 @@ func (features *ProcessedFeatures) ExtractTaskData(data []TaskData, t Time) {
 			features.AmountSimImg++
 		case TaskTypeDYN:
 			features.AmountDynSimImg++
+			noDiss = append(noDiss, uint8(len(task.Images))-1)
 		case TaskTypeOBJ:
 			features.AmountObjIdent++
+			size = uint8(4)
 		}
 		switch task.Candidate {
 		case "stop-sign":
@@ -1456,17 +1580,39 @@ func (features *ProcessedFeatures) ExtractTaskData(data []TaskData, t Time) {
 		}
 
 		noEvents[i] = uint16(len(task.Events))
+
 		if noEvents[i] > 0 {
 			lastEvent := task.Events[noEvents[i]-1]
 			firstEvent := task.Events[0]
 			timesFirstLastEvent[i] = lastEvent.Time - firstEvent.Time
+			xL, yL := Convert1DTo2D(lastEvent.ID, size)
+			xF, yF := Convert1DTo2D(firstEvent.ID, size)
+			distStartEnd[i] = math.Abs(float64(xL)-float64(xF)) + math.Abs(float64(yL)-float64(yF))
 		}
 
-		for _, event := range task.Events {
+		distSum := 0.0
+
+		for j, event := range task.Events {
+			x, y := Convert1DTo2D(event.ID, size)
+
+			if j > 0 {
+				prevX := xCoords[len(xCoords)-1]
+				prevY := yCoords[len(yCoords)-1]
+				xDist = append(xDist, int16(x)-int16(prevX))
+				yDist = append(yDist, int16(y)-int16(prevY))
+				manhattanDist := math.Abs(float64(x)-float64(prevX)) + math.Abs(float64(y)-float64(prevY))
+				dists = append(dists, manhattanDist)
+				distSum += manhattanDist
+			}
+			xCoords = append(xCoords, x)
+			yCoords = append(yCoords, y)
+
 			if !event.Selected {
 				noChanged[i]++
 			}
 		}
+
+		distSums = append(distSums, distSum)
 
 	}
 
@@ -1483,6 +1629,19 @@ func (features *ProcessedFeatures) ExtractTaskData(data []TaskData, t Time) {
 	features.calcAmountCellEvents(noEvents)
 	features.calcTaskChangedSelections(noChanged)
 	features.calcTaskDurationFirstLastEvent(timesFirstLastEvent)
+	features.calcAmountDisappearingImages(noDiss)
+	features.calcChosenTaskImagesX(xCoords)
+	features.calcChosenTaskImagesY(yCoords)
+	features.calcChosenTaskImagesXDist(xDist)
+	features.calcChosenTaskImagesYDist(yDist)
+	features.calcChosenTaskImagesPairwiseDistance(dists)
+	features.calcChosenTaskImagesDistStartEnd(distStartEnd)
+	features.calcChosenTaskImagesDistSum(distSums)
+}
+
+// Convert1DTo2D converts the given position number to the (x,y) coordinates in the table with the given size
+func Convert1DTo2D(position, size uint8) (uint8, uint8) {
+	return position / size, position % size
 }
 
 // calcTaskPictureSelected calculates the features of the TaskPicturesSelected vector from the given vector
@@ -1535,6 +1694,113 @@ func (features *ProcessedFeatures) calcTaskDurationFirstLastEvent(vec []uint64) 
 		recover()
 	}()
 	_, _, _, _, features.TaskDurationFirstLastEventStdDev, features.TaskDurationFirstLastEventSkew, _ = rnd.StatMoments(ConvertUint64ToFloat64(vec))
+}
+
+// calcAmountDisappearingImages calculates the features of the AmountDisappearingImages vector from the given vector
+func (features *ProcessedFeatures) calcAmountDisappearingImages(vec []uint8) {
+	features.AmountDisappearingImagesMax = MaxUint8(vec)
+	features.AmountDisappearingImagesMin = MinUint8(vec)
+	features.AmountDisappearingImagesDiff = features.AmountDisappearingImagesMax - features.AmountDisappearingImagesMin
+	features.AmountDisappearingImagesSum = SumUint8(vec)
+	features.AmountDisappearingImagesMean = Mean(ConvertUint8ToFloat64(vec), float64(features.AmountDisappearingImagesSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.AmountDisappearingImagesStdDev, features.AmountDisappearingImagesSkew, _ = rnd.StatMoments(ConvertUint8ToFloat64(vec))
+}
+
+// calcChosenTaskImagesX calculates the features of the ChosenTaskImagesX vector from the given vector
+func (features *ProcessedFeatures) calcChosenTaskImagesX(vec []uint8) {
+	features.ChosenTaskImagesXMax = MaxUint8(vec)
+	features.ChosenTaskImagesXMin = MinUint8(vec)
+	features.ChosenTaskImagesXDiff = features.ChosenTaskImagesXMax - features.ChosenTaskImagesXMin
+	features.ChosenTaskImagesXSum = SumUint8(vec)
+	features.ChosenTaskImagesXMean = Mean(ConvertUint8ToFloat64(vec), float64(features.ChosenTaskImagesXSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.ChosenTaskImagesXStdDev, features.ChosenTaskImagesXSkew, _ = rnd.StatMoments(ConvertUint8ToFloat64(vec))
+}
+
+// calcChosenTaskImagesY calculates the features of the ChosenTaskImagesY vector from the given vector
+func (features *ProcessedFeatures) calcChosenTaskImagesY(vec []uint8) {
+	features.ChosenTaskImagesYMax = MaxUint8(vec)
+	features.ChosenTaskImagesYMin = MinUint8(vec)
+	features.ChosenTaskImagesYDiff = features.ChosenTaskImagesYMax - features.ChosenTaskImagesYMin
+	features.ChosenTaskImagesYSum = SumUint8(vec)
+	features.ChosenTaskImagesYMean = Mean(ConvertUint8ToFloat64(vec), float64(features.ChosenTaskImagesYSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.ChosenTaskImagesYStdDev, features.ChosenTaskImagesYSkew, _ = rnd.StatMoments(ConvertUint8ToFloat64(vec))
+}
+
+// calcChosenTaskImagesYDist calculates the features of the ChosenTaskImagesYDist vector from the given vector
+func (features *ProcessedFeatures) calcChosenTaskImagesYDist(vec []int16) {
+	features.ChosenTaskImagesYDistMax = MaxInt(vec)
+	features.ChosenTaskImagesYDistMin = MinInt(vec)
+	features.ChosenTaskImagesYDistDiff = features.ChosenTaskImagesYDistMax - features.ChosenTaskImagesYDistMin
+	features.ChosenTaskImagesYDistSum = SumInt(vec)
+	features.ChosenTaskImagesYDistMean = Mean(ConvertInt16ToFloat64(vec), float64(features.ChosenTaskImagesYDistSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.ChosenTaskImagesYDistStdDev, features.ChosenTaskImagesYDistSkew, _ = rnd.StatMoments(ConvertInt16ToFloat64(vec))
+}
+
+// calcChosenTaskImagesXDist calculates the features of the ChosenTaskImagesXDist vector from the given vector
+func (features *ProcessedFeatures) calcChosenTaskImagesXDist(vec []int16) {
+	features.ChosenTaskImagesXDistMax = MaxInt(vec)
+	features.ChosenTaskImagesXDistMin = MinInt(vec)
+	features.ChosenTaskImagesXDistDiff = features.ChosenTaskImagesXDistMax - features.ChosenTaskImagesXDistMin
+	features.ChosenTaskImagesXDistSum = SumInt(vec)
+	features.ChosenTaskImagesXDistMean = Mean(ConvertInt16ToFloat64(vec), float64(features.ChosenTaskImagesXDistSum))
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, features.ChosenTaskImagesXDistStdDev, features.ChosenTaskImagesXDistSkew, _ = rnd.StatMoments(ConvertInt16ToFloat64(vec))
+}
+
+// calcChosenTaskImagesPairwiseDist calculates the features of the ChosenTaskImagesPairwiseDistance vector from the given vector
+func (features *ProcessedFeatures) calcChosenTaskImagesPairwiseDistance(vec []float64) {
+	features.ChosenTaskImagesPairwiseDistMin, features.ChosenTaskImagesPairwiseDistMean, features.ChosenTaskImagesPairwiseDistMax, features.ChosenTaskImagesPairwiseDistStdDev = rnd.StatBasic(vec, true)
+	features.ChosenTaskImagesPairwiseDistSum = SumFloat(vec)
+	if len(vec) == 1 {
+		features.ChosenTaskImagesPairwiseDistMin, features.ChosenTaskImagesPairwiseDistMean, features.ChosenTaskImagesPairwiseDistMax = vec[0], vec[0], vec[0]
+	}
+	features.ChosenTaskImagesPairwiseDistDiff = features.ChosenTaskImagesPairwiseDistMax - features.ChosenTaskImagesPairwiseDistMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.ChosenTaskImagesPairwiseDistSkew, _ = rnd.StatMoments(vec)
+}
+
+// calcChosenTaskImagesDistStartEnd calculates the features of the ChosenTaskImagesDistStartEnd vector from the given vector
+func (features *ProcessedFeatures) calcChosenTaskImagesDistStartEnd(vec []float64) {
+	features.ChosenTaskImagesDistStartEndMin, features.ChosenTaskImagesDistStartEndMean, features.ChosenTaskImagesDistStartEndMax, features.ChosenTaskImagesDistStartEndStdDev = rnd.StatBasic(vec, true)
+	features.ChosenTaskImagesDistStartEndSum = SumFloat(vec)
+	if len(vec) == 1 {
+		features.ChosenTaskImagesDistStartEndMin, features.ChosenTaskImagesDistStartEndMean, features.ChosenTaskImagesDistStartEndMax = vec[0], vec[0], vec[0]
+	}
+	features.ChosenTaskImagesDistStartEndDiff = features.ChosenTaskImagesDistStartEndMax - features.ChosenTaskImagesDistStartEndMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.ChosenTaskImagesDistStartEndSkew, _ = rnd.StatMoments(vec)
+}
+
+// calcChosenTaskImagesDistSum calculates the features of the ChosenTaskImagesDistSum vector from the given vector
+func (features *ProcessedFeatures) calcChosenTaskImagesDistSum(vec []float64) {
+	features.ChosenTaskImagesDistSumMin, features.ChosenTaskImagesDistSumMean, features.ChosenTaskImagesDistSumMax, features.ChosenTaskImagesDistSumStdDev = rnd.StatBasic(vec, true)
+	features.ChosenTaskImagesDistSumSum = SumFloat(vec)
+	if len(vec) == 1 {
+		features.ChosenTaskImagesDistSumMin, features.ChosenTaskImagesDistSumMean, features.ChosenTaskImagesDistSumMax = vec[0], vec[0], vec[0]
+	}
+	features.ChosenTaskImagesDistSumDiff = features.ChosenTaskImagesDistSumMax - features.ChosenTaskImagesDistSumMin
+	defer func() {
+		recover()
+	}()
+	_, _, _, _, _, features.ChosenTaskImagesDistSumSkew, _ = rnd.StatMoments(vec)
 }
 
 // calcCheckBoxPathPairwiseDistanceFeatures calculates the features of the PairwiseDistance vector from the given path; Auto-generated
