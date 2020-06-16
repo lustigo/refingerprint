@@ -6,7 +6,7 @@ func MaxInt(slice []int16) int16 {
 	if l == 0 {
 		return 0
 	} else if l == 1 {
-		return slice[1]
+		return slice[0]
 	}
 
 	maxVal := int16(-32768)
@@ -24,7 +24,7 @@ func MaxUint8(slice []uint8) uint8 {
 	if l == 0 {
 		return 0
 	} else if l == 1 {
-		return slice[1]
+		return slice[0]
 	}
 
 	maxVal := uint8(0)
@@ -42,7 +42,7 @@ func MaxUint16(slice []uint16) uint16 {
 	if l == 0 {
 		return 0
 	} else if l == 1 {
-		return slice[1]
+		return slice[0]
 	}
 
 	maxVal := uint16(0)
@@ -60,7 +60,7 @@ func MaxUint64(slice []uint64) uint64 {
 	if l == 0 {
 		return 0
 	} else if l == 1 {
-		return slice[1]
+		return slice[0]
 	}
 
 	maxVal := uint64(0)
@@ -78,7 +78,7 @@ func MinInt(slice []int16) int16 {
 	if l == 0 {
 		return 0
 	} else if l == 1 {
-		return slice[1]
+		return slice[0]
 	}
 
 	minVal := int16(32767)
@@ -96,7 +96,7 @@ func MinUint8(slice []uint8) uint8 {
 	if l == 0 {
 		return 0
 	} else if l == 1 {
-		return slice[1]
+		return slice[0]
 	}
 
 	minVal := uint8(255)
@@ -114,7 +114,7 @@ func MinUint16(slice []uint16) uint16 {
 	if l == 0 {
 		return 0
 	} else if l == 1 {
-		return slice[1]
+		return slice[0]
 	}
 
 	minVal := uint16(65535)
@@ -132,7 +132,7 @@ func MinUint64(slice []uint64) uint64 {
 	if l == 0 {
 		return 0
 	} else if l == 1 {
-		return slice[1]
+		return slice[0]
 	}
 
 	minVal := uint64(18446744073709551615)
