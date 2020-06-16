@@ -108,7 +108,8 @@ type ProcessedFeatures struct {
 	WebGLExtKHR                  uint8  `arff:"webglExtKHR" csv:"KHR_parallel_shader_compile"`
 	WebGLExtTextCompressBPTC     uint8  `arff:"webglExtTextCompressBPTC" csv:"EXT_texture_compression_bptc"`
 	WebGLExtTextCompressRGTC     uint8  `arff:"webglExtTextCompressRGTC" csv:"EXT_texture_compression_rgtc"`
-	// TODO: Vendor and Model
+	WebGLGCModel                 string `arff:"webglGCModel" csv:"webglGCModel"`
+	WebGLGCVendor                string `arff:"webglGCVendor" csv:"webglGCVendor"`
 	// Screen Resolution
 	ScreenHeight uint16 `arff:"screenY" csv:"Screen Height"`
 	PixelDensity uint16 `arff:"screenDensity" csv:"Pixel Density"`
@@ -804,7 +805,8 @@ func GetARFFHeader() arff.Header {
 	header.AddAttr("webglExtKHR", arff.Numeric, nil)
 	header.AddAttr("webglExtTextCompressBPTC", arff.Numeric, nil)
 	header.AddAttr("webglExtTextCompressRGTC", arff.Numeric, nil)
-	// TODO: Vendor&Model
+	header.AddAttr("webglGCModel", arff.Nominal, gcModels)
+	header.AddAttr("webglGCVendor", arff.Nominal, gcVendors)
 	// Screen Resolution
 	header.AddAttr("screenX", arff.Numeric, nil)
 	header.AddAttr("screenY", arff.Numeric, nil)
@@ -1412,6 +1414,7 @@ func ExtractFeatures(data *Data) *ProcessedFeatures {
 	features.Audio = data.Audio
 	features.ExtractBrowserFeatures(data)
 	features.ExtractWebGLExtensions(data.WebGL)
+	features.ExtractGraphicCardInformation(data.WebGL)
 	features.ExtractScreenInfo(data.Screen)
 	features.ExtractFramePosition(data.FramePosition)
 	features.ExtractMouseData(data)
