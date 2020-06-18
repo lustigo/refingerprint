@@ -1656,7 +1656,7 @@ func (features *ProcessedFeatures) ExtractTaskData(data []TaskData, t Time) {
 
 // Convert1DTo2D converts the given position number to the (x,y) coordinates in the table with the given size
 func Convert1DTo2D(position, size uint8) (uint8, uint8) {
-	return position / size, position % size
+	return position % size, position / size
 }
 
 // calcTaskPictureSelected calculates the features of the TaskPicturesSelected vector from the given vector
