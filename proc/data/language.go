@@ -92,8 +92,8 @@ func (features *ProcessedFeatures) ExtractLanguages(binfo BrowserInfo) {
 // Source: https://datahub.io/core/language-codes#data
 // This list was made available under the Public Domain Dedication and License v1.0 whose full text can be found at: http://www.opendatacommons.org/licenses/pddl/1.0/
 var languages = []string{
-	"EMPTY",       // lang was not chosen
-	"NOT NOMINAL", // lang is not in this list,
+	"EMPTY",  // lang was not chosen
+	"NOTNOM", // lang is not in this list,
 	"af",
 	"af-NA",
 	"af-ZA",

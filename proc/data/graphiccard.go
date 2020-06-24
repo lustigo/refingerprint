@@ -4,6 +4,7 @@ import "strings"
 
 // gcVendorsRaw declares the possible graphiccard vendors
 var gcVendorsRaw = []string{
+	"AMD",
 	"Google Inc.",
 	"Intel Inc.",
 	"NOTNOM", // not nominal
@@ -13,6 +14,7 @@ var gcVendorsRaw = []string{
 
 // gcVendors declares the possible graphiccard vendors for the feature
 var gcVendors = []string{
+	"AMD",
 	"GoogleInc.",
 	"IntelInc.",
 	"NOTNOM", // not nominal
@@ -86,6 +88,6 @@ func (features *ProcessedFeatures) ExtractGraphicCardInformation(data WebGLInfo)
 		}
 	}
 	if !found {
-		features.WebGLGCVendor = gcVendors[2]
+		features.WebGLGCVendor = gcVendors[3]
 	}
 }
