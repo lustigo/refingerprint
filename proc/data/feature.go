@@ -1427,7 +1427,7 @@ func ExtractFeatures(data *Data) *ProcessedFeatures {
 	features.ExtractWebGLExtensions(data.WebGL)
 	features.ExtractGraphicCardInformation(data.WebGL)
 	features.ExtractScreenInfo(data.Screen)
-	features.ExtractFramePosition(data.FramePosition)
+	features.ExtractFramePosition(data.FramePosition, data.Screen)
 	features.ExtractMouseData(data)
 	features.ExtractTaskData(data.TaskEvents, data.Time)
 	return features
@@ -1473,15 +1473,16 @@ func (features *ProcessedFeatures) ExtractScreenInfo(sinfo ScreenInfo) {
 }
 
 // ExtractFramePosition saves the information about the frame rectangles
-func (features *ProcessedFeatures) ExtractFramePosition(pinfo FramePosition) {
+func (features *ProcessedFeatures) ExtractFramePosition(pinfo FramePosition, sinfo ScreenInfo) {
+	len := sinfo.Length()
 	features.CaptchaHeight = pinfo.Captcha.Height
 	features.CaptchaWidth = pinfo.Captcha.Width
-	features.CaptchaX = pinfo.Captcha.X
-	features.CaptchaY = pinfo.Captcha.Y
+	features.CaptchaX = pinfo.Captcha.X / len
+	features.CaptchaY = pinfo.Captcha.Y / len
 	features.TaskHeight = pinfo.Task.Height
 	features.TaskWidth = pinfo.Task.Width
-	features.TaskX = pinfo.Task.X
-	features.TaskY = pinfo.Task.Y
+	features.TaskX = pinfo.Task.X / len
+	features.TaskY = pinfo.Task.Y / len
 }
 
 // ExtractMouseData extracts relevant MouseMovement Features
