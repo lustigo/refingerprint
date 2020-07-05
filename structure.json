@@ -1,0 +1,133 @@
+{
+	"survey": "7fcfbe2e-ee7c-4793-880d-ed60fe805e24",
+	"pages": [
+		[{
+			"type": "textwidget",
+			"required": true,
+			"structure": {
+				"content": "Hallo und vielen Dank, dass Sie an meiner Umfrage teilnehmen möchten.\nDiese Befragung wird im Rahmen einer Bachelorarbeit von <a href=\"mailto:lklassen@mail.uni-mannheim.de\">Lukas Klassen</a> am Lehrstuhl für Praktische Informatik IV: Dependable Systems Engineering der Universität Mannheim unter der Betreuung von Prof. Dr. Frederik Armknecht und M. Sc. Christian Müller durchgeführt.\nBitte stellen Sie sicher, dass Sie die Befragung ohne Unterbrechung durchführen und die notwendige Erweiterung installiert ist (in der linken oberen Ecke sollte ein grüner Haken zu sehen sein)."
+			}
+		}, {
+			"type": "checkbox",
+			"required": "true",
+			"structure": {
+				"question": "Die Datenschutzerklärung wurde zur Verfügung gestellt und ich bin mit der Datenverarbeitung einverstanden",
+				"selection": [""]
+			}
+		}],
+		[{
+				"type": "textwidget",
+				"required": true,
+				"structure": {
+					"content": "Bitte geben Sie uns erstmal nähere Informationen über Ihre Person"
+				}
+			},
+			{
+				"type": "vector",
+				"required": true,
+				"structure": {
+					"question": "Geschlecht",
+					"selection": ["Männlich", "Weiblich", "Divers"]
+				}
+			},
+			{
+				"type": "vector",
+				"required": true,
+				"structure": {
+					"question": "Ihr Alter",
+					"selection": ["18-29", "30-39", "40-49", "50-59", "60+"]
+				}
+			}
+		],
+		[{
+			"type": "captcha",
+			"required": true,
+			"structure": {
+				"sitekey": "6Lcnn_AUAAAAAAVRFYNopyea6lFBTxpQQXSUOrCR"
+			}
+		}],
+		[{
+			"type": "vector",
+			"required": true,
+			"structure": {
+				"question": "Wieviele Prozent Ihrer Bankgeschäfte tätigen Sie online?",
+				"selection": ["0", "1-24", "25-49", "50-74", "75-99", "100", "Weiß nicht"]
+			}
+		}, {
+			"type": "checkbox",
+			"required": true,
+			"structure": {
+				"question": "Welche der folgenden biometrischen Verfahren haben Sie bereits benutzt um Bankgeschäfte online durchzuführen (z.B. beim Anmelden in das Online-Banking oder in die Online-Banking-App)",
+				"selection": ["Fingerabdruck", "Gesichtsfelderkennung", "Spracherkennung", "Iris-Scan", "Puls- oder Herzschlag", "Handgeometrie (3D-Scan der Hand)", "Tippverhaltensanalyse", "Mausbewegungsanalyse", "Spracherkennung", "Keines", "Nutze kein Online-Banking/Weiß nicht"]
+			}
+		}, {
+			"type": "checkbox",
+			"required": true,
+			"structure": {
+				"question": "Bei welchen Vorgängen verwenden Sie biometrische Verfahren oder würden diese verwenden",
+				"selection": ["Anmeldung zum Online Banking oder in der App", "Ausführen einer Überweisung", "Abfrage von Kontoinformationen", "Änderung der Kundendaten", "Abschluss eines Kreditvertrages", "Ausführen eines Wertpapiergeschäftes", "Abschluss einer Versicherung oder eines Bausparvertrages", "Ich würde keine biometrischen Verfahren verwenden"]
+			}
+		}],
+		[{
+			"type": "matrix",
+			"required": true,
+			"structure": {
+				"question": "Wie nutzerfreundlich finden Sie die folgenden Verfahren bei der Benutzung im Online-Banking?",
+				"structure": ["Sehr nutzerfreundlich", "Eher nutzerfreundlich", "Wenig nutzerfreundlich", "Gar nicht nutzerfreundlich", "Kenne das Verfahren nicht"],
+				"answers": {
+					"Autorisieren über das Handy (pushTAN, SMS-Tan, photoTAN,...)": -1,
+					"Autorisieren über ein zusätzliches Gerät (TAN-Generator, chipTAN, ...)": -1,
+					"Autorisieren mit biometrischen Verfahren (Fingerabdruck, Spracherkennung, ...)": -1
+				}
+			}
+		}],
+		[{
+			"type": "matrix",
+			"required": true,
+			"structure": {
+				"question": "Für wie sicher halten Sie das folgende Verfahren?",
+				"structure": [
+					"Sehr sicher",
+					"Eher sicher",
+					"Eher unsicher",
+					"Sehr unsicher",
+					"Kenne das Verfahren nicht"
+				],
+				"answers": {
+					"Autorisieren über das Handy (pushTAN, SMS-Tan, photoTAN,...)": -1,
+					"Autorisieren über ein zusätzliches Gerät (TAN-Generator, chipTAN, ...)": -1,
+					"Autorisieren mit biometrischen Verfahren (Fingerabdruck, Spracherkennung, ...)": -1
+				}
+			}
+		}],
+		[{
+			"type": "matrix",
+			"required": true,
+			"structure": {
+				"question": "Für wie wichtig halten Sie die folgenden Aspekte bei biometrischen Verfahren?",
+				"structure": [
+					"Sehr wichtig",
+					"Eher wichtig",
+					"Eher unwichtig",
+					"Sehr unwichtig",
+					"Kenne das Verfahren nicht"
+				],
+				"answers": {
+					"Komfort/Nutzerfreundlichkeit": -1,
+					"Geschwindigkeit/Zugänglichkeit": -1,
+					"Unterscheidbarkeit (Wahrscheinlichkeit, dass eine andere Person die gleichen Merkmale aufweist)": -1,
+					"Dauerhaftigkeit (Merkmal sollte sich nicht verändern)": -1,
+					"Fälschungssicherheit/Zuverlässigkeit": -1,
+					"Universalität (Merkmal soll bei allen Menschen vorhanden sein)": -1
+				}
+			}
+		}],
+		[{
+			"type": "captcha",
+			"required": true,
+			"structure": {
+				"sitekey": "6Lcnn_AUAAAAAAVRFYNopyea6lFBTxpQQXSUOrCR"
+			}
+		}]
+	]
+}

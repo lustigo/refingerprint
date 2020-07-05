@@ -368,7 +368,8 @@ Der Text unterstützt Markdown-Funktionalität.
   "type": "textwidget",
   "required": false,
   "structure": {
-    "content": "Dies ist ein schöner Text. Man kann auch **Markdown** benutzen und damit Textbestandteile *kursiv* darstellen"
+    "content": "Dies ist ein schöner Text. Man kann auch **Markdown** benutzen und
+		damit Textbestandteile *kursiv* darstellen"
   }
 }
 ```
@@ -423,7 +424,8 @@ Hier finden Sie eine Umfrage inklusive der Konfiguration:
       "type": "textwidget",
       "required": false,
       "structure": {
-        "content": "Willkommen zu dieser *grandiosen* Umfrage!\nIch hoffe Sie haben **Spaß**!"
+        "content": "Willkommen zu dieser *grandiosen* Umfrage!\nIch hoffe Sie
+		    haben **Spaß**!"
       }
     }],
     [{
