@@ -23,7 +23,7 @@
     "koa-bodyparser": "^4.2.1",
     "koa-mount": "^4.0.0",
     "koa-static": "^5.0.0",
-    "request": "^2.88.0",
+    "request": "^2.88.2",
     "tslib": "^1.10.0",
     "typescript": "^3.7.5"
   },
